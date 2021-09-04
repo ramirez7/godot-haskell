@@ -17,7 +17,6 @@ import Godot.Gdnative.Internal
 import Godot.Api.Types
 import Godot.Core.Spatial()
 
--- | Emitted when the @curve@ changes.
 sig_curve_changed :: Godot.Internal.Dispatch.Signal Path
 sig_curve_changed = Godot.Internal.Dispatch.Signal "curve_changed"
 
@@ -50,7 +49,6 @@ instance NodeMethod Path "_curve_changed" '[] (IO ()) where
 
 {-# NOINLINE bindPath_get_curve #-}
 
--- | A @Curve3D@ describing the path.
 bindPath_get_curve :: MethodBind
 bindPath_get_curve
   = unsafePerformIO $
@@ -60,7 +58,6 @@ bindPath_get_curve
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | A @Curve3D@ describing the path.
 get_curve :: (Path :< cls, Object :< cls) => cls -> IO Curve3D
 get_curve cls
   = withVariantArray []
@@ -73,7 +70,6 @@ instance NodeMethod Path "get_curve" '[] (IO Curve3D) where
 
 {-# NOINLINE bindPath_set_curve #-}
 
--- | A @Curve3D@ describing the path.
 bindPath_set_curve :: MethodBind
 bindPath_set_curve
   = unsafePerformIO $
@@ -83,7 +79,6 @@ bindPath_set_curve
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | A @Curve3D@ describing the path.
 set_curve ::
             (Path :< cls, Object :< cls) => cls -> Curve3D -> IO ()
 set_curve cls arg1

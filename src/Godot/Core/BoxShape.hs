@@ -22,7 +22,6 @@ instance NodeProperty BoxShape "extents" Vector3 'False where
 
 {-# NOINLINE bindBoxShape_get_extents #-}
 
--- | The box's half extents. The width, height and depth of this shape is twice the half extents.
 bindBoxShape_get_extents :: MethodBind
 bindBoxShape_get_extents
   = unsafePerformIO $
@@ -32,7 +31,6 @@ bindBoxShape_get_extents
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The box's half extents. The width, height and depth of this shape is twice the half extents.
 get_extents ::
               (BoxShape :< cls, Object :< cls) => cls -> IO Vector3
 get_extents cls
@@ -47,7 +45,6 @@ instance NodeMethod BoxShape "get_extents" '[] (IO Vector3) where
 
 {-# NOINLINE bindBoxShape_set_extents #-}
 
--- | The box's half extents. The width, height and depth of this shape is twice the half extents.
 bindBoxShape_set_extents :: MethodBind
 bindBoxShape_set_extents
   = unsafePerformIO $
@@ -57,7 +54,6 @@ bindBoxShape_set_extents
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The box's half extents. The width, height and depth of this shape is twice the half extents.
 set_extents ::
               (BoxShape :< cls, Object :< cls) => cls -> Vector3 -> IO ()
 set_extents cls arg1

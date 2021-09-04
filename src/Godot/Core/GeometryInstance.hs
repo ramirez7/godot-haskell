@@ -117,7 +117,6 @@ instance NodeProperty GeometryInstance "use_in_baked_light" Bool
 
 {-# NOINLINE bindGeometryInstance_get_cast_shadows_setting #-}
 
--- | The selected shadow casting flag. See @enum ShadowCastingSetting@ for possible values.
 bindGeometryInstance_get_cast_shadows_setting :: MethodBind
 bindGeometryInstance_get_cast_shadows_setting
   = unsafePerformIO $
@@ -127,7 +126,6 @@ bindGeometryInstance_get_cast_shadows_setting
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The selected shadow casting flag. See @enum ShadowCastingSetting@ for possible values.
 get_cast_shadows_setting ::
                            (GeometryInstance :< cls, Object :< cls) => cls -> IO Int
 get_cast_shadows_setting cls
@@ -147,7 +145,6 @@ instance NodeMethod GeometryInstance "get_cast_shadows_setting" '[]
 
 {-# NOINLINE bindGeometryInstance_get_extra_cull_margin #-}
 
--- | The extra distance added to the GeometryInstance's bounding box (@AABB@) to increase its cull box.
 bindGeometryInstance_get_extra_cull_margin :: MethodBind
 bindGeometryInstance_get_extra_cull_margin
   = unsafePerformIO $
@@ -157,7 +154,6 @@ bindGeometryInstance_get_extra_cull_margin
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The extra distance added to the GeometryInstance's bounding box (@AABB@) to increase its cull box.
 get_extra_cull_margin ::
                         (GeometryInstance :< cls, Object :< cls) => cls -> IO Float
 get_extra_cull_margin cls
@@ -176,7 +172,6 @@ instance NodeMethod GeometryInstance "get_extra_cull_margin" '[]
 
 {-# NOINLINE bindGeometryInstance_get_flag #-}
 
--- | Returns the @enum GeometryInstance.Flags@ that have been set for this object.
 bindGeometryInstance_get_flag :: MethodBind
 bindGeometryInstance_get_flag
   = unsafePerformIO $
@@ -186,7 +181,6 @@ bindGeometryInstance_get_flag
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the @enum GeometryInstance.Flags@ that have been set for this object.
 get_flag ::
            (GeometryInstance :< cls, Object :< cls) => cls -> Int -> IO Bool
 get_flag cls arg1
@@ -203,8 +197,6 @@ instance NodeMethod GeometryInstance "get_flag" '[Int] (IO Bool)
 
 {-# NOINLINE bindGeometryInstance_get_lod_max_distance #-}
 
--- | The GeometryInstance's max LOD distance.
---   			__Note:__ This property currently has no effect.
 bindGeometryInstance_get_lod_max_distance :: MethodBind
 bindGeometryInstance_get_lod_max_distance
   = unsafePerformIO $
@@ -214,8 +206,6 @@ bindGeometryInstance_get_lod_max_distance
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The GeometryInstance's max LOD distance.
---   			__Note:__ This property currently has no effect.
 get_lod_max_distance ::
                        (GeometryInstance :< cls, Object :< cls) => cls -> IO Float
 get_lod_max_distance cls
@@ -234,8 +224,6 @@ instance NodeMethod GeometryInstance "get_lod_max_distance" '[]
 
 {-# NOINLINE bindGeometryInstance_get_lod_max_hysteresis #-}
 
--- | The GeometryInstance's max LOD margin.
---   			__Note:__ This property currently has no effect.
 bindGeometryInstance_get_lod_max_hysteresis :: MethodBind
 bindGeometryInstance_get_lod_max_hysteresis
   = unsafePerformIO $
@@ -245,8 +233,6 @@ bindGeometryInstance_get_lod_max_hysteresis
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The GeometryInstance's max LOD margin.
---   			__Note:__ This property currently has no effect.
 get_lod_max_hysteresis ::
                          (GeometryInstance :< cls, Object :< cls) => cls -> IO Float
 get_lod_max_hysteresis cls
@@ -265,8 +251,6 @@ instance NodeMethod GeometryInstance "get_lod_max_hysteresis" '[]
 
 {-# NOINLINE bindGeometryInstance_get_lod_min_distance #-}
 
--- | The GeometryInstance's min LOD distance.
---   			__Note:__ This property currently has no effect.
 bindGeometryInstance_get_lod_min_distance :: MethodBind
 bindGeometryInstance_get_lod_min_distance
   = unsafePerformIO $
@@ -276,8 +260,6 @@ bindGeometryInstance_get_lod_min_distance
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The GeometryInstance's min LOD distance.
---   			__Note:__ This property currently has no effect.
 get_lod_min_distance ::
                        (GeometryInstance :< cls, Object :< cls) => cls -> IO Float
 get_lod_min_distance cls
@@ -296,8 +278,6 @@ instance NodeMethod GeometryInstance "get_lod_min_distance" '[]
 
 {-# NOINLINE bindGeometryInstance_get_lod_min_hysteresis #-}
 
--- | The GeometryInstance's min LOD margin.
---   			__Note:__ This property currently has no effect.
 bindGeometryInstance_get_lod_min_hysteresis :: MethodBind
 bindGeometryInstance_get_lod_min_hysteresis
   = unsafePerformIO $
@@ -307,8 +287,6 @@ bindGeometryInstance_get_lod_min_hysteresis
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The GeometryInstance's min LOD margin.
---   			__Note:__ This property currently has no effect.
 get_lod_min_hysteresis ::
                          (GeometryInstance :< cls, Object :< cls) => cls -> IO Float
 get_lod_min_hysteresis cls
@@ -327,8 +305,6 @@ instance NodeMethod GeometryInstance "get_lod_min_hysteresis" '[]
 
 {-# NOINLINE bindGeometryInstance_get_material_override #-}
 
--- | The material override for the whole geometry.
---   			If a material is assigned to this property, it will be used instead of any material set in any material slot of the mesh.
 bindGeometryInstance_get_material_override :: MethodBind
 bindGeometryInstance_get_material_override
   = unsafePerformIO $
@@ -338,8 +314,6 @@ bindGeometryInstance_get_material_override
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The material override for the whole geometry.
---   			If a material is assigned to this property, it will be used instead of any material set in any material slot of the mesh.
 get_material_override ::
                         (GeometryInstance :< cls, Object :< cls) => cls -> IO Material
 get_material_override cls
@@ -358,7 +332,6 @@ instance NodeMethod GeometryInstance "get_material_override" '[]
 
 {-# NOINLINE bindGeometryInstance_set_cast_shadows_setting #-}
 
--- | The selected shadow casting flag. See @enum ShadowCastingSetting@ for possible values.
 bindGeometryInstance_set_cast_shadows_setting :: MethodBind
 bindGeometryInstance_set_cast_shadows_setting
   = unsafePerformIO $
@@ -368,7 +341,6 @@ bindGeometryInstance_set_cast_shadows_setting
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The selected shadow casting flag. See @enum ShadowCastingSetting@ for possible values.
 set_cast_shadows_setting ::
                            (GeometryInstance :< cls, Object :< cls) => cls -> Int -> IO ()
 set_cast_shadows_setting cls arg1
@@ -389,7 +361,6 @@ instance NodeMethod GeometryInstance "set_cast_shadows_setting"
 
 {-# NOINLINE bindGeometryInstance_set_custom_aabb #-}
 
--- | Overrides the bounding box of this node with a custom one. To remove it, set an @AABB@ with all fields set to zero.
 bindGeometryInstance_set_custom_aabb :: MethodBind
 bindGeometryInstance_set_custom_aabb
   = unsafePerformIO $
@@ -399,7 +370,6 @@ bindGeometryInstance_set_custom_aabb
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Overrides the bounding box of this node with a custom one. To remove it, set an @AABB@ with all fields set to zero.
 set_custom_aabb ::
                   (GeometryInstance :< cls, Object :< cls) => cls -> Aabb -> IO ()
 set_custom_aabb cls arg1
@@ -418,7 +388,6 @@ instance NodeMethod GeometryInstance "set_custom_aabb" '[Aabb]
 
 {-# NOINLINE bindGeometryInstance_set_extra_cull_margin #-}
 
--- | The extra distance added to the GeometryInstance's bounding box (@AABB@) to increase its cull box.
 bindGeometryInstance_set_extra_cull_margin :: MethodBind
 bindGeometryInstance_set_extra_cull_margin
   = unsafePerformIO $
@@ -428,7 +397,6 @@ bindGeometryInstance_set_extra_cull_margin
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The extra distance added to the GeometryInstance's bounding box (@AABB@) to increase its cull box.
 set_extra_cull_margin ::
                         (GeometryInstance :< cls, Object :< cls) => cls -> Float -> IO ()
 set_extra_cull_margin cls arg1
@@ -448,7 +416,6 @@ instance NodeMethod GeometryInstance "set_extra_cull_margin"
 
 {-# NOINLINE bindGeometryInstance_set_flag #-}
 
--- | Sets the @enum GeometryInstance.Flags@ specified. See @enum GeometryInstance.Flags@ for options.
 bindGeometryInstance_set_flag :: MethodBind
 bindGeometryInstance_set_flag
   = unsafePerformIO $
@@ -458,7 +425,6 @@ bindGeometryInstance_set_flag
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the @enum GeometryInstance.Flags@ specified. See @enum GeometryInstance.Flags@ for options.
 set_flag ::
            (GeometryInstance :< cls, Object :< cls) =>
            cls -> Int -> Bool -> IO ()
@@ -477,8 +443,6 @@ instance NodeMethod GeometryInstance "set_flag" '[Int, Bool]
 
 {-# NOINLINE bindGeometryInstance_set_lod_max_distance #-}
 
--- | The GeometryInstance's max LOD distance.
---   			__Note:__ This property currently has no effect.
 bindGeometryInstance_set_lod_max_distance :: MethodBind
 bindGeometryInstance_set_lod_max_distance
   = unsafePerformIO $
@@ -488,8 +452,6 @@ bindGeometryInstance_set_lod_max_distance
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The GeometryInstance's max LOD distance.
---   			__Note:__ This property currently has no effect.
 set_lod_max_distance ::
                        (GeometryInstance :< cls, Object :< cls) => cls -> Float -> IO ()
 set_lod_max_distance cls arg1
@@ -509,8 +471,6 @@ instance NodeMethod GeometryInstance "set_lod_max_distance"
 
 {-# NOINLINE bindGeometryInstance_set_lod_max_hysteresis #-}
 
--- | The GeometryInstance's max LOD margin.
---   			__Note:__ This property currently has no effect.
 bindGeometryInstance_set_lod_max_hysteresis :: MethodBind
 bindGeometryInstance_set_lod_max_hysteresis
   = unsafePerformIO $
@@ -520,8 +480,6 @@ bindGeometryInstance_set_lod_max_hysteresis
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The GeometryInstance's max LOD margin.
---   			__Note:__ This property currently has no effect.
 set_lod_max_hysteresis ::
                          (GeometryInstance :< cls, Object :< cls) => cls -> Float -> IO ()
 set_lod_max_hysteresis cls arg1
@@ -541,8 +499,6 @@ instance NodeMethod GeometryInstance "set_lod_max_hysteresis"
 
 {-# NOINLINE bindGeometryInstance_set_lod_min_distance #-}
 
--- | The GeometryInstance's min LOD distance.
---   			__Note:__ This property currently has no effect.
 bindGeometryInstance_set_lod_min_distance :: MethodBind
 bindGeometryInstance_set_lod_min_distance
   = unsafePerformIO $
@@ -552,8 +508,6 @@ bindGeometryInstance_set_lod_min_distance
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The GeometryInstance's min LOD distance.
---   			__Note:__ This property currently has no effect.
 set_lod_min_distance ::
                        (GeometryInstance :< cls, Object :< cls) => cls -> Float -> IO ()
 set_lod_min_distance cls arg1
@@ -573,8 +527,6 @@ instance NodeMethod GeometryInstance "set_lod_min_distance"
 
 {-# NOINLINE bindGeometryInstance_set_lod_min_hysteresis #-}
 
--- | The GeometryInstance's min LOD margin.
---   			__Note:__ This property currently has no effect.
 bindGeometryInstance_set_lod_min_hysteresis :: MethodBind
 bindGeometryInstance_set_lod_min_hysteresis
   = unsafePerformIO $
@@ -584,8 +536,6 @@ bindGeometryInstance_set_lod_min_hysteresis
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The GeometryInstance's min LOD margin.
---   			__Note:__ This property currently has no effect.
 set_lod_min_hysteresis ::
                          (GeometryInstance :< cls, Object :< cls) => cls -> Float -> IO ()
 set_lod_min_hysteresis cls arg1
@@ -605,8 +555,6 @@ instance NodeMethod GeometryInstance "set_lod_min_hysteresis"
 
 {-# NOINLINE bindGeometryInstance_set_material_override #-}
 
--- | The material override for the whole geometry.
---   			If a material is assigned to this property, it will be used instead of any material set in any material slot of the mesh.
 bindGeometryInstance_set_material_override :: MethodBind
 bindGeometryInstance_set_material_override
   = unsafePerformIO $
@@ -616,8 +564,6 @@ bindGeometryInstance_set_material_override
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The material override for the whole geometry.
---   			If a material is assigned to this property, it will be used instead of any material set in any material slot of the mesh.
 set_material_override ::
                         (GeometryInstance :< cls, Object :< cls) =>
                         cls -> Material -> IO ()

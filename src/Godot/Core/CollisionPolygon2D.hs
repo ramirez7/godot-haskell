@@ -129,7 +129,7 @@ instance NodeMethod CollisionPolygon2D
 
 {-# NOINLINE bindCollisionPolygon2D_get_polygon #-}
 
--- | The polygon's list of vertices. The final point will be connected to the first. The returned value is a clone of the @PoolVector2Array@, not a reference.
+-- | The polygon's list of vertices. The final point will be connected to the first. The returned value is a clone of the @PackedVector2Array@, not a reference.
 bindCollisionPolygon2D_get_polygon :: MethodBind
 bindCollisionPolygon2D_get_polygon
   = unsafePerformIO $
@@ -139,7 +139,7 @@ bindCollisionPolygon2D_get_polygon
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The polygon's list of vertices. The final point will be connected to the first. The returned value is a clone of the @PoolVector2Array@, not a reference.
+-- | The polygon's list of vertices. The final point will be connected to the first. The returned value is a clone of the @PackedVector2Array@, not a reference.
 get_polygon ::
               (CollisionPolygon2D :< cls, Object :< cls) =>
               cls -> IO PoolVector2Array
@@ -343,7 +343,7 @@ instance NodeMethod CollisionPolygon2D
 
 {-# NOINLINE bindCollisionPolygon2D_set_polygon #-}
 
--- | The polygon's list of vertices. The final point will be connected to the first. The returned value is a clone of the @PoolVector2Array@, not a reference.
+-- | The polygon's list of vertices. The final point will be connected to the first. The returned value is a clone of the @PackedVector2Array@, not a reference.
 bindCollisionPolygon2D_set_polygon :: MethodBind
 bindCollisionPolygon2D_set_polygon
   = unsafePerformIO $
@@ -353,7 +353,7 @@ bindCollisionPolygon2D_set_polygon
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The polygon's list of vertices. The final point will be connected to the first. The returned value is a clone of the @PoolVector2Array@, not a reference.
+-- | The polygon's list of vertices. The final point will be connected to the first. The returned value is a clone of the @PackedVector2Array@, not a reference.
 set_polygon ::
               (CollisionPolygon2D :< cls, Object :< cls) =>
               cls -> PoolVector2Array -> IO ()

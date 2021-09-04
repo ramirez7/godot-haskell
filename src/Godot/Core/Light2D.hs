@@ -235,7 +235,6 @@ instance NodeMethod Light2D "get_energy" '[] (IO Float) where
 
 {-# NOINLINE bindLight2D_get_height #-}
 
--- | The height of the Light2D. Used with 2D normal mapping.
 bindLight2D_get_height :: MethodBind
 bindLight2D_get_height
   = unsafePerformIO $
@@ -245,7 +244,6 @@ bindLight2D_get_height
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The height of the Light2D. Used with 2D normal mapping.
 get_height :: (Light2D :< cls, Object :< cls) => cls -> IO Float
 get_height cls
   = withVariantArray []
@@ -368,7 +366,6 @@ instance NodeMethod Light2D "get_layer_range_min" '[] (IO Int)
 
 {-# NOINLINE bindLight2D_get_mode #-}
 
--- | The Light2D's mode. See @enum Mode@ constants for values.
 bindLight2D_get_mode :: MethodBind
 bindLight2D_get_mode
   = unsafePerformIO $
@@ -378,7 +375,6 @@ bindLight2D_get_mode
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The Light2D's mode. See @enum Mode@ constants for values.
 get_mode :: (Light2D :< cls, Object :< cls) => cls -> IO Int
 get_mode cls
   = withVariantArray []
@@ -391,7 +387,6 @@ instance NodeMethod Light2D "get_mode" '[] (IO Int) where
 
 {-# NOINLINE bindLight2D_get_shadow_buffer_size #-}
 
--- | Shadow buffer size.
 bindLight2D_get_shadow_buffer_size :: MethodBind
 bindLight2D_get_shadow_buffer_size
   = unsafePerformIO $
@@ -401,7 +396,6 @@ bindLight2D_get_shadow_buffer_size
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Shadow buffer size.
 get_shadow_buffer_size ::
                          (Light2D :< cls, Object :< cls) => cls -> IO Int
 get_shadow_buffer_size cls
@@ -471,7 +465,6 @@ instance NodeMethod Light2D "get_shadow_filter" '[] (IO Int) where
 
 {-# NOINLINE bindLight2D_get_shadow_gradient_length #-}
 
--- | Smooth shadow gradient length.
 bindLight2D_get_shadow_gradient_length :: MethodBind
 bindLight2D_get_shadow_gradient_length
   = unsafePerformIO $
@@ -481,7 +474,6 @@ bindLight2D_get_shadow_gradient_length
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Smooth shadow gradient length.
 get_shadow_gradient_length ::
                              (Light2D :< cls, Object :< cls) => cls -> IO Float
 get_shadow_gradient_length cls
@@ -527,7 +519,6 @@ instance NodeMethod Light2D "get_shadow_smooth" '[] (IO Float)
 
 {-# NOINLINE bindLight2D_get_texture #-}
 
--- | @Texture@ used for the Light2D's appearance.
 bindLight2D_get_texture :: MethodBind
 bindLight2D_get_texture
   = unsafePerformIO $
@@ -537,7 +528,6 @@ bindLight2D_get_texture
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | @Texture@ used for the Light2D's appearance.
 get_texture :: (Light2D :< cls, Object :< cls) => cls -> IO Texture
 get_texture cls
   = withVariantArray []
@@ -551,7 +541,6 @@ instance NodeMethod Light2D "get_texture" '[] (IO Texture) where
 
 {-# NOINLINE bindLight2D_get_texture_offset #-}
 
--- | The offset of the Light2D's @texture@.
 bindLight2D_get_texture_offset :: MethodBind
 bindLight2D_get_texture_offset
   = unsafePerformIO $
@@ -561,7 +550,6 @@ bindLight2D_get_texture_offset
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The offset of the Light2D's @texture@.
 get_texture_offset ::
                      (Light2D :< cls, Object :< cls) => cls -> IO Vector2
 get_texture_offset cls
@@ -578,7 +566,6 @@ instance NodeMethod Light2D "get_texture_offset" '[] (IO Vector2)
 
 {-# NOINLINE bindLight2D_get_texture_scale #-}
 
--- | The @texture@'s scale factor.
 bindLight2D_get_texture_scale :: MethodBind
 bindLight2D_get_texture_scale
   = unsafePerformIO $
@@ -588,7 +575,6 @@ bindLight2D_get_texture_scale
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The @texture@'s scale factor.
 get_texture_scale ::
                     (Light2D :< cls, Object :< cls) => cls -> IO Float
 get_texture_scale cls
@@ -831,7 +817,6 @@ instance NodeMethod Light2D "set_energy" '[Float] (IO ()) where
 
 {-# NOINLINE bindLight2D_set_height #-}
 
--- | The height of the Light2D. Used with 2D normal mapping.
 bindLight2D_set_height :: MethodBind
 bindLight2D_set_height
   = unsafePerformIO $
@@ -841,7 +826,6 @@ bindLight2D_set_height
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The height of the Light2D. Used with 2D normal mapping.
 set_height ::
              (Light2D :< cls, Object :< cls) => cls -> Float -> IO ()
 set_height cls arg1
@@ -966,7 +950,6 @@ instance NodeMethod Light2D "set_layer_range_min" '[Int] (IO ())
 
 {-# NOINLINE bindLight2D_set_mode #-}
 
--- | The Light2D's mode. See @enum Mode@ constants for values.
 bindLight2D_set_mode :: MethodBind
 bindLight2D_set_mode
   = unsafePerformIO $
@@ -976,7 +959,6 @@ bindLight2D_set_mode
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The Light2D's mode. See @enum Mode@ constants for values.
 set_mode :: (Light2D :< cls, Object :< cls) => cls -> Int -> IO ()
 set_mode cls arg1
   = withVariantArray [toVariant arg1]
@@ -989,7 +971,6 @@ instance NodeMethod Light2D "set_mode" '[Int] (IO ()) where
 
 {-# NOINLINE bindLight2D_set_shadow_buffer_size #-}
 
--- | Shadow buffer size.
 bindLight2D_set_shadow_buffer_size :: MethodBind
 bindLight2D_set_shadow_buffer_size
   = unsafePerformIO $
@@ -999,7 +980,6 @@ bindLight2D_set_shadow_buffer_size
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Shadow buffer size.
 set_shadow_buffer_size ::
                          (Light2D :< cls, Object :< cls) => cls -> Int -> IO ()
 set_shadow_buffer_size cls arg1
@@ -1098,7 +1078,6 @@ instance NodeMethod Light2D "set_shadow_filter" '[Int] (IO ())
 
 {-# NOINLINE bindLight2D_set_shadow_gradient_length #-}
 
--- | Smooth shadow gradient length.
 bindLight2D_set_shadow_gradient_length :: MethodBind
 bindLight2D_set_shadow_gradient_length
   = unsafePerformIO $
@@ -1108,7 +1087,6 @@ bindLight2D_set_shadow_gradient_length
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Smooth shadow gradient length.
 set_shadow_gradient_length ::
                              (Light2D :< cls, Object :< cls) => cls -> Float -> IO ()
 set_shadow_gradient_length cls arg1
@@ -1154,7 +1132,6 @@ instance NodeMethod Light2D "set_shadow_smooth" '[Float] (IO ())
 
 {-# NOINLINE bindLight2D_set_texture #-}
 
--- | @Texture@ used for the Light2D's appearance.
 bindLight2D_set_texture :: MethodBind
 bindLight2D_set_texture
   = unsafePerformIO $
@@ -1164,7 +1141,6 @@ bindLight2D_set_texture
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | @Texture@ used for the Light2D's appearance.
 set_texture ::
               (Light2D :< cls, Object :< cls) => cls -> Texture -> IO ()
 set_texture cls arg1
@@ -1179,7 +1155,6 @@ instance NodeMethod Light2D "set_texture" '[Texture] (IO ()) where
 
 {-# NOINLINE bindLight2D_set_texture_offset #-}
 
--- | The offset of the Light2D's @texture@.
 bindLight2D_set_texture_offset :: MethodBind
 bindLight2D_set_texture_offset
   = unsafePerformIO $
@@ -1189,7 +1164,6 @@ bindLight2D_set_texture_offset
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The offset of the Light2D's @texture@.
 set_texture_offset ::
                      (Light2D :< cls, Object :< cls) => cls -> Vector2 -> IO ()
 set_texture_offset cls arg1
@@ -1206,7 +1180,6 @@ instance NodeMethod Light2D "set_texture_offset" '[Vector2] (IO ())
 
 {-# NOINLINE bindLight2D_set_texture_scale #-}
 
--- | The @texture@'s scale factor.
 bindLight2D_set_texture_scale :: MethodBind
 bindLight2D_set_texture_scale
   = unsafePerformIO $
@@ -1216,7 +1189,6 @@ bindLight2D_set_texture_scale
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The @texture@'s scale factor.
 set_texture_scale ::
                     (Light2D :< cls, Object :< cls) => cls -> Float -> IO ()
 set_texture_scale cls arg1

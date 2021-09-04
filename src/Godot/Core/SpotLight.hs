@@ -18,7 +18,6 @@ import Godot.Core.Light()
 
 {-# NOINLINE bindSpotLight_get_param #-}
 
--- | The spotlight's angle in degrees.
 bindSpotLight_get_param :: MethodBind
 bindSpotLight_get_param
   = unsafePerformIO $
@@ -28,7 +27,6 @@ bindSpotLight_get_param
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The spotlight's angle in degrees.
 get_param ::
             (SpotLight :< cls, Object :< cls) => cls -> Int -> IO Float
 get_param cls arg1
@@ -43,7 +41,6 @@ instance NodeMethod SpotLight "get_param" '[Int] (IO Float) where
 
 {-# NOINLINE bindSpotLight_set_param #-}
 
--- | The spotlight's angle in degrees.
 bindSpotLight_set_param :: MethodBind
 bindSpotLight_set_param
   = unsafePerformIO $
@@ -53,7 +50,6 @@ bindSpotLight_set_param
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The spotlight's angle in degrees.
 set_param ::
             (SpotLight :< cls, Object :< cls) => cls -> Int -> Float -> IO ()
 set_param cls arg1 arg2

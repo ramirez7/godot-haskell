@@ -208,6 +208,7 @@ module Godot.Core.GlobalConstants
         Godot.Core.GlobalConstants._KEY_NTILDE,
         Godot.Core.GlobalConstants._ERR_METHOD_NOT_FOUND,
         Godot.Core.GlobalConstants._KEY_IGRAVE,
+        Godot.Core.GlobalConstants._JOY_INVALID_OPTION,
         Godot.Core.GlobalConstants._KEY_QUESTION,
         Godot.Core.GlobalConstants._KEY_6,
         Godot.Core.GlobalConstants._KEY_EXCLAM,
@@ -1137,6 +1138,9 @@ _ERR_METHOD_NOT_FOUND = 37
 
 _KEY_IGRAVE :: Int
 _KEY_IGRAVE = 204
+
+_JOY_INVALID_OPTION :: Int
+_JOY_INVALID_OPTION = -1
 
 _KEY_QUESTION :: Int
 _KEY_QUESTION = 63

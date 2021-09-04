@@ -88,6 +88,7 @@ instance NodeMethod Translation "_set_messages" '[PoolStringArray]
 {-# NOINLINE bindTranslation_add_message #-}
 
 -- | Adds a message if nonexistent, followed by its translation.
+--   				An additional context could be used to specify the translation context or differentiate polysemic words.
 bindTranslation_add_message :: MethodBind
 bindTranslation_add_message
   = unsafePerformIO $
@@ -98,6 +99,7 @@ bindTranslation_add_message
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | Adds a message if nonexistent, followed by its translation.
+--   				An additional context could be used to specify the translation context or differentiate polysemic words.
 add_message ::
               (Translation :< cls, Object :< cls) =>
               cls -> GodotString -> GodotString -> IO ()

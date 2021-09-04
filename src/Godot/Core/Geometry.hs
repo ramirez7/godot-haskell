@@ -97,7 +97,6 @@ _END_SQUARE = 3
 
 {-# NOINLINE bindGeometry_build_box_planes #-}
 
--- | Returns an array with 6 @Plane@s that describe the sides of a box centered at the origin. The box size is defined by @extents@, which represents one (positive) corner of the box (i.e. half its actual size).
 bindGeometry_build_box_planes :: MethodBind
 bindGeometry_build_box_planes
   = unsafePerformIO $
@@ -107,7 +106,6 @@ bindGeometry_build_box_planes
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns an array with 6 @Plane@s that describe the sides of a box centered at the origin. The box size is defined by @extents@, which represents one (positive) corner of the box (i.e. half its actual size).
 build_box_planes ::
                    (Geometry :< cls, Object :< cls) => cls -> Vector3 -> IO Array
 build_box_planes cls arg1
@@ -125,7 +123,6 @@ instance NodeMethod Geometry "build_box_planes" '[Vector3]
 
 {-# NOINLINE bindGeometry_build_capsule_planes #-}
 
--- | Returns an array of @Plane@s closely bounding a faceted capsule centered at the origin with radius @radius@ and height @height@. The parameter @sides@ defines how many planes will be generated for the side part of the capsule, whereas @lats@ gives the number of latitudinal steps at the bottom and top of the capsule. The parameter @axis@ describes the axis along which the capsule is oriented (0 for X, 1 for Y, 2 for Z).
 bindGeometry_build_capsule_planes :: MethodBind
 bindGeometry_build_capsule_planes
   = unsafePerformIO $
@@ -135,7 +132,6 @@ bindGeometry_build_capsule_planes
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns an array of @Plane@s closely bounding a faceted capsule centered at the origin with radius @radius@ and height @height@. The parameter @sides@ defines how many planes will be generated for the side part of the capsule, whereas @lats@ gives the number of latitudinal steps at the bottom and top of the capsule. The parameter @axis@ describes the axis along which the capsule is oriented (0 for X, 1 for Y, 2 for Z).
 build_capsule_planes ::
                        (Geometry :< cls, Object :< cls) =>
                        cls -> Float -> Float -> Int -> Int -> Maybe Int -> IO Array
@@ -158,7 +154,6 @@ instance NodeMethod Geometry "build_capsule_planes"
 
 {-# NOINLINE bindGeometry_build_cylinder_planes #-}
 
--- | Returns an array of @Plane@s closely bounding a faceted cylinder centered at the origin with radius @radius@ and height @height@. The parameter @sides@ defines how many planes will be generated for the round part of the cylinder. The parameter @axis@ describes the axis along which the cylinder is oriented (0 for X, 1 for Y, 2 for Z).
 bindGeometry_build_cylinder_planes :: MethodBind
 bindGeometry_build_cylinder_planes
   = unsafePerformIO $
@@ -168,7 +163,6 @@ bindGeometry_build_cylinder_planes
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns an array of @Plane@s closely bounding a faceted cylinder centered at the origin with radius @radius@ and height @height@. The parameter @sides@ defines how many planes will be generated for the round part of the cylinder. The parameter @axis@ describes the axis along which the cylinder is oriented (0 for X, 1 for Y, 2 for Z).
 build_cylinder_planes ::
                         (Geometry :< cls, Object :< cls) =>
                         cls -> Float -> Float -> Int -> Maybe Int -> IO Array
@@ -191,7 +185,6 @@ instance NodeMethod Geometry "build_cylinder_planes"
 
 {-# NOINLINE bindGeometry_clip_polygon #-}
 
--- | Clips the polygon defined by the points in @points@ against the @plane@ and returns the points of the clipped polygon.
 bindGeometry_clip_polygon :: MethodBind
 bindGeometry_clip_polygon
   = unsafePerformIO $
@@ -201,7 +194,6 @@ bindGeometry_clip_polygon
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Clips the polygon defined by the points in @points@ against the @plane@ and returns the points of the clipped polygon.
 clip_polygon ::
                (Geometry :< cls, Object :< cls) =>
                cls -> PoolVector3Array -> Plane -> IO PoolVector3Array
@@ -221,8 +213,6 @@ instance NodeMethod Geometry "clip_polygon"
 
 {-# NOINLINE bindGeometry_clip_polygons_2d #-}
 
--- | Clips @polygon_a@ against @polygon_b@ and returns an array of clipped polygons. This performs @OPERATION_DIFFERENCE@ between polygons. Returns an empty array if @polygon_b@ completely overlaps @polygon_a@.
---   				If @polygon_b@ is enclosed by @polygon_a@, returns an outer polygon (boundary) and inner polygon (hole) which could be distiguished by calling @method is_polygon_clockwise@.
 bindGeometry_clip_polygons_2d :: MethodBind
 bindGeometry_clip_polygons_2d
   = unsafePerformIO $
@@ -232,8 +222,6 @@ bindGeometry_clip_polygons_2d
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Clips @polygon_a@ against @polygon_b@ and returns an array of clipped polygons. This performs @OPERATION_DIFFERENCE@ between polygons. Returns an empty array if @polygon_b@ completely overlaps @polygon_a@.
---   				If @polygon_b@ is enclosed by @polygon_a@, returns an outer polygon (boundary) and inner polygon (hole) which could be distiguished by calling @method is_polygon_clockwise@.
 clip_polygons_2d ::
                    (Geometry :< cls, Object :< cls) =>
                    cls -> PoolVector2Array -> PoolVector2Array -> IO Array
@@ -253,7 +241,6 @@ instance NodeMethod Geometry "clip_polygons_2d"
 
 {-# NOINLINE bindGeometry_clip_polyline_with_polygon_2d #-}
 
--- | Clips @polyline@ against @polygon@ and returns an array of clipped polylines. This performs @OPERATION_DIFFERENCE@ between the polyline and the polygon. This operation can be thought of as cutting a line with a closed shape.
 bindGeometry_clip_polyline_with_polygon_2d :: MethodBind
 bindGeometry_clip_polyline_with_polygon_2d
   = unsafePerformIO $
@@ -263,7 +250,6 @@ bindGeometry_clip_polyline_with_polygon_2d
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Clips @polyline@ against @polygon@ and returns an array of clipped polylines. This performs @OPERATION_DIFFERENCE@ between the polyline and the polygon. This operation can be thought of as cutting a line with a closed shape.
 clip_polyline_with_polygon_2d ::
                                 (Geometry :< cls, Object :< cls) =>
                                 cls -> PoolVector2Array -> PoolVector2Array -> IO Array
@@ -284,7 +270,6 @@ instance NodeMethod Geometry "clip_polyline_with_polygon_2d"
 
 {-# NOINLINE bindGeometry_convex_hull_2d #-}
 
--- | Given an array of @Vector2@s, returns the convex hull as a list of points in counterclockwise order. The last point is the same as the first one.
 bindGeometry_convex_hull_2d :: MethodBind
 bindGeometry_convex_hull_2d
   = unsafePerformIO $
@@ -294,7 +279,6 @@ bindGeometry_convex_hull_2d
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Given an array of @Vector2@s, returns the convex hull as a list of points in counterclockwise order. The last point is the same as the first one.
 convex_hull_2d ::
                  (Geometry :< cls, Object :< cls) =>
                  cls -> PoolVector2Array -> IO PoolVector2Array
@@ -313,8 +297,6 @@ instance NodeMethod Geometry "convex_hull_2d" '[PoolVector2Array]
 
 {-# NOINLINE bindGeometry_exclude_polygons_2d #-}
 
--- | Mutually excludes common area defined by intersection of @polygon_a@ and @polygon_b@ (see @method intersect_polygons_2d@) and returns an array of excluded polygons. This performs @OPERATION_XOR@ between polygons. In other words, returns all but common area between polygons.
---   				The operation may result in an outer polygon (boundary) and inner polygon (hole) produced which could be distiguished by calling @method is_polygon_clockwise@.
 bindGeometry_exclude_polygons_2d :: MethodBind
 bindGeometry_exclude_polygons_2d
   = unsafePerformIO $
@@ -324,8 +306,6 @@ bindGeometry_exclude_polygons_2d
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Mutually excludes common area defined by intersection of @polygon_a@ and @polygon_b@ (see @method intersect_polygons_2d@) and returns an array of excluded polygons. This performs @OPERATION_XOR@ between polygons. In other words, returns all but common area between polygons.
---   				The operation may result in an outer polygon (boundary) and inner polygon (hole) produced which could be distiguished by calling @method is_polygon_clockwise@.
 exclude_polygons_2d ::
                       (Geometry :< cls, Object :< cls) =>
                       cls -> PoolVector2Array -> PoolVector2Array -> IO Array
@@ -346,7 +326,6 @@ instance NodeMethod Geometry "exclude_polygons_2d"
 
 {-# NOINLINE bindGeometry_get_closest_point_to_segment #-}
 
--- | Returns the 3D point on the 3D segment (@s1@, @s2@) that is closest to @point@. The returned point will always be inside the specified segment.
 bindGeometry_get_closest_point_to_segment :: MethodBind
 bindGeometry_get_closest_point_to_segment
   = unsafePerformIO $
@@ -356,7 +335,6 @@ bindGeometry_get_closest_point_to_segment
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the 3D point on the 3D segment (@s1@, @s2@) that is closest to @point@. The returned point will always be inside the specified segment.
 get_closest_point_to_segment ::
                                (Geometry :< cls, Object :< cls) =>
                                cls -> Vector3 -> Vector3 -> Vector3 -> IO Vector3
@@ -377,7 +355,6 @@ instance NodeMethod Geometry "get_closest_point_to_segment"
 
 {-# NOINLINE bindGeometry_get_closest_point_to_segment_2d #-}
 
--- | Returns the 2D point on the 2D segment (@s1@, @s2@) that is closest to @point@. The returned point will always be inside the specified segment.
 bindGeometry_get_closest_point_to_segment_2d :: MethodBind
 bindGeometry_get_closest_point_to_segment_2d
   = unsafePerformIO $
@@ -387,7 +364,6 @@ bindGeometry_get_closest_point_to_segment_2d
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the 2D point on the 2D segment (@s1@, @s2@) that is closest to @point@. The returned point will always be inside the specified segment.
 get_closest_point_to_segment_2d ::
                                   (Geometry :< cls, Object :< cls) =>
                                   cls -> Vector2 -> Vector2 -> Vector2 -> IO Vector2
@@ -408,7 +384,6 @@ instance NodeMethod Geometry "get_closest_point_to_segment_2d"
 
 {-# NOINLINE bindGeometry_get_closest_point_to_segment_uncapped #-}
 
--- | Returns the 3D point on the 3D line defined by (@s1@, @s2@) that is closest to @point@. The returned point can be inside the segment (@s1@, @s2@) or outside of it, i.e. somewhere on the line extending from the segment.
 bindGeometry_get_closest_point_to_segment_uncapped :: MethodBind
 bindGeometry_get_closest_point_to_segment_uncapped
   = unsafePerformIO $
@@ -418,7 +393,6 @@ bindGeometry_get_closest_point_to_segment_uncapped
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the 3D point on the 3D line defined by (@s1@, @s2@) that is closest to @point@. The returned point can be inside the segment (@s1@, @s2@) or outside of it, i.e. somewhere on the line extending from the segment.
 get_closest_point_to_segment_uncapped ::
                                         (Geometry :< cls, Object :< cls) =>
                                         cls -> Vector3 -> Vector3 -> Vector3 -> IO Vector3
@@ -443,7 +417,6 @@ instance NodeMethod Geometry
 {-# NOINLINE bindGeometry_get_closest_point_to_segment_uncapped_2d
              #-}
 
--- | Returns the 2D point on the 2D line defined by (@s1@, @s2@) that is closest to @point@. The returned point can be inside the segment (@s1@, @s2@) or outside of it, i.e. somewhere on the line extending from the segment.
 bindGeometry_get_closest_point_to_segment_uncapped_2d :: MethodBind
 bindGeometry_get_closest_point_to_segment_uncapped_2d
   = unsafePerformIO $
@@ -453,7 +426,6 @@ bindGeometry_get_closest_point_to_segment_uncapped_2d
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the 2D point on the 2D line defined by (@s1@, @s2@) that is closest to @point@. The returned point can be inside the segment (@s1@, @s2@) or outside of it, i.e. somewhere on the line extending from the segment.
 get_closest_point_to_segment_uncapped_2d ::
                                            (Geometry :< cls, Object :< cls) =>
                                            cls -> Vector2 -> Vector2 -> Vector2 -> IO Vector2
@@ -477,7 +449,6 @@ instance NodeMethod Geometry
 
 {-# NOINLINE bindGeometry_get_closest_points_between_segments #-}
 
--- | Given the two 3D segments (@p1@, @p2@) and (@q1@, @q2@), finds those two points on the two segments that are closest to each other. Returns a @PoolVector3Array@ that contains this point on (@p1@, @p2@) as well the accompanying point on (@q1@, @q2@).
 bindGeometry_get_closest_points_between_segments :: MethodBind
 bindGeometry_get_closest_points_between_segments
   = unsafePerformIO $
@@ -487,7 +458,6 @@ bindGeometry_get_closest_points_between_segments
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Given the two 3D segments (@p1@, @p2@) and (@q1@, @q2@), finds those two points on the two segments that are closest to each other. Returns a @PoolVector3Array@ that contains this point on (@p1@, @p2@) as well the accompanying point on (@q1@, @q2@).
 get_closest_points_between_segments ::
                                       (Geometry :< cls, Object :< cls) =>
                                       cls ->
@@ -514,7 +484,6 @@ instance NodeMethod Geometry "get_closest_points_between_segments"
 {-# NOINLINE bindGeometry_get_closest_points_between_segments_2d
              #-}
 
--- | Given the two 2D segments (@p1@, @p2@) and (@q1@, @q2@), finds those two points on the two segments that are closest to each other. Returns a @PoolVector2Array@ that contains this point on (@p1@, @p2@) as well the accompanying point on (@q1@, @q2@).
 bindGeometry_get_closest_points_between_segments_2d :: MethodBind
 bindGeometry_get_closest_points_between_segments_2d
   = unsafePerformIO $
@@ -524,7 +493,6 @@ bindGeometry_get_closest_points_between_segments_2d
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Given the two 2D segments (@p1@, @p2@) and (@q1@, @q2@), finds those two points on the two segments that are closest to each other. Returns a @PoolVector2Array@ that contains this point on (@p1@, @p2@) as well the accompanying point on (@q1@, @q2@).
 get_closest_points_between_segments_2d ::
                                          (Geometry :< cls, Object :< cls) =>
                                          cls ->
@@ -551,7 +519,6 @@ instance NodeMethod Geometry
 
 {-# NOINLINE bindGeometry_get_uv84_normal_bit #-}
 
--- | Used internally by the engine.
 bindGeometry_get_uv84_normal_bit :: MethodBind
 bindGeometry_get_uv84_normal_bit
   = unsafePerformIO $
@@ -561,7 +528,6 @@ bindGeometry_get_uv84_normal_bit
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Used internally by the engine.
 get_uv84_normal_bit ::
                       (Geometry :< cls, Object :< cls) => cls -> Vector3 -> IO Int
 get_uv84_normal_bit cls arg1
@@ -580,8 +546,6 @@ instance NodeMethod Geometry "get_uv84_normal_bit" '[Vector3]
 
 {-# NOINLINE bindGeometry_intersect_polygons_2d #-}
 
--- | Intersects @polygon_a@ with @polygon_b@ and returns an array of intersected polygons. This performs @OPERATION_INTERSECTION@ between polygons. In other words, returns common area shared by polygons. Returns an empty array if no intersection occurs.
---   				The operation may result in an outer polygon (boundary) and inner polygon (hole) produced which could be distinguished by calling @method is_polygon_clockwise@.
 bindGeometry_intersect_polygons_2d :: MethodBind
 bindGeometry_intersect_polygons_2d
   = unsafePerformIO $
@@ -591,8 +555,6 @@ bindGeometry_intersect_polygons_2d
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Intersects @polygon_a@ with @polygon_b@ and returns an array of intersected polygons. This performs @OPERATION_INTERSECTION@ between polygons. In other words, returns common area shared by polygons. Returns an empty array if no intersection occurs.
---   				The operation may result in an outer polygon (boundary) and inner polygon (hole) produced which could be distinguished by calling @method is_polygon_clockwise@.
 intersect_polygons_2d ::
                         (Geometry :< cls, Object :< cls) =>
                         cls -> PoolVector2Array -> PoolVector2Array -> IO Array
@@ -613,7 +575,6 @@ instance NodeMethod Geometry "intersect_polygons_2d"
 
 {-# NOINLINE bindGeometry_intersect_polyline_with_polygon_2d #-}
 
--- | Intersects @polyline@ with @polygon@ and returns an array of intersected polylines. This performs @OPERATION_INTERSECTION@ between the polyline and the polygon. This operation can be thought of as chopping a line with a closed shape.
 bindGeometry_intersect_polyline_with_polygon_2d :: MethodBind
 bindGeometry_intersect_polyline_with_polygon_2d
   = unsafePerformIO $
@@ -623,7 +584,6 @@ bindGeometry_intersect_polyline_with_polygon_2d
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Intersects @polyline@ with @polygon@ and returns an array of intersected polylines. This performs @OPERATION_INTERSECTION@ between the polyline and the polygon. This operation can be thought of as chopping a line with a closed shape.
 intersect_polyline_with_polygon_2d ::
                                      (Geometry :< cls, Object :< cls) =>
                                      cls -> PoolVector2Array -> PoolVector2Array -> IO Array
@@ -645,7 +605,6 @@ instance NodeMethod Geometry "intersect_polyline_with_polygon_2d"
 
 {-# NOINLINE bindGeometry_is_point_in_circle #-}
 
--- | Returns @true@ if @point@ is inside the circle or if it's located exactly @i@on@/i@ the circle's boundary, otherwise returns @false@.
 bindGeometry_is_point_in_circle :: MethodBind
 bindGeometry_is_point_in_circle
   = unsafePerformIO $
@@ -655,7 +614,6 @@ bindGeometry_is_point_in_circle
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns @true@ if @point@ is inside the circle or if it's located exactly @i@on@/i@ the circle's boundary, otherwise returns @false@.
 is_point_in_circle ::
                      (Geometry :< cls, Object :< cls) =>
                      cls -> Vector2 -> Vector2 -> Float -> IO Bool
@@ -675,7 +633,6 @@ instance NodeMethod Geometry "is_point_in_circle"
 
 {-# NOINLINE bindGeometry_is_point_in_polygon #-}
 
--- | Returns @true@ if @point@ is inside @polygon@ or if it's located exactly @i@on@/i@ polygon's boundary, otherwise returns @false@.
 bindGeometry_is_point_in_polygon :: MethodBind
 bindGeometry_is_point_in_polygon
   = unsafePerformIO $
@@ -685,7 +642,6 @@ bindGeometry_is_point_in_polygon
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns @true@ if @point@ is inside @polygon@ or if it's located exactly @i@on@/i@ polygon's boundary, otherwise returns @false@.
 is_point_in_polygon ::
                       (Geometry :< cls, Object :< cls) =>
                       cls -> Vector2 -> PoolVector2Array -> IO Bool
@@ -706,7 +662,6 @@ instance NodeMethod Geometry "is_point_in_polygon"
 
 {-# NOINLINE bindGeometry_is_polygon_clockwise #-}
 
--- | Returns @true@ if @polygon@'s vertices are ordered in clockwise order, otherwise returns @false@.
 bindGeometry_is_polygon_clockwise :: MethodBind
 bindGeometry_is_polygon_clockwise
   = unsafePerformIO $
@@ -716,7 +671,6 @@ bindGeometry_is_polygon_clockwise
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns @true@ if @polygon@'s vertices are ordered in clockwise order, otherwise returns @false@.
 is_polygon_clockwise ::
                        (Geometry :< cls, Object :< cls) =>
                        cls -> PoolVector2Array -> IO Bool
@@ -737,8 +691,6 @@ instance NodeMethod Geometry "is_polygon_clockwise"
 
 {-# NOINLINE bindGeometry_line_intersects_line_2d #-}
 
--- | Checks if the two lines (@from_a@, @dir_a@) and (@from_b@, @dir_b@) intersect. If yes, return the point of intersection as @Vector2@. If no intersection takes place, returns an empty @Variant@.
---   				__Note:__ The lines are specified using direction vectors, not end points.
 bindGeometry_line_intersects_line_2d :: MethodBind
 bindGeometry_line_intersects_line_2d
   = unsafePerformIO $
@@ -748,8 +700,6 @@ bindGeometry_line_intersects_line_2d
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Checks if the two lines (@from_a@, @dir_a@) and (@from_b@, @dir_b@) intersect. If yes, return the point of intersection as @Vector2@. If no intersection takes place, returns an empty @Variant@.
---   				__Note:__ The lines are specified using direction vectors, not end points.
 line_intersects_line_2d ::
                           (Geometry :< cls, Object :< cls) =>
                           cls -> Vector2 -> Vector2 -> Vector2 -> Vector2 -> IO GodotVariant
@@ -771,7 +721,6 @@ instance NodeMethod Geometry "line_intersects_line_2d"
 
 {-# NOINLINE bindGeometry_make_atlas #-}
 
--- | Given an array of @Vector2@s representing tiles, builds an atlas. The returned dictionary has two keys: @points@ is a vector of @Vector2@ that specifies the positions of each tile, @size@ contains the overall size of the whole atlas as @Vector2@.
 bindGeometry_make_atlas :: MethodBind
 bindGeometry_make_atlas
   = unsafePerformIO $
@@ -781,7 +730,6 @@ bindGeometry_make_atlas
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Given an array of @Vector2@s representing tiles, builds an atlas. The returned dictionary has two keys: @points@ is a vector of @Vector2@ that specifies the positions of each tile, @size@ contains the overall size of the whole atlas as @Vector2@.
 make_atlas ::
              (Geometry :< cls, Object :< cls) =>
              cls -> PoolVector2Array -> IO Dictionary
@@ -799,8 +747,6 @@ instance NodeMethod Geometry "make_atlas" '[PoolVector2Array]
 
 {-# NOINLINE bindGeometry_merge_polygons_2d #-}
 
--- | Merges (combines) @polygon_a@ and @polygon_b@ and returns an array of merged polygons. This performs @OPERATION_UNION@ between polygons.
---   				The operation may result in an outer polygon (boundary) and inner polygon (hole) produced which could be distinguished by calling @method is_polygon_clockwise@.
 bindGeometry_merge_polygons_2d :: MethodBind
 bindGeometry_merge_polygons_2d
   = unsafePerformIO $
@@ -810,8 +756,6 @@ bindGeometry_merge_polygons_2d
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Merges (combines) @polygon_a@ and @polygon_b@ and returns an array of merged polygons. This performs @OPERATION_UNION@ between polygons.
---   				The operation may result in an outer polygon (boundary) and inner polygon (hole) produced which could be distinguished by calling @method is_polygon_clockwise@.
 merge_polygons_2d ::
                     (Geometry :< cls, Object :< cls) =>
                     cls -> PoolVector2Array -> PoolVector2Array -> IO Array
@@ -831,19 +775,6 @@ instance NodeMethod Geometry "merge_polygons_2d"
 
 {-# NOINLINE bindGeometry_offset_polygon_2d #-}
 
--- | Inflates or deflates @polygon@ by @delta@ units (pixels). If @delta@ is positive, makes the polygon grow outward. If @delta@ is negative, shrinks the polygon inward. Returns an array of polygons because inflating/deflating may result in multiple discrete polygons. Returns an empty array if @delta@ is negative and the absolute value of it approximately exceeds the minimum bounding rectangle dimensions of the polygon.
---   				Each polygon's vertices will be rounded as determined by @join_type@, see @enum PolyJoinType@.
---   				The operation may result in an outer polygon (boundary) and inner polygon (hole) produced which could be distinguished by calling @method is_polygon_clockwise@.
---   				__Note:__ To translate the polygon's vertices specifically, use the @method Transform2D.xform@ method:
---   				
---   @
---   
---   				var polygon = PoolVector2Array(@Vector2(0, 0), Vector2(100, 0), Vector2(100, 100), Vector2(0, 100)@)
---   				var offset = Vector2(50, 50)
---   				polygon = Transform2D(0, offset).xform(polygon)
---   				print(polygon) # prints @Vector2(50, 50), Vector2(150, 50), Vector2(150, 150), Vector2(50, 150)@
---   				
---   @
 bindGeometry_offset_polygon_2d :: MethodBind
 bindGeometry_offset_polygon_2d
   = unsafePerformIO $
@@ -853,19 +784,6 @@ bindGeometry_offset_polygon_2d
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Inflates or deflates @polygon@ by @delta@ units (pixels). If @delta@ is positive, makes the polygon grow outward. If @delta@ is negative, shrinks the polygon inward. Returns an array of polygons because inflating/deflating may result in multiple discrete polygons. Returns an empty array if @delta@ is negative and the absolute value of it approximately exceeds the minimum bounding rectangle dimensions of the polygon.
---   				Each polygon's vertices will be rounded as determined by @join_type@, see @enum PolyJoinType@.
---   				The operation may result in an outer polygon (boundary) and inner polygon (hole) produced which could be distinguished by calling @method is_polygon_clockwise@.
---   				__Note:__ To translate the polygon's vertices specifically, use the @method Transform2D.xform@ method:
---   				
---   @
---   
---   				var polygon = PoolVector2Array(@Vector2(0, 0), Vector2(100, 0), Vector2(100, 100), Vector2(0, 100)@)
---   				var offset = Vector2(50, 50)
---   				polygon = Transform2D(0, offset).xform(polygon)
---   				print(polygon) # prints @Vector2(50, 50), Vector2(150, 50), Vector2(150, 150), Vector2(50, 150)@
---   				
---   @
 offset_polygon_2d ::
                     (Geometry :< cls, Object :< cls) =>
                     cls -> PoolVector2Array -> Float -> Maybe Int -> IO Array
@@ -887,10 +805,6 @@ instance NodeMethod Geometry "offset_polygon_2d"
 
 {-# NOINLINE bindGeometry_offset_polyline_2d #-}
 
--- | Inflates or deflates @polyline@ by @delta@ units (pixels), producing polygons. If @delta@ is positive, makes the polyline grow outward. Returns an array of polygons because inflating/deflating may result in multiple discrete polygons. If @delta@ is negative, returns an empty array.
---   				Each polygon's vertices will be rounded as determined by @join_type@, see @enum PolyJoinType@.
---   				Each polygon's endpoints will be rounded as determined by @end_type@, see @enum PolyEndType@.
---   				The operation may result in an outer polygon (boundary) and inner polygon (hole) produced which could be distinguished by calling @method is_polygon_clockwise@.
 bindGeometry_offset_polyline_2d :: MethodBind
 bindGeometry_offset_polyline_2d
   = unsafePerformIO $
@@ -900,10 +814,6 @@ bindGeometry_offset_polyline_2d
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Inflates or deflates @polyline@ by @delta@ units (pixels), producing polygons. If @delta@ is positive, makes the polyline grow outward. Returns an array of polygons because inflating/deflating may result in multiple discrete polygons. If @delta@ is negative, returns an empty array.
---   				Each polygon's vertices will be rounded as determined by @join_type@, see @enum PolyJoinType@.
---   				Each polygon's endpoints will be rounded as determined by @end_type@, see @enum PolyEndType@.
---   				The operation may result in an outer polygon (boundary) and inner polygon (hole) produced which could be distinguished by calling @method is_polygon_clockwise@.
 offset_polyline_2d ::
                      (Geometry :< cls, Object :< cls) =>
                      cls ->
@@ -927,7 +837,6 @@ instance NodeMethod Geometry "offset_polyline_2d"
 
 {-# NOINLINE bindGeometry_point_is_inside_triangle #-}
 
--- | Returns if @point@ is inside the triangle specified by @a@, @b@ and @c@.
 bindGeometry_point_is_inside_triangle :: MethodBind
 bindGeometry_point_is_inside_triangle
   = unsafePerformIO $
@@ -937,7 +846,6 @@ bindGeometry_point_is_inside_triangle
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns if @point@ is inside the triangle specified by @a@, @b@ and @c@.
 point_is_inside_triangle ::
                            (Geometry :< cls, Object :< cls) =>
                            cls -> Vector2 -> Vector2 -> Vector2 -> Vector2 -> IO Bool
@@ -959,7 +867,6 @@ instance NodeMethod Geometry "point_is_inside_triangle"
 
 {-# NOINLINE bindGeometry_ray_intersects_triangle #-}
 
--- | Tests if the 3D ray starting at @from@ with the direction of @dir@ intersects the triangle specified by @a@, @b@ and @c@. If yes, returns the point of intersection as @Vector3@. If no intersection takes place, an empty @Variant@ is returned.
 bindGeometry_ray_intersects_triangle :: MethodBind
 bindGeometry_ray_intersects_triangle
   = unsafePerformIO $
@@ -969,7 +876,6 @@ bindGeometry_ray_intersects_triangle
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Tests if the 3D ray starting at @from@ with the direction of @dir@ intersects the triangle specified by @a@, @b@ and @c@. If yes, returns the point of intersection as @Vector3@. If no intersection takes place, an empty @Variant@ is returned.
 ray_intersects_triangle ::
                           (Geometry :< cls, Object :< cls) =>
                           cls ->
@@ -994,7 +900,6 @@ instance NodeMethod Geometry "ray_intersects_triangle"
 
 {-# NOINLINE bindGeometry_segment_intersects_circle #-}
 
--- | Given the 2D segment (@segment_from@, @segment_to@), returns the position on the segment (as a number between 0 and 1) at which the segment hits the circle that is located at position @circle_position@ and has radius @circle_radius@. If the segment does not intersect the circle, -1 is returned (this is also the case if the line extending the segment would intersect the circle, but the segment does not).
 bindGeometry_segment_intersects_circle :: MethodBind
 bindGeometry_segment_intersects_circle
   = unsafePerformIO $
@@ -1004,7 +909,6 @@ bindGeometry_segment_intersects_circle
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Given the 2D segment (@segment_from@, @segment_to@), returns the position on the segment (as a number between 0 and 1) at which the segment hits the circle that is located at position @circle_position@ and has radius @circle_radius@. If the segment does not intersect the circle, -1 is returned (this is also the case if the line extending the segment would intersect the circle, but the segment does not).
 segment_intersects_circle ::
                             (Geometry :< cls, Object :< cls) =>
                             cls -> Vector2 -> Vector2 -> Vector2 -> Float -> IO Float
@@ -1026,7 +930,6 @@ instance NodeMethod Geometry "segment_intersects_circle"
 
 {-# NOINLINE bindGeometry_segment_intersects_convex #-}
 
--- | Given a convex hull defined though the @Plane@s in the array @planes@, tests if the segment (@from@, @to@) intersects with that hull. If an intersection is found, returns a @PoolVector3Array@ containing the point the intersection and the hull's normal. If no intersecion is found, an the returned array is empty.
 bindGeometry_segment_intersects_convex :: MethodBind
 bindGeometry_segment_intersects_convex
   = unsafePerformIO $
@@ -1036,7 +939,6 @@ bindGeometry_segment_intersects_convex
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Given a convex hull defined though the @Plane@s in the array @planes@, tests if the segment (@from@, @to@) intersects with that hull. If an intersection is found, returns a @PoolVector3Array@ containing the point the intersection and the hull's normal. If no intersecion is found, an the returned array is empty.
 segment_intersects_convex ::
                             (Geometry :< cls, Object :< cls) =>
                             cls -> Vector3 -> Vector3 -> Array -> IO PoolVector3Array
@@ -1057,7 +959,6 @@ instance NodeMethod Geometry "segment_intersects_convex"
 
 {-# NOINLINE bindGeometry_segment_intersects_cylinder #-}
 
--- | Checks if the segment (@from@, @to@) intersects the cylinder with height @height@ that is centered at the origin and has radius @radius@. If no, returns an empty @PoolVector3Array@. If an intersection takes place, the returned array contains the point of intersection and the cylinder's normal at the point of intersection.
 bindGeometry_segment_intersects_cylinder :: MethodBind
 bindGeometry_segment_intersects_cylinder
   = unsafePerformIO $
@@ -1067,7 +968,6 @@ bindGeometry_segment_intersects_cylinder
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Checks if the segment (@from@, @to@) intersects the cylinder with height @height@ that is centered at the origin and has radius @radius@. If no, returns an empty @PoolVector3Array@. If an intersection takes place, the returned array contains the point of intersection and the cylinder's normal at the point of intersection.
 segment_intersects_cylinder ::
                               (Geometry :< cls, Object :< cls) =>
                               cls -> Vector3 -> Vector3 -> Float -> Float -> IO PoolVector3Array
@@ -1089,7 +989,6 @@ instance NodeMethod Geometry "segment_intersects_cylinder"
 
 {-# NOINLINE bindGeometry_segment_intersects_segment_2d #-}
 
--- | Checks if the two segments (@from_a@, @to_a@) and (@from_b@, @to_b@) intersect. If yes, return the point of intersection as @Vector2@. If no intersection takes place, returns an empty @Variant@.
 bindGeometry_segment_intersects_segment_2d :: MethodBind
 bindGeometry_segment_intersects_segment_2d
   = unsafePerformIO $
@@ -1099,7 +998,6 @@ bindGeometry_segment_intersects_segment_2d
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Checks if the two segments (@from_a@, @to_a@) and (@from_b@, @to_b@) intersect. If yes, return the point of intersection as @Vector2@. If no intersection takes place, returns an empty @Variant@.
 segment_intersects_segment_2d ::
                                 (Geometry :< cls, Object :< cls) =>
                                 cls -> Vector2 -> Vector2 -> Vector2 -> Vector2 -> IO GodotVariant
@@ -1121,7 +1019,6 @@ instance NodeMethod Geometry "segment_intersects_segment_2d"
 
 {-# NOINLINE bindGeometry_segment_intersects_sphere #-}
 
--- | Checks if the segment (@from@, @to@) intersects the sphere that is located at @sphere_position@ and has radius @sphere_radius@. If no, returns an empty @PoolVector3Array@. If yes, returns a @PoolVector3Array@ containing the point of intersection and the sphere's normal at the point of intersection.
 bindGeometry_segment_intersects_sphere :: MethodBind
 bindGeometry_segment_intersects_sphere
   = unsafePerformIO $
@@ -1131,7 +1028,6 @@ bindGeometry_segment_intersects_sphere
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Checks if the segment (@from@, @to@) intersects the sphere that is located at @sphere_position@ and has radius @sphere_radius@. If no, returns an empty @PoolVector3Array@. If yes, returns a @PoolVector3Array@ containing the point of intersection and the sphere's normal at the point of intersection.
 segment_intersects_sphere ::
                             (Geometry :< cls, Object :< cls) =>
                             cls ->
@@ -1154,7 +1050,6 @@ instance NodeMethod Geometry "segment_intersects_sphere"
 
 {-# NOINLINE bindGeometry_segment_intersects_triangle #-}
 
--- | Tests if the segment (@from@, @to@) intersects the triangle @a@, @b@, @c@. If yes, returns the point of intersection as @Vector3@. If no intersection takes place, an empty @Variant@ is returned.
 bindGeometry_segment_intersects_triangle :: MethodBind
 bindGeometry_segment_intersects_triangle
   = unsafePerformIO $
@@ -1164,7 +1059,6 @@ bindGeometry_segment_intersects_triangle
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Tests if the segment (@from@, @to@) intersects the triangle @a@, @b@, @c@. If yes, returns the point of intersection as @Vector3@. If no intersection takes place, an empty @Variant@ is returned.
 segment_intersects_triangle ::
                               (Geometry :< cls, Object :< cls) =>
                               cls ->
@@ -1189,7 +1083,6 @@ instance NodeMethod Geometry "segment_intersects_triangle"
 
 {-# NOINLINE bindGeometry_triangulate_delaunay_2d #-}
 
--- | Triangulates the area specified by discrete set of @points@ such that no point is inside the circumcircle of any resulting triangle. Returns a @PoolIntArray@ where each triangle consists of three consecutive point indices into @points@ (i.e. the returned array will have @n * 3@ elements, with @n@ being the number of found triangles). If the triangulation did not succeed, an empty @PoolIntArray@ is returned.
 bindGeometry_triangulate_delaunay_2d :: MethodBind
 bindGeometry_triangulate_delaunay_2d
   = unsafePerformIO $
@@ -1199,7 +1092,6 @@ bindGeometry_triangulate_delaunay_2d
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Triangulates the area specified by discrete set of @points@ such that no point is inside the circumcircle of any resulting triangle. Returns a @PoolIntArray@ where each triangle consists of three consecutive point indices into @points@ (i.e. the returned array will have @n * 3@ elements, with @n@ being the number of found triangles). If the triangulation did not succeed, an empty @PoolIntArray@ is returned.
 triangulate_delaunay_2d ::
                           (Geometry :< cls, Object :< cls) =>
                           cls -> PoolVector2Array -> IO PoolIntArray
@@ -1220,7 +1112,6 @@ instance NodeMethod Geometry "triangulate_delaunay_2d"
 
 {-# NOINLINE bindGeometry_triangulate_polygon #-}
 
--- | Triangulates the polygon specified by the points in @polygon@. Returns a @PoolIntArray@ where each triangle consists of three consecutive point indices into @polygon@ (i.e. the returned array will have @n * 3@ elements, with @n@ being the number of found triangles). If the triangulation did not succeed, an empty @PoolIntArray@ is returned.
 bindGeometry_triangulate_polygon :: MethodBind
 bindGeometry_triangulate_polygon
   = unsafePerformIO $
@@ -1230,7 +1121,6 @@ bindGeometry_triangulate_polygon
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Triangulates the polygon specified by the points in @polygon@. Returns a @PoolIntArray@ where each triangle consists of three consecutive point indices into @polygon@ (i.e. the returned array will have @n * 3@ elements, with @n@ being the number of found triangles). If the triangulation did not succeed, an empty @PoolIntArray@ is returned.
 triangulate_polygon ::
                       (Geometry :< cls, Object :< cls) =>
                       cls -> PoolVector2Array -> IO PoolIntArray

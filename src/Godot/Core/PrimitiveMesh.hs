@@ -61,7 +61,7 @@ instance NodeMethod PrimitiveMesh "_update" '[] (IO ()) where
 
 {-# NOINLINE bindPrimitiveMesh_get_custom_aabb #-}
 
--- | Overrides the @AABB@ with one defined by user for use with frustum culling. Especially useful to avoid unnexpected culling when  using a shader to offset vertices.
+-- | Overrides the @AABB@ with one defined by user for use with frustum culling. Especially useful to avoid unexpected culling when using a shader to offset vertices.
 bindPrimitiveMesh_get_custom_aabb :: MethodBind
 bindPrimitiveMesh_get_custom_aabb
   = unsafePerformIO $
@@ -71,7 +71,7 @@ bindPrimitiveMesh_get_custom_aabb
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Overrides the @AABB@ with one defined by user for use with frustum culling. Especially useful to avoid unnexpected culling when  using a shader to offset vertices.
+-- | Overrides the @AABB@ with one defined by user for use with frustum culling. Especially useful to avoid unexpected culling when using a shader to offset vertices.
 get_custom_aabb ::
                   (PrimitiveMesh :< cls, Object :< cls) => cls -> IO Aabb
 get_custom_aabb cls
@@ -90,7 +90,7 @@ instance NodeMethod PrimitiveMesh "get_custom_aabb" '[] (IO Aabb)
 {-# NOINLINE bindPrimitiveMesh_get_flip_faces #-}
 
 -- | If set, the order of the vertices in each triangle are reversed resulting in the backside of the mesh being drawn.
---   			This gives the same result as using @SpatialMaterial.CULL_BACK@ in @SpatialMaterial.params_cull_mode@.
+--   			This gives the same result as using @BaseMaterial3D.CULL_BACK@ in @BaseMaterial3D.cull_mode@.
 bindPrimitiveMesh_get_flip_faces :: MethodBind
 bindPrimitiveMesh_get_flip_faces
   = unsafePerformIO $
@@ -101,7 +101,7 @@ bindPrimitiveMesh_get_flip_faces
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | If set, the order of the vertices in each triangle are reversed resulting in the backside of the mesh being drawn.
---   			This gives the same result as using @SpatialMaterial.CULL_BACK@ in @SpatialMaterial.params_cull_mode@.
+--   			This gives the same result as using @BaseMaterial3D.CULL_BACK@ in @BaseMaterial3D.cull_mode@.
 get_flip_faces ::
                  (PrimitiveMesh :< cls, Object :< cls) => cls -> IO Bool
 get_flip_faces cls
@@ -147,14 +147,18 @@ instance NodeMethod PrimitiveMesh "get_material" '[] (IO Material)
 {-# NOINLINE bindPrimitiveMesh_get_mesh_arrays #-}
 
 -- | Returns mesh arrays used to constitute surface of @Mesh@. The result can be passed to @method ArrayMesh.add_surface_from_arrays@ to create a new surface. For example:
---   				
---   @
---   
---   				var c := CylinderMesh.new()
---   				var arr_mesh := ArrayMesh.new()
+--   				@codeblocks@
+--   				@gdscript@
+--   				var c = CylinderMesh.new()
+--   				var arr_mesh = ArrayMesh.new()
 --   				arr_mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, c.get_mesh_arrays())
---   				
---   @
+--   				@/gdscript@
+--   				@csharp@
+--   				var c = new CylinderMesh();
+--   				var arrMesh = new ArrayMesh();
+--   				arrMesh.AddSurfaceFromArrays(Mesh.PrimitiveType.Triangles, c.GetMeshArrays());
+--   				@/csharp@
+--   				@/codeblocks@
 bindPrimitiveMesh_get_mesh_arrays :: MethodBind
 bindPrimitiveMesh_get_mesh_arrays
   = unsafePerformIO $
@@ -165,14 +169,18 @@ bindPrimitiveMesh_get_mesh_arrays
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | Returns mesh arrays used to constitute surface of @Mesh@. The result can be passed to @method ArrayMesh.add_surface_from_arrays@ to create a new surface. For example:
---   				
---   @
---   
---   				var c := CylinderMesh.new()
---   				var arr_mesh := ArrayMesh.new()
+--   				@codeblocks@
+--   				@gdscript@
+--   				var c = CylinderMesh.new()
+--   				var arr_mesh = ArrayMesh.new()
 --   				arr_mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, c.get_mesh_arrays())
---   				
---   @
+--   				@/gdscript@
+--   				@csharp@
+--   				var c = new CylinderMesh();
+--   				var arrMesh = new ArrayMesh();
+--   				arrMesh.AddSurfaceFromArrays(Mesh.PrimitiveType.Triangles, c.GetMeshArrays());
+--   				@/csharp@
+--   				@/codeblocks@
 get_mesh_arrays ::
                   (PrimitiveMesh :< cls, Object :< cls) => cls -> IO Array
 get_mesh_arrays cls
@@ -190,7 +198,7 @@ instance NodeMethod PrimitiveMesh "get_mesh_arrays" '[] (IO Array)
 
 {-# NOINLINE bindPrimitiveMesh_set_custom_aabb #-}
 
--- | Overrides the @AABB@ with one defined by user for use with frustum culling. Especially useful to avoid unnexpected culling when  using a shader to offset vertices.
+-- | Overrides the @AABB@ with one defined by user for use with frustum culling. Especially useful to avoid unexpected culling when using a shader to offset vertices.
 bindPrimitiveMesh_set_custom_aabb :: MethodBind
 bindPrimitiveMesh_set_custom_aabb
   = unsafePerformIO $
@@ -200,7 +208,7 @@ bindPrimitiveMesh_set_custom_aabb
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Overrides the @AABB@ with one defined by user for use with frustum culling. Especially useful to avoid unnexpected culling when  using a shader to offset vertices.
+-- | Overrides the @AABB@ with one defined by user for use with frustum culling. Especially useful to avoid unexpected culling when using a shader to offset vertices.
 set_custom_aabb ::
                   (PrimitiveMesh :< cls, Object :< cls) => cls -> Aabb -> IO ()
 set_custom_aabb cls arg1
@@ -219,7 +227,7 @@ instance NodeMethod PrimitiveMesh "set_custom_aabb" '[Aabb] (IO ())
 {-# NOINLINE bindPrimitiveMesh_set_flip_faces #-}
 
 -- | If set, the order of the vertices in each triangle are reversed resulting in the backside of the mesh being drawn.
---   			This gives the same result as using @SpatialMaterial.CULL_BACK@ in @SpatialMaterial.params_cull_mode@.
+--   			This gives the same result as using @BaseMaterial3D.CULL_BACK@ in @BaseMaterial3D.cull_mode@.
 bindPrimitiveMesh_set_flip_faces :: MethodBind
 bindPrimitiveMesh_set_flip_faces
   = unsafePerformIO $
@@ -230,7 +238,7 @@ bindPrimitiveMesh_set_flip_faces
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | If set, the order of the vertices in each triangle are reversed resulting in the backside of the mesh being drawn.
---   			This gives the same result as using @SpatialMaterial.CULL_BACK@ in @SpatialMaterial.params_cull_mode@.
+--   			This gives the same result as using @BaseMaterial3D.CULL_BACK@ in @BaseMaterial3D.cull_mode@.
 set_flip_faces ::
                  (PrimitiveMesh :< cls, Object :< cls) => cls -> Bool -> IO ()
 set_flip_faces cls arg1

@@ -12,6 +12,7 @@ module Godot.Core.GraphEdit
         Godot.Core.GraphEdit.sig_disconnection_request,
         Godot.Core.GraphEdit.sig_duplicate_nodes_request,
         Godot.Core.GraphEdit.sig_node_selected,
+        Godot.Core.GraphEdit.sig_node_unselected,
         Godot.Core.GraphEdit.sig_paste_nodes_request,
         Godot.Core.GraphEdit.sig_popup_request,
         Godot.Core.GraphEdit.sig_scroll_offset_changed,
@@ -61,14 +62,12 @@ import Godot.Gdnative.Internal
 import Godot.Api.Types
 import Godot.Core.Control()
 
--- | Emitted at the beginning of a GraphNode movement.
 sig__begin_node_move :: Godot.Internal.Dispatch.Signal GraphEdit
 sig__begin_node_move
   = Godot.Internal.Dispatch.Signal "_begin_node_move"
 
 instance NodeSignal GraphEdit "_begin_node_move" '[]
 
--- | Emitted at the end of a GraphNode movement.
 sig__end_node_move :: Godot.Internal.Dispatch.Signal GraphEdit
 sig__end_node_move
   = Godot.Internal.Dispatch.Signal "_end_node_move"
@@ -100,7 +99,7 @@ sig_connection_to_empty
 instance NodeSignal GraphEdit "connection_to_empty"
            '[GodotString, Int, Vector2]
 
--- | Emitted when the user presses @Ctrl + C@.
+-- | Emitted when the user presses @kbd@Ctrl + C@/kbd@.
 sig_copy_nodes_request :: Godot.Internal.Dispatch.Signal GraphEdit
 sig_copy_nodes_request
   = Godot.Internal.Dispatch.Signal "copy_nodes_request"
@@ -138,7 +137,13 @@ sig_node_selected = Godot.Internal.Dispatch.Signal "node_selected"
 
 instance NodeSignal GraphEdit "node_selected" '[Node]
 
--- | Emitted when the user presses @Ctrl + V@.
+sig_node_unselected :: Godot.Internal.Dispatch.Signal GraphEdit
+sig_node_unselected
+  = Godot.Internal.Dispatch.Signal "node_unselected"
+
+instance NodeSignal GraphEdit "node_unselected" '[Node]
+
+-- | Emitted when the user presses @kbd@Ctrl + V@/kbd@.
 sig_paste_nodes_request :: Godot.Internal.Dispatch.Signal GraphEdit
 sig_paste_nodes_request
   = Godot.Internal.Dispatch.Signal "paste_nodes_request"
@@ -785,7 +790,7 @@ instance NodeMethod GraphEdit "get_zoom" '[] (IO Float) where
 {-# NOINLINE bindGraphEdit_get_zoom_hbox #-}
 
 -- | Gets the @HBoxContainer@ that contains the zooming and grid snap controls in the top left of the graph.
---   				Warning: The intended usage of this function is to allow you to reposition or add your own custom controls to the container. This is an internal control and as such should not be freed. If you wish to hide this or any of it's children use their @CanvasItem.visible@ property instead.
+--   				Warning: The intended usage of this function is to allow you to reposition or add your own custom controls to the container. This is an internal control and as such should not be freed. If you wish to hide this or any of its children, use their @CanvasItem.visible@ property instead.
 bindGraphEdit_get_zoom_hbox :: MethodBind
 bindGraphEdit_get_zoom_hbox
   = unsafePerformIO $
@@ -796,7 +801,7 @@ bindGraphEdit_get_zoom_hbox
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | Gets the @HBoxContainer@ that contains the zooming and grid snap controls in the top left of the graph.
---   				Warning: The intended usage of this function is to allow you to reposition or add your own custom controls to the container. This is an internal control and as such should not be freed. If you wish to hide this or any of it's children use their @CanvasItem.visible@ property instead.
+--   				Warning: The intended usage of this function is to allow you to reposition or add your own custom controls to the container. This is an internal control and as such should not be freed. If you wish to hide this or any of its children, use their @CanvasItem.visible@ property instead.
 get_zoom_hbox ::
                 (GraphEdit :< cls, Object :< cls) => cls -> IO HBoxContainer
 get_zoom_hbox cls

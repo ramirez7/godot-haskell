@@ -113,6 +113,7 @@ instance NodeMethod Directory "current_is_dir" '[] (IO Bool) where
 {-# NOINLINE bindDirectory_dir_exists #-}
 
 -- | Returns whether the target directory exists. The argument can be relative to the current directory, or an absolute path.
+--   				If the @Directory@ is not open, the path is relative to @res://@.
 bindDirectory_dir_exists :: MethodBind
 bindDirectory_dir_exists
   = unsafePerformIO $
@@ -123,6 +124,7 @@ bindDirectory_dir_exists
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | Returns whether the target directory exists. The argument can be relative to the current directory, or an absolute path.
+--   				If the @Directory@ is not open, the path is relative to @res://@.
 dir_exists ::
              (Directory :< cls, Object :< cls) => cls -> GodotString -> IO Bool
 dir_exists cls arg1
@@ -139,6 +141,7 @@ instance NodeMethod Directory "dir_exists" '[GodotString] (IO Bool)
 {-# NOINLINE bindDirectory_file_exists #-}
 
 -- | Returns whether the target file exists. The argument can be relative to the current directory, or an absolute path.
+--   				If the @Directory@ is not open, the path is relative to @res://@.
 bindDirectory_file_exists :: MethodBind
 bindDirectory_file_exists
   = unsafePerformIO $
@@ -149,6 +152,7 @@ bindDirectory_file_exists
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | Returns whether the target file exists. The argument can be relative to the current directory, or an absolute path.
+--   				If the @Directory@ is not open, the path is relative to @res://@.
 file_exists ::
               (Directory :< cls, Object :< cls) => cls -> GodotString -> IO Bool
 file_exists cls arg1
@@ -221,7 +225,7 @@ instance NodeMethod Directory "get_current_drive" '[] (IO Int)
 
 {-# NOINLINE bindDirectory_get_drive #-}
 
--- | On Windows, returns the name of the drive (partition) passed as an argument (e.g. @C:@). On other platforms, or if the requested drive does not existed, the method returns an empty String.
+-- | On Windows, returns the name of the drive (partition) passed as an argument (e.g. @C:@). On other platforms, or if the requested drive does not exist, the method returns an empty String.
 bindDirectory_get_drive :: MethodBind
 bindDirectory_get_drive
   = unsafePerformIO $
@@ -231,7 +235,7 @@ bindDirectory_get_drive
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | On Windows, returns the name of the drive (partition) passed as an argument (e.g. @C:@). On other platforms, or if the requested drive does not existed, the method returns an empty String.
+-- | On Windows, returns the name of the drive (partition) passed as an argument (e.g. @C:@). On other platforms, or if the requested drive does not exist, the method returns an empty String.
 get_drive ::
             (Directory :< cls, Object :< cls) => cls -> Int -> IO GodotString
 get_drive cls arg1
@@ -326,9 +330,9 @@ instance NodeMethod Directory "get_space_left" '[] (IO Int) where
 
 {-# NOINLINE bindDirectory_list_dir_begin #-}
 
--- | Initializes the stream used to list all files and directories using the @method get_next@ function, closing the current opened stream if needed. Once the stream has been processed, it should typically be closed with @method list_dir_end@.
---   				If @skip_navigational@ is @true@, @.@ and @..@ are filtered out.
---   				If @skip_hidden@ is @true@, hidden files are filtered out.
+-- | Initializes the stream used to list all files and directories using the @method get_next@ function, closing the currently opened stream if needed. Once the stream has been processed, it should typically be closed with @method list_dir_end@.
+--   				If @show_navigational@ is @true@, @.@ and @..@ are included too.
+--   				If @show_hidden@ is @true@, hidden files are included too.
 bindDirectory_list_dir_begin :: MethodBind
 bindDirectory_list_dir_begin
   = unsafePerformIO $
@@ -338,9 +342,9 @@ bindDirectory_list_dir_begin
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Initializes the stream used to list all files and directories using the @method get_next@ function, closing the current opened stream if needed. Once the stream has been processed, it should typically be closed with @method list_dir_end@.
---   				If @skip_navigational@ is @true@, @.@ and @..@ are filtered out.
---   				If @skip_hidden@ is @true@, hidden files are filtered out.
+-- | Initializes the stream used to list all files and directories using the @method get_next@ function, closing the currently opened stream if needed. Once the stream has been processed, it should typically be closed with @method list_dir_end@.
+--   				If @show_navigational@ is @true@, @.@ and @..@ are included too.
+--   				If @show_hidden@ is @true@, hidden files are included too.
 list_dir_begin ::
                  (Directory :< cls, Object :< cls) =>
                  cls -> Maybe Bool -> Maybe Bool -> IO Int
@@ -362,7 +366,7 @@ instance NodeMethod Directory "list_dir_begin"
 
 {-# NOINLINE bindDirectory_list_dir_end #-}
 
--- | Closes the current stream opened with @method list_dir_begin@ (whether it has been fully processed with @method get_next@ or not does not matter).
+-- | Closes the current stream opened with @method list_dir_begin@ (whether it has been fully processed with @method get_next@ does not matter).
 bindDirectory_list_dir_end :: MethodBind
 bindDirectory_list_dir_end
   = unsafePerformIO $
@@ -372,7 +376,7 @@ bindDirectory_list_dir_end
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Closes the current stream opened with @method list_dir_begin@ (whether it has been fully processed with @method get_next@ or not does not matter).
+-- | Closes the current stream opened with @method list_dir_begin@ (whether it has been fully processed with @method get_next@ does not matter).
 list_dir_end :: (Directory :< cls, Object :< cls) => cls -> IO ()
 list_dir_end cls
   = withVariantArray []
@@ -499,7 +503,7 @@ instance NodeMethod Directory "remove" '[GodotString] (IO Int)
 
 {-# NOINLINE bindDirectory_rename #-}
 
--- | Renames (move) the @from@ file to the @to@ destination. Both arguments should be paths to files, either relative or absolute. If the destination file exists and is not access-protected, it will be overwritten.
+-- | Renames (move) the @from@ file or directory to the @to@ destination. Both arguments should be paths to files or directories, either relative or absolute. If the destination file or directory exists and is not access-protected, it will be overwritten.
 --   				Returns one of the @enum Error@ code constants (@OK@ on success).
 bindDirectory_rename :: MethodBind
 bindDirectory_rename
@@ -510,7 +514,7 @@ bindDirectory_rename
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Renames (move) the @from@ file to the @to@ destination. Both arguments should be paths to files, either relative or absolute. If the destination file exists and is not access-protected, it will be overwritten.
+-- | Renames (move) the @from@ file or directory to the @to@ destination. Both arguments should be paths to files or directories, either relative or absolute. If the destination file or directory exists and is not access-protected, it will be overwritten.
 --   				Returns one of the @enum Error@ code constants (@OK@ on success).
 rename ::
          (Directory :< cls, Object :< cls) =>

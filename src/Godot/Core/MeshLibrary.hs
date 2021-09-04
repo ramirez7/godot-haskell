@@ -257,7 +257,7 @@ instance NodeMethod MeshLibrary "get_item_navmesh_transform" '[Int]
 
 {-# NOINLINE bindMeshLibrary_get_item_preview #-}
 
--- | When running in the editor, returns a generated item preview (a 3D rendering in isometric perspective). When used in a running project, returns the manually-defined item preview which can be set using @method set_item_preview@. Returns an empty @Texture@ if no preview was manually set in a running project.
+-- | When running in the editor, returns a generated item preview (a 3D rendering in isometric perspective). When used in a running project, returns the manually-defined item preview which can be set using @method set_item_preview@. Returns an empty @Texture2D@ if no preview was manually set in a running project.
 bindMeshLibrary_get_item_preview :: MethodBind
 bindMeshLibrary_get_item_preview
   = unsafePerformIO $
@@ -267,7 +267,7 @@ bindMeshLibrary_get_item_preview
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | When running in the editor, returns a generated item preview (a 3D rendering in isometric perspective). When used in a running project, returns the manually-defined item preview which can be set using @method set_item_preview@. Returns an empty @Texture@ if no preview was manually set in a running project.
+-- | When running in the editor, returns a generated item preview (a 3D rendering in isometric perspective). When used in a running project, returns the manually-defined item preview which can be set using @method set_item_preview@. Returns an empty @Texture2D@ if no preview was manually set in a running project.
 get_item_preview ::
                    (MeshLibrary :< cls, Object :< cls) => cls -> Int -> IO Texture
 get_item_preview cls arg1
@@ -287,7 +287,7 @@ instance NodeMethod MeshLibrary "get_item_preview" '[Int]
 {-# NOINLINE bindMeshLibrary_get_item_shapes #-}
 
 -- | Returns an item's collision shapes.
---   				The array consists of each @Shape@ followed by its @Transform@.
+--   				The array consists of each @Shape3D@ followed by its @Transform3D@.
 bindMeshLibrary_get_item_shapes :: MethodBind
 bindMeshLibrary_get_item_shapes
   = unsafePerformIO $
@@ -298,7 +298,7 @@ bindMeshLibrary_get_item_shapes
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | Returns an item's collision shapes.
---   				The array consists of each @Shape@ followed by its @Transform@.
+--   				The array consists of each @Shape3D@ followed by its @Transform3D@.
 get_item_shapes ::
                   (MeshLibrary :< cls, Object :< cls) => cls -> Int -> IO Array
 get_item_shapes cls arg1
@@ -522,7 +522,7 @@ instance NodeMethod MeshLibrary "set_item_preview" '[Int, Texture]
 {-# NOINLINE bindMeshLibrary_set_item_shapes #-}
 
 -- | Sets an item's collision shapes.
---   				The array should consist of @Shape@ objects, each followed by a @Transform@ that will be applied to it. For shapes that should not have a transform, use @Transform.IDENTITY@.
+--   				The array should consist of @Shape3D@ objects, each followed by a @Transform3D@ that will be applied to it. For shapes that should not have a transform, use @Transform3D.IDENTITY@.
 bindMeshLibrary_set_item_shapes :: MethodBind
 bindMeshLibrary_set_item_shapes
   = unsafePerformIO $
@@ -533,7 +533,7 @@ bindMeshLibrary_set_item_shapes
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | Sets an item's collision shapes.
---   				The array should consist of @Shape@ objects, each followed by a @Transform@ that will be applied to it. For shapes that should not have a transform, use @Transform.IDENTITY@.
+--   				The array should consist of @Shape3D@ objects, each followed by a @Transform3D@ that will be applied to it. For shapes that should not have a transform, use @Transform3D.IDENTITY@.
 set_item_shapes ::
                   (MeshLibrary :< cls, Object :< cls) => cls -> Int -> Array -> IO ()
 set_item_shapes cls arg1 arg2

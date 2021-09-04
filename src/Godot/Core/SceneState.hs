@@ -310,7 +310,7 @@ instance NodeMethod SceneState "get_node_groups" '[Int]
 
 {-# NOINLINE bindSceneState_get_node_index #-}
 
--- | Returns the node's index, which is its position relative to its siblings. This is only relevant and saved in scenes for cases where new nodes are added to an instanced or inherited scene among siblings from the base scene. Despite the name, this index is not related to the @idx@ argument used here and in other methods.
+-- | Returns the node's index, which is its position relative to its siblings. This is only relevant and saved in scenes for cases where new nodes are added to an instantiated or inherited scene among siblings from the base scene. Despite the name, this index is not related to the @idx@ argument used here and in other methods.
 bindSceneState_get_node_index :: MethodBind
 bindSceneState_get_node_index
   = unsafePerformIO $
@@ -320,7 +320,7 @@ bindSceneState_get_node_index
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the node's index, which is its position relative to its siblings. This is only relevant and saved in scenes for cases where new nodes are added to an instanced or inherited scene among siblings from the base scene. Despite the name, this index is not related to the @idx@ argument used here and in other methods.
+-- | Returns the node's index, which is its position relative to its siblings. This is only relevant and saved in scenes for cases where new nodes are added to an instantiated or inherited scene among siblings from the base scene. Despite the name, this index is not related to the @idx@ argument used here and in other methods.
 get_node_index ::
                  (SceneState :< cls, Object :< cls) => cls -> Int -> IO Int
 get_node_index cls arg1

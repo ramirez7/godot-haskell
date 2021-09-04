@@ -226,7 +226,6 @@ instance NodeMethod Camera2D "_make_current" '[Object] (IO ())
 
 {-# NOINLINE bindCamera2D__set_current #-}
 
--- | If @true@, the camera is the active camera for the current scene. Only one camera can be current, so setting a different camera @current@ will disable this one.
 bindCamera2D__set_current :: MethodBind
 bindCamera2D__set_current
   = unsafePerformIO $
@@ -236,7 +235,6 @@ bindCamera2D__set_current
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, the camera is the active camera for the current scene. Only one camera can be current, so setting a different camera @current@ will disable this one.
 _set_current ::
                (Camera2D :< cls, Object :< cls) => cls -> Bool -> IO ()
 _set_current cls arg1
@@ -323,7 +321,6 @@ instance NodeMethod Camera2D "align" '[] (IO ()) where
 
 {-# NOINLINE bindCamera2D_clear_current #-}
 
--- | Removes any @Camera2D@ from the ancestor @Viewport@'s internal currently-assigned camera.
 bindCamera2D_clear_current :: MethodBind
 bindCamera2D_clear_current
   = unsafePerformIO $
@@ -333,7 +330,6 @@ bindCamera2D_clear_current
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Removes any @Camera2D@ from the ancestor @Viewport@'s internal currently-assigned camera.
 clear_current :: (Camera2D :< cls, Object :< cls) => cls -> IO ()
 clear_current cls
   = withVariantArray []
@@ -487,7 +483,7 @@ instance NodeMethod Camera2D "get_custom_viewport" '[] (IO Node)
 
 {-# NOINLINE bindCamera2D_get_drag_margin #-}
 
--- | Returns the specified margin. See also @drag_margin_bottom@, @drag_margin_top@, @drag_margin_left@, and @drag_margin_right@.
+-- | Returns the specified @enum Side@'s margin. See also @drag_bottom_margin@, @drag_top_margin@, @drag_left_margin@, and @drag_right_margin@.
 bindCamera2D_get_drag_margin :: MethodBind
 bindCamera2D_get_drag_margin
   = unsafePerformIO $
@@ -497,7 +493,7 @@ bindCamera2D_get_drag_margin
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the specified margin. See also @drag_margin_bottom@, @drag_margin_top@, @drag_margin_left@, and @drag_margin_right@.
+-- | Returns the specified @enum Side@'s margin. See also @drag_bottom_margin@, @drag_top_margin@, @drag_left_margin@, and @drag_right_margin@.
 get_drag_margin ::
                   (Camera2D :< cls, Object :< cls) => cls -> Int -> IO Float
 get_drag_margin cls arg1
@@ -542,8 +538,6 @@ instance NodeMethod Camera2D "get_follow_smoothing" '[] (IO Float)
 
 {-# NOINLINE bindCamera2D_get_h_offset #-}
 
--- | The horizontal offset of the camera, relative to the drag margins.
---   			__Note:__ Offset H is used only to force offset relative to margins. It's not updated in any way if drag margins are enabled and can be used to set initial offset.
 bindCamera2D_get_h_offset :: MethodBind
 bindCamera2D_get_h_offset
   = unsafePerformIO $
@@ -553,8 +547,6 @@ bindCamera2D_get_h_offset
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The horizontal offset of the camera, relative to the drag margins.
---   			__Note:__ Offset H is used only to force offset relative to margins. It's not updated in any way if drag margins are enabled and can be used to set initial offset.
 get_h_offset :: (Camera2D :< cls, Object :< cls) => cls -> IO Float
 get_h_offset cls
   = withVariantArray []
@@ -569,7 +561,7 @@ instance NodeMethod Camera2D "get_h_offset" '[] (IO Float) where
 
 {-# NOINLINE bindCamera2D_get_limit #-}
 
--- | Returns the specified camera limit. See also @limit_bottom@, @limit_top@, @limit_left@, and @limit_right@.
+-- | Returns the camera limit for the specified @enum Side@. See also @limit_bottom@, @limit_top@, @limit_left@, and @limit_right@.
 bindCamera2D_get_limit :: MethodBind
 bindCamera2D_get_limit
   = unsafePerformIO $
@@ -579,7 +571,7 @@ bindCamera2D_get_limit
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the specified camera limit. See also @limit_bottom@, @limit_top@, @limit_left@, and @limit_right@.
+-- | Returns the camera limit for the specified @enum Side@. See also @limit_bottom@, @limit_top@, @limit_left@, and @limit_right@.
 get_limit ::
             (Camera2D :< cls, Object :< cls) => cls -> Int -> IO Int
 get_limit cls arg1
@@ -618,7 +610,6 @@ instance NodeMethod Camera2D "get_offset" '[] (IO Vector2) where
 
 {-# NOINLINE bindCamera2D_get_process_mode #-}
 
--- | The camera's process callback. See @enum Camera2DProcessMode@.
 bindCamera2D_get_process_mode :: MethodBind
 bindCamera2D_get_process_mode
   = unsafePerformIO $
@@ -628,7 +619,6 @@ bindCamera2D_get_process_mode
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The camera's process callback. See @enum Camera2DProcessMode@.
 get_process_mode ::
                    (Camera2D :< cls, Object :< cls) => cls -> IO Int
 get_process_mode cls
@@ -644,8 +634,6 @@ instance NodeMethod Camera2D "get_process_mode" '[] (IO Int) where
 
 {-# NOINLINE bindCamera2D_get_v_offset #-}
 
--- | The vertical offset of the camera, relative to the drag margins.
---   			__Note:__ Used the same as @offset_h@.
 bindCamera2D_get_v_offset :: MethodBind
 bindCamera2D_get_v_offset
   = unsafePerformIO $
@@ -655,8 +643,6 @@ bindCamera2D_get_v_offset
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The vertical offset of the camera, relative to the drag margins.
---   			__Note:__ Used the same as @offset_h@.
 get_v_offset :: (Camera2D :< cls, Object :< cls) => cls -> IO Float
 get_v_offset cls
   = withVariantArray []
@@ -748,7 +734,6 @@ instance NodeMethod Camera2D "is_follow_smoothing_enabled" '[]
 
 {-# NOINLINE bindCamera2D_is_h_drag_enabled #-}
 
--- | If @true@, the camera only moves when reaching the horizontal drag margins. If @false@, the camera moves horizontally regardless of margins.
 bindCamera2D_is_h_drag_enabled :: MethodBind
 bindCamera2D_is_h_drag_enabled
   = unsafePerformIO $
@@ -758,7 +743,6 @@ bindCamera2D_is_h_drag_enabled
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, the camera only moves when reaching the horizontal drag margins. If @false@, the camera moves horizontally regardless of margins.
 is_h_drag_enabled ::
                     (Camera2D :< cls, Object :< cls) => cls -> IO Bool
 is_h_drag_enabled cls
@@ -805,6 +789,8 @@ instance NodeMethod Camera2D "is_limit_drawing_enabled" '[]
 {-# NOINLINE bindCamera2D_is_limit_smoothing_enabled #-}
 
 -- | If @true@, the camera smoothly stops when reaches its limits.
+--   			This has no effect if smoothing is disabled.
+--   			__Note:__ To immediately update the camera's position to be within limits without smoothing, even with this setting enabled, invoke @method reset_smoothing@.
 bindCamera2D_is_limit_smoothing_enabled :: MethodBind
 bindCamera2D_is_limit_smoothing_enabled
   = unsafePerformIO $
@@ -815,6 +801,8 @@ bindCamera2D_is_limit_smoothing_enabled
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | If @true@, the camera smoothly stops when reaches its limits.
+--   			This has no effect if smoothing is disabled.
+--   			__Note:__ To immediately update the camera's position to be within limits without smoothing, even with this setting enabled, invoke @method reset_smoothing@.
 is_limit_smoothing_enabled ::
                              (Camera2D :< cls, Object :< cls) => cls -> IO Bool
 is_limit_smoothing_enabled cls
@@ -915,7 +903,6 @@ instance NodeMethod Camera2D "is_screen_drawing_enabled" '[]
 
 {-# NOINLINE bindCamera2D_is_v_drag_enabled #-}
 
--- | If @true@, the camera only moves when reaching the vertical drag margins. If @false@, the camera moves vertically regardless of margins.
 bindCamera2D_is_v_drag_enabled :: MethodBind
 bindCamera2D_is_v_drag_enabled
   = unsafePerformIO $
@@ -925,7 +912,6 @@ bindCamera2D_is_v_drag_enabled
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, the camera only moves when reaching the vertical drag margins. If @false@, the camera moves vertically regardless of margins.
 is_v_drag_enabled ::
                     (Camera2D :< cls, Object :< cls) => cls -> IO Bool
 is_v_drag_enabled cls
@@ -942,7 +928,6 @@ instance NodeMethod Camera2D "is_v_drag_enabled" '[] (IO Bool)
 
 {-# NOINLINE bindCamera2D_make_current #-}
 
--- | Make this the current 2D camera for the scene (viewport and layer), in case there are many cameras in the scene.
 bindCamera2D_make_current :: MethodBind
 bindCamera2D_make_current
   = unsafePerformIO $
@@ -952,7 +937,6 @@ bindCamera2D_make_current
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Make this the current 2D camera for the scene (viewport and layer), in case there are many cameras in the scene.
 make_current :: (Camera2D :< cls, Object :< cls) => cls -> IO ()
 make_current cls
   = withVariantArray []
@@ -1048,7 +1032,7 @@ instance NodeMethod Camera2D "set_custom_viewport" '[Node] (IO ())
 
 {-# NOINLINE bindCamera2D_set_drag_margin #-}
 
--- | Sets the specified margin. See also @drag_margin_bottom@, @drag_margin_top@, @drag_margin_left@, and @drag_margin_right@.
+-- | Sets the specified @enum Side@'s margin. See also @drag_bottom_margin@, @drag_top_margin@, @drag_left_margin@, and @drag_right_margin@.
 bindCamera2D_set_drag_margin :: MethodBind
 bindCamera2D_set_drag_margin
   = unsafePerformIO $
@@ -1058,7 +1042,7 @@ bindCamera2D_set_drag_margin
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the specified margin. See also @drag_margin_bottom@, @drag_margin_top@, @drag_margin_left@, and @drag_margin_right@.
+-- | Sets the specified @enum Side@'s margin. See also @drag_bottom_margin@, @drag_top_margin@, @drag_left_margin@, and @drag_right_margin@.
 set_drag_margin ::
                   (Camera2D :< cls, Object :< cls) => cls -> Int -> Float -> IO ()
 set_drag_margin cls arg1 arg2
@@ -1134,7 +1118,6 @@ instance NodeMethod Camera2D "set_follow_smoothing" '[Float]
 
 {-# NOINLINE bindCamera2D_set_h_drag_enabled #-}
 
--- | If @true@, the camera only moves when reaching the horizontal drag margins. If @false@, the camera moves horizontally regardless of margins.
 bindCamera2D_set_h_drag_enabled :: MethodBind
 bindCamera2D_set_h_drag_enabled
   = unsafePerformIO $
@@ -1144,7 +1127,6 @@ bindCamera2D_set_h_drag_enabled
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, the camera only moves when reaching the horizontal drag margins. If @false@, the camera moves horizontally regardless of margins.
 set_h_drag_enabled ::
                      (Camera2D :< cls, Object :< cls) => cls -> Bool -> IO ()
 set_h_drag_enabled cls arg1
@@ -1161,8 +1143,6 @@ instance NodeMethod Camera2D "set_h_drag_enabled" '[Bool] (IO ())
 
 {-# NOINLINE bindCamera2D_set_h_offset #-}
 
--- | The horizontal offset of the camera, relative to the drag margins.
---   			__Note:__ Offset H is used only to force offset relative to margins. It's not updated in any way if drag margins are enabled and can be used to set initial offset.
 bindCamera2D_set_h_offset :: MethodBind
 bindCamera2D_set_h_offset
   = unsafePerformIO $
@@ -1172,8 +1152,6 @@ bindCamera2D_set_h_offset
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The horizontal offset of the camera, relative to the drag margins.
---   			__Note:__ Offset H is used only to force offset relative to margins. It's not updated in any way if drag margins are enabled and can be used to set initial offset.
 set_h_offset ::
                (Camera2D :< cls, Object :< cls) => cls -> Float -> IO ()
 set_h_offset cls arg1
@@ -1189,7 +1167,7 @@ instance NodeMethod Camera2D "set_h_offset" '[Float] (IO ()) where
 
 {-# NOINLINE bindCamera2D_set_limit #-}
 
--- | Sets the specified camera limit. See also @limit_bottom@, @limit_top@, @limit_left@, and @limit_right@.
+-- | Sets the camera limit for the specified @enum Side@. See also @limit_bottom@, @limit_top@, @limit_left@, and @limit_right@.
 bindCamera2D_set_limit :: MethodBind
 bindCamera2D_set_limit
   = unsafePerformIO $
@@ -1199,7 +1177,7 @@ bindCamera2D_set_limit
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the specified camera limit. See also @limit_bottom@, @limit_top@, @limit_left@, and @limit_right@.
+-- | Sets the camera limit for the specified @enum Side@. See also @limit_bottom@, @limit_top@, @limit_left@, and @limit_right@.
 set_limit ::
             (Camera2D :< cls, Object :< cls) => cls -> Int -> Int -> IO ()
 set_limit cls arg1 arg2
@@ -1244,6 +1222,8 @@ instance NodeMethod Camera2D "set_limit_drawing_enabled" '[Bool]
 {-# NOINLINE bindCamera2D_set_limit_smoothing_enabled #-}
 
 -- | If @true@, the camera smoothly stops when reaches its limits.
+--   			This has no effect if smoothing is disabled.
+--   			__Note:__ To immediately update the camera's position to be within limits without smoothing, even with this setting enabled, invoke @method reset_smoothing@.
 bindCamera2D_set_limit_smoothing_enabled :: MethodBind
 bindCamera2D_set_limit_smoothing_enabled
   = unsafePerformIO $
@@ -1254,6 +1234,8 @@ bindCamera2D_set_limit_smoothing_enabled
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | If @true@, the camera smoothly stops when reaches its limits.
+--   			This has no effect if smoothing is disabled.
+--   			__Note:__ To immediately update the camera's position to be within limits without smoothing, even with this setting enabled, invoke @method reset_smoothing@.
 set_limit_smoothing_enabled ::
                               (Camera2D :< cls, Object :< cls) => cls -> Bool -> IO ()
 set_limit_smoothing_enabled cls arg1
@@ -1326,7 +1308,6 @@ instance NodeMethod Camera2D "set_offset" '[Vector2] (IO ()) where
 
 {-# NOINLINE bindCamera2D_set_process_mode #-}
 
--- | The camera's process callback. See @enum Camera2DProcessMode@.
 bindCamera2D_set_process_mode :: MethodBind
 bindCamera2D_set_process_mode
   = unsafePerformIO $
@@ -1336,7 +1317,6 @@ bindCamera2D_set_process_mode
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The camera's process callback. See @enum Camera2DProcessMode@.
 set_process_mode ::
                    (Camera2D :< cls, Object :< cls) => cls -> Int -> IO ()
 set_process_mode cls arg1
@@ -1408,7 +1388,6 @@ instance NodeMethod Camera2D "set_screen_drawing_enabled" '[Bool]
 
 {-# NOINLINE bindCamera2D_set_v_drag_enabled #-}
 
--- | If @true@, the camera only moves when reaching the vertical drag margins. If @false@, the camera moves vertically regardless of margins.
 bindCamera2D_set_v_drag_enabled :: MethodBind
 bindCamera2D_set_v_drag_enabled
   = unsafePerformIO $
@@ -1418,7 +1397,6 @@ bindCamera2D_set_v_drag_enabled
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, the camera only moves when reaching the vertical drag margins. If @false@, the camera moves vertically regardless of margins.
 set_v_drag_enabled ::
                      (Camera2D :< cls, Object :< cls) => cls -> Bool -> IO ()
 set_v_drag_enabled cls arg1
@@ -1435,8 +1413,6 @@ instance NodeMethod Camera2D "set_v_drag_enabled" '[Bool] (IO ())
 
 {-# NOINLINE bindCamera2D_set_v_offset #-}
 
--- | The vertical offset of the camera, relative to the drag margins.
---   			__Note:__ Used the same as @offset_h@.
 bindCamera2D_set_v_offset :: MethodBind
 bindCamera2D_set_v_offset
   = unsafePerformIO $
@@ -1446,8 +1422,6 @@ bindCamera2D_set_v_offset
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The vertical offset of the camera, relative to the drag margins.
---   			__Note:__ Used the same as @offset_h@.
 set_v_offset ::
                (Camera2D :< cls, Object :< cls) => cls -> Float -> IO ()
 set_v_offset cls arg1

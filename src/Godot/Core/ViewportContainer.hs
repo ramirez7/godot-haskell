@@ -89,9 +89,6 @@ instance NodeMethod ViewportContainer "_unhandled_input"
 
 {-# NOINLINE bindViewportContainer_get_stretch_shrink #-}
 
--- | Divides the viewport's effective resolution by this value while preserving its scale. This can be used to speed up rendering.
---   			For example, a 1280×720 viewport with @stretch_shrink@ set to @2@ will be rendered at 640×360 while occupying the same size in the container.
---   			__Note:__ @stretch@ must be @true@ for this property to work.
 bindViewportContainer_get_stretch_shrink :: MethodBind
 bindViewportContainer_get_stretch_shrink
   = unsafePerformIO $
@@ -101,9 +98,6 @@ bindViewportContainer_get_stretch_shrink
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Divides the viewport's effective resolution by this value while preserving its scale. This can be used to speed up rendering.
---   			For example, a 1280×720 viewport with @stretch_shrink@ set to @2@ will be rendered at 640×360 while occupying the same size in the container.
---   			__Note:__ @stretch@ must be @true@ for this property to work.
 get_stretch_shrink ::
                      (ViewportContainer :< cls, Object :< cls) => cls -> IO Int
 get_stretch_shrink cls
@@ -122,7 +116,6 @@ instance NodeMethod ViewportContainer "get_stretch_shrink" '[]
 
 {-# NOINLINE bindViewportContainer_is_stretch_enabled #-}
 
--- | If @true@, the viewport will be scaled to the control's size.
 bindViewportContainer_is_stretch_enabled :: MethodBind
 bindViewportContainer_is_stretch_enabled
   = unsafePerformIO $
@@ -132,7 +125,6 @@ bindViewportContainer_is_stretch_enabled
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, the viewport will be scaled to the control's size.
 is_stretch_enabled ::
                      (ViewportContainer :< cls, Object :< cls) => cls -> IO Bool
 is_stretch_enabled cls
@@ -151,7 +143,6 @@ instance NodeMethod ViewportContainer "is_stretch_enabled" '[]
 
 {-# NOINLINE bindViewportContainer_set_stretch #-}
 
--- | If @true@, the viewport will be scaled to the control's size.
 bindViewportContainer_set_stretch :: MethodBind
 bindViewportContainer_set_stretch
   = unsafePerformIO $
@@ -161,7 +152,6 @@ bindViewportContainer_set_stretch
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, the viewport will be scaled to the control's size.
 set_stretch ::
               (ViewportContainer :< cls, Object :< cls) => cls -> Bool -> IO ()
 set_stretch cls arg1
@@ -179,9 +169,6 @@ instance NodeMethod ViewportContainer "set_stretch" '[Bool] (IO ())
 
 {-# NOINLINE bindViewportContainer_set_stretch_shrink #-}
 
--- | Divides the viewport's effective resolution by this value while preserving its scale. This can be used to speed up rendering.
---   			For example, a 1280×720 viewport with @stretch_shrink@ set to @2@ will be rendered at 640×360 while occupying the same size in the container.
---   			__Note:__ @stretch@ must be @true@ for this property to work.
 bindViewportContainer_set_stretch_shrink :: MethodBind
 bindViewportContainer_set_stretch_shrink
   = unsafePerformIO $
@@ -191,9 +178,6 @@ bindViewportContainer_set_stretch_shrink
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Divides the viewport's effective resolution by this value while preserving its scale. This can be used to speed up rendering.
---   			For example, a 1280×720 viewport with @stretch_shrink@ set to @2@ will be rendered at 640×360 while occupying the same size in the container.
---   			__Note:__ @stretch@ must be @true@ for this property to work.
 set_stretch_shrink ::
                      (ViewportContainer :< cls, Object :< cls) => cls -> Int -> IO ()
 set_stretch_shrink cls arg1

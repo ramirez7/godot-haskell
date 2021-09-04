@@ -39,7 +39,6 @@ import Godot.Gdnative.Internal
 import Godot.Api.Types
 import Godot.Core.Node2D()
 
--- | Emitted when the animation is finished (when it plays the last frame). If the animation is looping, this signal is emitted every time the last frame is drawn.
 sig_animation_finished ::
                        Godot.Internal.Dispatch.Signal AnimatedSprite
 sig_animation_finished
@@ -47,7 +46,6 @@ sig_animation_finished
 
 instance NodeSignal AnimatedSprite "animation_finished" '[]
 
--- | Emitted when @frame@ changed.
 sig_frame_changed :: Godot.Internal.Dispatch.Signal AnimatedSprite
 sig_frame_changed = Godot.Internal.Dispatch.Signal "frame_changed"
 
@@ -93,7 +91,6 @@ instance NodeProperty AnimatedSprite "speed_scale" Float 'False
 
 {-# NOINLINE bindAnimatedSprite__is_playing #-}
 
--- | If @true@, the @animation@ is currently playing.
 bindAnimatedSprite__is_playing :: MethodBind
 bindAnimatedSprite__is_playing
   = unsafePerformIO $
@@ -103,7 +100,6 @@ bindAnimatedSprite__is_playing
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, the @animation@ is currently playing.
 _is_playing ::
               (AnimatedSprite :< cls, Object :< cls) => cls -> IO Bool
 _is_playing cls
@@ -144,7 +140,6 @@ instance NodeMethod AnimatedSprite "_res_changed" '[] (IO ()) where
 
 {-# NOINLINE bindAnimatedSprite__set_playing #-}
 
--- | If @true@, the @animation@ is currently playing.
 bindAnimatedSprite__set_playing :: MethodBind
 bindAnimatedSprite__set_playing
   = unsafePerformIO $
@@ -154,7 +149,6 @@ bindAnimatedSprite__set_playing
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, the @animation@ is currently playing.
 _set_playing ::
                (AnimatedSprite :< cls, Object :< cls) => cls -> Bool -> IO ()
 _set_playing cls arg1
@@ -171,7 +165,6 @@ instance NodeMethod AnimatedSprite "_set_playing" '[Bool] (IO ())
 
 {-# NOINLINE bindAnimatedSprite_get_animation #-}
 
--- | The current animation from the @frames@ resource. If this value changes, the @frame@ counter is reset.
 bindAnimatedSprite_get_animation :: MethodBind
 bindAnimatedSprite_get_animation
   = unsafePerformIO $
@@ -181,7 +174,6 @@ bindAnimatedSprite_get_animation
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The current animation from the @frames@ resource. If this value changes, the @frame@ counter is reset.
 get_animation ::
                 (AnimatedSprite :< cls, Object :< cls) => cls -> IO GodotString
 get_animation cls
@@ -200,7 +192,6 @@ instance NodeMethod AnimatedSprite "get_animation" '[]
 
 {-# NOINLINE bindAnimatedSprite_get_frame #-}
 
--- | The displayed animation frame's index.
 bindAnimatedSprite_get_frame :: MethodBind
 bindAnimatedSprite_get_frame
   = unsafePerformIO $
@@ -210,7 +201,6 @@ bindAnimatedSprite_get_frame
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The displayed animation frame's index.
 get_frame ::
             (AnimatedSprite :< cls, Object :< cls) => cls -> IO Int
 get_frame cls
@@ -226,7 +216,6 @@ instance NodeMethod AnimatedSprite "get_frame" '[] (IO Int) where
 
 {-# NOINLINE bindAnimatedSprite_get_offset #-}
 
--- | The texture's drawing offset.
 bindAnimatedSprite_get_offset :: MethodBind
 bindAnimatedSprite_get_offset
   = unsafePerformIO $
@@ -236,7 +225,6 @@ bindAnimatedSprite_get_offset
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The texture's drawing offset.
 get_offset ::
              (AnimatedSprite :< cls, Object :< cls) => cls -> IO Vector2
 get_offset cls
@@ -253,7 +241,6 @@ instance NodeMethod AnimatedSprite "get_offset" '[] (IO Vector2)
 
 {-# NOINLINE bindAnimatedSprite_get_speed_scale #-}
 
--- | The animation speed is multiplied by this value.
 bindAnimatedSprite_get_speed_scale :: MethodBind
 bindAnimatedSprite_get_speed_scale
   = unsafePerformIO $
@@ -263,7 +250,6 @@ bindAnimatedSprite_get_speed_scale
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The animation speed is multiplied by this value.
 get_speed_scale ::
                   (AnimatedSprite :< cls, Object :< cls) => cls -> IO Float
 get_speed_scale cls
@@ -281,7 +267,6 @@ instance NodeMethod AnimatedSprite "get_speed_scale" '[] (IO Float)
 
 {-# NOINLINE bindAnimatedSprite_get_sprite_frames #-}
 
--- | The @SpriteFrames@ resource containing the animation(s).
 bindAnimatedSprite_get_sprite_frames :: MethodBind
 bindAnimatedSprite_get_sprite_frames
   = unsafePerformIO $
@@ -291,7 +276,6 @@ bindAnimatedSprite_get_sprite_frames
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The @SpriteFrames@ resource containing the animation(s).
 get_sprite_frames ::
                     (AnimatedSprite :< cls, Object :< cls) => cls -> IO SpriteFrames
 get_sprite_frames cls
@@ -310,7 +294,6 @@ instance NodeMethod AnimatedSprite "get_sprite_frames" '[]
 
 {-# NOINLINE bindAnimatedSprite_is_centered #-}
 
--- | If @true@, texture will be centered.
 bindAnimatedSprite_is_centered :: MethodBind
 bindAnimatedSprite_is_centered
   = unsafePerformIO $
@@ -320,7 +303,6 @@ bindAnimatedSprite_is_centered
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, texture will be centered.
 is_centered ::
               (AnimatedSprite :< cls, Object :< cls) => cls -> IO Bool
 is_centered cls
@@ -337,7 +319,6 @@ instance NodeMethod AnimatedSprite "is_centered" '[] (IO Bool)
 
 {-# NOINLINE bindAnimatedSprite_is_flipped_h #-}
 
--- | If @true@, texture is flipped horizontally.
 bindAnimatedSprite_is_flipped_h :: MethodBind
 bindAnimatedSprite_is_flipped_h
   = unsafePerformIO $
@@ -347,7 +328,6 @@ bindAnimatedSprite_is_flipped_h
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, texture is flipped horizontally.
 is_flipped_h ::
                (AnimatedSprite :< cls, Object :< cls) => cls -> IO Bool
 is_flipped_h cls
@@ -364,7 +344,6 @@ instance NodeMethod AnimatedSprite "is_flipped_h" '[] (IO Bool)
 
 {-# NOINLINE bindAnimatedSprite_is_flipped_v #-}
 
--- | If @true@, texture is flipped vertically.
 bindAnimatedSprite_is_flipped_v :: MethodBind
 bindAnimatedSprite_is_flipped_v
   = unsafePerformIO $
@@ -374,7 +353,6 @@ bindAnimatedSprite_is_flipped_v
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, texture is flipped vertically.
 is_flipped_v ::
                (AnimatedSprite :< cls, Object :< cls) => cls -> IO Bool
 is_flipped_v cls
@@ -391,7 +369,6 @@ instance NodeMethod AnimatedSprite "is_flipped_v" '[] (IO Bool)
 
 {-# NOINLINE bindAnimatedSprite_is_playing #-}
 
--- | Returns @true@ if an animation is currently being played.
 bindAnimatedSprite_is_playing :: MethodBind
 bindAnimatedSprite_is_playing
   = unsafePerformIO $
@@ -401,7 +378,6 @@ bindAnimatedSprite_is_playing
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns @true@ if an animation is currently being played.
 is_playing ::
              (AnimatedSprite :< cls, Object :< cls) => cls -> IO Bool
 is_playing cls
@@ -417,7 +393,6 @@ instance NodeMethod AnimatedSprite "is_playing" '[] (IO Bool) where
 
 {-# NOINLINE bindAnimatedSprite_play #-}
 
--- | Plays the animation named @anim@. If no @anim@ is provided, the current animation is played. If @backwards@ is @true@, the animation will be played in reverse.
 bindAnimatedSprite_play :: MethodBind
 bindAnimatedSprite_play
   = unsafePerformIO $
@@ -427,7 +402,6 @@ bindAnimatedSprite_play
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Plays the animation named @anim@. If no @anim@ is provided, the current animation is played. If @backwards@ is @true@, the animation will be played in reverse.
 play ::
        (AnimatedSprite :< cls, Object :< cls) =>
        cls -> Maybe GodotString -> Maybe Bool -> IO ()
@@ -448,7 +422,6 @@ instance NodeMethod AnimatedSprite "play"
 
 {-# NOINLINE bindAnimatedSprite_set_animation #-}
 
--- | The current animation from the @frames@ resource. If this value changes, the @frame@ counter is reset.
 bindAnimatedSprite_set_animation :: MethodBind
 bindAnimatedSprite_set_animation
   = unsafePerformIO $
@@ -458,7 +431,6 @@ bindAnimatedSprite_set_animation
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The current animation from the @frames@ resource. If this value changes, the @frame@ counter is reset.
 set_animation ::
                 (AnimatedSprite :< cls, Object :< cls) =>
                 cls -> GodotString -> IO ()
@@ -478,7 +450,6 @@ instance NodeMethod AnimatedSprite "set_animation" '[GodotString]
 
 {-# NOINLINE bindAnimatedSprite_set_centered #-}
 
--- | If @true@, texture will be centered.
 bindAnimatedSprite_set_centered :: MethodBind
 bindAnimatedSprite_set_centered
   = unsafePerformIO $
@@ -488,7 +459,6 @@ bindAnimatedSprite_set_centered
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, texture will be centered.
 set_centered ::
                (AnimatedSprite :< cls, Object :< cls) => cls -> Bool -> IO ()
 set_centered cls arg1
@@ -505,7 +475,6 @@ instance NodeMethod AnimatedSprite "set_centered" '[Bool] (IO ())
 
 {-# NOINLINE bindAnimatedSprite_set_flip_h #-}
 
--- | If @true@, texture is flipped horizontally.
 bindAnimatedSprite_set_flip_h :: MethodBind
 bindAnimatedSprite_set_flip_h
   = unsafePerformIO $
@@ -515,7 +484,6 @@ bindAnimatedSprite_set_flip_h
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, texture is flipped horizontally.
 set_flip_h ::
              (AnimatedSprite :< cls, Object :< cls) => cls -> Bool -> IO ()
 set_flip_h cls arg1
@@ -532,7 +500,6 @@ instance NodeMethod AnimatedSprite "set_flip_h" '[Bool] (IO ())
 
 {-# NOINLINE bindAnimatedSprite_set_flip_v #-}
 
--- | If @true@, texture is flipped vertically.
 bindAnimatedSprite_set_flip_v :: MethodBind
 bindAnimatedSprite_set_flip_v
   = unsafePerformIO $
@@ -542,7 +509,6 @@ bindAnimatedSprite_set_flip_v
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, texture is flipped vertically.
 set_flip_v ::
              (AnimatedSprite :< cls, Object :< cls) => cls -> Bool -> IO ()
 set_flip_v cls arg1
@@ -559,7 +525,6 @@ instance NodeMethod AnimatedSprite "set_flip_v" '[Bool] (IO ())
 
 {-# NOINLINE bindAnimatedSprite_set_frame #-}
 
--- | The displayed animation frame's index.
 bindAnimatedSprite_set_frame :: MethodBind
 bindAnimatedSprite_set_frame
   = unsafePerformIO $
@@ -569,7 +534,6 @@ bindAnimatedSprite_set_frame
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The displayed animation frame's index.
 set_frame ::
             (AnimatedSprite :< cls, Object :< cls) => cls -> Int -> IO ()
 set_frame cls arg1
@@ -585,7 +549,6 @@ instance NodeMethod AnimatedSprite "set_frame" '[Int] (IO ()) where
 
 {-# NOINLINE bindAnimatedSprite_set_offset #-}
 
--- | The texture's drawing offset.
 bindAnimatedSprite_set_offset :: MethodBind
 bindAnimatedSprite_set_offset
   = unsafePerformIO $
@@ -595,7 +558,6 @@ bindAnimatedSprite_set_offset
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The texture's drawing offset.
 set_offset ::
              (AnimatedSprite :< cls, Object :< cls) => cls -> Vector2 -> IO ()
 set_offset cls arg1
@@ -612,7 +574,6 @@ instance NodeMethod AnimatedSprite "set_offset" '[Vector2] (IO ())
 
 {-# NOINLINE bindAnimatedSprite_set_speed_scale #-}
 
--- | The animation speed is multiplied by this value.
 bindAnimatedSprite_set_speed_scale :: MethodBind
 bindAnimatedSprite_set_speed_scale
   = unsafePerformIO $
@@ -622,7 +583,6 @@ bindAnimatedSprite_set_speed_scale
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The animation speed is multiplied by this value.
 set_speed_scale ::
                   (AnimatedSprite :< cls, Object :< cls) => cls -> Float -> IO ()
 set_speed_scale cls arg1
@@ -641,7 +601,6 @@ instance NodeMethod AnimatedSprite "set_speed_scale" '[Float]
 
 {-# NOINLINE bindAnimatedSprite_set_sprite_frames #-}
 
--- | The @SpriteFrames@ resource containing the animation(s).
 bindAnimatedSprite_set_sprite_frames :: MethodBind
 bindAnimatedSprite_set_sprite_frames
   = unsafePerformIO $
@@ -651,7 +610,6 @@ bindAnimatedSprite_set_sprite_frames
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The @SpriteFrames@ resource containing the animation(s).
 set_sprite_frames ::
                     (AnimatedSprite :< cls, Object :< cls) =>
                     cls -> SpriteFrames -> IO ()
@@ -672,7 +630,6 @@ instance NodeMethod AnimatedSprite "set_sprite_frames"
 
 {-# NOINLINE bindAnimatedSprite_stop #-}
 
--- | Stops the current animation (does not reset the frame counter).
 bindAnimatedSprite_stop :: MethodBind
 bindAnimatedSprite_stop
   = unsafePerformIO $
@@ -682,7 +639,6 @@ bindAnimatedSprite_stop
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Stops the current animation (does not reset the frame counter).
 stop :: (AnimatedSprite :< cls, Object :< cls) => cls -> IO ()
 stop cls
   = withVariantArray []

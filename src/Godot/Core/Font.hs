@@ -3,8 +3,9 @@
   MultiParamTypeClasses #-}
 module Godot.Core.Font
        (Godot.Core.Font.draw, Godot.Core.Font.draw_char,
-        Godot.Core.Font.get_ascent, Godot.Core.Font.get_descent,
-        Godot.Core.Font.get_height, Godot.Core.Font.get_string_size,
+        Godot.Core.Font.get_ascent, Godot.Core.Font.get_char_size,
+        Godot.Core.Font.get_descent, Godot.Core.Font.get_height,
+        Godot.Core.Font.get_string_size,
         Godot.Core.Font.get_wordwrap_string_size,
         Godot.Core.Font.has_outline,
         Godot.Core.Font.is_distance_field_hint,
@@ -24,8 +25,6 @@ import Godot.Core.Resource()
 
 {-# NOINLINE bindFont_draw #-}
 
--- | Draw @string@ into a canvas item using the font at a given position, with @modulate@ color, and optionally clipping the width. @position@ specifies the baseline, not the top. To draw from the top, @i@ascent@/i@ must be added to the Y axis.
---   				See also @method CanvasItem.draw_string@.
 bindFont_draw :: MethodBind
 bindFont_draw
   = unsafePerformIO $
@@ -35,8 +34,6 @@ bindFont_draw
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Draw @string@ into a canvas item using the font at a given position, with @modulate@ color, and optionally clipping the width. @position@ specifies the baseline, not the top. To draw from the top, @i@ascent@/i@ must be added to the Y axis.
---   				See also @method CanvasItem.draw_string@.
 draw ::
        (Font :< cls, Object :< cls) =>
        cls ->
@@ -61,7 +58,8 @@ instance NodeMethod Font "draw"
 
 {-# NOINLINE bindFont_draw_char #-}
 
--- | Draw character @char@ into a canvas item using the font at a given position, with @modulate@ color, and optionally kerning if @next@ is passed. clipping the width. @position@ specifies the baseline, not the top. To draw from the top, @i@ascent@/i@ must be added to the Y axis. The width used by the character is returned, making this function useful for drawing strings character by character.
+-- | Draw a single Unicode character @char@ into a canvas item using the font, at a given position, with @modulate@ color, and optionally kerning if @next@ is passed. @position@ specifies the baseline, not the top. To draw from the top, @i@ascent@/i@ must be added to the Y axis.
+--   				__Note:__ Do not use this function to draw strings character by character, use @method draw_string@ or @TextLine@ instead.
 bindFont_draw_char :: MethodBind
 bindFont_draw_char
   = unsafePerformIO $
@@ -71,7 +69,8 @@ bindFont_draw_char
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Draw character @char@ into a canvas item using the font at a given position, with @modulate@ color, and optionally kerning if @next@ is passed. clipping the width. @position@ specifies the baseline, not the top. To draw from the top, @i@ascent@/i@ must be added to the Y axis. The width used by the character is returned, making this function useful for drawing strings character by character.
+-- | Draw a single Unicode character @char@ into a canvas item using the font, at a given position, with @modulate@ color, and optionally kerning if @next@ is passed. @position@ specifies the baseline, not the top. To draw from the top, @i@ascent@/i@ must be added to the Y axis.
+--   				__Note:__ Do not use this function to draw strings character by character, use @method draw_string@ or @TextLine@ instead.
 draw_char ::
             (Font :< cls, Object :< cls) =>
             cls ->
@@ -96,7 +95,8 @@ instance NodeMethod Font "draw_char"
 
 {-# NOINLINE bindFont_get_ascent #-}
 
--- | Returns the font ascent (number of pixels above the baseline).
+-- | Returns the average font ascent (number of pixels above the baseline).
+--   				__Note:__ Real ascent of the string is context-dependent and can be significantly different from the value returned by this function. Use it only as rough estimate (e.g. as the ascent of empty line).
 bindFont_get_ascent :: MethodBind
 bindFont_get_ascent
   = unsafePerformIO $
@@ -106,7 +106,8 @@ bindFont_get_ascent
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the font ascent (number of pixels above the baseline).
+-- | Returns the average font ascent (number of pixels above the baseline).
+--   				__Note:__ Real ascent of the string is context-dependent and can be significantly different from the value returned by this function. Use it only as rough estimate (e.g. as the ascent of empty line).
 get_ascent :: (Font :< cls, Object :< cls) => cls -> IO Float
 get_ascent cls
   = withVariantArray []
@@ -117,9 +118,41 @@ get_ascent cls
 instance NodeMethod Font "get_ascent" '[] (IO Float) where
         nodeMethod = Godot.Core.Font.get_ascent
 
+{-# NOINLINE bindFont_get_char_size #-}
+
+-- | Returns the size of a character, optionally taking kerning into account if the next character is provided.
+--   				__Note:__ Do not use this function to calculate width of the string character by character, use @method get_string_size@ or @TextLine@ instead. The height returned is the font height (see also @method get_height@) and has no relation to the glyph height.
+bindFont_get_char_size :: MethodBind
+bindFont_get_char_size
+  = unsafePerformIO $
+      withCString "Font" $
+        \ clsNamePtr ->
+          withCString "get_char_size" $
+            \ methodNamePtr ->
+              godot_method_bind_get_method clsNamePtr methodNamePtr
+
+-- | Returns the size of a character, optionally taking kerning into account if the next character is provided.
+--   				__Note:__ Do not use this function to calculate width of the string character by character, use @method get_string_size@ or @TextLine@ instead. The height returned is the font height (see also @method get_height@) and has no relation to the glyph height.
+get_char_size ::
+                (Font :< cls, Object :< cls) =>
+                cls -> Int -> Maybe Int -> IO Vector2
+get_char_size cls arg1 arg2
+  = withVariantArray
+      [toVariant arg1, maybe (VariantInt (0)) toVariant arg2]
+      (\ (arrPtr, len) ->
+         godot_method_bind_call bindFont_get_char_size (upcast cls) arrPtr
+           len
+           >>= \ (err, res) -> throwIfErr err >> fromGodotVariant res)
+
+instance NodeMethod Font "get_char_size" '[Int, Maybe Int]
+           (IO Vector2)
+         where
+        nodeMethod = Godot.Core.Font.get_char_size
+
 {-# NOINLINE bindFont_get_descent #-}
 
--- | Returns the font descent (number of pixels below the baseline).
+-- | Returns the average font descent (number of pixels below the baseline).
+--   				__Note:__ Real descent of the string is context-dependent and can be significantly different from the value returned by this function. Use it only as rough estimate (e.g. as the descent of empty line).
 bindFont_get_descent :: MethodBind
 bindFont_get_descent
   = unsafePerformIO $
@@ -129,7 +162,8 @@ bindFont_get_descent
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the font descent (number of pixels below the baseline).
+-- | Returns the average font descent (number of pixels below the baseline).
+--   				__Note:__ Real descent of the string is context-dependent and can be significantly different from the value returned by this function. Use it only as rough estimate (e.g. as the descent of empty line).
 get_descent :: (Font :< cls, Object :< cls) => cls -> IO Float
 get_descent cls
   = withVariantArray []
@@ -142,7 +176,8 @@ instance NodeMethod Font "get_descent" '[] (IO Float) where
 
 {-# NOINLINE bindFont_get_height #-}
 
--- | Returns the total font height (ascent plus descent) in pixels.
+-- | Returns the total average font height (ascent plus descent) in pixels.
+--   				__Note:__ Real height of the string is context-dependent and can be significantly different from the value returned by this function. Use it only as rough estimate (e.g. as the height of empty line).
 bindFont_get_height :: MethodBind
 bindFont_get_height
   = unsafePerformIO $
@@ -152,7 +187,8 @@ bindFont_get_height
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the total font height (ascent plus descent) in pixels.
+-- | Returns the total average font height (ascent plus descent) in pixels.
+--   				__Note:__ Real height of the string is context-dependent and can be significantly different from the value returned by this function. Use it only as rough estimate (e.g. as the height of empty line).
 get_height :: (Font :< cls, Object :< cls) => cls -> IO Float
 get_height cls
   = withVariantArray []
@@ -165,7 +201,9 @@ instance NodeMethod Font "get_height" '[] (IO Float) where
 
 {-# NOINLINE bindFont_get_string_size #-}
 
--- | Returns the size of a string, taking kerning and advance into account.
+-- | Returns the size of a bounding box of a string, taking kerning and advance into account.
+--   				__Note:__ Real height of the string is context-dependent and can be significantly different from the value returned by @method get_height@.
+--   				See also @method draw_string@.
 bindFont_get_string_size :: MethodBind
 bindFont_get_string_size
   = unsafePerformIO $
@@ -175,7 +213,9 @@ bindFont_get_string_size
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the size of a string, taking kerning and advance into account.
+-- | Returns the size of a bounding box of a string, taking kerning and advance into account.
+--   				__Note:__ Real height of the string is context-dependent and can be significantly different from the value returned by @method get_height@.
+--   				See also @method draw_string@.
 get_string_size ::
                   (Font :< cls, Object :< cls) => cls -> GodotString -> IO Vector2
 get_string_size cls arg1
@@ -192,7 +232,6 @@ instance NodeMethod Font "get_string_size" '[GodotString]
 
 {-# NOINLINE bindFont_get_wordwrap_string_size #-}
 
--- | Returns the size that the string would have with word wrapping enabled with a fixed @width@.
 bindFont_get_wordwrap_string_size :: MethodBind
 bindFont_get_wordwrap_string_size
   = unsafePerformIO $
@@ -202,7 +241,6 @@ bindFont_get_wordwrap_string_size
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the size that the string would have with word wrapping enabled with a fixed @width@.
 get_wordwrap_string_size ::
                            (Font :< cls, Object :< cls) =>
                            cls -> GodotString -> Float -> IO Vector2
@@ -223,7 +261,6 @@ instance NodeMethod Font "get_wordwrap_string_size"
 
 {-# NOINLINE bindFont_has_outline #-}
 
--- | Returns @true@ if the font has an outline.
 bindFont_has_outline :: MethodBind
 bindFont_has_outline
   = unsafePerformIO $
@@ -233,7 +270,6 @@ bindFont_has_outline
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns @true@ if the font has an outline.
 has_outline :: (Font :< cls, Object :< cls) => cls -> IO Bool
 has_outline cls
   = withVariantArray []
@@ -271,7 +307,7 @@ instance NodeMethod Font "is_distance_field_hint" '[] (IO Bool)
 
 {-# NOINLINE bindFont_update_changes #-}
 
--- | After editing a font (changing size, ascent, char rects, etc.). Call this function to propagate changes to controls that might use it.
+-- | After editing a font (changing data sources, etc.). Call this function to propagate changes to controls that might use it.
 bindFont_update_changes :: MethodBind
 bindFont_update_changes
   = unsafePerformIO $
@@ -281,7 +317,7 @@ bindFont_update_changes
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | After editing a font (changing size, ascent, char rects, etc.). Call this function to propagate changes to controls that might use it.
+-- | After editing a font (changing data sources, etc.). Call this function to propagate changes to controls that might use it.
 update_changes :: (Font :< cls, Object :< cls) => cls -> IO ()
 update_changes cls
   = withVariantArray []

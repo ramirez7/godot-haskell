@@ -197,8 +197,6 @@ instance NodeMethod TileSet "_forward_subtile_selection"
 
 {-# NOINLINE bindTileSet__is_tile_bound #-}
 
--- | Determines when the auto-tiler should consider two different auto-tile IDs to be bound together.
---   				__Note:__ @neighbor_id@ will be @-1@ (@TileMap.INVALID_CELL@) when checking a tile against an empty neighbor tile.
 bindTileSet__is_tile_bound :: MethodBind
 bindTileSet__is_tile_bound
   = unsafePerformIO $
@@ -208,8 +206,6 @@ bindTileSet__is_tile_bound
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Determines when the auto-tiler should consider two different auto-tile IDs to be bound together.
---   				__Note:__ @neighbor_id@ will be @-1@ (@TileMap.INVALID_CELL@) when checking a tile against an empty neighbor tile.
 _is_tile_bound ::
                  (TileSet :< cls, Object :< cls) => cls -> Int -> Int -> IO Bool
 _is_tile_bound cls arg1 arg2
@@ -226,7 +222,6 @@ instance NodeMethod TileSet "_is_tile_bound" '[Int, Int] (IO Bool)
 
 {-# NOINLINE bindTileSet_autotile_clear_bitmask_map #-}
 
--- | Clears all bitmask information of the autotile.
 bindTileSet_autotile_clear_bitmask_map :: MethodBind
 bindTileSet_autotile_clear_bitmask_map
   = unsafePerformIO $
@@ -236,7 +231,6 @@ bindTileSet_autotile_clear_bitmask_map
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Clears all bitmask information of the autotile.
 autotile_clear_bitmask_map ::
                              (TileSet :< cls, Object :< cls) => cls -> Int -> IO ()
 autotile_clear_bitmask_map cls arg1
@@ -255,8 +249,6 @@ instance NodeMethod TileSet "autotile_clear_bitmask_map" '[Int]
 
 {-# NOINLINE bindTileSet_autotile_get_bitmask #-}
 
--- | Returns the bitmask of the subtile from an autotile given its coordinates.
---   				The value is the sum of the values in @enum AutotileBindings@ present in the subtile (e.g. a value of 5 means the bitmask has bindings in both the top left and top right).
 bindTileSet_autotile_get_bitmask :: MethodBind
 bindTileSet_autotile_get_bitmask
   = unsafePerformIO $
@@ -266,8 +258,6 @@ bindTileSet_autotile_get_bitmask
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the bitmask of the subtile from an autotile given its coordinates.
---   				The value is the sum of the values in @enum AutotileBindings@ present in the subtile (e.g. a value of 5 means the bitmask has bindings in both the top left and top right).
 autotile_get_bitmask ::
                        (TileSet :< cls, Object :< cls) => cls -> Int -> Vector2 -> IO Int
 autotile_get_bitmask cls arg1 arg2
@@ -286,7 +276,6 @@ instance NodeMethod TileSet "autotile_get_bitmask" '[Int, Vector2]
 
 {-# NOINLINE bindTileSet_autotile_get_bitmask_mode #-}
 
--- | Returns the @enum BitmaskMode@ of the autotile.
 bindTileSet_autotile_get_bitmask_mode :: MethodBind
 bindTileSet_autotile_get_bitmask_mode
   = unsafePerformIO $
@@ -296,7 +285,6 @@ bindTileSet_autotile_get_bitmask_mode
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the @enum BitmaskMode@ of the autotile.
 autotile_get_bitmask_mode ::
                             (TileSet :< cls, Object :< cls) => cls -> Int -> IO Int
 autotile_get_bitmask_mode cls arg1
@@ -315,8 +303,6 @@ instance NodeMethod TileSet "autotile_get_bitmask_mode" '[Int]
 
 {-# NOINLINE bindTileSet_autotile_get_icon_coordinate #-}
 
--- | Returns the subtile that's being used as an icon in an atlas/autotile given its coordinates.
---   				The subtile defined as the icon will be used as a fallback when the atlas/autotile's bitmask information is incomplete. It will also be used to represent it in the TileSet editor.
 bindTileSet_autotile_get_icon_coordinate :: MethodBind
 bindTileSet_autotile_get_icon_coordinate
   = unsafePerformIO $
@@ -326,8 +312,6 @@ bindTileSet_autotile_get_icon_coordinate
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the subtile that's being used as an icon in an atlas/autotile given its coordinates.
---   				The subtile defined as the icon will be used as a fallback when the atlas/autotile's bitmask information is incomplete. It will also be used to represent it in the TileSet editor.
 autotile_get_icon_coordinate ::
                                (TileSet :< cls, Object :< cls) => cls -> Int -> IO Vector2
 autotile_get_icon_coordinate cls arg1
@@ -346,7 +330,6 @@ instance NodeMethod TileSet "autotile_get_icon_coordinate" '[Int]
 
 {-# NOINLINE bindTileSet_autotile_get_light_occluder #-}
 
--- | Returns the light occluder of the subtile from an atlas/autotile given its coordinates.
 bindTileSet_autotile_get_light_occluder :: MethodBind
 bindTileSet_autotile_get_light_occluder
   = unsafePerformIO $
@@ -356,7 +339,6 @@ bindTileSet_autotile_get_light_occluder
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the light occluder of the subtile from an atlas/autotile given its coordinates.
 autotile_get_light_occluder ::
                               (TileSet :< cls, Object :< cls) =>
                               cls -> Int -> Vector2 -> IO OccluderPolygon2D
@@ -377,7 +359,6 @@ instance NodeMethod TileSet "autotile_get_light_occluder"
 
 {-# NOINLINE bindTileSet_autotile_get_navigation_polygon #-}
 
--- | Returns the navigation polygon of the subtile from an atlas/autotile given its coordinates.
 bindTileSet_autotile_get_navigation_polygon :: MethodBind
 bindTileSet_autotile_get_navigation_polygon
   = unsafePerformIO $
@@ -387,7 +368,6 @@ bindTileSet_autotile_get_navigation_polygon
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the navigation polygon of the subtile from an atlas/autotile given its coordinates.
 autotile_get_navigation_polygon ::
                                   (TileSet :< cls, Object :< cls) =>
                                   cls -> Int -> Vector2 -> IO NavigationPolygon
@@ -408,7 +388,6 @@ instance NodeMethod TileSet "autotile_get_navigation_polygon"
 
 {-# NOINLINE bindTileSet_autotile_get_size #-}
 
--- | Returns the size of the subtiles in an atlas/autotile.
 bindTileSet_autotile_get_size :: MethodBind
 bindTileSet_autotile_get_size
   = unsafePerformIO $
@@ -418,7 +397,6 @@ bindTileSet_autotile_get_size
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the size of the subtiles in an atlas/autotile.
 autotile_get_size ::
                     (TileSet :< cls, Object :< cls) => cls -> Int -> IO Vector2
 autotile_get_size cls arg1
@@ -435,7 +413,6 @@ instance NodeMethod TileSet "autotile_get_size" '[Int] (IO Vector2)
 
 {-# NOINLINE bindTileSet_autotile_get_spacing #-}
 
--- | Returns the spacing between subtiles of the atlas/autotile.
 bindTileSet_autotile_get_spacing :: MethodBind
 bindTileSet_autotile_get_spacing
   = unsafePerformIO $
@@ -445,7 +422,6 @@ bindTileSet_autotile_get_spacing
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the spacing between subtiles of the atlas/autotile.
 autotile_get_spacing ::
                        (TileSet :< cls, Object :< cls) => cls -> Int -> IO Int
 autotile_get_spacing cls arg1
@@ -463,8 +439,6 @@ instance NodeMethod TileSet "autotile_get_spacing" '[Int] (IO Int)
 
 {-# NOINLINE bindTileSet_autotile_get_subtile_priority #-}
 
--- | Returns the priority of the subtile from an autotile given its coordinates.
---   				When more than one subtile has the same bitmask value, one of them will be picked randomly for drawing. Its priority will define how often it will be picked.
 bindTileSet_autotile_get_subtile_priority :: MethodBind
 bindTileSet_autotile_get_subtile_priority
   = unsafePerformIO $
@@ -474,8 +448,6 @@ bindTileSet_autotile_get_subtile_priority
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the priority of the subtile from an autotile given its coordinates.
---   				When more than one subtile has the same bitmask value, one of them will be picked randomly for drawing. Its priority will define how often it will be picked.
 autotile_get_subtile_priority ::
                                 (TileSet :< cls, Object :< cls) => cls -> Int -> Vector2 -> IO Int
 autotile_get_subtile_priority cls arg1 arg2
@@ -495,7 +467,6 @@ instance NodeMethod TileSet "autotile_get_subtile_priority"
 
 {-# NOINLINE bindTileSet_autotile_get_z_index #-}
 
--- | Returns the drawing index of the subtile from an atlas/autotile given its coordinates.
 bindTileSet_autotile_get_z_index :: MethodBind
 bindTileSet_autotile_get_z_index
   = unsafePerformIO $
@@ -505,7 +476,6 @@ bindTileSet_autotile_get_z_index
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the drawing index of the subtile from an atlas/autotile given its coordinates.
 autotile_get_z_index ::
                        (TileSet :< cls, Object :< cls) => cls -> Int -> Vector2 -> IO Int
 autotile_get_z_index cls arg1 arg2
@@ -524,8 +494,6 @@ instance NodeMethod TileSet "autotile_get_z_index" '[Int, Vector2]
 
 {-# NOINLINE bindTileSet_autotile_set_bitmask #-}
 
--- | Sets the bitmask of the subtile from an autotile given its coordinates.
---   				The value is the sum of the values in @enum AutotileBindings@ present in the subtile (e.g. a value of 5 means the bitmask has bindings in both the top left and top right).
 bindTileSet_autotile_set_bitmask :: MethodBind
 bindTileSet_autotile_set_bitmask
   = unsafePerformIO $
@@ -535,8 +503,6 @@ bindTileSet_autotile_set_bitmask
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the bitmask of the subtile from an autotile given its coordinates.
---   				The value is the sum of the values in @enum AutotileBindings@ present in the subtile (e.g. a value of 5 means the bitmask has bindings in both the top left and top right).
 autotile_set_bitmask ::
                        (TileSet :< cls, Object :< cls) =>
                        cls -> Int -> Vector2 -> Int -> IO ()
@@ -557,7 +523,6 @@ instance NodeMethod TileSet "autotile_set_bitmask"
 
 {-# NOINLINE bindTileSet_autotile_set_bitmask_mode #-}
 
--- | Sets the @enum BitmaskMode@ of the autotile.
 bindTileSet_autotile_set_bitmask_mode :: MethodBind
 bindTileSet_autotile_set_bitmask_mode
   = unsafePerformIO $
@@ -567,7 +532,6 @@ bindTileSet_autotile_set_bitmask_mode
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the @enum BitmaskMode@ of the autotile.
 autotile_set_bitmask_mode ::
                             (TileSet :< cls, Object :< cls) => cls -> Int -> Int -> IO ()
 autotile_set_bitmask_mode cls arg1 arg2
@@ -586,8 +550,6 @@ instance NodeMethod TileSet "autotile_set_bitmask_mode" '[Int, Int]
 
 {-# NOINLINE bindTileSet_autotile_set_icon_coordinate #-}
 
--- | Sets the subtile that will be used as an icon in an atlas/autotile given its coordinates.
---   				The subtile defined as the icon will be used as a fallback when the atlas/autotile's bitmask information is incomplete. It will also be used to represent it in the TileSet editor.
 bindTileSet_autotile_set_icon_coordinate :: MethodBind
 bindTileSet_autotile_set_icon_coordinate
   = unsafePerformIO $
@@ -597,8 +559,6 @@ bindTileSet_autotile_set_icon_coordinate
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the subtile that will be used as an icon in an atlas/autotile given its coordinates.
---   				The subtile defined as the icon will be used as a fallback when the atlas/autotile's bitmask information is incomplete. It will also be used to represent it in the TileSet editor.
 autotile_set_icon_coordinate ::
                                (TileSet :< cls, Object :< cls) => cls -> Int -> Vector2 -> IO ()
 autotile_set_icon_coordinate cls arg1 arg2
@@ -618,7 +578,6 @@ instance NodeMethod TileSet "autotile_set_icon_coordinate"
 
 {-# NOINLINE bindTileSet_autotile_set_light_occluder #-}
 
--- | Sets the light occluder of the subtile from an atlas/autotile given its coordinates.
 bindTileSet_autotile_set_light_occluder :: MethodBind
 bindTileSet_autotile_set_light_occluder
   = unsafePerformIO $
@@ -628,7 +587,6 @@ bindTileSet_autotile_set_light_occluder
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the light occluder of the subtile from an atlas/autotile given its coordinates.
 autotile_set_light_occluder ::
                               (TileSet :< cls, Object :< cls) =>
                               cls -> Int -> OccluderPolygon2D -> Vector2 -> IO ()
@@ -649,7 +607,6 @@ instance NodeMethod TileSet "autotile_set_light_occluder"
 
 {-# NOINLINE bindTileSet_autotile_set_navigation_polygon #-}
 
--- | Sets the navigation polygon of the subtile from an atlas/autotile given its coordinates.
 bindTileSet_autotile_set_navigation_polygon :: MethodBind
 bindTileSet_autotile_set_navigation_polygon
   = unsafePerformIO $
@@ -659,7 +616,6 @@ bindTileSet_autotile_set_navigation_polygon
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the navigation polygon of the subtile from an atlas/autotile given its coordinates.
 autotile_set_navigation_polygon ::
                                   (TileSet :< cls, Object :< cls) =>
                                   cls -> Int -> NavigationPolygon -> Vector2 -> IO ()
@@ -680,7 +636,6 @@ instance NodeMethod TileSet "autotile_set_navigation_polygon"
 
 {-# NOINLINE bindTileSet_autotile_set_size #-}
 
--- | Sets the size of the subtiles in an atlas/autotile.
 bindTileSet_autotile_set_size :: MethodBind
 bindTileSet_autotile_set_size
   = unsafePerformIO $
@@ -690,7 +645,6 @@ bindTileSet_autotile_set_size
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the size of the subtiles in an atlas/autotile.
 autotile_set_size ::
                     (TileSet :< cls, Object :< cls) => cls -> Int -> Vector2 -> IO ()
 autotile_set_size cls arg1 arg2
@@ -708,7 +662,6 @@ instance NodeMethod TileSet "autotile_set_size" '[Int, Vector2]
 
 {-# NOINLINE bindTileSet_autotile_set_spacing #-}
 
--- | Sets the spacing between subtiles of the atlas/autotile.
 bindTileSet_autotile_set_spacing :: MethodBind
 bindTileSet_autotile_set_spacing
   = unsafePerformIO $
@@ -718,7 +671,6 @@ bindTileSet_autotile_set_spacing
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the spacing between subtiles of the atlas/autotile.
 autotile_set_spacing ::
                        (TileSet :< cls, Object :< cls) => cls -> Int -> Int -> IO ()
 autotile_set_spacing cls arg1 arg2
@@ -737,8 +689,6 @@ instance NodeMethod TileSet "autotile_set_spacing" '[Int, Int]
 
 {-# NOINLINE bindTileSet_autotile_set_subtile_priority #-}
 
--- | Sets the priority of the subtile from an autotile given its coordinates.
---   				When more than one subtile has the same bitmask value, one of them will be picked randomly for drawing. Its priority will define how often it will be picked.
 bindTileSet_autotile_set_subtile_priority :: MethodBind
 bindTileSet_autotile_set_subtile_priority
   = unsafePerformIO $
@@ -748,8 +698,6 @@ bindTileSet_autotile_set_subtile_priority
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the priority of the subtile from an autotile given its coordinates.
---   				When more than one subtile has the same bitmask value, one of them will be picked randomly for drawing. Its priority will define how often it will be picked.
 autotile_set_subtile_priority ::
                                 (TileSet :< cls, Object :< cls) =>
                                 cls -> Int -> Vector2 -> Int -> IO ()
@@ -770,7 +718,6 @@ instance NodeMethod TileSet "autotile_set_subtile_priority"
 
 {-# NOINLINE bindTileSet_autotile_set_z_index #-}
 
--- | Sets the drawing index of the subtile from an atlas/autotile given its coordinates.
 bindTileSet_autotile_set_z_index :: MethodBind
 bindTileSet_autotile_set_z_index
   = unsafePerformIO $
@@ -780,7 +727,6 @@ bindTileSet_autotile_set_z_index
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the drawing index of the subtile from an atlas/autotile given its coordinates.
 autotile_set_z_index ::
                        (TileSet :< cls, Object :< cls) =>
                        cls -> Int -> Vector2 -> Int -> IO ()
@@ -801,7 +747,6 @@ instance NodeMethod TileSet "autotile_set_z_index"
 
 {-# NOINLINE bindTileSet_clear #-}
 
--- | Clears all tiles.
 bindTileSet_clear :: MethodBind
 bindTileSet_clear
   = unsafePerformIO $
@@ -811,7 +756,6 @@ bindTileSet_clear
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Clears all tiles.
 clear :: (TileSet :< cls, Object :< cls) => cls -> IO ()
 clear cls
   = withVariantArray []
@@ -824,7 +768,6 @@ instance NodeMethod TileSet "clear" '[] (IO ()) where
 
 {-# NOINLINE bindTileSet_create_tile #-}
 
--- | Creates a new tile with the given ID.
 bindTileSet_create_tile :: MethodBind
 bindTileSet_create_tile
   = unsafePerformIO $
@@ -834,7 +777,6 @@ bindTileSet_create_tile
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Creates a new tile with the given ID.
 create_tile ::
               (TileSet :< cls, Object :< cls) => cls -> Int -> IO ()
 create_tile cls arg1
@@ -849,7 +791,6 @@ instance NodeMethod TileSet "create_tile" '[Int] (IO ()) where
 
 {-# NOINLINE bindTileSet_find_tile_by_name #-}
 
--- | Returns the first tile matching the given name.
 bindTileSet_find_tile_by_name :: MethodBind
 bindTileSet_find_tile_by_name
   = unsafePerformIO $
@@ -859,7 +800,6 @@ bindTileSet_find_tile_by_name
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the first tile matching the given name.
 find_tile_by_name ::
                     (TileSet :< cls, Object :< cls) => cls -> GodotString -> IO Int
 find_tile_by_name cls arg1
@@ -877,7 +817,6 @@ instance NodeMethod TileSet "find_tile_by_name" '[GodotString]
 
 {-# NOINLINE bindTileSet_get_last_unused_tile_id #-}
 
--- | Returns the ID following the last currently used ID, useful when creating a new tile.
 bindTileSet_get_last_unused_tile_id :: MethodBind
 bindTileSet_get_last_unused_tile_id
   = unsafePerformIO $
@@ -887,7 +826,6 @@ bindTileSet_get_last_unused_tile_id
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the ID following the last currently used ID, useful when creating a new tile.
 get_last_unused_tile_id ::
                           (TileSet :< cls, Object :< cls) => cls -> IO Int
 get_last_unused_tile_id cls
@@ -905,7 +843,6 @@ instance NodeMethod TileSet "get_last_unused_tile_id" '[] (IO Int)
 
 {-# NOINLINE bindTileSet_get_tiles_ids #-}
 
--- | Returns an array of all currently used tile IDs.
 bindTileSet_get_tiles_ids :: MethodBind
 bindTileSet_get_tiles_ids
   = unsafePerformIO $
@@ -915,7 +852,6 @@ bindTileSet_get_tiles_ids
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns an array of all currently used tile IDs.
 get_tiles_ids :: (TileSet :< cls, Object :< cls) => cls -> IO Array
 get_tiles_ids cls
   = withVariantArray []
@@ -930,7 +866,6 @@ instance NodeMethod TileSet "get_tiles_ids" '[] (IO Array) where
 
 {-# NOINLINE bindTileSet_remove_tile #-}
 
--- | Removes the given tile ID.
 bindTileSet_remove_tile :: MethodBind
 bindTileSet_remove_tile
   = unsafePerformIO $
@@ -940,7 +875,6 @@ bindTileSet_remove_tile
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Removes the given tile ID.
 remove_tile ::
               (TileSet :< cls, Object :< cls) => cls -> Int -> IO ()
 remove_tile cls arg1
@@ -955,7 +889,6 @@ instance NodeMethod TileSet "remove_tile" '[Int] (IO ()) where
 
 {-# NOINLINE bindTileSet_tile_add_shape #-}
 
--- | Adds a shape to the tile.
 bindTileSet_tile_add_shape :: MethodBind
 bindTileSet_tile_add_shape
   = unsafePerformIO $
@@ -965,7 +898,6 @@ bindTileSet_tile_add_shape
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Adds a shape to the tile.
 tile_add_shape ::
                  (TileSet :< cls, Object :< cls) =>
                  cls ->
@@ -990,7 +922,6 @@ instance NodeMethod TileSet "tile_add_shape"
 
 {-# NOINLINE bindTileSet_tile_get_light_occluder #-}
 
--- | Returns the tile's light occluder.
 bindTileSet_tile_get_light_occluder :: MethodBind
 bindTileSet_tile_get_light_occluder
   = unsafePerformIO $
@@ -1000,7 +931,6 @@ bindTileSet_tile_get_light_occluder
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the tile's light occluder.
 tile_get_light_occluder ::
                           (TileSet :< cls, Object :< cls) =>
                           cls -> Int -> IO OccluderPolygon2D
@@ -1020,7 +950,6 @@ instance NodeMethod TileSet "tile_get_light_occluder" '[Int]
 
 {-# NOINLINE bindTileSet_tile_get_material #-}
 
--- | Returns the tile's material.
 bindTileSet_tile_get_material :: MethodBind
 bindTileSet_tile_get_material
   = unsafePerformIO $
@@ -1030,7 +959,6 @@ bindTileSet_tile_get_material
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the tile's material.
 tile_get_material ::
                     (TileSet :< cls, Object :< cls) => cls -> Int -> IO ShaderMaterial
 tile_get_material cls arg1
@@ -1048,7 +976,6 @@ instance NodeMethod TileSet "tile_get_material" '[Int]
 
 {-# NOINLINE bindTileSet_tile_get_modulate #-}
 
--- | Returns the tile's modulation color.
 bindTileSet_tile_get_modulate :: MethodBind
 bindTileSet_tile_get_modulate
   = unsafePerformIO $
@@ -1058,7 +985,6 @@ bindTileSet_tile_get_modulate
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the tile's modulation color.
 tile_get_modulate ::
                     (TileSet :< cls, Object :< cls) => cls -> Int -> IO Color
 tile_get_modulate cls arg1
@@ -1075,7 +1001,6 @@ instance NodeMethod TileSet "tile_get_modulate" '[Int] (IO Color)
 
 {-# NOINLINE bindTileSet_tile_get_name #-}
 
--- | Returns the tile's name.
 bindTileSet_tile_get_name :: MethodBind
 bindTileSet_tile_get_name
   = unsafePerformIO $
@@ -1085,7 +1010,6 @@ bindTileSet_tile_get_name
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the tile's name.
 tile_get_name ::
                 (TileSet :< cls, Object :< cls) => cls -> Int -> IO GodotString
 tile_get_name cls arg1
@@ -1102,7 +1026,6 @@ instance NodeMethod TileSet "tile_get_name" '[Int] (IO GodotString)
 
 {-# NOINLINE bindTileSet_tile_get_navigation_polygon #-}
 
--- | Returns the navigation polygon of the tile.
 bindTileSet_tile_get_navigation_polygon :: MethodBind
 bindTileSet_tile_get_navigation_polygon
   = unsafePerformIO $
@@ -1112,7 +1035,6 @@ bindTileSet_tile_get_navigation_polygon
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the navigation polygon of the tile.
 tile_get_navigation_polygon ::
                               (TileSet :< cls, Object :< cls) =>
                               cls -> Int -> IO NavigationPolygon
@@ -1132,7 +1054,6 @@ instance NodeMethod TileSet "tile_get_navigation_polygon" '[Int]
 
 {-# NOINLINE bindTileSet_tile_get_navigation_polygon_offset #-}
 
--- | Returns the offset of the tile's navigation polygon.
 bindTileSet_tile_get_navigation_polygon_offset :: MethodBind
 bindTileSet_tile_get_navigation_polygon_offset
   = unsafePerformIO $
@@ -1142,7 +1063,6 @@ bindTileSet_tile_get_navigation_polygon_offset
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the offset of the tile's navigation polygon.
 tile_get_navigation_polygon_offset ::
                                      (TileSet :< cls, Object :< cls) => cls -> Int -> IO Vector2
 tile_get_navigation_polygon_offset cls arg1
@@ -1163,7 +1083,6 @@ instance NodeMethod TileSet "tile_get_navigation_polygon_offset"
 
 {-# NOINLINE bindTileSet_tile_get_normal_map #-}
 
--- | Returns the tile's normal map texture.
 bindTileSet_tile_get_normal_map :: MethodBind
 bindTileSet_tile_get_normal_map
   = unsafePerformIO $
@@ -1173,7 +1092,6 @@ bindTileSet_tile_get_normal_map
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the tile's normal map texture.
 tile_get_normal_map ::
                       (TileSet :< cls, Object :< cls) => cls -> Int -> IO Texture
 tile_get_normal_map cls arg1
@@ -1191,7 +1109,6 @@ instance NodeMethod TileSet "tile_get_normal_map" '[Int]
 
 {-# NOINLINE bindTileSet_tile_get_occluder_offset #-}
 
--- | Returns the offset of the tile's light occluder.
 bindTileSet_tile_get_occluder_offset :: MethodBind
 bindTileSet_tile_get_occluder_offset
   = unsafePerformIO $
@@ -1201,7 +1118,6 @@ bindTileSet_tile_get_occluder_offset
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the offset of the tile's light occluder.
 tile_get_occluder_offset ::
                            (TileSet :< cls, Object :< cls) => cls -> Int -> IO Vector2
 tile_get_occluder_offset cls arg1
@@ -1220,7 +1136,6 @@ instance NodeMethod TileSet "tile_get_occluder_offset" '[Int]
 
 {-# NOINLINE bindTileSet_tile_get_region #-}
 
--- | Returns the tile sub-region in the texture.
 bindTileSet_tile_get_region :: MethodBind
 bindTileSet_tile_get_region
   = unsafePerformIO $
@@ -1230,7 +1145,6 @@ bindTileSet_tile_get_region
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the tile sub-region in the texture.
 tile_get_region ::
                   (TileSet :< cls, Object :< cls) => cls -> Int -> IO Rect2
 tile_get_region cls arg1
@@ -1247,7 +1161,6 @@ instance NodeMethod TileSet "tile_get_region" '[Int] (IO Rect2)
 
 {-# NOINLINE bindTileSet_tile_get_shape #-}
 
--- | Returns a tile's given shape.
 bindTileSet_tile_get_shape :: MethodBind
 bindTileSet_tile_get_shape
   = unsafePerformIO $
@@ -1257,7 +1170,6 @@ bindTileSet_tile_get_shape
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns a tile's given shape.
 tile_get_shape ::
                  (TileSet :< cls, Object :< cls) => cls -> Int -> Int -> IO Shape2D
 tile_get_shape cls arg1 arg2
@@ -1275,7 +1187,6 @@ instance NodeMethod TileSet "tile_get_shape" '[Int, Int]
 
 {-# NOINLINE bindTileSet_tile_get_shape_count #-}
 
--- | Returns the number of shapes assigned to a tile.
 bindTileSet_tile_get_shape_count :: MethodBind
 bindTileSet_tile_get_shape_count
   = unsafePerformIO $
@@ -1285,7 +1196,6 @@ bindTileSet_tile_get_shape_count
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the number of shapes assigned to a tile.
 tile_get_shape_count ::
                        (TileSet :< cls, Object :< cls) => cls -> Int -> IO Int
 tile_get_shape_count cls arg1
@@ -1303,7 +1213,6 @@ instance NodeMethod TileSet "tile_get_shape_count" '[Int] (IO Int)
 
 {-# NOINLINE bindTileSet_tile_get_shape_offset #-}
 
--- | Returns the offset of a tile's shape.
 bindTileSet_tile_get_shape_offset :: MethodBind
 bindTileSet_tile_get_shape_offset
   = unsafePerformIO $
@@ -1313,7 +1222,6 @@ bindTileSet_tile_get_shape_offset
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the offset of a tile's shape.
 tile_get_shape_offset ::
                         (TileSet :< cls, Object :< cls) => cls -> Int -> Int -> IO Vector2
 tile_get_shape_offset cls arg1 arg2
@@ -1332,7 +1240,6 @@ instance NodeMethod TileSet "tile_get_shape_offset" '[Int, Int]
 
 {-# NOINLINE bindTileSet_tile_get_shape_one_way #-}
 
--- | Returns the one-way collision value of a tile's shape.
 bindTileSet_tile_get_shape_one_way :: MethodBind
 bindTileSet_tile_get_shape_one_way
   = unsafePerformIO $
@@ -1342,7 +1249,6 @@ bindTileSet_tile_get_shape_one_way
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the one-way collision value of a tile's shape.
 tile_get_shape_one_way ::
                          (TileSet :< cls, Object :< cls) => cls -> Int -> Int -> IO Bool
 tile_get_shape_one_way cls arg1 arg2
@@ -1389,7 +1295,6 @@ instance NodeMethod TileSet "tile_get_shape_one_way_margin"
 
 {-# NOINLINE bindTileSet_tile_get_shape_transform #-}
 
--- | Returns the @Transform2D@ of a tile's shape.
 bindTileSet_tile_get_shape_transform :: MethodBind
 bindTileSet_tile_get_shape_transform
   = unsafePerformIO $
@@ -1399,7 +1304,6 @@ bindTileSet_tile_get_shape_transform
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the @Transform2D@ of a tile's shape.
 tile_get_shape_transform ::
                            (TileSet :< cls, Object :< cls) =>
                            cls -> Int -> Int -> IO Transform2d
@@ -1419,20 +1323,6 @@ instance NodeMethod TileSet "tile_get_shape_transform" '[Int, Int]
 
 {-# NOINLINE bindTileSet_tile_get_shapes #-}
 
--- | Returns an array of dictionaries describing the tile's shapes.
---   				__Dictionary structure in the array returned by this method:__
---   				
---   @
---   
---   				{
---   				    "autotile_coord": Vector2,
---   				    "one_way": bool,
---   				    "one_way_margin": int,
---   				    "shape": CollisionShape2D,
---   				    "shape_transform": Transform2D,
---   				}
---   				
---   @
 bindTileSet_tile_get_shapes :: MethodBind
 bindTileSet_tile_get_shapes
   = unsafePerformIO $
@@ -1442,20 +1332,6 @@ bindTileSet_tile_get_shapes
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns an array of dictionaries describing the tile's shapes.
---   				__Dictionary structure in the array returned by this method:__
---   				
---   @
---   
---   				{
---   				    "autotile_coord": Vector2,
---   				    "one_way": bool,
---   				    "one_way_margin": int,
---   				    "shape": CollisionShape2D,
---   				    "shape_transform": Transform2D,
---   				}
---   				
---   @
 tile_get_shapes ::
                   (TileSet :< cls, Object :< cls) => cls -> Int -> IO Array
 tile_get_shapes cls arg1
@@ -1472,7 +1348,6 @@ instance NodeMethod TileSet "tile_get_shapes" '[Int] (IO Array)
 
 {-# NOINLINE bindTileSet_tile_get_texture #-}
 
--- | Returns the tile's texture.
 bindTileSet_tile_get_texture :: MethodBind
 bindTileSet_tile_get_texture
   = unsafePerformIO $
@@ -1482,7 +1357,6 @@ bindTileSet_tile_get_texture
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the tile's texture.
 tile_get_texture ::
                    (TileSet :< cls, Object :< cls) => cls -> Int -> IO Texture
 tile_get_texture cls arg1
@@ -1499,7 +1373,6 @@ instance NodeMethod TileSet "tile_get_texture" '[Int] (IO Texture)
 
 {-# NOINLINE bindTileSet_tile_get_texture_offset #-}
 
--- | Returns the texture offset of the tile.
 bindTileSet_tile_get_texture_offset :: MethodBind
 bindTileSet_tile_get_texture_offset
   = unsafePerformIO $
@@ -1509,7 +1382,6 @@ bindTileSet_tile_get_texture_offset
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the texture offset of the tile.
 tile_get_texture_offset ::
                           (TileSet :< cls, Object :< cls) => cls -> Int -> IO Vector2
 tile_get_texture_offset cls arg1
@@ -1528,7 +1400,6 @@ instance NodeMethod TileSet "tile_get_texture_offset" '[Int]
 
 {-# NOINLINE bindTileSet_tile_get_tile_mode #-}
 
--- | Returns the tile's @enum TileMode@.
 bindTileSet_tile_get_tile_mode :: MethodBind
 bindTileSet_tile_get_tile_mode
   = unsafePerformIO $
@@ -1538,7 +1409,6 @@ bindTileSet_tile_get_tile_mode
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the tile's @enum TileMode@.
 tile_get_tile_mode ::
                      (TileSet :< cls, Object :< cls) => cls -> Int -> IO Int
 tile_get_tile_mode cls arg1
@@ -1555,7 +1425,6 @@ instance NodeMethod TileSet "tile_get_tile_mode" '[Int] (IO Int)
 
 {-# NOINLINE bindTileSet_tile_get_z_index #-}
 
--- | Returns the tile's Z index (drawing layer).
 bindTileSet_tile_get_z_index :: MethodBind
 bindTileSet_tile_get_z_index
   = unsafePerformIO $
@@ -1565,7 +1434,6 @@ bindTileSet_tile_get_z_index
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the tile's Z index (drawing layer).
 tile_get_z_index ::
                    (TileSet :< cls, Object :< cls) => cls -> Int -> IO Int
 tile_get_z_index cls arg1
@@ -1582,7 +1450,6 @@ instance NodeMethod TileSet "tile_get_z_index" '[Int] (IO Int)
 
 {-# NOINLINE bindTileSet_tile_set_light_occluder #-}
 
--- | Sets a light occluder for the tile.
 bindTileSet_tile_set_light_occluder :: MethodBind
 bindTileSet_tile_set_light_occluder
   = unsafePerformIO $
@@ -1592,7 +1459,6 @@ bindTileSet_tile_set_light_occluder
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets a light occluder for the tile.
 tile_set_light_occluder ::
                           (TileSet :< cls, Object :< cls) =>
                           cls -> Int -> OccluderPolygon2D -> IO ()
@@ -1613,7 +1479,6 @@ instance NodeMethod TileSet "tile_set_light_occluder"
 
 {-# NOINLINE bindTileSet_tile_set_material #-}
 
--- | Sets the tile's material.
 bindTileSet_tile_set_material :: MethodBind
 bindTileSet_tile_set_material
   = unsafePerformIO $
@@ -1623,7 +1488,6 @@ bindTileSet_tile_set_material
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the tile's material.
 tile_set_material ::
                     (TileSet :< cls, Object :< cls) =>
                     cls -> Int -> ShaderMaterial -> IO ()
@@ -1643,7 +1507,6 @@ instance NodeMethod TileSet "tile_set_material"
 
 {-# NOINLINE bindTileSet_tile_set_modulate #-}
 
--- | Sets the tile's modulation color.
 bindTileSet_tile_set_modulate :: MethodBind
 bindTileSet_tile_set_modulate
   = unsafePerformIO $
@@ -1653,7 +1516,6 @@ bindTileSet_tile_set_modulate
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the tile's modulation color.
 tile_set_modulate ::
                     (TileSet :< cls, Object :< cls) => cls -> Int -> Color -> IO ()
 tile_set_modulate cls arg1 arg2
@@ -1671,7 +1533,6 @@ instance NodeMethod TileSet "tile_set_modulate" '[Int, Color]
 
 {-# NOINLINE bindTileSet_tile_set_name #-}
 
--- | Sets the tile's name.
 bindTileSet_tile_set_name :: MethodBind
 bindTileSet_tile_set_name
   = unsafePerformIO $
@@ -1681,7 +1542,6 @@ bindTileSet_tile_set_name
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the tile's name.
 tile_set_name ::
                 (TileSet :< cls, Object :< cls) =>
                 cls -> Int -> GodotString -> IO ()
@@ -1700,7 +1560,6 @@ instance NodeMethod TileSet "tile_set_name" '[Int, GodotString]
 
 {-# NOINLINE bindTileSet_tile_set_navigation_polygon #-}
 
--- | Sets the tile's navigation polygon.
 bindTileSet_tile_set_navigation_polygon :: MethodBind
 bindTileSet_tile_set_navigation_polygon
   = unsafePerformIO $
@@ -1710,7 +1569,6 @@ bindTileSet_tile_set_navigation_polygon
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the tile's navigation polygon.
 tile_set_navigation_polygon ::
                               (TileSet :< cls, Object :< cls) =>
                               cls -> Int -> NavigationPolygon -> IO ()
@@ -1731,7 +1589,6 @@ instance NodeMethod TileSet "tile_set_navigation_polygon"
 
 {-# NOINLINE bindTileSet_tile_set_navigation_polygon_offset #-}
 
--- | Sets an offset for the tile's navigation polygon.
 bindTileSet_tile_set_navigation_polygon_offset :: MethodBind
 bindTileSet_tile_set_navigation_polygon_offset
   = unsafePerformIO $
@@ -1741,7 +1598,6 @@ bindTileSet_tile_set_navigation_polygon_offset
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets an offset for the tile's navigation polygon.
 tile_set_navigation_polygon_offset ::
                                      (TileSet :< cls, Object :< cls) =>
                                      cls -> Int -> Vector2 -> IO ()
@@ -1763,8 +1619,6 @@ instance NodeMethod TileSet "tile_set_navigation_polygon_offset"
 
 {-# NOINLINE bindTileSet_tile_set_normal_map #-}
 
--- | Sets the tile's normal map texture.
---   				__Note:__ Godot expects the normal map to use X+, Y-, and Z+ coordinates. See @url=http://wiki.polycount.com/wiki/Normal_Map_Technical_Details#Common_Swizzle_Coordinates@this page@/url@ for a comparison of normal map coordinates expected by popular engines.
 bindTileSet_tile_set_normal_map :: MethodBind
 bindTileSet_tile_set_normal_map
   = unsafePerformIO $
@@ -1774,8 +1628,6 @@ bindTileSet_tile_set_normal_map
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the tile's normal map texture.
---   				__Note:__ Godot expects the normal map to use X+, Y-, and Z+ coordinates. See @url=http://wiki.polycount.com/wiki/Normal_Map_Technical_Details#Common_Swizzle_Coordinates@this page@/url@ for a comparison of normal map coordinates expected by popular engines.
 tile_set_normal_map ::
                       (TileSet :< cls, Object :< cls) => cls -> Int -> Texture -> IO ()
 tile_set_normal_map cls arg1 arg2
@@ -1793,7 +1645,6 @@ instance NodeMethod TileSet "tile_set_normal_map" '[Int, Texture]
 
 {-# NOINLINE bindTileSet_tile_set_occluder_offset #-}
 
--- | Sets an offset for the tile's light occluder.
 bindTileSet_tile_set_occluder_offset :: MethodBind
 bindTileSet_tile_set_occluder_offset
   = unsafePerformIO $
@@ -1803,7 +1654,6 @@ bindTileSet_tile_set_occluder_offset
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets an offset for the tile's light occluder.
 tile_set_occluder_offset ::
                            (TileSet :< cls, Object :< cls) => cls -> Int -> Vector2 -> IO ()
 tile_set_occluder_offset cls arg1 arg2
@@ -1823,7 +1673,6 @@ instance NodeMethod TileSet "tile_set_occluder_offset"
 
 {-# NOINLINE bindTileSet_tile_set_region #-}
 
--- | Sets the tile's sub-region in the texture. This is common in texture atlases.
 bindTileSet_tile_set_region :: MethodBind
 bindTileSet_tile_set_region
   = unsafePerformIO $
@@ -1833,7 +1682,6 @@ bindTileSet_tile_set_region
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the tile's sub-region in the texture. This is common in texture atlases.
 tile_set_region ::
                   (TileSet :< cls, Object :< cls) => cls -> Int -> Rect2 -> IO ()
 tile_set_region cls arg1 arg2
@@ -1850,7 +1698,6 @@ instance NodeMethod TileSet "tile_set_region" '[Int, Rect2] (IO ())
 
 {-# NOINLINE bindTileSet_tile_set_shape #-}
 
--- | Sets a shape for the tile, enabling collision.
 bindTileSet_tile_set_shape :: MethodBind
 bindTileSet_tile_set_shape
   = unsafePerformIO $
@@ -1860,7 +1707,6 @@ bindTileSet_tile_set_shape
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets a shape for the tile, enabling collision.
 tile_set_shape ::
                  (TileSet :< cls, Object :< cls) =>
                  cls -> Int -> Int -> Shape2D -> IO ()
@@ -1879,7 +1725,6 @@ instance NodeMethod TileSet "tile_set_shape" '[Int, Int, Shape2D]
 
 {-# NOINLINE bindTileSet_tile_set_shape_offset #-}
 
--- | Sets the offset of a tile's shape.
 bindTileSet_tile_set_shape_offset :: MethodBind
 bindTileSet_tile_set_shape_offset
   = unsafePerformIO $
@@ -1889,7 +1734,6 @@ bindTileSet_tile_set_shape_offset
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the offset of a tile's shape.
 tile_set_shape_offset ::
                         (TileSet :< cls, Object :< cls) =>
                         cls -> Int -> Int -> Vector2 -> IO ()
@@ -1910,7 +1754,6 @@ instance NodeMethod TileSet "tile_set_shape_offset"
 
 {-# NOINLINE bindTileSet_tile_set_shape_one_way #-}
 
--- | Enables one-way collision on a tile's shape.
 bindTileSet_tile_set_shape_one_way :: MethodBind
 bindTileSet_tile_set_shape_one_way
   = unsafePerformIO $
@@ -1920,7 +1763,6 @@ bindTileSet_tile_set_shape_one_way
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Enables one-way collision on a tile's shape.
 tile_set_shape_one_way ::
                          (TileSet :< cls, Object :< cls) =>
                          cls -> Int -> Int -> Bool -> IO ()
@@ -1970,7 +1812,6 @@ instance NodeMethod TileSet "tile_set_shape_one_way_margin"
 
 {-# NOINLINE bindTileSet_tile_set_shape_transform #-}
 
--- | Sets a @Transform2D@ on a tile's shape.
 bindTileSet_tile_set_shape_transform :: MethodBind
 bindTileSet_tile_set_shape_transform
   = unsafePerformIO $
@@ -1980,7 +1821,6 @@ bindTileSet_tile_set_shape_transform
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets a @Transform2D@ on a tile's shape.
 tile_set_shape_transform ::
                            (TileSet :< cls, Object :< cls) =>
                            cls -> Int -> Int -> Transform2d -> IO ()
@@ -2001,7 +1841,6 @@ instance NodeMethod TileSet "tile_set_shape_transform"
 
 {-# NOINLINE bindTileSet_tile_set_shapes #-}
 
--- | Sets an array of shapes for the tile, enabling collision.
 bindTileSet_tile_set_shapes :: MethodBind
 bindTileSet_tile_set_shapes
   = unsafePerformIO $
@@ -2011,7 +1850,6 @@ bindTileSet_tile_set_shapes
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets an array of shapes for the tile, enabling collision.
 tile_set_shapes ::
                   (TileSet :< cls, Object :< cls) => cls -> Int -> Array -> IO ()
 tile_set_shapes cls arg1 arg2
@@ -2028,7 +1866,6 @@ instance NodeMethod TileSet "tile_set_shapes" '[Int, Array] (IO ())
 
 {-# NOINLINE bindTileSet_tile_set_texture #-}
 
--- | Sets the tile's texture.
 bindTileSet_tile_set_texture :: MethodBind
 bindTileSet_tile_set_texture
   = unsafePerformIO $
@@ -2038,7 +1875,6 @@ bindTileSet_tile_set_texture
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the tile's texture.
 tile_set_texture ::
                    (TileSet :< cls, Object :< cls) => cls -> Int -> Texture -> IO ()
 tile_set_texture cls arg1 arg2
@@ -2056,7 +1892,6 @@ instance NodeMethod TileSet "tile_set_texture" '[Int, Texture]
 
 {-# NOINLINE bindTileSet_tile_set_texture_offset #-}
 
--- | Sets the tile's texture offset.
 bindTileSet_tile_set_texture_offset :: MethodBind
 bindTileSet_tile_set_texture_offset
   = unsafePerformIO $
@@ -2066,7 +1901,6 @@ bindTileSet_tile_set_texture_offset
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the tile's texture offset.
 tile_set_texture_offset ::
                           (TileSet :< cls, Object :< cls) => cls -> Int -> Vector2 -> IO ()
 tile_set_texture_offset cls arg1 arg2
@@ -2086,7 +1920,6 @@ instance NodeMethod TileSet "tile_set_texture_offset"
 
 {-# NOINLINE bindTileSet_tile_set_tile_mode #-}
 
--- | Sets the tile's @enum TileMode@.
 bindTileSet_tile_set_tile_mode :: MethodBind
 bindTileSet_tile_set_tile_mode
   = unsafePerformIO $
@@ -2096,7 +1929,6 @@ bindTileSet_tile_set_tile_mode
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the tile's @enum TileMode@.
 tile_set_tile_mode ::
                      (TileSet :< cls, Object :< cls) => cls -> Int -> Int -> IO ()
 tile_set_tile_mode cls arg1 arg2
@@ -2114,7 +1946,6 @@ instance NodeMethod TileSet "tile_set_tile_mode" '[Int, Int]
 
 {-# NOINLINE bindTileSet_tile_set_z_index #-}
 
--- | Sets the tile's drawing index.
 bindTileSet_tile_set_z_index :: MethodBind
 bindTileSet_tile_set_z_index
   = unsafePerformIO $
@@ -2124,7 +1955,6 @@ bindTileSet_tile_set_z_index
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the tile's drawing index.
 tile_set_z_index ::
                    (TileSet :< cls, Object :< cls) => cls -> Int -> Int -> IO ()
 tile_set_z_index cls arg1 arg2

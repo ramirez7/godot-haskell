@@ -20,7 +20,6 @@ import Godot.Core.Reference()
 
 {-# NOINLINE bindResourceFormatSaver_get_recognized_extensions #-}
 
--- | Returns the list of extensions available for saving the resource object, provided it is recognized (see @method recognize@).
 bindResourceFormatSaver_get_recognized_extensions :: MethodBind
 bindResourceFormatSaver_get_recognized_extensions
   = unsafePerformIO $
@@ -30,7 +29,6 @@ bindResourceFormatSaver_get_recognized_extensions
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the list of extensions available for saving the resource object, provided it is recognized (see @method recognize@).
 get_recognized_extensions ::
                             (ResourceFormatSaver :< cls, Object :< cls) =>
                             cls -> Resource -> IO PoolStringArray
@@ -53,7 +51,6 @@ instance NodeMethod ResourceFormatSaver "get_recognized_extensions"
 
 {-# NOINLINE bindResourceFormatSaver_recognize #-}
 
--- | Returns whether the given resource object can be saved by this saver.
 bindResourceFormatSaver_recognize :: MethodBind
 bindResourceFormatSaver_recognize
   = unsafePerformIO $
@@ -63,7 +60,6 @@ bindResourceFormatSaver_recognize
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns whether the given resource object can be saved by this saver.
 recognize ::
             (ResourceFormatSaver :< cls, Object :< cls) =>
             cls -> Resource -> IO Bool
@@ -83,8 +79,6 @@ instance NodeMethod ResourceFormatSaver "recognize" '[Resource]
 
 {-# NOINLINE bindResourceFormatSaver_save #-}
 
--- | Saves the given resource object to a file at the target @path@. @flags@ is a bitmask composed with @enum ResourceSaver.SaverFlags@ constants.
---   				Returns @OK@ on success, or an @enum Error@ constant in case of failure.
 bindResourceFormatSaver_save :: MethodBind
 bindResourceFormatSaver_save
   = unsafePerformIO $
@@ -94,8 +88,6 @@ bindResourceFormatSaver_save
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Saves the given resource object to a file at the target @path@. @flags@ is a bitmask composed with @enum ResourceSaver.SaverFlags@ constants.
---   				Returns @OK@ on success, or an @enum Error@ constant in case of failure.
 save ::
        (ResourceFormatSaver :< cls, Object :< cls) =>
        cls -> GodotString -> Resource -> Int -> IO Int

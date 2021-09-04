@@ -18,6 +18,7 @@ module Godot.Core.ARVRPositionalTracker
         Godot.Core.ARVRPositionalTracker.get_orientation,
         Godot.Core.ARVRPositionalTracker.get_position,
         Godot.Core.ARVRPositionalTracker.get_rumble,
+        Godot.Core.ARVRPositionalTracker.get_tracker_id,
         Godot.Core.ARVRPositionalTracker.get_tracks_orientation,
         Godot.Core.ARVRPositionalTracker.get_tracks_position,
         Godot.Core.ARVRPositionalTracker.get_transform,
@@ -222,7 +223,6 @@ instance NodeMethod ARVRPositionalTracker "_set_type" '[Int]
 
 {-# NOINLINE bindARVRPositionalTracker_get_hand #-}
 
--- | Returns the hand holding this tracker, if known. See @enum TrackerHand@ constants.
 bindARVRPositionalTracker_get_hand :: MethodBind
 bindARVRPositionalTracker_get_hand
   = unsafePerformIO $
@@ -232,7 +232,6 @@ bindARVRPositionalTracker_get_hand
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the hand holding this tracker, if known. See @enum TrackerHand@ constants.
 get_hand ::
            (ARVRPositionalTracker :< cls, Object :< cls) => cls -> IO Int
 get_hand cls
@@ -250,7 +249,6 @@ instance NodeMethod ARVRPositionalTracker "get_hand" '[] (IO Int)
 
 {-# NOINLINE bindARVRPositionalTracker_get_joy_id #-}
 
--- | If this is a controller that is being tracked, the controller will also be represented by a joystick entry with this ID.
 bindARVRPositionalTracker_get_joy_id :: MethodBind
 bindARVRPositionalTracker_get_joy_id
   = unsafePerformIO $
@@ -260,7 +258,6 @@ bindARVRPositionalTracker_get_joy_id
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If this is a controller that is being tracked, the controller will also be represented by a joystick entry with this ID.
 get_joy_id ::
              (ARVRPositionalTracker :< cls, Object :< cls) => cls -> IO Int
 get_joy_id cls
@@ -278,7 +275,6 @@ instance NodeMethod ARVRPositionalTracker "get_joy_id" '[] (IO Int)
 
 {-# NOINLINE bindARVRPositionalTracker_get_mesh #-}
 
--- | Returns the mesh related to a controller or anchor point if one is available.
 bindARVRPositionalTracker_get_mesh :: MethodBind
 bindARVRPositionalTracker_get_mesh
   = unsafePerformIO $
@@ -288,7 +284,6 @@ bindARVRPositionalTracker_get_mesh
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the mesh related to a controller or anchor point if one is available.
 get_mesh ::
            (ARVRPositionalTracker :< cls, Object :< cls) => cls -> IO Mesh
 get_mesh cls
@@ -306,7 +301,6 @@ instance NodeMethod ARVRPositionalTracker "get_mesh" '[] (IO Mesh)
 
 {-# NOINLINE bindARVRPositionalTracker_get_name #-}
 
--- | Returns the controller or anchor point's name if available.
 bindARVRPositionalTracker_get_name :: MethodBind
 bindARVRPositionalTracker_get_name
   = unsafePerformIO $
@@ -316,7 +310,6 @@ bindARVRPositionalTracker_get_name
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the controller or anchor point's name if available.
 get_name ::
            (ARVRPositionalTracker :< cls, Object :< cls) =>
            cls -> IO GodotString
@@ -336,7 +329,6 @@ instance NodeMethod ARVRPositionalTracker "get_name" '[]
 
 {-# NOINLINE bindARVRPositionalTracker_get_orientation #-}
 
--- | Returns the controller's orientation matrix.
 bindARVRPositionalTracker_get_orientation :: MethodBind
 bindARVRPositionalTracker_get_orientation
   = unsafePerformIO $
@@ -346,7 +338,6 @@ bindARVRPositionalTracker_get_orientation
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the controller's orientation matrix.
 get_orientation ::
                   (ARVRPositionalTracker :< cls, Object :< cls) => cls -> IO Basis
 get_orientation cls
@@ -365,7 +356,6 @@ instance NodeMethod ARVRPositionalTracker "get_orientation" '[]
 
 {-# NOINLINE bindARVRPositionalTracker_get_position #-}
 
--- | Returns the world-space controller position.
 bindARVRPositionalTracker_get_position :: MethodBind
 bindARVRPositionalTracker_get_position
   = unsafePerformIO $
@@ -375,7 +365,6 @@ bindARVRPositionalTracker_get_position
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the world-space controller position.
 get_position ::
                (ARVRPositionalTracker :< cls, Object :< cls) => cls -> IO Vector3
 get_position cls
@@ -394,7 +383,6 @@ instance NodeMethod ARVRPositionalTracker "get_position" '[]
 
 {-# NOINLINE bindARVRPositionalTracker_get_rumble #-}
 
--- | The degree to which the tracker rumbles. Ranges from @0.0@ to @1.0@ with precision @.01@.
 bindARVRPositionalTracker_get_rumble :: MethodBind
 bindARVRPositionalTracker_get_rumble
   = unsafePerformIO $
@@ -404,7 +392,6 @@ bindARVRPositionalTracker_get_rumble
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The degree to which the tracker rumbles. Ranges from @0.0@ to @1.0@ with precision @.01@.
 get_rumble ::
              (ARVRPositionalTracker :< cls, Object :< cls) => cls -> IO Float
 get_rumble cls
@@ -421,9 +408,35 @@ instance NodeMethod ARVRPositionalTracker "get_rumble" '[]
          where
         nodeMethod = Godot.Core.ARVRPositionalTracker.get_rumble
 
+{-# NOINLINE bindARVRPositionalTracker_get_tracker_id #-}
+
+bindARVRPositionalTracker_get_tracker_id :: MethodBind
+bindARVRPositionalTracker_get_tracker_id
+  = unsafePerformIO $
+      withCString "ARVRPositionalTracker" $
+        \ clsNamePtr ->
+          withCString "get_tracker_id" $
+            \ methodNamePtr ->
+              godot_method_bind_get_method clsNamePtr methodNamePtr
+
+get_tracker_id ::
+                 (ARVRPositionalTracker :< cls, Object :< cls) => cls -> IO Int
+get_tracker_id cls
+  = withVariantArray []
+      (\ (arrPtr, len) ->
+         godot_method_bind_call bindARVRPositionalTracker_get_tracker_id
+           (upcast cls)
+           arrPtr
+           len
+           >>= \ (err, res) -> throwIfErr err >> fromGodotVariant res)
+
+instance NodeMethod ARVRPositionalTracker "get_tracker_id" '[]
+           (IO Int)
+         where
+        nodeMethod = Godot.Core.ARVRPositionalTracker.get_tracker_id
+
 {-# NOINLINE bindARVRPositionalTracker_get_tracks_orientation #-}
 
--- | Returns @true@ if this device tracks orientation.
 bindARVRPositionalTracker_get_tracks_orientation :: MethodBind
 bindARVRPositionalTracker_get_tracks_orientation
   = unsafePerformIO $
@@ -433,7 +446,6 @@ bindARVRPositionalTracker_get_tracks_orientation
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns @true@ if this device tracks orientation.
 get_tracks_orientation ::
                          (ARVRPositionalTracker :< cls, Object :< cls) => cls -> IO Bool
 get_tracks_orientation cls
@@ -455,7 +467,6 @@ instance NodeMethod ARVRPositionalTracker "get_tracks_orientation"
 
 {-# NOINLINE bindARVRPositionalTracker_get_tracks_position #-}
 
--- | Returns @true@ if this device tracks position.
 bindARVRPositionalTracker_get_tracks_position :: MethodBind
 bindARVRPositionalTracker_get_tracks_position
   = unsafePerformIO $
@@ -465,7 +476,6 @@ bindARVRPositionalTracker_get_tracks_position
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns @true@ if this device tracks position.
 get_tracks_position ::
                       (ARVRPositionalTracker :< cls, Object :< cls) => cls -> IO Bool
 get_tracks_position cls
@@ -485,7 +495,6 @@ instance NodeMethod ARVRPositionalTracker "get_tracks_position" '[]
 
 {-# NOINLINE bindARVRPositionalTracker_get_transform #-}
 
--- | Returns the transform combining this device's orientation and position.
 bindARVRPositionalTracker_get_transform :: MethodBind
 bindARVRPositionalTracker_get_transform
   = unsafePerformIO $
@@ -495,7 +504,6 @@ bindARVRPositionalTracker_get_transform
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the transform combining this device's orientation and position.
 get_transform ::
                 (ARVRPositionalTracker :< cls, Object :< cls) =>
                 cls -> Bool -> IO Transform
@@ -515,7 +523,6 @@ instance NodeMethod ARVRPositionalTracker "get_transform" '[Bool]
 
 {-# NOINLINE bindARVRPositionalTracker_get_type #-}
 
--- | Returns the tracker's type.
 bindARVRPositionalTracker_get_type :: MethodBind
 bindARVRPositionalTracker_get_type
   = unsafePerformIO $
@@ -525,7 +532,6 @@ bindARVRPositionalTracker_get_type
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the tracker's type.
 get_type ::
            (ARVRPositionalTracker :< cls, Object :< cls) => cls -> IO Int
 get_type cls
@@ -543,7 +549,6 @@ instance NodeMethod ARVRPositionalTracker "get_type" '[] (IO Int)
 
 {-# NOINLINE bindARVRPositionalTracker_set_rumble #-}
 
--- | The degree to which the tracker rumbles. Ranges from @0.0@ to @1.0@ with precision @.01@.
 bindARVRPositionalTracker_set_rumble :: MethodBind
 bindARVRPositionalTracker_set_rumble
   = unsafePerformIO $
@@ -553,7 +558,6 @@ bindARVRPositionalTracker_set_rumble
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The degree to which the tracker rumbles. Ranges from @0.0@ to @1.0@ with precision @.01@.
 set_rumble ::
              (ARVRPositionalTracker :< cls, Object :< cls) =>
              cls -> Float -> IO ()

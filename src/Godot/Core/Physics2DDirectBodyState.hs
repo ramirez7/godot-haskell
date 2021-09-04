@@ -112,7 +112,6 @@ instance NodeProperty Physics2DDirectBodyState "transform"
 
 {-# NOINLINE bindPhysics2DDirectBodyState_add_central_force #-}
 
--- | Adds a constant directional force without affecting rotation.
 bindPhysics2DDirectBodyState_add_central_force :: MethodBind
 bindPhysics2DDirectBodyState_add_central_force
   = unsafePerformIO $
@@ -122,7 +121,6 @@ bindPhysics2DDirectBodyState_add_central_force
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Adds a constant directional force without affecting rotation.
 add_central_force ::
                     (Physics2DDirectBodyState :< cls, Object :< cls) =>
                     cls -> Vector2 -> IO ()
@@ -144,7 +142,6 @@ instance NodeMethod Physics2DDirectBodyState "add_central_force"
 
 {-# NOINLINE bindPhysics2DDirectBodyState_add_force #-}
 
--- | Adds a positioned force to the body. Both the force and the offset from the body origin are in global coordinates.
 bindPhysics2DDirectBodyState_add_force :: MethodBind
 bindPhysics2DDirectBodyState_add_force
   = unsafePerformIO $
@@ -154,7 +151,6 @@ bindPhysics2DDirectBodyState_add_force
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Adds a positioned force to the body. Both the force and the offset from the body origin are in global coordinates.
 add_force ::
             (Physics2DDirectBodyState :< cls, Object :< cls) =>
             cls -> Vector2 -> Vector2 -> IO ()
@@ -175,7 +171,6 @@ instance NodeMethod Physics2DDirectBodyState "add_force"
 
 {-# NOINLINE bindPhysics2DDirectBodyState_add_torque #-}
 
--- | Adds a constant rotational force.
 bindPhysics2DDirectBodyState_add_torque :: MethodBind
 bindPhysics2DDirectBodyState_add_torque
   = unsafePerformIO $
@@ -185,7 +180,6 @@ bindPhysics2DDirectBodyState_add_torque
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Adds a constant rotational force.
 add_torque ::
              (Physics2DDirectBodyState :< cls, Object :< cls) =>
              cls -> Float -> IO ()
@@ -205,7 +199,6 @@ instance NodeMethod Physics2DDirectBodyState "add_torque" '[Float]
 
 {-# NOINLINE bindPhysics2DDirectBodyState_apply_central_impulse #-}
 
--- | Applies a directional impulse without affecting rotation.
 bindPhysics2DDirectBodyState_apply_central_impulse :: MethodBind
 bindPhysics2DDirectBodyState_apply_central_impulse
   = unsafePerformIO $
@@ -215,7 +208,6 @@ bindPhysics2DDirectBodyState_apply_central_impulse
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Applies a directional impulse without affecting rotation.
 apply_central_impulse ::
                         (Physics2DDirectBodyState :< cls, Object :< cls) =>
                         cls -> Vector2 -> IO ()
@@ -239,7 +231,6 @@ instance NodeMethod Physics2DDirectBodyState
 
 {-# NOINLINE bindPhysics2DDirectBodyState_apply_impulse #-}
 
--- | Applies a positioned impulse to the body. An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise). The offset uses the rotation of the global coordinate system, but is centered at the object's origin.
 bindPhysics2DDirectBodyState_apply_impulse :: MethodBind
 bindPhysics2DDirectBodyState_apply_impulse
   = unsafePerformIO $
@@ -249,7 +240,6 @@ bindPhysics2DDirectBodyState_apply_impulse
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Applies a positioned impulse to the body. An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise). The offset uses the rotation of the global coordinate system, but is centered at the object's origin.
 apply_impulse ::
                 (Physics2DDirectBodyState :< cls, Object :< cls) =>
                 cls -> Vector2 -> Vector2 -> IO ()
@@ -270,7 +260,6 @@ instance NodeMethod Physics2DDirectBodyState "apply_impulse"
 
 {-# NOINLINE bindPhysics2DDirectBodyState_apply_torque_impulse #-}
 
--- | Applies a rotational impulse to the body.
 bindPhysics2DDirectBodyState_apply_torque_impulse :: MethodBind
 bindPhysics2DDirectBodyState_apply_torque_impulse
   = unsafePerformIO $
@@ -280,7 +269,6 @@ bindPhysics2DDirectBodyState_apply_torque_impulse
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Applies a rotational impulse to the body.
 apply_torque_impulse ::
                        (Physics2DDirectBodyState :< cls, Object :< cls) =>
                        cls -> Float -> IO ()
@@ -303,7 +291,6 @@ instance NodeMethod Physics2DDirectBodyState "apply_torque_impulse"
 
 {-# NOINLINE bindPhysics2DDirectBodyState_get_angular_velocity #-}
 
--- | The body's rotational velocity.
 bindPhysics2DDirectBodyState_get_angular_velocity :: MethodBind
 bindPhysics2DDirectBodyState_get_angular_velocity
   = unsafePerformIO $
@@ -313,7 +300,6 @@ bindPhysics2DDirectBodyState_get_angular_velocity
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The body's rotational velocity.
 get_angular_velocity ::
                        (Physics2DDirectBodyState :< cls, Object :< cls) => cls -> IO Float
 get_angular_velocity cls
@@ -335,7 +321,6 @@ instance NodeMethod Physics2DDirectBodyState "get_angular_velocity"
 
 {-# NOINLINE bindPhysics2DDirectBodyState_get_contact_collider #-}
 
--- | Returns the collider's @RID@.
 bindPhysics2DDirectBodyState_get_contact_collider :: MethodBind
 bindPhysics2DDirectBodyState_get_contact_collider
   = unsafePerformIO $
@@ -345,7 +330,6 @@ bindPhysics2DDirectBodyState_get_contact_collider
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the collider's @RID@.
 get_contact_collider ::
                        (Physics2DDirectBodyState :< cls, Object :< cls) =>
                        cls -> Int -> IO Rid
@@ -369,7 +353,6 @@ instance NodeMethod Physics2DDirectBodyState "get_contact_collider"
 {-# NOINLINE bindPhysics2DDirectBodyState_get_contact_collider_id
              #-}
 
--- | Returns the collider's object id.
 bindPhysics2DDirectBodyState_get_contact_collider_id :: MethodBind
 bindPhysics2DDirectBodyState_get_contact_collider_id
   = unsafePerformIO $
@@ -379,7 +362,6 @@ bindPhysics2DDirectBodyState_get_contact_collider_id
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the collider's object id.
 get_contact_collider_id ::
                           (Physics2DDirectBodyState :< cls, Object :< cls) =>
                           cls -> Int -> IO Int
@@ -404,7 +386,6 @@ instance NodeMethod Physics2DDirectBodyState
 {-# NOINLINE bindPhysics2DDirectBodyState_get_contact_collider_object
              #-}
 
--- | Returns the collider object. This depends on how it was created (will return a scene node if such was used to create it).
 bindPhysics2DDirectBodyState_get_contact_collider_object ::
                                                          MethodBind
 bindPhysics2DDirectBodyState_get_contact_collider_object
@@ -415,7 +396,6 @@ bindPhysics2DDirectBodyState_get_contact_collider_object
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the collider object. This depends on how it was created (will return a scene node if such was used to create it).
 get_contact_collider_object ::
                               (Physics2DDirectBodyState :< cls, Object :< cls) =>
                               cls -> Int -> IO Object
@@ -440,7 +420,6 @@ instance NodeMethod Physics2DDirectBodyState
 {-# NOINLINE bindPhysics2DDirectBodyState_get_contact_collider_position
              #-}
 
--- | Returns the contact position in the collider.
 bindPhysics2DDirectBodyState_get_contact_collider_position ::
                                                            MethodBind
 bindPhysics2DDirectBodyState_get_contact_collider_position
@@ -451,7 +430,6 @@ bindPhysics2DDirectBodyState_get_contact_collider_position
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the contact position in the collider.
 get_contact_collider_position ::
                                 (Physics2DDirectBodyState :< cls, Object :< cls) =>
                                 cls -> Int -> IO Vector2
@@ -476,7 +454,6 @@ instance NodeMethod Physics2DDirectBodyState
 {-# NOINLINE bindPhysics2DDirectBodyState_get_contact_collider_shape
              #-}
 
--- | Returns the collider's shape index.
 bindPhysics2DDirectBodyState_get_contact_collider_shape ::
                                                         MethodBind
 bindPhysics2DDirectBodyState_get_contact_collider_shape
@@ -487,7 +464,6 @@ bindPhysics2DDirectBodyState_get_contact_collider_shape
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the collider's shape index.
 get_contact_collider_shape ::
                              (Physics2DDirectBodyState :< cls, Object :< cls) =>
                              cls -> Int -> IO Int
@@ -512,7 +488,6 @@ instance NodeMethod Physics2DDirectBodyState
 {-# NOINLINE bindPhysics2DDirectBodyState_get_contact_collider_shape_metadata
              #-}
 
--- | Returns the collided shape's metadata. This metadata is different from @method Object.get_meta@, and is set with @method Physics2DServer.shape_set_data@.
 bindPhysics2DDirectBodyState_get_contact_collider_shape_metadata ::
                                                                  MethodBind
 bindPhysics2DDirectBodyState_get_contact_collider_shape_metadata
@@ -523,7 +498,6 @@ bindPhysics2DDirectBodyState_get_contact_collider_shape_metadata
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the collided shape's metadata. This metadata is different from @method Object.get_meta@, and is set with @method Physics2DServer.shape_set_data@.
 get_contact_collider_shape_metadata ::
                                       (Physics2DDirectBodyState :< cls, Object :< cls) =>
                                       cls -> Int -> IO GodotVariant
@@ -548,7 +522,6 @@ instance NodeMethod Physics2DDirectBodyState
 {-# NOINLINE bindPhysics2DDirectBodyState_get_contact_collider_velocity_at_position
              #-}
 
--- | Returns the linear velocity vector at the collider's contact point.
 bindPhysics2DDirectBodyState_get_contact_collider_velocity_at_position ::
                                                                        MethodBind
 bindPhysics2DDirectBodyState_get_contact_collider_velocity_at_position
@@ -559,7 +532,6 @@ bindPhysics2DDirectBodyState_get_contact_collider_velocity_at_position
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the linear velocity vector at the collider's contact point.
 get_contact_collider_velocity_at_position ::
                                             (Physics2DDirectBodyState :< cls, Object :< cls) =>
                                             cls -> Int -> IO Vector2
@@ -583,8 +555,6 @@ instance NodeMethod Physics2DDirectBodyState
 
 {-# NOINLINE bindPhysics2DDirectBodyState_get_contact_count #-}
 
--- | Returns the number of contacts this body has with other bodies.
---   				__Note:__ By default, this returns 0 unless bodies are configured to monitor contacts. See @RigidBody2D.contact_monitor@.
 bindPhysics2DDirectBodyState_get_contact_count :: MethodBind
 bindPhysics2DDirectBodyState_get_contact_count
   = unsafePerformIO $
@@ -594,8 +564,6 @@ bindPhysics2DDirectBodyState_get_contact_count
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the number of contacts this body has with other bodies.
---   				__Note:__ By default, this returns 0 unless bodies are configured to monitor contacts. See @RigidBody2D.contact_monitor@.
 get_contact_count ::
                     (Physics2DDirectBodyState :< cls, Object :< cls) => cls -> IO Int
 get_contact_count cls
@@ -617,7 +585,6 @@ instance NodeMethod Physics2DDirectBodyState "get_contact_count"
 {-# NOINLINE bindPhysics2DDirectBodyState_get_contact_local_normal
              #-}
 
--- | Returns the local normal at the contact point.
 bindPhysics2DDirectBodyState_get_contact_local_normal :: MethodBind
 bindPhysics2DDirectBodyState_get_contact_local_normal
   = unsafePerformIO $
@@ -627,7 +594,6 @@ bindPhysics2DDirectBodyState_get_contact_local_normal
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the local normal at the contact point.
 get_contact_local_normal ::
                            (Physics2DDirectBodyState :< cls, Object :< cls) =>
                            cls -> Int -> IO Vector2
@@ -652,7 +618,6 @@ instance NodeMethod Physics2DDirectBodyState
 {-# NOINLINE bindPhysics2DDirectBodyState_get_contact_local_position
              #-}
 
--- | Returns the local position of the contact point.
 bindPhysics2DDirectBodyState_get_contact_local_position ::
                                                         MethodBind
 bindPhysics2DDirectBodyState_get_contact_local_position
@@ -663,7 +628,6 @@ bindPhysics2DDirectBodyState_get_contact_local_position
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the local position of the contact point.
 get_contact_local_position ::
                              (Physics2DDirectBodyState :< cls, Object :< cls) =>
                              cls -> Int -> IO Vector2
@@ -688,7 +652,6 @@ instance NodeMethod Physics2DDirectBodyState
 {-# NOINLINE bindPhysics2DDirectBodyState_get_contact_local_shape
              #-}
 
--- | Returns the local shape index of the collision.
 bindPhysics2DDirectBodyState_get_contact_local_shape :: MethodBind
 bindPhysics2DDirectBodyState_get_contact_local_shape
   = unsafePerformIO $
@@ -698,7 +661,6 @@ bindPhysics2DDirectBodyState_get_contact_local_shape
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the local shape index of the collision.
 get_contact_local_shape ::
                           (Physics2DDirectBodyState :< cls, Object :< cls) =>
                           cls -> Int -> IO Int
@@ -722,7 +684,6 @@ instance NodeMethod Physics2DDirectBodyState
 
 {-# NOINLINE bindPhysics2DDirectBodyState_get_inverse_inertia #-}
 
--- | The inverse of the inertia of the body.
 bindPhysics2DDirectBodyState_get_inverse_inertia :: MethodBind
 bindPhysics2DDirectBodyState_get_inverse_inertia
   = unsafePerformIO $
@@ -732,7 +693,6 @@ bindPhysics2DDirectBodyState_get_inverse_inertia
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The inverse of the inertia of the body.
 get_inverse_inertia ::
                       (Physics2DDirectBodyState :< cls, Object :< cls) => cls -> IO Float
 get_inverse_inertia cls
@@ -754,7 +714,6 @@ instance NodeMethod Physics2DDirectBodyState "get_inverse_inertia"
 
 {-# NOINLINE bindPhysics2DDirectBodyState_get_inverse_mass #-}
 
--- | The inverse of the mass of the body.
 bindPhysics2DDirectBodyState_get_inverse_mass :: MethodBind
 bindPhysics2DDirectBodyState_get_inverse_mass
   = unsafePerformIO $
@@ -764,7 +723,6 @@ bindPhysics2DDirectBodyState_get_inverse_mass
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The inverse of the mass of the body.
 get_inverse_mass ::
                    (Physics2DDirectBodyState :< cls, Object :< cls) => cls -> IO Float
 get_inverse_mass cls
@@ -784,7 +742,6 @@ instance NodeMethod Physics2DDirectBodyState "get_inverse_mass" '[]
 
 {-# NOINLINE bindPhysics2DDirectBodyState_get_linear_velocity #-}
 
--- | The body's linear velocity.
 bindPhysics2DDirectBodyState_get_linear_velocity :: MethodBind
 bindPhysics2DDirectBodyState_get_linear_velocity
   = unsafePerformIO $
@@ -794,7 +751,6 @@ bindPhysics2DDirectBodyState_get_linear_velocity
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The body's linear velocity.
 get_linear_velocity ::
                       (Physics2DDirectBodyState :< cls, Object :< cls) =>
                       cls -> IO Vector2
@@ -817,7 +773,6 @@ instance NodeMethod Physics2DDirectBodyState "get_linear_velocity"
 
 {-# NOINLINE bindPhysics2DDirectBodyState_get_space_state #-}
 
--- | Returns the current state of the space, useful for queries.
 bindPhysics2DDirectBodyState_get_space_state :: MethodBind
 bindPhysics2DDirectBodyState_get_space_state
   = unsafePerformIO $
@@ -827,7 +782,6 @@ bindPhysics2DDirectBodyState_get_space_state
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the current state of the space, useful for queries.
 get_space_state ::
                   (Physics2DDirectBodyState :< cls, Object :< cls) =>
                   cls -> IO Physics2DDirectSpaceState
@@ -847,7 +801,6 @@ instance NodeMethod Physics2DDirectBodyState "get_space_state" '[]
 
 {-# NOINLINE bindPhysics2DDirectBodyState_get_step #-}
 
--- | The timestep (delta) used for the simulation.
 bindPhysics2DDirectBodyState_get_step :: MethodBind
 bindPhysics2DDirectBodyState_get_step
   = unsafePerformIO $
@@ -857,7 +810,6 @@ bindPhysics2DDirectBodyState_get_step
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The timestep (delta) used for the simulation.
 get_step ::
            (Physics2DDirectBodyState :< cls, Object :< cls) => cls -> IO Float
 get_step cls
@@ -877,7 +829,6 @@ instance NodeMethod Physics2DDirectBodyState "get_step" '[]
 {-# NOINLINE bindPhysics2DDirectBodyState_get_total_angular_damp
              #-}
 
--- | The rate at which the body stops rotating, if there are not any other forces moving it.
 bindPhysics2DDirectBodyState_get_total_angular_damp :: MethodBind
 bindPhysics2DDirectBodyState_get_total_angular_damp
   = unsafePerformIO $
@@ -887,7 +838,6 @@ bindPhysics2DDirectBodyState_get_total_angular_damp
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The rate at which the body stops rotating, if there are not any other forces moving it.
 get_total_angular_damp ::
                          (Physics2DDirectBodyState :< cls, Object :< cls) => cls -> IO Float
 get_total_angular_damp cls
@@ -910,7 +860,6 @@ instance NodeMethod Physics2DDirectBodyState
 
 {-# NOINLINE bindPhysics2DDirectBodyState_get_total_gravity #-}
 
--- | The total gravity vector being currently applied to this body.
 bindPhysics2DDirectBodyState_get_total_gravity :: MethodBind
 bindPhysics2DDirectBodyState_get_total_gravity
   = unsafePerformIO $
@@ -920,7 +869,6 @@ bindPhysics2DDirectBodyState_get_total_gravity
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The total gravity vector being currently applied to this body.
 get_total_gravity ::
                     (Physics2DDirectBodyState :< cls, Object :< cls) =>
                     cls -> IO Vector2
@@ -942,7 +890,6 @@ instance NodeMethod Physics2DDirectBodyState "get_total_gravity"
 
 {-# NOINLINE bindPhysics2DDirectBodyState_get_total_linear_damp #-}
 
--- | The rate at which the body stops moving, if there are not any other forces moving it.
 bindPhysics2DDirectBodyState_get_total_linear_damp :: MethodBind
 bindPhysics2DDirectBodyState_get_total_linear_damp
   = unsafePerformIO $
@@ -952,7 +899,6 @@ bindPhysics2DDirectBodyState_get_total_linear_damp
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The rate at which the body stops moving, if there are not any other forces moving it.
 get_total_linear_damp ::
                         (Physics2DDirectBodyState :< cls, Object :< cls) => cls -> IO Float
 get_total_linear_damp cls
@@ -975,7 +921,6 @@ instance NodeMethod Physics2DDirectBodyState
 
 {-# NOINLINE bindPhysics2DDirectBodyState_get_transform #-}
 
--- | The body's transformation matrix.
 bindPhysics2DDirectBodyState_get_transform :: MethodBind
 bindPhysics2DDirectBodyState_get_transform
   = unsafePerformIO $
@@ -985,7 +930,6 @@ bindPhysics2DDirectBodyState_get_transform
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The body's transformation matrix.
 get_transform ::
                 (Physics2DDirectBodyState :< cls, Object :< cls) =>
                 cls -> IO Transform2d
@@ -1005,7 +949,6 @@ instance NodeMethod Physics2DDirectBodyState "get_transform" '[]
 
 {-# NOINLINE bindPhysics2DDirectBodyState_integrate_forces #-}
 
--- | Calls the built-in force integration code.
 bindPhysics2DDirectBodyState_integrate_forces :: MethodBind
 bindPhysics2DDirectBodyState_integrate_forces
   = unsafePerformIO $
@@ -1015,7 +958,6 @@ bindPhysics2DDirectBodyState_integrate_forces
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Calls the built-in force integration code.
 integrate_forces ::
                    (Physics2DDirectBodyState :< cls, Object :< cls) => cls -> IO ()
 integrate_forces cls
@@ -1035,7 +977,6 @@ instance NodeMethod Physics2DDirectBodyState "integrate_forces" '[]
 
 {-# NOINLINE bindPhysics2DDirectBodyState_is_sleeping #-}
 
--- | If @true@, this body is currently sleeping (not active).
 bindPhysics2DDirectBodyState_is_sleeping :: MethodBind
 bindPhysics2DDirectBodyState_is_sleeping
   = unsafePerformIO $
@@ -1045,7 +986,6 @@ bindPhysics2DDirectBodyState_is_sleeping
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, this body is currently sleeping (not active).
 is_sleeping ::
               (Physics2DDirectBodyState :< cls, Object :< cls) => cls -> IO Bool
 is_sleeping cls
@@ -1064,7 +1004,6 @@ instance NodeMethod Physics2DDirectBodyState "is_sleeping" '[]
 
 {-# NOINLINE bindPhysics2DDirectBodyState_set_angular_velocity #-}
 
--- | The body's rotational velocity.
 bindPhysics2DDirectBodyState_set_angular_velocity :: MethodBind
 bindPhysics2DDirectBodyState_set_angular_velocity
   = unsafePerformIO $
@@ -1074,7 +1013,6 @@ bindPhysics2DDirectBodyState_set_angular_velocity
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The body's rotational velocity.
 set_angular_velocity ::
                        (Physics2DDirectBodyState :< cls, Object :< cls) =>
                        cls -> Float -> IO ()
@@ -1097,7 +1035,6 @@ instance NodeMethod Physics2DDirectBodyState "set_angular_velocity"
 
 {-# NOINLINE bindPhysics2DDirectBodyState_set_linear_velocity #-}
 
--- | The body's linear velocity.
 bindPhysics2DDirectBodyState_set_linear_velocity :: MethodBind
 bindPhysics2DDirectBodyState_set_linear_velocity
   = unsafePerformIO $
@@ -1107,7 +1044,6 @@ bindPhysics2DDirectBodyState_set_linear_velocity
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The body's linear velocity.
 set_linear_velocity ::
                       (Physics2DDirectBodyState :< cls, Object :< cls) =>
                       cls -> Vector2 -> IO ()
@@ -1130,7 +1066,6 @@ instance NodeMethod Physics2DDirectBodyState "set_linear_velocity"
 
 {-# NOINLINE bindPhysics2DDirectBodyState_set_sleep_state #-}
 
--- | If @true@, this body is currently sleeping (not active).
 bindPhysics2DDirectBodyState_set_sleep_state :: MethodBind
 bindPhysics2DDirectBodyState_set_sleep_state
   = unsafePerformIO $
@@ -1140,7 +1075,6 @@ bindPhysics2DDirectBodyState_set_sleep_state
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, this body is currently sleeping (not active).
 set_sleep_state ::
                   (Physics2DDirectBodyState :< cls, Object :< cls) =>
                   cls -> Bool -> IO ()
@@ -1161,7 +1095,6 @@ instance NodeMethod Physics2DDirectBodyState "set_sleep_state"
 
 {-# NOINLINE bindPhysics2DDirectBodyState_set_transform #-}
 
--- | The body's transformation matrix.
 bindPhysics2DDirectBodyState_set_transform :: MethodBind
 bindPhysics2DDirectBodyState_set_transform
   = unsafePerformIO $
@@ -1171,7 +1104,6 @@ bindPhysics2DDirectBodyState_set_transform
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The body's transformation matrix.
 set_transform ::
                 (Physics2DDirectBodyState :< cls, Object :< cls) =>
                 cls -> Transform2d -> IO ()

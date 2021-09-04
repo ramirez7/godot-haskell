@@ -523,7 +523,7 @@ instance NodeProperty ParticlesMaterial "trail_size_modifier"
 
 {-# NOINLINE bindParticlesMaterial_get_color #-}
 
--- | Each particle's initial color. If the @Particles2D@'s @texture@ is defined, it will be multiplied by this color. To have particle display color in a @SpatialMaterial@ make sure to set @SpatialMaterial.vertex_color_use_as_albedo@ to @true@.
+-- | Each particle's initial color. If the @GPUParticles2D@'s @texture@ is defined, it will be multiplied by this color. To have particle display color in a @BaseMaterial3D@ make sure to set @BaseMaterial3D.vertex_color_use_as_albedo@ to @true@.
 bindParticlesMaterial_get_color :: MethodBind
 bindParticlesMaterial_get_color
   = unsafePerformIO $
@@ -533,7 +533,7 @@ bindParticlesMaterial_get_color
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Each particle's initial color. If the @Particles2D@'s @texture@ is defined, it will be multiplied by this color. To have particle display color in a @SpatialMaterial@ make sure to set @SpatialMaterial.vertex_color_use_as_albedo@ to @true@.
+-- | Each particle's initial color. If the @GPUParticles2D@'s @texture@ is defined, it will be multiplied by this color. To have particle display color in a @BaseMaterial3D@ make sure to set @BaseMaterial3D.vertex_color_use_as_albedo@ to @true@.
 get_color ::
             (ParticlesMaterial :< cls, Object :< cls) => cls -> IO Color
 get_color cls
@@ -550,7 +550,7 @@ instance NodeMethod ParticlesMaterial "get_color" '[] (IO Color)
 
 {-# NOINLINE bindParticlesMaterial_get_color_ramp #-}
 
--- | Each particle's color will vary along this @GradientTexture@.
+-- | Each particle's color will vary along this @GradientTexture@ over its lifetime (multiplied with @color@).
 bindParticlesMaterial_get_color_ramp :: MethodBind
 bindParticlesMaterial_get_color_ramp
   = unsafePerformIO $
@@ -560,7 +560,7 @@ bindParticlesMaterial_get_color_ramp
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Each particle's color will vary along this @GradientTexture@.
+-- | Each particle's color will vary along this @GradientTexture@ over its lifetime (multiplied with @color@).
 get_color_ramp ::
                  (ParticlesMaterial :< cls, Object :< cls) => cls -> IO Texture
 get_color_ramp cls
@@ -827,7 +827,6 @@ instance NodeMethod ParticlesMaterial "get_emission_sphere_radius"
 
 {-# NOINLINE bindParticlesMaterial_get_flag #-}
 
--- | Returns @true@ if the specified flag is enabled.
 bindParticlesMaterial_get_flag :: MethodBind
 bindParticlesMaterial_get_flag
   = unsafePerformIO $
@@ -837,7 +836,6 @@ bindParticlesMaterial_get_flag
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns @true@ if the specified flag is enabled.
 get_flag ::
            (ParticlesMaterial :< cls, Object :< cls) => cls -> Int -> IO Bool
 get_flag cls arg1
@@ -854,7 +852,7 @@ instance NodeMethod ParticlesMaterial "get_flag" '[Int] (IO Bool)
 
 {-# NOINLINE bindParticlesMaterial_get_flatness #-}
 
--- | Amount of @spread@ in Y/Z plane. A value of @1@ restricts particles to X/Z plane.
+-- | Amount of @spread@ along the Y axis.
 bindParticlesMaterial_get_flatness :: MethodBind
 bindParticlesMaterial_get_flatness
   = unsafePerformIO $
@@ -864,7 +862,7 @@ bindParticlesMaterial_get_flatness
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Amount of @spread@ in Y/Z plane. A value of @1@ restricts particles to X/Z plane.
+-- | Amount of @spread@ along the Y axis.
 get_flatness ::
                (ParticlesMaterial :< cls, Object :< cls) => cls -> IO Float
 get_flatness cls
@@ -941,7 +939,6 @@ instance NodeMethod ParticlesMaterial "get_lifetime_randomness" '[]
 
 {-# NOINLINE bindParticlesMaterial_get_param #-}
 
--- | Returns the value of the specified parameter.
 bindParticlesMaterial_get_param :: MethodBind
 bindParticlesMaterial_get_param
   = unsafePerformIO $
@@ -951,7 +948,6 @@ bindParticlesMaterial_get_param
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the value of the specified parameter.
 get_param ::
             (ParticlesMaterial :< cls, Object :< cls) => cls -> Int -> IO Float
 get_param cls arg1
@@ -968,7 +964,6 @@ instance NodeMethod ParticlesMaterial "get_param" '[Int] (IO Float)
 
 {-# NOINLINE bindParticlesMaterial_get_param_randomness #-}
 
--- | Returns the randomness ratio associated with the specified parameter.
 bindParticlesMaterial_get_param_randomness :: MethodBind
 bindParticlesMaterial_get_param_randomness
   = unsafePerformIO $
@@ -978,7 +973,6 @@ bindParticlesMaterial_get_param_randomness
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the randomness ratio associated with the specified parameter.
 get_param_randomness ::
                        (ParticlesMaterial :< cls, Object :< cls) => cls -> Int -> IO Float
 get_param_randomness cls arg1
@@ -997,7 +991,7 @@ instance NodeMethod ParticlesMaterial "get_param_randomness" '[Int]
 
 {-# NOINLINE bindParticlesMaterial_get_param_texture #-}
 
--- | Returns the @Texture@ used by the specified parameter.
+-- | Returns the @Texture2D@ used by the specified parameter.
 bindParticlesMaterial_get_param_texture :: MethodBind
 bindParticlesMaterial_get_param_texture
   = unsafePerformIO $
@@ -1007,7 +1001,7 @@ bindParticlesMaterial_get_param_texture
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the @Texture@ used by the specified parameter.
+-- | Returns the @Texture2D@ used by the specified parameter.
 get_param_texture ::
                     (ParticlesMaterial :< cls, Object :< cls) =>
                     cls -> Int -> IO Texture
@@ -1027,7 +1021,7 @@ instance NodeMethod ParticlesMaterial "get_param_texture" '[Int]
 
 {-# NOINLINE bindParticlesMaterial_get_spread #-}
 
--- | Each particle's initial direction range from @+spread@ to @-spread@ degrees. Applied to X/Z plane and Y/Z planes.
+-- | Each particle's initial direction range from @+spread@ to @-spread@ degrees.
 bindParticlesMaterial_get_spread :: MethodBind
 bindParticlesMaterial_get_spread
   = unsafePerformIO $
@@ -1037,7 +1031,7 @@ bindParticlesMaterial_get_spread
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Each particle's initial direction range from @+spread@ to @-spread@ degrees. Applied to X/Z plane and Y/Z planes.
+-- | Each particle's initial direction range from @+spread@ to @-spread@ degrees.
 get_spread ::
              (ParticlesMaterial :< cls, Object :< cls) => cls -> IO Float
 get_spread cls
@@ -1055,7 +1049,6 @@ instance NodeMethod ParticlesMaterial "get_spread" '[] (IO Float)
 
 {-# NOINLINE bindParticlesMaterial_get_trail_color_modifier #-}
 
--- | Trail particles' color will vary along this @GradientTexture@.
 bindParticlesMaterial_get_trail_color_modifier :: MethodBind
 bindParticlesMaterial_get_trail_color_modifier
   = unsafePerformIO $
@@ -1065,7 +1058,6 @@ bindParticlesMaterial_get_trail_color_modifier
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Trail particles' color will vary along this @GradientTexture@.
 get_trail_color_modifier ::
                            (ParticlesMaterial :< cls, Object :< cls) =>
                            cls -> IO GradientTexture
@@ -1087,7 +1079,6 @@ instance NodeMethod ParticlesMaterial "get_trail_color_modifier"
 
 {-# NOINLINE bindParticlesMaterial_get_trail_divisor #-}
 
--- | Emitter will emit @amount@ divided by @trail_divisor@ particles. The remaining particles will be used as trail(s).
 bindParticlesMaterial_get_trail_divisor :: MethodBind
 bindParticlesMaterial_get_trail_divisor
   = unsafePerformIO $
@@ -1097,7 +1088,6 @@ bindParticlesMaterial_get_trail_divisor
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Emitter will emit @amount@ divided by @trail_divisor@ particles. The remaining particles will be used as trail(s).
 get_trail_divisor ::
                     (ParticlesMaterial :< cls, Object :< cls) => cls -> IO Int
 get_trail_divisor cls
@@ -1116,7 +1106,6 @@ instance NodeMethod ParticlesMaterial "get_trail_divisor" '[]
 
 {-# NOINLINE bindParticlesMaterial_get_trail_size_modifier #-}
 
--- | Trail particles' size will vary along this @CurveTexture@.
 bindParticlesMaterial_get_trail_size_modifier :: MethodBind
 bindParticlesMaterial_get_trail_size_modifier
   = unsafePerformIO $
@@ -1126,7 +1115,6 @@ bindParticlesMaterial_get_trail_size_modifier
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Trail particles' size will vary along this @CurveTexture@.
 get_trail_size_modifier ::
                           (ParticlesMaterial :< cls, Object :< cls) => cls -> IO CurveTexture
 get_trail_size_modifier cls
@@ -1146,7 +1134,7 @@ instance NodeMethod ParticlesMaterial "get_trail_size_modifier" '[]
 
 {-# NOINLINE bindParticlesMaterial_set_color #-}
 
--- | Each particle's initial color. If the @Particles2D@'s @texture@ is defined, it will be multiplied by this color. To have particle display color in a @SpatialMaterial@ make sure to set @SpatialMaterial.vertex_color_use_as_albedo@ to @true@.
+-- | Each particle's initial color. If the @GPUParticles2D@'s @texture@ is defined, it will be multiplied by this color. To have particle display color in a @BaseMaterial3D@ make sure to set @BaseMaterial3D.vertex_color_use_as_albedo@ to @true@.
 bindParticlesMaterial_set_color :: MethodBind
 bindParticlesMaterial_set_color
   = unsafePerformIO $
@@ -1156,7 +1144,7 @@ bindParticlesMaterial_set_color
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Each particle's initial color. If the @Particles2D@'s @texture@ is defined, it will be multiplied by this color. To have particle display color in a @SpatialMaterial@ make sure to set @SpatialMaterial.vertex_color_use_as_albedo@ to @true@.
+-- | Each particle's initial color. If the @GPUParticles2D@'s @texture@ is defined, it will be multiplied by this color. To have particle display color in a @BaseMaterial3D@ make sure to set @BaseMaterial3D.vertex_color_use_as_albedo@ to @true@.
 set_color ::
             (ParticlesMaterial :< cls, Object :< cls) => cls -> Color -> IO ()
 set_color cls arg1
@@ -1173,7 +1161,7 @@ instance NodeMethod ParticlesMaterial "set_color" '[Color] (IO ())
 
 {-# NOINLINE bindParticlesMaterial_set_color_ramp #-}
 
--- | Each particle's color will vary along this @GradientTexture@.
+-- | Each particle's color will vary along this @GradientTexture@ over its lifetime (multiplied with @color@).
 bindParticlesMaterial_set_color_ramp :: MethodBind
 bindParticlesMaterial_set_color_ramp
   = unsafePerformIO $
@@ -1183,7 +1171,7 @@ bindParticlesMaterial_set_color_ramp
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Each particle's color will vary along this @GradientTexture@.
+-- | Each particle's color will vary along this @GradientTexture@ over its lifetime (multiplied with @color@).
 set_color_ramp ::
                  (ParticlesMaterial :< cls, Object :< cls) =>
                  cls -> Texture -> IO ()
@@ -1456,7 +1444,6 @@ instance NodeMethod ParticlesMaterial "set_emission_sphere_radius"
 
 {-# NOINLINE bindParticlesMaterial_set_flag #-}
 
--- | If @true@, enables the specified flag. See @enum Flags@ for options.
 bindParticlesMaterial_set_flag :: MethodBind
 bindParticlesMaterial_set_flag
   = unsafePerformIO $
@@ -1466,7 +1453,6 @@ bindParticlesMaterial_set_flag
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, enables the specified flag. See @enum Flags@ for options.
 set_flag ::
            (ParticlesMaterial :< cls, Object :< cls) =>
            cls -> Int -> Bool -> IO ()
@@ -1485,7 +1471,7 @@ instance NodeMethod ParticlesMaterial "set_flag" '[Int, Bool]
 
 {-# NOINLINE bindParticlesMaterial_set_flatness #-}
 
--- | Amount of @spread@ in Y/Z plane. A value of @1@ restricts particles to X/Z plane.
+-- | Amount of @spread@ along the Y axis.
 bindParticlesMaterial_set_flatness :: MethodBind
 bindParticlesMaterial_set_flatness
   = unsafePerformIO $
@@ -1495,7 +1481,7 @@ bindParticlesMaterial_set_flatness
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Amount of @spread@ in Y/Z plane. A value of @1@ restricts particles to X/Z plane.
+-- | Amount of @spread@ along the Y axis.
 set_flatness ::
                (ParticlesMaterial :< cls, Object :< cls) => cls -> Float -> IO ()
 set_flatness cls arg1
@@ -1575,7 +1561,6 @@ instance NodeMethod ParticlesMaterial "set_lifetime_randomness"
 
 {-# NOINLINE bindParticlesMaterial_set_param #-}
 
--- | Sets the specified @enum Parameter@.
 bindParticlesMaterial_set_param :: MethodBind
 bindParticlesMaterial_set_param
   = unsafePerformIO $
@@ -1585,7 +1570,6 @@ bindParticlesMaterial_set_param
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the specified @enum Parameter@.
 set_param ::
             (ParticlesMaterial :< cls, Object :< cls) =>
             cls -> Int -> Float -> IO ()
@@ -1604,7 +1588,6 @@ instance NodeMethod ParticlesMaterial "set_param" '[Int, Float]
 
 {-# NOINLINE bindParticlesMaterial_set_param_randomness #-}
 
--- | Sets the randomness ratio for the specified @enum Parameter@.
 bindParticlesMaterial_set_param_randomness :: MethodBind
 bindParticlesMaterial_set_param_randomness
   = unsafePerformIO $
@@ -1614,7 +1597,6 @@ bindParticlesMaterial_set_param_randomness
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the randomness ratio for the specified @enum Parameter@.
 set_param_randomness ::
                        (ParticlesMaterial :< cls, Object :< cls) =>
                        cls -> Int -> Float -> IO ()
@@ -1635,7 +1617,7 @@ instance NodeMethod ParticlesMaterial "set_param_randomness"
 
 {-# NOINLINE bindParticlesMaterial_set_param_texture #-}
 
--- | Sets the @Texture@ for the specified @enum Parameter@.
+-- | Sets the @Texture2D@ for the specified @enum Parameter@.
 bindParticlesMaterial_set_param_texture :: MethodBind
 bindParticlesMaterial_set_param_texture
   = unsafePerformIO $
@@ -1645,7 +1627,7 @@ bindParticlesMaterial_set_param_texture
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the @Texture@ for the specified @enum Parameter@.
+-- | Sets the @Texture2D@ for the specified @enum Parameter@.
 set_param_texture ::
                     (ParticlesMaterial :< cls, Object :< cls) =>
                     cls -> Int -> Texture -> IO ()
@@ -1666,7 +1648,7 @@ instance NodeMethod ParticlesMaterial "set_param_texture"
 
 {-# NOINLINE bindParticlesMaterial_set_spread #-}
 
--- | Each particle's initial direction range from @+spread@ to @-spread@ degrees. Applied to X/Z plane and Y/Z planes.
+-- | Each particle's initial direction range from @+spread@ to @-spread@ degrees.
 bindParticlesMaterial_set_spread :: MethodBind
 bindParticlesMaterial_set_spread
   = unsafePerformIO $
@@ -1676,7 +1658,7 @@ bindParticlesMaterial_set_spread
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Each particle's initial direction range from @+spread@ to @-spread@ degrees. Applied to X/Z plane and Y/Z planes.
+-- | Each particle's initial direction range from @+spread@ to @-spread@ degrees.
 set_spread ::
              (ParticlesMaterial :< cls, Object :< cls) => cls -> Float -> IO ()
 set_spread cls arg1
@@ -1694,7 +1676,6 @@ instance NodeMethod ParticlesMaterial "set_spread" '[Float] (IO ())
 
 {-# NOINLINE bindParticlesMaterial_set_trail_color_modifier #-}
 
--- | Trail particles' color will vary along this @GradientTexture@.
 bindParticlesMaterial_set_trail_color_modifier :: MethodBind
 bindParticlesMaterial_set_trail_color_modifier
   = unsafePerformIO $
@@ -1704,7 +1685,6 @@ bindParticlesMaterial_set_trail_color_modifier
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Trail particles' color will vary along this @GradientTexture@.
 set_trail_color_modifier ::
                            (ParticlesMaterial :< cls, Object :< cls) =>
                            cls -> GradientTexture -> IO ()
@@ -1726,7 +1706,6 @@ instance NodeMethod ParticlesMaterial "set_trail_color_modifier"
 
 {-# NOINLINE bindParticlesMaterial_set_trail_divisor #-}
 
--- | Emitter will emit @amount@ divided by @trail_divisor@ particles. The remaining particles will be used as trail(s).
 bindParticlesMaterial_set_trail_divisor :: MethodBind
 bindParticlesMaterial_set_trail_divisor
   = unsafePerformIO $
@@ -1736,7 +1715,6 @@ bindParticlesMaterial_set_trail_divisor
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Emitter will emit @amount@ divided by @trail_divisor@ particles. The remaining particles will be used as trail(s).
 set_trail_divisor ::
                     (ParticlesMaterial :< cls, Object :< cls) => cls -> Int -> IO ()
 set_trail_divisor cls arg1
@@ -1755,7 +1733,6 @@ instance NodeMethod ParticlesMaterial "set_trail_divisor" '[Int]
 
 {-# NOINLINE bindParticlesMaterial_set_trail_size_modifier #-}
 
--- | Trail particles' size will vary along this @CurveTexture@.
 bindParticlesMaterial_set_trail_size_modifier :: MethodBind
 bindParticlesMaterial_set_trail_size_modifier
   = unsafePerformIO $
@@ -1765,7 +1742,6 @@ bindParticlesMaterial_set_trail_size_modifier
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Trail particles' size will vary along this @CurveTexture@.
 set_trail_size_modifier ::
                           (ParticlesMaterial :< cls, Object :< cls) =>
                           cls -> CurveTexture -> IO ()

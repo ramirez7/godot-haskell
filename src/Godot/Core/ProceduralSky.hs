@@ -209,7 +209,6 @@ instance NodeMethod ProceduralSky "_update_sky" '[] (IO ()) where
 
 {-# NOINLINE bindProceduralSky_get_ground_bottom_color #-}
 
--- | Color of the ground at the bottom.
 bindProceduralSky_get_ground_bottom_color :: MethodBind
 bindProceduralSky_get_ground_bottom_color
   = unsafePerformIO $
@@ -219,7 +218,6 @@ bindProceduralSky_get_ground_bottom_color
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Color of the ground at the bottom.
 get_ground_bottom_color ::
                           (ProceduralSky :< cls, Object :< cls) => cls -> IO Color
 get_ground_bottom_color cls
@@ -238,7 +236,6 @@ instance NodeMethod ProceduralSky "get_ground_bottom_color" '[]
 
 {-# NOINLINE bindProceduralSky_get_ground_curve #-}
 
--- | How quickly the @ground_horizon_color@ fades into the @ground_bottom_color@.
 bindProceduralSky_get_ground_curve :: MethodBind
 bindProceduralSky_get_ground_curve
   = unsafePerformIO $
@@ -248,7 +245,6 @@ bindProceduralSky_get_ground_curve
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | How quickly the @ground_horizon_color@ fades into the @ground_bottom_color@.
 get_ground_curve ::
                    (ProceduralSky :< cls, Object :< cls) => cls -> IO Float
 get_ground_curve cls
@@ -266,7 +262,6 @@ instance NodeMethod ProceduralSky "get_ground_curve" '[] (IO Float)
 
 {-# NOINLINE bindProceduralSky_get_ground_energy #-}
 
--- | Amount of energy contribution from the ground.
 bindProceduralSky_get_ground_energy :: MethodBind
 bindProceduralSky_get_ground_energy
   = unsafePerformIO $
@@ -276,7 +271,6 @@ bindProceduralSky_get_ground_energy
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Amount of energy contribution from the ground.
 get_ground_energy ::
                     (ProceduralSky :< cls, Object :< cls) => cls -> IO Float
 get_ground_energy cls
@@ -295,7 +289,6 @@ instance NodeMethod ProceduralSky "get_ground_energy" '[]
 
 {-# NOINLINE bindProceduralSky_get_ground_horizon_color #-}
 
--- | Color of the ground at the horizon.
 bindProceduralSky_get_ground_horizon_color :: MethodBind
 bindProceduralSky_get_ground_horizon_color
   = unsafePerformIO $
@@ -305,7 +298,6 @@ bindProceduralSky_get_ground_horizon_color
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Color of the ground at the horizon.
 get_ground_horizon_color ::
                            (ProceduralSky :< cls, Object :< cls) => cls -> IO Color
 get_ground_horizon_color cls
@@ -324,7 +316,6 @@ instance NodeMethod ProceduralSky "get_ground_horizon_color" '[]
 
 {-# NOINLINE bindProceduralSky_get_sky_curve #-}
 
--- | How quickly the @sky_horizon_color@ fades into the @sky_top_color@.
 bindProceduralSky_get_sky_curve :: MethodBind
 bindProceduralSky_get_sky_curve
   = unsafePerformIO $
@@ -334,7 +325,6 @@ bindProceduralSky_get_sky_curve
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | How quickly the @sky_horizon_color@ fades into the @sky_top_color@.
 get_sky_curve ::
                 (ProceduralSky :< cls, Object :< cls) => cls -> IO Float
 get_sky_curve cls
@@ -351,7 +341,6 @@ instance NodeMethod ProceduralSky "get_sky_curve" '[] (IO Float)
 
 {-# NOINLINE bindProceduralSky_get_sky_energy #-}
 
--- | Amount of energy contribution from the sky.
 bindProceduralSky_get_sky_energy :: MethodBind
 bindProceduralSky_get_sky_energy
   = unsafePerformIO $
@@ -361,7 +350,6 @@ bindProceduralSky_get_sky_energy
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Amount of energy contribution from the sky.
 get_sky_energy ::
                  (ProceduralSky :< cls, Object :< cls) => cls -> IO Float
 get_sky_energy cls
@@ -379,7 +367,6 @@ instance NodeMethod ProceduralSky "get_sky_energy" '[] (IO Float)
 
 {-# NOINLINE bindProceduralSky_get_sky_horizon_color #-}
 
--- | Color of the sky at the horizon.
 bindProceduralSky_get_sky_horizon_color :: MethodBind
 bindProceduralSky_get_sky_horizon_color
   = unsafePerformIO $
@@ -389,7 +376,6 @@ bindProceduralSky_get_sky_horizon_color
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Color of the sky at the horizon.
 get_sky_horizon_color ::
                         (ProceduralSky :< cls, Object :< cls) => cls -> IO Color
 get_sky_horizon_color cls
@@ -408,7 +394,6 @@ instance NodeMethod ProceduralSky "get_sky_horizon_color" '[]
 
 {-# NOINLINE bindProceduralSky_get_sky_top_color #-}
 
--- | Color of the sky at the top.
 bindProceduralSky_get_sky_top_color :: MethodBind
 bindProceduralSky_get_sky_top_color
   = unsafePerformIO $
@@ -418,7 +403,6 @@ bindProceduralSky_get_sky_top_color
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Color of the sky at the top.
 get_sky_top_color ::
                     (ProceduralSky :< cls, Object :< cls) => cls -> IO Color
 get_sky_top_color cls
@@ -437,7 +421,6 @@ instance NodeMethod ProceduralSky "get_sky_top_color" '[]
 
 {-# NOINLINE bindProceduralSky_get_sun_angle_max #-}
 
--- | Distance from center of sun where it fades out completely.
 bindProceduralSky_get_sun_angle_max :: MethodBind
 bindProceduralSky_get_sun_angle_max
   = unsafePerformIO $
@@ -447,7 +430,6 @@ bindProceduralSky_get_sun_angle_max
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Distance from center of sun where it fades out completely.
 get_sun_angle_max ::
                     (ProceduralSky :< cls, Object :< cls) => cls -> IO Float
 get_sun_angle_max cls
@@ -466,7 +448,6 @@ instance NodeMethod ProceduralSky "get_sun_angle_max" '[]
 
 {-# NOINLINE bindProceduralSky_get_sun_angle_min #-}
 
--- | Distance from sun where it goes from solid to starting to fade.
 bindProceduralSky_get_sun_angle_min :: MethodBind
 bindProceduralSky_get_sun_angle_min
   = unsafePerformIO $
@@ -476,7 +457,6 @@ bindProceduralSky_get_sun_angle_min
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Distance from sun where it goes from solid to starting to fade.
 get_sun_angle_min ::
                     (ProceduralSky :< cls, Object :< cls) => cls -> IO Float
 get_sun_angle_min cls
@@ -495,7 +475,6 @@ instance NodeMethod ProceduralSky "get_sun_angle_min" '[]
 
 {-# NOINLINE bindProceduralSky_get_sun_color #-}
 
--- | The sun's color.
 bindProceduralSky_get_sun_color :: MethodBind
 bindProceduralSky_get_sun_color
   = unsafePerformIO $
@@ -505,7 +484,6 @@ bindProceduralSky_get_sun_color
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The sun's color.
 get_sun_color ::
                 (ProceduralSky :< cls, Object :< cls) => cls -> IO Color
 get_sun_color cls
@@ -522,7 +500,6 @@ instance NodeMethod ProceduralSky "get_sun_color" '[] (IO Color)
 
 {-# NOINLINE bindProceduralSky_get_sun_curve #-}
 
--- | How quickly the sun fades away between @sun_angle_min@ and @sun_angle_max@.
 bindProceduralSky_get_sun_curve :: MethodBind
 bindProceduralSky_get_sun_curve
   = unsafePerformIO $
@@ -532,7 +509,6 @@ bindProceduralSky_get_sun_curve
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | How quickly the sun fades away between @sun_angle_min@ and @sun_angle_max@.
 get_sun_curve ::
                 (ProceduralSky :< cls, Object :< cls) => cls -> IO Float
 get_sun_curve cls
@@ -549,7 +525,6 @@ instance NodeMethod ProceduralSky "get_sun_curve" '[] (IO Float)
 
 {-# NOINLINE bindProceduralSky_get_sun_energy #-}
 
--- | Amount of energy contribution from the sun.
 bindProceduralSky_get_sun_energy :: MethodBind
 bindProceduralSky_get_sun_energy
   = unsafePerformIO $
@@ -559,7 +534,6 @@ bindProceduralSky_get_sun_energy
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Amount of energy contribution from the sun.
 get_sun_energy ::
                  (ProceduralSky :< cls, Object :< cls) => cls -> IO Float
 get_sun_energy cls
@@ -577,7 +551,6 @@ instance NodeMethod ProceduralSky "get_sun_energy" '[] (IO Float)
 
 {-# NOINLINE bindProceduralSky_get_sun_latitude #-}
 
--- | The sun's height using polar coordinates.
 bindProceduralSky_get_sun_latitude :: MethodBind
 bindProceduralSky_get_sun_latitude
   = unsafePerformIO $
@@ -587,7 +560,6 @@ bindProceduralSky_get_sun_latitude
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The sun's height using polar coordinates.
 get_sun_latitude ::
                    (ProceduralSky :< cls, Object :< cls) => cls -> IO Float
 get_sun_latitude cls
@@ -605,7 +577,6 @@ instance NodeMethod ProceduralSky "get_sun_latitude" '[] (IO Float)
 
 {-# NOINLINE bindProceduralSky_get_sun_longitude #-}
 
--- | The direction of the sun using polar coordinates.
 bindProceduralSky_get_sun_longitude :: MethodBind
 bindProceduralSky_get_sun_longitude
   = unsafePerformIO $
@@ -615,7 +586,6 @@ bindProceduralSky_get_sun_longitude
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The direction of the sun using polar coordinates.
 get_sun_longitude ::
                     (ProceduralSky :< cls, Object :< cls) => cls -> IO Float
 get_sun_longitude cls
@@ -634,7 +604,6 @@ instance NodeMethod ProceduralSky "get_sun_longitude" '[]
 
 {-# NOINLINE bindProceduralSky_get_texture_size #-}
 
--- | Size of @Texture@ that the ProceduralSky will generate. The size is set using @enum TextureSize@.
 bindProceduralSky_get_texture_size :: MethodBind
 bindProceduralSky_get_texture_size
   = unsafePerformIO $
@@ -644,7 +613,6 @@ bindProceduralSky_get_texture_size
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Size of @Texture@ that the ProceduralSky will generate. The size is set using @enum TextureSize@.
 get_texture_size ::
                    (ProceduralSky :< cls, Object :< cls) => cls -> IO Int
 get_texture_size cls
@@ -662,7 +630,6 @@ instance NodeMethod ProceduralSky "get_texture_size" '[] (IO Int)
 
 {-# NOINLINE bindProceduralSky_set_ground_bottom_color #-}
 
--- | Color of the ground at the bottom.
 bindProceduralSky_set_ground_bottom_color :: MethodBind
 bindProceduralSky_set_ground_bottom_color
   = unsafePerformIO $
@@ -672,7 +639,6 @@ bindProceduralSky_set_ground_bottom_color
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Color of the ground at the bottom.
 set_ground_bottom_color ::
                           (ProceduralSky :< cls, Object :< cls) => cls -> Color -> IO ()
 set_ground_bottom_color cls arg1
@@ -692,7 +658,6 @@ instance NodeMethod ProceduralSky "set_ground_bottom_color"
 
 {-# NOINLINE bindProceduralSky_set_ground_curve #-}
 
--- | How quickly the @ground_horizon_color@ fades into the @ground_bottom_color@.
 bindProceduralSky_set_ground_curve :: MethodBind
 bindProceduralSky_set_ground_curve
   = unsafePerformIO $
@@ -702,7 +667,6 @@ bindProceduralSky_set_ground_curve
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | How quickly the @ground_horizon_color@ fades into the @ground_bottom_color@.
 set_ground_curve ::
                    (ProceduralSky :< cls, Object :< cls) => cls -> Float -> IO ()
 set_ground_curve cls arg1
@@ -721,7 +685,6 @@ instance NodeMethod ProceduralSky "set_ground_curve" '[Float]
 
 {-# NOINLINE bindProceduralSky_set_ground_energy #-}
 
--- | Amount of energy contribution from the ground.
 bindProceduralSky_set_ground_energy :: MethodBind
 bindProceduralSky_set_ground_energy
   = unsafePerformIO $
@@ -731,7 +694,6 @@ bindProceduralSky_set_ground_energy
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Amount of energy contribution from the ground.
 set_ground_energy ::
                     (ProceduralSky :< cls, Object :< cls) => cls -> Float -> IO ()
 set_ground_energy cls arg1
@@ -750,7 +712,6 @@ instance NodeMethod ProceduralSky "set_ground_energy" '[Float]
 
 {-# NOINLINE bindProceduralSky_set_ground_horizon_color #-}
 
--- | Color of the ground at the horizon.
 bindProceduralSky_set_ground_horizon_color :: MethodBind
 bindProceduralSky_set_ground_horizon_color
   = unsafePerformIO $
@@ -760,7 +721,6 @@ bindProceduralSky_set_ground_horizon_color
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Color of the ground at the horizon.
 set_ground_horizon_color ::
                            (ProceduralSky :< cls, Object :< cls) => cls -> Color -> IO ()
 set_ground_horizon_color cls arg1
@@ -780,7 +740,6 @@ instance NodeMethod ProceduralSky "set_ground_horizon_color"
 
 {-# NOINLINE bindProceduralSky_set_sky_curve #-}
 
--- | How quickly the @sky_horizon_color@ fades into the @sky_top_color@.
 bindProceduralSky_set_sky_curve :: MethodBind
 bindProceduralSky_set_sky_curve
   = unsafePerformIO $
@@ -790,7 +749,6 @@ bindProceduralSky_set_sky_curve
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | How quickly the @sky_horizon_color@ fades into the @sky_top_color@.
 set_sky_curve ::
                 (ProceduralSky :< cls, Object :< cls) => cls -> Float -> IO ()
 set_sky_curve cls arg1
@@ -807,7 +765,6 @@ instance NodeMethod ProceduralSky "set_sky_curve" '[Float] (IO ())
 
 {-# NOINLINE bindProceduralSky_set_sky_energy #-}
 
--- | Amount of energy contribution from the sky.
 bindProceduralSky_set_sky_energy :: MethodBind
 bindProceduralSky_set_sky_energy
   = unsafePerformIO $
@@ -817,7 +774,6 @@ bindProceduralSky_set_sky_energy
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Amount of energy contribution from the sky.
 set_sky_energy ::
                  (ProceduralSky :< cls, Object :< cls) => cls -> Float -> IO ()
 set_sky_energy cls arg1
@@ -835,7 +791,6 @@ instance NodeMethod ProceduralSky "set_sky_energy" '[Float] (IO ())
 
 {-# NOINLINE bindProceduralSky_set_sky_horizon_color #-}
 
--- | Color of the sky at the horizon.
 bindProceduralSky_set_sky_horizon_color :: MethodBind
 bindProceduralSky_set_sky_horizon_color
   = unsafePerformIO $
@@ -845,7 +800,6 @@ bindProceduralSky_set_sky_horizon_color
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Color of the sky at the horizon.
 set_sky_horizon_color ::
                         (ProceduralSky :< cls, Object :< cls) => cls -> Color -> IO ()
 set_sky_horizon_color cls arg1
@@ -864,7 +818,6 @@ instance NodeMethod ProceduralSky "set_sky_horizon_color" '[Color]
 
 {-# NOINLINE bindProceduralSky_set_sky_top_color #-}
 
--- | Color of the sky at the top.
 bindProceduralSky_set_sky_top_color :: MethodBind
 bindProceduralSky_set_sky_top_color
   = unsafePerformIO $
@@ -874,7 +827,6 @@ bindProceduralSky_set_sky_top_color
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Color of the sky at the top.
 set_sky_top_color ::
                     (ProceduralSky :< cls, Object :< cls) => cls -> Color -> IO ()
 set_sky_top_color cls arg1
@@ -893,7 +845,6 @@ instance NodeMethod ProceduralSky "set_sky_top_color" '[Color]
 
 {-# NOINLINE bindProceduralSky_set_sun_angle_max #-}
 
--- | Distance from center of sun where it fades out completely.
 bindProceduralSky_set_sun_angle_max :: MethodBind
 bindProceduralSky_set_sun_angle_max
   = unsafePerformIO $
@@ -903,7 +854,6 @@ bindProceduralSky_set_sun_angle_max
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Distance from center of sun where it fades out completely.
 set_sun_angle_max ::
                     (ProceduralSky :< cls, Object :< cls) => cls -> Float -> IO ()
 set_sun_angle_max cls arg1
@@ -922,7 +872,6 @@ instance NodeMethod ProceduralSky "set_sun_angle_max" '[Float]
 
 {-# NOINLINE bindProceduralSky_set_sun_angle_min #-}
 
--- | Distance from sun where it goes from solid to starting to fade.
 bindProceduralSky_set_sun_angle_min :: MethodBind
 bindProceduralSky_set_sun_angle_min
   = unsafePerformIO $
@@ -932,7 +881,6 @@ bindProceduralSky_set_sun_angle_min
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Distance from sun where it goes from solid to starting to fade.
 set_sun_angle_min ::
                     (ProceduralSky :< cls, Object :< cls) => cls -> Float -> IO ()
 set_sun_angle_min cls arg1
@@ -951,7 +899,6 @@ instance NodeMethod ProceduralSky "set_sun_angle_min" '[Float]
 
 {-# NOINLINE bindProceduralSky_set_sun_color #-}
 
--- | The sun's color.
 bindProceduralSky_set_sun_color :: MethodBind
 bindProceduralSky_set_sun_color
   = unsafePerformIO $
@@ -961,7 +908,6 @@ bindProceduralSky_set_sun_color
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The sun's color.
 set_sun_color ::
                 (ProceduralSky :< cls, Object :< cls) => cls -> Color -> IO ()
 set_sun_color cls arg1
@@ -978,7 +924,6 @@ instance NodeMethod ProceduralSky "set_sun_color" '[Color] (IO ())
 
 {-# NOINLINE bindProceduralSky_set_sun_curve #-}
 
--- | How quickly the sun fades away between @sun_angle_min@ and @sun_angle_max@.
 bindProceduralSky_set_sun_curve :: MethodBind
 bindProceduralSky_set_sun_curve
   = unsafePerformIO $
@@ -988,7 +933,6 @@ bindProceduralSky_set_sun_curve
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | How quickly the sun fades away between @sun_angle_min@ and @sun_angle_max@.
 set_sun_curve ::
                 (ProceduralSky :< cls, Object :< cls) => cls -> Float -> IO ()
 set_sun_curve cls arg1
@@ -1005,7 +949,6 @@ instance NodeMethod ProceduralSky "set_sun_curve" '[Float] (IO ())
 
 {-# NOINLINE bindProceduralSky_set_sun_energy #-}
 
--- | Amount of energy contribution from the sun.
 bindProceduralSky_set_sun_energy :: MethodBind
 bindProceduralSky_set_sun_energy
   = unsafePerformIO $
@@ -1015,7 +958,6 @@ bindProceduralSky_set_sun_energy
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Amount of energy contribution from the sun.
 set_sun_energy ::
                  (ProceduralSky :< cls, Object :< cls) => cls -> Float -> IO ()
 set_sun_energy cls arg1
@@ -1033,7 +975,6 @@ instance NodeMethod ProceduralSky "set_sun_energy" '[Float] (IO ())
 
 {-# NOINLINE bindProceduralSky_set_sun_latitude #-}
 
--- | The sun's height using polar coordinates.
 bindProceduralSky_set_sun_latitude :: MethodBind
 bindProceduralSky_set_sun_latitude
   = unsafePerformIO $
@@ -1043,7 +984,6 @@ bindProceduralSky_set_sun_latitude
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The sun's height using polar coordinates.
 set_sun_latitude ::
                    (ProceduralSky :< cls, Object :< cls) => cls -> Float -> IO ()
 set_sun_latitude cls arg1
@@ -1062,7 +1002,6 @@ instance NodeMethod ProceduralSky "set_sun_latitude" '[Float]
 
 {-# NOINLINE bindProceduralSky_set_sun_longitude #-}
 
--- | The direction of the sun using polar coordinates.
 bindProceduralSky_set_sun_longitude :: MethodBind
 bindProceduralSky_set_sun_longitude
   = unsafePerformIO $
@@ -1072,7 +1011,6 @@ bindProceduralSky_set_sun_longitude
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The direction of the sun using polar coordinates.
 set_sun_longitude ::
                     (ProceduralSky :< cls, Object :< cls) => cls -> Float -> IO ()
 set_sun_longitude cls arg1
@@ -1091,7 +1029,6 @@ instance NodeMethod ProceduralSky "set_sun_longitude" '[Float]
 
 {-# NOINLINE bindProceduralSky_set_texture_size #-}
 
--- | Size of @Texture@ that the ProceduralSky will generate. The size is set using @enum TextureSize@.
 bindProceduralSky_set_texture_size :: MethodBind
 bindProceduralSky_set_texture_size
   = unsafePerformIO $
@@ -1101,7 +1038,6 @@ bindProceduralSky_set_texture_size
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Size of @Texture@ that the ProceduralSky will generate. The size is set using @enum TextureSize@.
 set_texture_size ::
                    (ProceduralSky :< cls, Object :< cls) => cls -> Int -> IO ()
 set_texture_size cls arg1

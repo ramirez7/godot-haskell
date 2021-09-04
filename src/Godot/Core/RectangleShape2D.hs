@@ -24,7 +24,6 @@ instance NodeProperty RectangleShape2D "extents" Vector2 'False
 
 {-# NOINLINE bindRectangleShape2D_get_extents #-}
 
--- | The rectangle's half extents. The width and height of this shape is twice the half extents.
 bindRectangleShape2D_get_extents :: MethodBind
 bindRectangleShape2D_get_extents
   = unsafePerformIO $
@@ -34,7 +33,6 @@ bindRectangleShape2D_get_extents
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The rectangle's half extents. The width and height of this shape is twice the half extents.
 get_extents ::
               (RectangleShape2D :< cls, Object :< cls) => cls -> IO Vector2
 get_extents cls
@@ -52,7 +50,6 @@ instance NodeMethod RectangleShape2D "get_extents" '[] (IO Vector2)
 
 {-# NOINLINE bindRectangleShape2D_set_extents #-}
 
--- | The rectangle's half extents. The width and height of this shape is twice the half extents.
 bindRectangleShape2D_set_extents :: MethodBind
 bindRectangleShape2D_set_extents
   = unsafePerformIO $
@@ -62,7 +59,6 @@ bindRectangleShape2D_set_extents
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The rectangle's half extents. The width and height of this shape is twice the half extents.
 set_extents ::
               (RectangleShape2D :< cls, Object :< cls) => cls -> Vector2 -> IO ()
 set_extents cls arg1

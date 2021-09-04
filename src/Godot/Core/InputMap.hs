@@ -237,6 +237,7 @@ instance NodeMethod InputMap "erase_action" '[GodotString] (IO ())
 {-# NOINLINE bindInputMap_event_is_action #-}
 
 -- | Returns @true@ if the given event is part of an existing action. This method ignores keyboard modifiers if the given @InputEvent@ is not pressed (for proper release detection). See @method action_has_event@ if you don't want this behavior.
+--   				If @exact_match@ is @false@, it ignores the input modifiers for @InputEventKey@ and @InputEventMouseButton@ events, and the direction for @InputEventJoypadMotion@ events.
 bindInputMap_event_is_action :: MethodBind
 bindInputMap_event_is_action
   = unsafePerformIO $
@@ -247,6 +248,7 @@ bindInputMap_event_is_action
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | Returns @true@ if the given event is part of an existing action. This method ignores keyboard modifiers if the given @InputEvent@ is not pressed (for proper release detection). See @method action_has_event@ if you don't want this behavior.
+--   				If @exact_match@ is @false@, it ignores the input modifiers for @InputEventKey@ and @InputEventMouseButton@ events, and the direction for @InputEventJoypadMotion@ events.
 event_is_action ::
                   (InputMap :< cls, Object :< cls) =>
                   cls -> InputEvent -> GodotString -> IO Bool
@@ -266,7 +268,6 @@ instance NodeMethod InputMap "event_is_action"
 
 {-# NOINLINE bindInputMap_get_action_list #-}
 
--- | Returns an array of @InputEvent@s associated with a given action.
 bindInputMap_get_action_list :: MethodBind
 bindInputMap_get_action_list
   = unsafePerformIO $
@@ -276,7 +277,6 @@ bindInputMap_get_action_list
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns an array of @InputEvent@s associated with a given action.
 get_action_list ::
                   (InputMap :< cls, Object :< cls) => cls -> GodotString -> IO Array
 get_action_list cls arg1
@@ -344,7 +344,6 @@ instance NodeMethod InputMap "has_action" '[GodotString] (IO Bool)
 
 {-# NOINLINE bindInputMap_load_from_globals #-}
 
--- | Clears all @InputEventAction@ in the @InputMap@ and load it anew from @ProjectSettings@.
 bindInputMap_load_from_globals :: MethodBind
 bindInputMap_load_from_globals
   = unsafePerformIO $
@@ -354,7 +353,6 @@ bindInputMap_load_from_globals
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Clears all @InputEventAction@ in the @InputMap@ and load it anew from @ProjectSettings@.
 load_from_globals ::
                     (InputMap :< cls, Object :< cls) => cls -> IO ()
 load_from_globals cls

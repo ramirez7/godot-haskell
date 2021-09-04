@@ -103,12 +103,14 @@ instance NodeProperty AnimationNodeStateMachineTransition
              #-}
 
 -- | Turn on auto advance when this condition is set. The provided name will become a boolean parameter on the @AnimationTree@ that can be controlled from code (see @url=https://docs.godotengine.org/en/latest/tutorials/animation/animation_tree.html#controlling-from-code@@/url@). For example, if @AnimationTree.tree_root@ is an @AnimationNodeStateMachine@ and @advance_condition@ is set to @"idle"@:
---   			
---   @
---   
---   			$animation_tree@"parameters/conditions/idle"@ = is_on_floor and (linear_velocity.x == 0)
---   			
---   @
+--   			@codeblocks@
+--   			@gdscript@
+--   			$animation_tree.set("parameters/conditions/idle", is_on_floor and (linear_velocity.x == 0))
+--   			@/gdscript@
+--   			@csharp@
+--   			GetNode<AnimationTree>("animation_tree").Set("parameters/conditions/idle", IsOnFloor && (LinearVelocity.x == 0));
+--   			@/csharp@
+--   			@/codeblocks@
 bindAnimationNodeStateMachineTransition_get_advance_condition ::
                                                               MethodBind
 bindAnimationNodeStateMachineTransition_get_advance_condition
@@ -120,12 +122,14 @@ bindAnimationNodeStateMachineTransition_get_advance_condition
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | Turn on auto advance when this condition is set. The provided name will become a boolean parameter on the @AnimationTree@ that can be controlled from code (see @url=https://docs.godotengine.org/en/latest/tutorials/animation/animation_tree.html#controlling-from-code@@/url@). For example, if @AnimationTree.tree_root@ is an @AnimationNodeStateMachine@ and @advance_condition@ is set to @"idle"@:
---   			
---   @
---   
---   			$animation_tree@"parameters/conditions/idle"@ = is_on_floor and (linear_velocity.x == 0)
---   			
---   @
+--   			@codeblocks@
+--   			@gdscript@
+--   			$animation_tree.set("parameters/conditions/idle", is_on_floor and (linear_velocity.x == 0))
+--   			@/gdscript@
+--   			@csharp@
+--   			GetNode<AnimationTree>("animation_tree").Set("parameters/conditions/idle", IsOnFloor && (LinearVelocity.x == 0));
+--   			@/csharp@
+--   			@/codeblocks@
 get_advance_condition ::
                         (AnimationNodeStateMachineTransition :< cls, Object :< cls) =>
                         cls -> IO GodotString
@@ -329,12 +333,14 @@ instance NodeMethod AnimationNodeStateMachineTransition
              #-}
 
 -- | Turn on auto advance when this condition is set. The provided name will become a boolean parameter on the @AnimationTree@ that can be controlled from code (see @url=https://docs.godotengine.org/en/latest/tutorials/animation/animation_tree.html#controlling-from-code@@/url@). For example, if @AnimationTree.tree_root@ is an @AnimationNodeStateMachine@ and @advance_condition@ is set to @"idle"@:
---   			
---   @
---   
---   			$animation_tree@"parameters/conditions/idle"@ = is_on_floor and (linear_velocity.x == 0)
---   			
---   @
+--   			@codeblocks@
+--   			@gdscript@
+--   			$animation_tree.set("parameters/conditions/idle", is_on_floor and (linear_velocity.x == 0))
+--   			@/gdscript@
+--   			@csharp@
+--   			GetNode<AnimationTree>("animation_tree").Set("parameters/conditions/idle", IsOnFloor && (LinearVelocity.x == 0));
+--   			@/csharp@
+--   			@/codeblocks@
 bindAnimationNodeStateMachineTransition_set_advance_condition ::
                                                               MethodBind
 bindAnimationNodeStateMachineTransition_set_advance_condition
@@ -346,12 +352,14 @@ bindAnimationNodeStateMachineTransition_set_advance_condition
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | Turn on auto advance when this condition is set. The provided name will become a boolean parameter on the @AnimationTree@ that can be controlled from code (see @url=https://docs.godotengine.org/en/latest/tutorials/animation/animation_tree.html#controlling-from-code@@/url@). For example, if @AnimationTree.tree_root@ is an @AnimationNodeStateMachine@ and @advance_condition@ is set to @"idle"@:
---   			
---   @
---   
---   			$animation_tree@"parameters/conditions/idle"@ = is_on_floor and (linear_velocity.x == 0)
---   			
---   @
+--   			@codeblocks@
+--   			@gdscript@
+--   			$animation_tree.set("parameters/conditions/idle", is_on_floor and (linear_velocity.x == 0))
+--   			@/gdscript@
+--   			@csharp@
+--   			GetNode<AnimationTree>("animation_tree").Set("parameters/conditions/idle", IsOnFloor && (LinearVelocity.x == 0));
+--   			@/csharp@
+--   			@/codeblocks@
 set_advance_condition ::
                         (AnimationNodeStateMachineTransition :< cls, Object :< cls) =>
                         cls -> GodotString -> IO ()

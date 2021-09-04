@@ -68,7 +68,6 @@ instance NodeProperty ClippedCamera "process_mode" Int 'False where
 
 {-# NOINLINE bindClippedCamera_add_exception #-}
 
--- | Adds a collision exception so the camera does not collide with the specified node.
 bindClippedCamera_add_exception :: MethodBind
 bindClippedCamera_add_exception
   = unsafePerformIO $
@@ -78,7 +77,6 @@ bindClippedCamera_add_exception
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Adds a collision exception so the camera does not collide with the specified node.
 add_exception ::
                 (ClippedCamera :< cls, Object :< cls) => cls -> Object -> IO ()
 add_exception cls arg1
@@ -95,7 +93,6 @@ instance NodeMethod ClippedCamera "add_exception" '[Object] (IO ())
 
 {-# NOINLINE bindClippedCamera_add_exception_rid #-}
 
--- | Adds a collision exception so the camera does not collide with the specified @RID@.
 bindClippedCamera_add_exception_rid :: MethodBind
 bindClippedCamera_add_exception_rid
   = unsafePerformIO $
@@ -105,7 +102,6 @@ bindClippedCamera_add_exception_rid
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Adds a collision exception so the camera does not collide with the specified @RID@.
 add_exception_rid ::
                     (ClippedCamera :< cls, Object :< cls) => cls -> Rid -> IO ()
 add_exception_rid cls arg1
@@ -124,7 +120,6 @@ instance NodeMethod ClippedCamera "add_exception_rid" '[Rid]
 
 {-# NOINLINE bindClippedCamera_clear_exceptions #-}
 
--- | Removes all collision exceptions.
 bindClippedCamera_clear_exceptions :: MethodBind
 bindClippedCamera_clear_exceptions
   = unsafePerformIO $
@@ -134,7 +129,6 @@ bindClippedCamera_clear_exceptions
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Removes all collision exceptions.
 clear_exceptions ::
                    (ClippedCamera :< cls, Object :< cls) => cls -> IO ()
 clear_exceptions cls
@@ -152,7 +146,6 @@ instance NodeMethod ClippedCamera "clear_exceptions" '[] (IO ())
 
 {-# NOINLINE bindClippedCamera_get_clip_offset #-}
 
--- | Returns the distance the camera has been offset due to a collision.
 bindClippedCamera_get_clip_offset :: MethodBind
 bindClippedCamera_get_clip_offset
   = unsafePerformIO $
@@ -162,7 +155,6 @@ bindClippedCamera_get_clip_offset
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the distance the camera has been offset due to a collision.
 get_clip_offset ::
                   (ClippedCamera :< cls, Object :< cls) => cls -> IO Float
 get_clip_offset cls
@@ -180,7 +172,6 @@ instance NodeMethod ClippedCamera "get_clip_offset" '[] (IO Float)
 
 {-# NOINLINE bindClippedCamera_get_collision_mask #-}
 
--- | The camera's collision mask. Only objects in at least one collision layer matching the mask will be detected. See @url=https://docs.godotengine.org/en/latest/tutorials/physics/physics_introduction.html#collision-layers-and-masks@Collision layers and masks@/url@ in the documentation for more information.
 bindClippedCamera_get_collision_mask :: MethodBind
 bindClippedCamera_get_collision_mask
   = unsafePerformIO $
@@ -190,7 +181,6 @@ bindClippedCamera_get_collision_mask
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The camera's collision mask. Only objects in at least one collision layer matching the mask will be detected. See @url=https://docs.godotengine.org/en/latest/tutorials/physics/physics_introduction.html#collision-layers-and-masks@Collision layers and masks@/url@ in the documentation for more information.
 get_collision_mask ::
                      (ClippedCamera :< cls, Object :< cls) => cls -> IO Int
 get_collision_mask cls
@@ -208,8 +198,6 @@ instance NodeMethod ClippedCamera "get_collision_mask" '[] (IO Int)
 
 {-# NOINLINE bindClippedCamera_get_collision_mask_bit #-}
 
--- | Returns @true@ if the specified bit index is on.
---   				__Note:__ Bit indices range from 0-19.
 bindClippedCamera_get_collision_mask_bit :: MethodBind
 bindClippedCamera_get_collision_mask_bit
   = unsafePerformIO $
@@ -219,8 +207,6 @@ bindClippedCamera_get_collision_mask_bit
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns @true@ if the specified bit index is on.
---   				__Note:__ Bit indices range from 0-19.
 get_collision_mask_bit ::
                          (ClippedCamera :< cls, Object :< cls) => cls -> Int -> IO Bool
 get_collision_mask_bit cls arg1
@@ -239,7 +225,6 @@ instance NodeMethod ClippedCamera "get_collision_mask_bit" '[Int]
 
 {-# NOINLINE bindClippedCamera_get_margin #-}
 
--- | The camera's collision margin. The camera can't get closer than this distance to a colliding object.
 bindClippedCamera_get_margin :: MethodBind
 bindClippedCamera_get_margin
   = unsafePerformIO $
@@ -249,7 +234,6 @@ bindClippedCamera_get_margin
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The camera's collision margin. The camera can't get closer than this distance to a colliding object.
 get_margin ::
              (ClippedCamera :< cls, Object :< cls) => cls -> IO Float
 get_margin cls
@@ -265,7 +249,6 @@ instance NodeMethod ClippedCamera "get_margin" '[] (IO Float) where
 
 {-# NOINLINE bindClippedCamera_get_process_mode #-}
 
--- | The camera's process callback. See @enum ProcessMode@.
 bindClippedCamera_get_process_mode :: MethodBind
 bindClippedCamera_get_process_mode
   = unsafePerformIO $
@@ -275,7 +258,6 @@ bindClippedCamera_get_process_mode
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The camera's process callback. See @enum ProcessMode@.
 get_process_mode ::
                    (ClippedCamera :< cls, Object :< cls) => cls -> IO Int
 get_process_mode cls
@@ -293,7 +275,6 @@ instance NodeMethod ClippedCamera "get_process_mode" '[] (IO Int)
 
 {-# NOINLINE bindClippedCamera_is_clip_to_areas_enabled #-}
 
--- | If @true@, the camera stops on contact with @Area@s.
 bindClippedCamera_is_clip_to_areas_enabled :: MethodBind
 bindClippedCamera_is_clip_to_areas_enabled
   = unsafePerformIO $
@@ -303,7 +284,6 @@ bindClippedCamera_is_clip_to_areas_enabled
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, the camera stops on contact with @Area@s.
 is_clip_to_areas_enabled ::
                            (ClippedCamera :< cls, Object :< cls) => cls -> IO Bool
 is_clip_to_areas_enabled cls
@@ -322,7 +302,6 @@ instance NodeMethod ClippedCamera "is_clip_to_areas_enabled" '[]
 
 {-# NOINLINE bindClippedCamera_is_clip_to_bodies_enabled #-}
 
--- | If @true@, the camera stops on contact with @PhysicsBody@s.
 bindClippedCamera_is_clip_to_bodies_enabled :: MethodBind
 bindClippedCamera_is_clip_to_bodies_enabled
   = unsafePerformIO $
@@ -332,7 +311,6 @@ bindClippedCamera_is_clip_to_bodies_enabled
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, the camera stops on contact with @PhysicsBody@s.
 is_clip_to_bodies_enabled ::
                             (ClippedCamera :< cls, Object :< cls) => cls -> IO Bool
 is_clip_to_bodies_enabled cls
@@ -351,7 +329,6 @@ instance NodeMethod ClippedCamera "is_clip_to_bodies_enabled" '[]
 
 {-# NOINLINE bindClippedCamera_remove_exception #-}
 
--- | Removes a collision exception with the specified node.
 bindClippedCamera_remove_exception :: MethodBind
 bindClippedCamera_remove_exception
   = unsafePerformIO $
@@ -361,7 +338,6 @@ bindClippedCamera_remove_exception
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Removes a collision exception with the specified node.
 remove_exception ::
                    (ClippedCamera :< cls, Object :< cls) => cls -> Object -> IO ()
 remove_exception cls arg1
@@ -380,7 +356,6 @@ instance NodeMethod ClippedCamera "remove_exception" '[Object]
 
 {-# NOINLINE bindClippedCamera_remove_exception_rid #-}
 
--- | Removes a collision exception with the specified @RID@.
 bindClippedCamera_remove_exception_rid :: MethodBind
 bindClippedCamera_remove_exception_rid
   = unsafePerformIO $
@@ -390,7 +365,6 @@ bindClippedCamera_remove_exception_rid
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Removes a collision exception with the specified @RID@.
 remove_exception_rid ::
                        (ClippedCamera :< cls, Object :< cls) => cls -> Rid -> IO ()
 remove_exception_rid cls arg1
@@ -409,7 +383,6 @@ instance NodeMethod ClippedCamera "remove_exception_rid" '[Rid]
 
 {-# NOINLINE bindClippedCamera_set_clip_to_areas #-}
 
--- | If @true@, the camera stops on contact with @Area@s.
 bindClippedCamera_set_clip_to_areas :: MethodBind
 bindClippedCamera_set_clip_to_areas
   = unsafePerformIO $
@@ -419,7 +392,6 @@ bindClippedCamera_set_clip_to_areas
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, the camera stops on contact with @Area@s.
 set_clip_to_areas ::
                     (ClippedCamera :< cls, Object :< cls) => cls -> Bool -> IO ()
 set_clip_to_areas cls arg1
@@ -438,7 +410,6 @@ instance NodeMethod ClippedCamera "set_clip_to_areas" '[Bool]
 
 {-# NOINLINE bindClippedCamera_set_clip_to_bodies #-}
 
--- | If @true@, the camera stops on contact with @PhysicsBody@s.
 bindClippedCamera_set_clip_to_bodies :: MethodBind
 bindClippedCamera_set_clip_to_bodies
   = unsafePerformIO $
@@ -448,7 +419,6 @@ bindClippedCamera_set_clip_to_bodies
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, the camera stops on contact with @PhysicsBody@s.
 set_clip_to_bodies ::
                      (ClippedCamera :< cls, Object :< cls) => cls -> Bool -> IO ()
 set_clip_to_bodies cls arg1
@@ -467,7 +437,6 @@ instance NodeMethod ClippedCamera "set_clip_to_bodies" '[Bool]
 
 {-# NOINLINE bindClippedCamera_set_collision_mask #-}
 
--- | The camera's collision mask. Only objects in at least one collision layer matching the mask will be detected. See @url=https://docs.godotengine.org/en/latest/tutorials/physics/physics_introduction.html#collision-layers-and-masks@Collision layers and masks@/url@ in the documentation for more information.
 bindClippedCamera_set_collision_mask :: MethodBind
 bindClippedCamera_set_collision_mask
   = unsafePerformIO $
@@ -477,7 +446,6 @@ bindClippedCamera_set_collision_mask
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The camera's collision mask. Only objects in at least one collision layer matching the mask will be detected. See @url=https://docs.godotengine.org/en/latest/tutorials/physics/physics_introduction.html#collision-layers-and-masks@Collision layers and masks@/url@ in the documentation for more information.
 set_collision_mask ::
                      (ClippedCamera :< cls, Object :< cls) => cls -> Int -> IO ()
 set_collision_mask cls arg1
@@ -496,8 +464,6 @@ instance NodeMethod ClippedCamera "set_collision_mask" '[Int]
 
 {-# NOINLINE bindClippedCamera_set_collision_mask_bit #-}
 
--- | Sets the specified bit index to the @value@.
---   				__Note:__ Bit indices range from 0-19.
 bindClippedCamera_set_collision_mask_bit :: MethodBind
 bindClippedCamera_set_collision_mask_bit
   = unsafePerformIO $
@@ -507,8 +473,6 @@ bindClippedCamera_set_collision_mask_bit
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the specified bit index to the @value@.
---   				__Note:__ Bit indices range from 0-19.
 set_collision_mask_bit ::
                          (ClippedCamera :< cls, Object :< cls) =>
                          cls -> Int -> Bool -> IO ()
@@ -529,7 +493,6 @@ instance NodeMethod ClippedCamera "set_collision_mask_bit"
 
 {-# NOINLINE bindClippedCamera_set_margin #-}
 
--- | The camera's collision margin. The camera can't get closer than this distance to a colliding object.
 bindClippedCamera_set_margin :: MethodBind
 bindClippedCamera_set_margin
   = unsafePerformIO $
@@ -539,7 +502,6 @@ bindClippedCamera_set_margin
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The camera's collision margin. The camera can't get closer than this distance to a colliding object.
 set_margin ::
              (ClippedCamera :< cls, Object :< cls) => cls -> Float -> IO ()
 set_margin cls arg1
@@ -556,7 +518,6 @@ instance NodeMethod ClippedCamera "set_margin" '[Float] (IO ())
 
 {-# NOINLINE bindClippedCamera_set_process_mode #-}
 
--- | The camera's process callback. See @enum ProcessMode@.
 bindClippedCamera_set_process_mode :: MethodBind
 bindClippedCamera_set_process_mode
   = unsafePerformIO $
@@ -566,7 +527,6 @@ bindClippedCamera_set_process_mode
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The camera's process callback. See @enum ProcessMode@.
 set_process_mode ::
                    (ClippedCamera :< cls, Object :< cls) => cls -> Int -> IO ()
 set_process_mode cls arg1

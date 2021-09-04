@@ -50,7 +50,6 @@ instance NodeMethod EditorScenePostImport "get_source_file" '[]
 
 {-# NOINLINE bindEditorScenePostImport_get_source_folder #-}
 
--- | Returns the resource folder the imported scene file is located in.
 bindEditorScenePostImport_get_source_folder :: MethodBind
 bindEditorScenePostImport_get_source_folder
   = unsafePerformIO $
@@ -60,7 +59,6 @@ bindEditorScenePostImport_get_source_folder
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the resource folder the imported scene file is located in.
 get_source_folder ::
                     (EditorScenePostImport :< cls, Object :< cls) =>
                     cls -> IO GodotString
@@ -80,7 +78,6 @@ instance NodeMethod EditorScenePostImport "get_source_folder" '[]
 
 {-# NOINLINE bindEditorScenePostImport_post_import #-}
 
--- | Called after the scene was imported. This method must return the modified version of the scene.
 bindEditorScenePostImport_post_import :: MethodBind
 bindEditorScenePostImport_post_import
   = unsafePerformIO $
@@ -90,7 +87,6 @@ bindEditorScenePostImport_post_import
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Called after the scene was imported. This method must return the modified version of the scene.
 post_import ::
               (EditorScenePostImport :< cls, Object :< cls) =>
               cls -> Object -> IO Object

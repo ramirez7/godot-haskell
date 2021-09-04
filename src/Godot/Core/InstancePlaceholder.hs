@@ -21,6 +21,7 @@ import Godot.Core.Node()
 
 {-# NOINLINE bindInstancePlaceholder_create_instance #-}
 
+-- | Not thread-safe. Use @method Object.call_deferred@ if calling from a thread.
 bindInstancePlaceholder_create_instance :: MethodBind
 bindInstancePlaceholder_create_instance
   = unsafePerformIO $
@@ -30,6 +31,7 @@ bindInstancePlaceholder_create_instance
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
+-- | Not thread-safe. Use @method Object.call_deferred@ if calling from a thread.
 create_instance ::
                   (InstancePlaceholder :< cls, Object :< cls) =>
                   cls -> Maybe Bool -> Maybe PackedScene -> IO Node
@@ -52,7 +54,7 @@ instance NodeMethod InstancePlaceholder "create_instance"
 
 {-# NOINLINE bindInstancePlaceholder_get_instance_path #-}
 
--- | Gets the path to the @PackedScene@ resource file that is loaded by default when calling @method replace_by_instance@.
+-- | Gets the path to the @PackedScene@ resource file that is loaded by default when calling @method create_instance@. Not thread-safe. Use @method Object.call_deferred@ if calling from a thread.
 bindInstancePlaceholder_get_instance_path :: MethodBind
 bindInstancePlaceholder_get_instance_path
   = unsafePerformIO $
@@ -62,7 +64,7 @@ bindInstancePlaceholder_get_instance_path
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Gets the path to the @PackedScene@ resource file that is loaded by default when calling @method replace_by_instance@.
+-- | Gets the path to the @PackedScene@ resource file that is loaded by default when calling @method create_instance@. Not thread-safe. Use @method Object.call_deferred@ if calling from a thread.
 get_instance_path ::
                     (InstancePlaceholder :< cls, Object :< cls) =>
                     cls -> IO GodotString
@@ -111,7 +113,6 @@ instance NodeMethod InstancePlaceholder "get_stored_values"
 
 {-# NOINLINE bindInstancePlaceholder_replace_by_instance #-}
 
--- | Replaces this placeholder by the scene handed as an argument, or the original scene if no argument is given. As for all resources, the scene is loaded only if it's not loaded already. By manually loading the scene beforehand, delays caused by this function can be avoided.
 bindInstancePlaceholder_replace_by_instance :: MethodBind
 bindInstancePlaceholder_replace_by_instance
   = unsafePerformIO $
@@ -121,7 +122,6 @@ bindInstancePlaceholder_replace_by_instance
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Replaces this placeholder by the scene handed as an argument, or the original scene if no argument is given. As for all resources, the scene is loaded only if it's not loaded already. By manually loading the scene beforehand, delays caused by this function can be avoided.
 replace_by_instance ::
                       (InstancePlaceholder :< cls, Object :< cls) =>
                       cls -> Maybe PackedScene -> IO ()

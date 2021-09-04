@@ -102,19 +102,25 @@ _MODE_RIGID = 0
 _MODE_CHARACTER :: Int
 _MODE_CHARACTER = 2
 
--- | Emitted when a body enters into contact with this one. Requires @contact_monitor@ to be set to @true@ and @contacts_reported@ to be set high enough to detect all the collisions.
+-- | Emitted when a collision with another @PhysicsBody2D@ or @TileMap@ occurs. Requires @contact_monitor@ to be set to @true@ and @contacts_reported@ to be set high enough to detect all the collisions. @TileMap@s are detected if the @TileSet@ has Collision @Shape2D@s.
+--   				@body@ the @Node@, if it exists in the tree, of the other @PhysicsBody2D@ or @TileMap@.
 sig_body_entered :: Godot.Internal.Dispatch.Signal RigidBody2D
 sig_body_entered = Godot.Internal.Dispatch.Signal "body_entered"
 
 instance NodeSignal RigidBody2D "body_entered" '[Node]
 
--- | Emitted when a body exits contact with this one. Requires @contact_monitor@ to be set to @true@ and @contacts_reported@ to be set high enough to detect all the collisions.
+-- | Emitted when the collision with another @PhysicsBody2D@ or @TileMap@ ends. Requires @contact_monitor@ to be set to @true@ and @contacts_reported@ to be set high enough to detect all the collisions. @TileMap@s are detected if the @TileSet@ has Collision @Shape2D@s.
+--   				@body@ the @Node@, if it exists in the tree, of the other @PhysicsBody2D@ or @TileMap@.
 sig_body_exited :: Godot.Internal.Dispatch.Signal RigidBody2D
 sig_body_exited = Godot.Internal.Dispatch.Signal "body_exited"
 
 instance NodeSignal RigidBody2D "body_exited" '[Node]
 
--- | Emitted when a body enters into contact with this one. Reports colliding shape information. See @CollisionObject2D@ for shape index information. Requires @contact_monitor@ to be set to @true@ and @contacts_reported@ to be set high enough to detect all the collisions.
+-- | Emitted when one of this RigidBody2D's @Shape2D@s collides with another @PhysicsBody2D@ or @TileMap@'s @Shape2D@s. Requires @contact_monitor@ to be set to @true@ and @contacts_reported@ to be set high enough to detect all the collisions. @TileMap@s are detected if the @TileSet@ has Collision @Shape2D@s.
+--   				@body_id@ the @RID@ of the other @PhysicsBody2D@ or @TileSet@'s @CollisionObject2D@ used by the @PhysicsServer2D@.
+--   				@body@ the @Node@, if it exists in the tree, of the other @PhysicsBody2D@ or @TileMap@.
+--   				@body_shape@ the index of the @Shape2D@ of the other @PhysicsBody2D@ or @TileMap@ used by the @PhysicsServer2D@.
+--   				@local_shape@ the index of the @Shape2D@ of this RigidBody2D used by the @PhysicsServer2D@.
 sig_body_shape_entered ::
                        Godot.Internal.Dispatch.Signal RigidBody2D
 sig_body_shape_entered
@@ -123,7 +129,11 @@ sig_body_shape_entered
 instance NodeSignal RigidBody2D "body_shape_entered"
            '[Int, Node, Int, Int]
 
--- | Emitted when a body shape exits contact with this one. Reports colliding shape information. See @CollisionObject2D@ for shape index information. Requires @contact_monitor@ to be set to @true@ and @contacts_reported@ to be set high enough to detect all the collisions.
+-- | Emitted when the collision between one of this RigidBody2D's @Shape2D@s and another @PhysicsBody2D@ or @TileMap@'s @Shape2D@s ends. Requires @contact_monitor@ to be set to @true@ and @contacts_reported@ to be set high enough to detect all the collisions. @TileMap@s are detected if the @TileSet@ has Collision @Shape2D@s.
+--   				@body_id@ the @RID@ of the other @PhysicsBody2D@ or @TileSet@'s @CollisionObject2D@ used by the @PhysicsServer2D@.
+--   				@body@ the @Node@, if it exists in the tree, of the other @PhysicsBody2D@ or @TileMap@.
+--   				@body_shape@ the index of the @Shape2D@ of the other @PhysicsBody2D@ or @TileMap@ used by the @PhysicsServer2D@.
+--   				@local_shape@ the index of the @Shape2D@ of this RigidBody2D used by the @PhysicsServer2D@.
 sig_body_shape_exited :: Godot.Internal.Dispatch.Signal RigidBody2D
 sig_body_shape_exited
   = Godot.Internal.Dispatch.Signal "body_shape_exited"
@@ -550,6 +560,7 @@ instance NodeMethod RigidBody2D "apply_torque_impulse" '[Float]
 {-# NOINLINE bindRigidBody2D_get_angular_damp #-}
 
 -- | Damps the body's @angular_velocity@. If @-1@, the body will use the __Default Angular Damp__ defined in __Project > Project Settings > Physics > 2d__.
+--   			See @ProjectSettings.physics/2d/default_angular_damp@ for more details about damping.
 bindRigidBody2D_get_angular_damp :: MethodBind
 bindRigidBody2D_get_angular_damp
   = unsafePerformIO $
@@ -560,6 +571,7 @@ bindRigidBody2D_get_angular_damp
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | Damps the body's @angular_velocity@. If @-1@, the body will use the __Default Angular Damp__ defined in __Project > Project Settings > Physics > 2d__.
+--   			See @ProjectSettings.physics/2d/default_angular_damp@ for more details about damping.
 get_angular_damp ::
                    (RigidBody2D :< cls, Object :< cls) => cls -> IO Float
 get_angular_damp cls
@@ -663,8 +675,6 @@ instance NodeMethod RigidBody2D "get_applied_torque" '[] (IO Float)
 
 {-# NOINLINE bindRigidBody2D_get_bounce #-}
 
--- | The body's bounciness. Values range from @0@ (no bounce) to @1@ (full bounciness).
---   			Deprecated, use @PhysicsMaterial.bounce@ instead via @physics_material_override@.
 bindRigidBody2D_get_bounce :: MethodBind
 bindRigidBody2D_get_bounce
   = unsafePerformIO $
@@ -674,8 +684,6 @@ bindRigidBody2D_get_bounce
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The body's bounciness. Values range from @0@ (no bounce) to @1@ (full bounciness).
---   			Deprecated, use @PhysicsMaterial.bounce@ instead via @physics_material_override@.
 get_bounce ::
              (RigidBody2D :< cls, Object :< cls) => cls -> IO Float
 get_bounce cls
@@ -759,8 +767,6 @@ instance NodeMethod RigidBody2D
 
 {-# NOINLINE bindRigidBody2D_get_friction #-}
 
--- | The body's friction. Values range from @0@ (frictionless) to @1@ (maximum friction).
---   			Deprecated, use @PhysicsMaterial.friction@ instead via @physics_material_override@.
 bindRigidBody2D_get_friction :: MethodBind
 bindRigidBody2D_get_friction
   = unsafePerformIO $
@@ -770,8 +776,6 @@ bindRigidBody2D_get_friction
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The body's friction. Values range from @0@ (frictionless) to @1@ (maximum friction).
---   			Deprecated, use @PhysicsMaterial.friction@ instead via @physics_material_override@.
 get_friction ::
                (RigidBody2D :< cls, Object :< cls) => cls -> IO Float
 get_friction cls
@@ -842,6 +846,7 @@ instance NodeMethod RigidBody2D "get_inertia" '[] (IO Float) where
 {-# NOINLINE bindRigidBody2D_get_linear_damp #-}
 
 -- | Damps the body's @linear_velocity@. If @-1@, the body will use the __Default Linear Damp__ in __Project > Project Settings > Physics > 2d__.
+--   			See @ProjectSettings.physics/2d/default_linear_damp@ for more details about damping.
 bindRigidBody2D_get_linear_damp :: MethodBind
 bindRigidBody2D_get_linear_damp
   = unsafePerformIO $
@@ -852,6 +857,7 @@ bindRigidBody2D_get_linear_damp
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | Damps the body's @linear_velocity@. If @-1@, the body will use the __Default Linear Damp__ in __Project > Project Settings > Physics > 2d__.
+--   			See @ProjectSettings.physics/2d/default_linear_damp@ for more details about damping.
 get_linear_damp ::
                   (RigidBody2D :< cls, Object :< cls) => cls -> IO Float
 get_linear_damp cls
@@ -922,7 +928,7 @@ instance NodeMethod RigidBody2D "get_mass" '[] (IO Float) where
 {-# NOINLINE bindRigidBody2D_get_max_contacts_reported #-}
 
 -- | The maximum number of contacts that will be recorded. Requires @contact_monitor@ to be set to @true@.
---   			__Note:__ The number of contacts is different from the number of collisions. Collisions between parallel edges will result in two contacts (one at each end), and collisions between parallel faces will result in four contacts (one at each corner).
+--   			__Note:__ The number of contacts is different from the number of collisions. Collisions between parallel edges will result in two contacts (one at each end).
 bindRigidBody2D_get_max_contacts_reported :: MethodBind
 bindRigidBody2D_get_max_contacts_reported
   = unsafePerformIO $
@@ -933,7 +939,7 @@ bindRigidBody2D_get_max_contacts_reported
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | The maximum number of contacts that will be recorded. Requires @contact_monitor@ to be set to @true@.
---   			__Note:__ The number of contacts is different from the number of collisions. Collisions between parallel edges will result in two contacts (one at each end), and collisions between parallel faces will result in four contacts (one at each corner).
+--   			__Note:__ The number of contacts is different from the number of collisions. Collisions between parallel edges will result in two contacts (one at each end).
 get_max_contacts_reported ::
                             (RigidBody2D :< cls, Object :< cls) => cls -> IO Int
 get_max_contacts_reported cls
@@ -1008,7 +1014,6 @@ instance NodeMethod RigidBody2D "get_physics_material_override" '[]
 
 {-# NOINLINE bindRigidBody2D_get_weight #-}
 
--- | The body's weight based on its mass and the __Default Gravity__ value in __Project > Project Settings > Physics > 2d__.
 bindRigidBody2D_get_weight :: MethodBind
 bindRigidBody2D_get_weight
   = unsafePerformIO $
@@ -1018,7 +1023,6 @@ bindRigidBody2D_get_weight
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The body's weight based on its mass and the __Default Gravity__ value in __Project > Project Settings > Physics > 2d__.
 get_weight ::
              (RigidBody2D :< cls, Object :< cls) => cls -> IO Float
 get_weight cls
@@ -1035,7 +1039,6 @@ instance NodeMethod RigidBody2D "get_weight" '[] (IO Float) where
 {-# NOINLINE bindRigidBody2D_is_able_to_sleep #-}
 
 -- | If @true@, the body can enter sleep mode when there is no movement. See @sleeping@.
---   			__Note:__ A RigidBody2D will never enter sleep mode automatically if its @mode@ is @MODE_CHARACTER@. It can still be put to sleep manually by setting its @sleeping@ property to @true@.
 bindRigidBody2D_is_able_to_sleep :: MethodBind
 bindRigidBody2D_is_able_to_sleep
   = unsafePerformIO $
@@ -1046,7 +1049,6 @@ bindRigidBody2D_is_able_to_sleep
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | If @true@, the body can enter sleep mode when there is no movement. See @sleeping@.
---   			__Note:__ A RigidBody2D will never enter sleep mode automatically if its @mode@ is @MODE_CHARACTER@. It can still be put to sleep manually by setting its @sleeping@ property to @true@.
 is_able_to_sleep ::
                    (RigidBody2D :< cls, Object :< cls) => cls -> IO Bool
 is_able_to_sleep cls
@@ -1149,6 +1151,7 @@ instance NodeMethod RigidBody2D "is_using_custom_integrator" '[]
 {-# NOINLINE bindRigidBody2D_set_angular_damp #-}
 
 -- | Damps the body's @angular_velocity@. If @-1@, the body will use the __Default Angular Damp__ defined in __Project > Project Settings > Physics > 2d__.
+--   			See @ProjectSettings.physics/2d/default_angular_damp@ for more details about damping.
 bindRigidBody2D_set_angular_damp :: MethodBind
 bindRigidBody2D_set_angular_damp
   = unsafePerformIO $
@@ -1159,6 +1162,7 @@ bindRigidBody2D_set_angular_damp
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | Damps the body's @angular_velocity@. If @-1@, the body will use the __Default Angular Damp__ defined in __Project > Project Settings > Physics > 2d__.
+--   			See @ProjectSettings.physics/2d/default_angular_damp@ for more details about damping.
 set_angular_damp ::
                    (RigidBody2D :< cls, Object :< cls) => cls -> Float -> IO ()
 set_angular_damp cls arg1
@@ -1292,8 +1296,6 @@ instance NodeMethod RigidBody2D "set_axis_velocity" '[Vector2]
 
 {-# NOINLINE bindRigidBody2D_set_bounce #-}
 
--- | The body's bounciness. Values range from @0@ (no bounce) to @1@ (full bounciness).
---   			Deprecated, use @PhysicsMaterial.bounce@ instead via @physics_material_override@.
 bindRigidBody2D_set_bounce :: MethodBind
 bindRigidBody2D_set_bounce
   = unsafePerformIO $
@@ -1303,8 +1305,6 @@ bindRigidBody2D_set_bounce
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The body's bounciness. Values range from @0@ (no bounce) to @1@ (full bounciness).
---   			Deprecated, use @PhysicsMaterial.bounce@ instead via @physics_material_override@.
 set_bounce ::
              (RigidBody2D :< cls, Object :< cls) => cls -> Float -> IO ()
 set_bounce cls arg1
@@ -1321,7 +1321,6 @@ instance NodeMethod RigidBody2D "set_bounce" '[Float] (IO ()) where
 {-# NOINLINE bindRigidBody2D_set_can_sleep #-}
 
 -- | If @true@, the body can enter sleep mode when there is no movement. See @sleeping@.
---   			__Note:__ A RigidBody2D will never enter sleep mode automatically if its @mode@ is @MODE_CHARACTER@. It can still be put to sleep manually by setting its @sleeping@ property to @true@.
 bindRigidBody2D_set_can_sleep :: MethodBind
 bindRigidBody2D_set_can_sleep
   = unsafePerformIO $
@@ -1332,7 +1331,6 @@ bindRigidBody2D_set_can_sleep
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | If @true@, the body can enter sleep mode when there is no movement. See @sleeping@.
---   			__Note:__ A RigidBody2D will never enter sleep mode automatically if its @mode@ is @MODE_CHARACTER@. It can still be put to sleep manually by setting its @sleeping@ property to @true@.
 set_can_sleep ::
                 (RigidBody2D :< cls, Object :< cls) => cls -> Bool -> IO ()
 set_can_sleep cls arg1
@@ -1415,8 +1413,6 @@ instance NodeMethod RigidBody2D
 
 {-# NOINLINE bindRigidBody2D_set_friction #-}
 
--- | The body's friction. Values range from @0@ (frictionless) to @1@ (maximum friction).
---   			Deprecated, use @PhysicsMaterial.friction@ instead via @physics_material_override@.
 bindRigidBody2D_set_friction :: MethodBind
 bindRigidBody2D_set_friction
   = unsafePerformIO $
@@ -1426,8 +1422,6 @@ bindRigidBody2D_set_friction
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The body's friction. Values range from @0@ (frictionless) to @1@ (maximum friction).
---   			Deprecated, use @PhysicsMaterial.friction@ instead via @physics_material_override@.
 set_friction ::
                (RigidBody2D :< cls, Object :< cls) => cls -> Float -> IO ()
 set_friction cls arg1
@@ -1501,6 +1495,7 @@ instance NodeMethod RigidBody2D "set_inertia" '[Float] (IO ())
 {-# NOINLINE bindRigidBody2D_set_linear_damp #-}
 
 -- | Damps the body's @linear_velocity@. If @-1@, the body will use the __Default Linear Damp__ in __Project > Project Settings > Physics > 2d__.
+--   			See @ProjectSettings.physics/2d/default_linear_damp@ for more details about damping.
 bindRigidBody2D_set_linear_damp :: MethodBind
 bindRigidBody2D_set_linear_damp
   = unsafePerformIO $
@@ -1511,6 +1506,7 @@ bindRigidBody2D_set_linear_damp
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | Damps the body's @linear_velocity@. If @-1@, the body will use the __Default Linear Damp__ in __Project > Project Settings > Physics > 2d__.
+--   			See @ProjectSettings.physics/2d/default_linear_damp@ for more details about damping.
 set_linear_damp ::
                   (RigidBody2D :< cls, Object :< cls) => cls -> Float -> IO ()
 set_linear_damp cls arg1
@@ -1582,7 +1578,7 @@ instance NodeMethod RigidBody2D "set_mass" '[Float] (IO ()) where
 {-# NOINLINE bindRigidBody2D_set_max_contacts_reported #-}
 
 -- | The maximum number of contacts that will be recorded. Requires @contact_monitor@ to be set to @true@.
---   			__Note:__ The number of contacts is different from the number of collisions. Collisions between parallel edges will result in two contacts (one at each end), and collisions between parallel faces will result in four contacts (one at each corner).
+--   			__Note:__ The number of contacts is different from the number of collisions. Collisions between parallel edges will result in two contacts (one at each end).
 bindRigidBody2D_set_max_contacts_reported :: MethodBind
 bindRigidBody2D_set_max_contacts_reported
   = unsafePerformIO $
@@ -1593,7 +1589,7 @@ bindRigidBody2D_set_max_contacts_reported
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | The maximum number of contacts that will be recorded. Requires @contact_monitor@ to be set to @true@.
---   			__Note:__ The number of contacts is different from the number of collisions. Collisions between parallel edges will result in two contacts (one at each end), and collisions between parallel faces will result in four contacts (one at each corner).
+--   			__Note:__ The number of contacts is different from the number of collisions. Collisions between parallel edges will result in two contacts (one at each end).
 set_max_contacts_reported ::
                             (RigidBody2D :< cls, Object :< cls) => cls -> Int -> IO ()
 set_max_contacts_reported cls arg1
@@ -1727,7 +1723,6 @@ instance NodeMethod RigidBody2D "set_use_custom_integrator" '[Bool]
 
 {-# NOINLINE bindRigidBody2D_set_weight #-}
 
--- | The body's weight based on its mass and the __Default Gravity__ value in __Project > Project Settings > Physics > 2d__.
 bindRigidBody2D_set_weight :: MethodBind
 bindRigidBody2D_set_weight
   = unsafePerformIO $
@@ -1737,7 +1732,6 @@ bindRigidBody2D_set_weight
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The body's weight based on its mass and the __Default Gravity__ value in __Project > Project Settings > Physics > 2d__.
 set_weight ::
              (RigidBody2D :< cls, Object :< cls) => cls -> Float -> IO ()
 set_weight cls arg1
@@ -1753,7 +1747,6 @@ instance NodeMethod RigidBody2D "set_weight" '[Float] (IO ()) where
 
 {-# NOINLINE bindRigidBody2D_test_motion #-}
 
--- | Returns @true@ if a collision would result from moving in the given vector. @margin@ increases the size of the shapes involved in the collision detection, and @result@ is an object of type @Physics2DTestMotionResult@, which contains additional information about the collision (should there be one).
 bindRigidBody2D_test_motion :: MethodBind
 bindRigidBody2D_test_motion
   = unsafePerformIO $
@@ -1763,7 +1756,6 @@ bindRigidBody2D_test_motion
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns @true@ if a collision would result from moving in the given vector. @margin@ increases the size of the shapes involved in the collision detection, and @result@ is an object of type @Physics2DTestMotionResult@, which contains additional information about the collision (should there be one).
 test_motion ::
               (RigidBody2D :< cls, Object :< cls) =>
               cls ->

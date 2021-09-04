@@ -27,7 +27,6 @@ instance NodeProperty CapsuleShape "radius" Float 'False where
 
 {-# NOINLINE bindCapsuleShape_get_height #-}
 
--- | The capsule's height.
 bindCapsuleShape_get_height :: MethodBind
 bindCapsuleShape_get_height
   = unsafePerformIO $
@@ -37,7 +36,6 @@ bindCapsuleShape_get_height
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The capsule's height.
 get_height ::
              (CapsuleShape :< cls, Object :< cls) => cls -> IO Float
 get_height cls
@@ -53,7 +51,6 @@ instance NodeMethod CapsuleShape "get_height" '[] (IO Float) where
 
 {-# NOINLINE bindCapsuleShape_get_radius #-}
 
--- | The capsule's radius.
 bindCapsuleShape_get_radius :: MethodBind
 bindCapsuleShape_get_radius
   = unsafePerformIO $
@@ -63,7 +60,6 @@ bindCapsuleShape_get_radius
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The capsule's radius.
 get_radius ::
              (CapsuleShape :< cls, Object :< cls) => cls -> IO Float
 get_radius cls
@@ -79,7 +75,6 @@ instance NodeMethod CapsuleShape "get_radius" '[] (IO Float) where
 
 {-# NOINLINE bindCapsuleShape_set_height #-}
 
--- | The capsule's height.
 bindCapsuleShape_set_height :: MethodBind
 bindCapsuleShape_set_height
   = unsafePerformIO $
@@ -89,7 +84,6 @@ bindCapsuleShape_set_height
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The capsule's height.
 set_height ::
              (CapsuleShape :< cls, Object :< cls) => cls -> Float -> IO ()
 set_height cls arg1
@@ -106,7 +100,6 @@ instance NodeMethod CapsuleShape "set_height" '[Float] (IO ())
 
 {-# NOINLINE bindCapsuleShape_set_radius #-}
 
--- | The capsule's radius.
 bindCapsuleShape_set_radius :: MethodBind
 bindCapsuleShape_set_radius
   = unsafePerformIO $
@@ -116,7 +109,6 @@ bindCapsuleShape_set_radius
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The capsule's radius.
 set_radius ::
              (CapsuleShape :< cls, Object :< cls) => cls -> Float -> IO ()
 set_radius cls arg1

@@ -131,7 +131,7 @@ instance NodeMethod StyleBox "get_current_item_drawn" '[]
 
 {-# NOINLINE bindStyleBox_get_default_margin #-}
 
--- | Returns the default value of the specified @enum Margin@.
+-- | Returns the default margin of the specified @enum Side@.
 bindStyleBox_get_default_margin :: MethodBind
 bindStyleBox_get_default_margin
   = unsafePerformIO $
@@ -141,7 +141,7 @@ bindStyleBox_get_default_margin
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the default value of the specified @enum Margin@.
+-- | Returns the default margin of the specified @enum Side@.
 get_default_margin ::
                      (StyleBox :< cls, Object :< cls) => cls -> Int -> IO Float
 get_default_margin cls arg1
@@ -158,7 +158,7 @@ instance NodeMethod StyleBox "get_default_margin" '[Int] (IO Float)
 
 {-# NOINLINE bindStyleBox_get_margin #-}
 
--- | Returns the content margin offset for the specified @enum Margin@.
+-- | Returns the content margin offset for the specified @enum Side@.
 --   				Positive values reduce size inwards, unlike @Control@'s margin values.
 bindStyleBox_get_margin :: MethodBind
 bindStyleBox_get_margin
@@ -169,7 +169,7 @@ bindStyleBox_get_margin
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the content margin offset for the specified @enum Margin@.
+-- | Returns the content margin offset for the specified @enum Side@.
 --   				Positive values reduce size inwards, unlike @Control@'s margin values.
 get_margin ::
              (StyleBox :< cls, Object :< cls) => cls -> Int -> IO Float
@@ -236,7 +236,7 @@ instance NodeMethod StyleBox "get_offset" '[] (IO Vector2) where
 
 {-# NOINLINE bindStyleBox_set_default_margin #-}
 
--- | Sets the default value of the specified @enum Margin@ to given @offset@ in pixels.
+-- | Sets the default value of the specified @enum Side@ to @offset@ pixels.
 bindStyleBox_set_default_margin :: MethodBind
 bindStyleBox_set_default_margin
   = unsafePerformIO $
@@ -246,7 +246,7 @@ bindStyleBox_set_default_margin
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the default value of the specified @enum Margin@ to given @offset@ in pixels.
+-- | Sets the default value of the specified @enum Side@ to @offset@ pixels.
 set_default_margin ::
                      (StyleBox :< cls, Object :< cls) => cls -> Int -> Float -> IO ()
 set_default_margin cls arg1 arg2

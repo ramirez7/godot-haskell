@@ -159,9 +159,8 @@ instance NodeMethod ArrayMesh "add_blend_shape" '[GodotString]
 {-# NOINLINE bindArrayMesh_add_surface_from_arrays #-}
 
 -- | Creates a new surface.
---   				Surfaces are created to be rendered using a @primitive@, which may be any of the types defined in @enum Mesh.PrimitiveType@. (As a note, when using indices, it is recommended to only use points, lines or triangles.) @method Mesh.get_surface_count@ will become the @surf_idx@ for this new surface.
---   				The @arrays@ argument is an array of arrays. See @enum ArrayType@ for the values used in this array. For example, @arrays@0@@ is the array of vertices. That first vertex sub-array is always required; the others are optional. Adding an index array puts this function into "index mode" where the vertex and other arrays become the sources of data and the index array defines the vertex order. All sub-arrays must have the same length as the vertex array or be empty, except for @ARRAY_INDEX@ if it is used.
---   				Adding an index array puts this function into "index mode" where the vertex and other arrays become the sources of data, and the index array defines the order of the vertices.
+--   				Surfaces are created to be rendered using a @primitive@, which may be any of the types defined in @enum Mesh.PrimitiveType@. (As a note, when using indices, it is recommended to only use points, lines, or triangles.) @method Mesh.get_surface_count@ will become the @surf_idx@ for this new surface.
+--   				The @arrays@ argument is an array of arrays. See @enum Mesh.ArrayType@ for the values used in this array. For example, @arrays@0@@ is the array of vertices. That first vertex sub-array is always required; the others are optional. Adding an index array puts this function into "index mode" where the vertex and other arrays become the sources of data and the index array defines the vertex order. All sub-arrays must have the same length as the vertex array or be empty, except for @Mesh.ARRAY_INDEX@ if it is used.
 bindArrayMesh_add_surface_from_arrays :: MethodBind
 bindArrayMesh_add_surface_from_arrays
   = unsafePerformIO $
@@ -172,9 +171,8 @@ bindArrayMesh_add_surface_from_arrays
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | Creates a new surface.
---   				Surfaces are created to be rendered using a @primitive@, which may be any of the types defined in @enum Mesh.PrimitiveType@. (As a note, when using indices, it is recommended to only use points, lines or triangles.) @method Mesh.get_surface_count@ will become the @surf_idx@ for this new surface.
---   				The @arrays@ argument is an array of arrays. See @enum ArrayType@ for the values used in this array. For example, @arrays@0@@ is the array of vertices. That first vertex sub-array is always required; the others are optional. Adding an index array puts this function into "index mode" where the vertex and other arrays become the sources of data and the index array defines the vertex order. All sub-arrays must have the same length as the vertex array or be empty, except for @ARRAY_INDEX@ if it is used.
---   				Adding an index array puts this function into "index mode" where the vertex and other arrays become the sources of data, and the index array defines the order of the vertices.
+--   				Surfaces are created to be rendered using a @primitive@, which may be any of the types defined in @enum Mesh.PrimitiveType@. (As a note, when using indices, it is recommended to only use points, lines, or triangles.) @method Mesh.get_surface_count@ will become the @surf_idx@ for this new surface.
+--   				The @arrays@ argument is an array of arrays. See @enum Mesh.ArrayType@ for the values used in this array. For example, @arrays@0@@ is the array of vertices. That first vertex sub-array is always required; the others are optional. Adding an index array puts this function into "index mode" where the vertex and other arrays become the sources of data and the index array defines the vertex order. All sub-arrays must have the same length as the vertex array or be empty, except for @Mesh.ARRAY_INDEX@ if it is used.
 add_surface_from_arrays ::
                           (ArrayMesh :< cls, Object :< cls) =>
                           cls -> Int -> Array -> Maybe Array -> Maybe Int -> IO ()
@@ -366,7 +364,6 @@ instance NodeMethod ArrayMesh "lightmap_unwrap" '[Transform, Float]
 
 {-# NOINLINE bindArrayMesh_regen_normalmaps #-}
 
--- | Will regenerate normal maps for the @ArrayMesh@.
 bindArrayMesh_regen_normalmaps :: MethodBind
 bindArrayMesh_regen_normalmaps
   = unsafePerformIO $
@@ -376,7 +373,6 @@ bindArrayMesh_regen_normalmaps
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Will regenerate normal maps for the @ArrayMesh@.
 regen_normalmaps ::
                    (ArrayMesh :< cls, Object :< cls) => cls -> IO ()
 regen_normalmaps cls
@@ -619,7 +615,6 @@ instance NodeMethod ArrayMesh "surface_get_primitive_type" '[Int]
 
 {-# NOINLINE bindArrayMesh_surface_remove #-}
 
--- | Removes a surface at position @surf_idx@, shifting greater surfaces one @surf_idx@ slot down.
 bindArrayMesh_surface_remove :: MethodBind
 bindArrayMesh_surface_remove
   = unsafePerformIO $
@@ -629,7 +624,6 @@ bindArrayMesh_surface_remove
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Removes a surface at position @surf_idx@, shifting greater surfaces one @surf_idx@ slot down.
 surface_remove ::
                  (ArrayMesh :< cls, Object :< cls) => cls -> Int -> IO ()
 surface_remove cls arg1
@@ -675,8 +669,6 @@ instance NodeMethod ArrayMesh "surface_set_name"
 
 {-# NOINLINE bindArrayMesh_surface_update_region #-}
 
--- | Updates a specified region of mesh arrays on the GPU.
---   				__Warning:__ Only use if you know what you are doing. You can easily cause crashes by calling this function with improper arguments.
 bindArrayMesh_surface_update_region :: MethodBind
 bindArrayMesh_surface_update_region
   = unsafePerformIO $
@@ -686,8 +678,6 @@ bindArrayMesh_surface_update_region
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Updates a specified region of mesh arrays on the GPU.
---   				__Warning:__ Only use if you know what you are doing. You can easily cause crashes by calling this function with improper arguments.
 surface_update_region ::
                         (ArrayMesh :< cls, Object :< cls) =>
                         cls -> Int -> Int -> PoolByteArray -> IO ()

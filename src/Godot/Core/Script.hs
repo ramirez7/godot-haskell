@@ -33,7 +33,6 @@ instance NodeProperty Script "source_code" GodotString 'False where
 
 {-# NOINLINE bindScript_can_instance #-}
 
--- | Returns @true@ if the script can be instanced.
 bindScript_can_instance :: MethodBind
 bindScript_can_instance
   = unsafePerformIO $
@@ -43,7 +42,6 @@ bindScript_can_instance
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns @true@ if the script can be instanced.
 can_instance :: (Script :< cls, Object :< cls) => cls -> IO Bool
 can_instance cls
   = withVariantArray []

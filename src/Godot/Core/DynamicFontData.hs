@@ -50,7 +50,6 @@ instance NodeProperty DynamicFontData "hinting" Int 'False where
 
 {-# NOINLINE bindDynamicFontData_get_font_path #-}
 
--- | The path to the vector font file.
 bindDynamicFontData_get_font_path :: MethodBind
 bindDynamicFontData_get_font_path
   = unsafePerformIO $
@@ -60,7 +59,6 @@ bindDynamicFontData_get_font_path
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The path to the vector font file.
 get_font_path ::
                 (DynamicFontData :< cls, Object :< cls) => cls -> IO GodotString
 get_font_path cls
@@ -79,7 +77,6 @@ instance NodeMethod DynamicFontData "get_font_path" '[]
 
 {-# NOINLINE bindDynamicFontData_get_hinting #-}
 
--- | The font hinting mode used by FreeType. See @enum Hinting@ for options.
 bindDynamicFontData_get_hinting :: MethodBind
 bindDynamicFontData_get_hinting
   = unsafePerformIO $
@@ -89,7 +86,6 @@ bindDynamicFontData_get_hinting
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The font hinting mode used by FreeType. See @enum Hinting@ for options.
 get_hinting ::
               (DynamicFontData :< cls, Object :< cls) => cls -> IO Int
 get_hinting cls
@@ -106,7 +102,6 @@ instance NodeMethod DynamicFontData "get_hinting" '[] (IO Int)
 
 {-# NOINLINE bindDynamicFontData_is_antialiased #-}
 
--- | If @true@, the font is rendered with anti-aliasing. This property applies both to the main font and its outline (if it has one).
 bindDynamicFontData_is_antialiased :: MethodBind
 bindDynamicFontData_is_antialiased
   = unsafePerformIO $
@@ -116,7 +111,6 @@ bindDynamicFontData_is_antialiased
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, the font is rendered with anti-aliasing. This property applies both to the main font and its outline (if it has one).
 is_antialiased ::
                  (DynamicFontData :< cls, Object :< cls) => cls -> IO Bool
 is_antialiased cls
@@ -134,7 +128,6 @@ instance NodeMethod DynamicFontData "is_antialiased" '[] (IO Bool)
 
 {-# NOINLINE bindDynamicFontData_set_antialiased #-}
 
--- | If @true@, the font is rendered with anti-aliasing. This property applies both to the main font and its outline (if it has one).
 bindDynamicFontData_set_antialiased :: MethodBind
 bindDynamicFontData_set_antialiased
   = unsafePerformIO $
@@ -144,7 +137,6 @@ bindDynamicFontData_set_antialiased
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, the font is rendered with anti-aliasing. This property applies both to the main font and its outline (if it has one).
 set_antialiased ::
                   (DynamicFontData :< cls, Object :< cls) => cls -> Bool -> IO ()
 set_antialiased cls arg1
@@ -163,7 +155,6 @@ instance NodeMethod DynamicFontData "set_antialiased" '[Bool]
 
 {-# NOINLINE bindDynamicFontData_set_font_path #-}
 
--- | The path to the vector font file.
 bindDynamicFontData_set_font_path :: MethodBind
 bindDynamicFontData_set_font_path
   = unsafePerformIO $
@@ -173,7 +164,6 @@ bindDynamicFontData_set_font_path
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The path to the vector font file.
 set_font_path ::
                 (DynamicFontData :< cls, Object :< cls) =>
                 cls -> GodotString -> IO ()
@@ -193,7 +183,6 @@ instance NodeMethod DynamicFontData "set_font_path" '[GodotString]
 
 {-# NOINLINE bindDynamicFontData_set_hinting #-}
 
--- | The font hinting mode used by FreeType. See @enum Hinting@ for options.
 bindDynamicFontData_set_hinting :: MethodBind
 bindDynamicFontData_set_hinting
   = unsafePerformIO $
@@ -203,7 +192,6 @@ bindDynamicFontData_set_hinting
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The font hinting mode used by FreeType. See @enum Hinting@ for options.
 set_hinting ::
               (DynamicFontData :< cls, Object :< cls) => cls -> Int -> IO ()
 set_hinting cls arg1

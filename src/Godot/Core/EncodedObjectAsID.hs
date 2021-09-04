@@ -24,7 +24,7 @@ instance NodeProperty EncodedObjectAsID "object_id" Int 'False
 
 {-# NOINLINE bindEncodedObjectAsID_get_object_id #-}
 
--- | The @Object@ identifier stored in this @EncodedObjectAsID@ instance. The object instance can be retrieved with @method @GDScript.instance_from_id@.
+-- | The @Object@ identifier stored in this @EncodedObjectAsID@ instance. The object instance can be retrieved with @method @GlobalScope.instance_from_id@.
 bindEncodedObjectAsID_get_object_id :: MethodBind
 bindEncodedObjectAsID_get_object_id
   = unsafePerformIO $
@@ -34,7 +34,7 @@ bindEncodedObjectAsID_get_object_id
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The @Object@ identifier stored in this @EncodedObjectAsID@ instance. The object instance can be retrieved with @method @GDScript.instance_from_id@.
+-- | The @Object@ identifier stored in this @EncodedObjectAsID@ instance. The object instance can be retrieved with @method @GlobalScope.instance_from_id@.
 get_object_id ::
                 (EncodedObjectAsID :< cls, Object :< cls) => cls -> IO Int
 get_object_id cls
@@ -52,7 +52,7 @@ instance NodeMethod EncodedObjectAsID "get_object_id" '[] (IO Int)
 
 {-# NOINLINE bindEncodedObjectAsID_set_object_id #-}
 
--- | The @Object@ identifier stored in this @EncodedObjectAsID@ instance. The object instance can be retrieved with @method @GDScript.instance_from_id@.
+-- | The @Object@ identifier stored in this @EncodedObjectAsID@ instance. The object instance can be retrieved with @method @GlobalScope.instance_from_id@.
 bindEncodedObjectAsID_set_object_id :: MethodBind
 bindEncodedObjectAsID_set_object_id
   = unsafePerformIO $
@@ -62,7 +62,7 @@ bindEncodedObjectAsID_set_object_id
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The @Object@ identifier stored in this @EncodedObjectAsID@ instance. The object instance can be retrieved with @method @GDScript.instance_from_id@.
+-- | The @Object@ identifier stored in this @EncodedObjectAsID@ instance. The object instance can be retrieved with @method @GlobalScope.instance_from_id@.
 set_object_id ::
                 (EncodedObjectAsID :< cls, Object :< cls) => cls -> Int -> IO ()
 set_object_id cls arg1

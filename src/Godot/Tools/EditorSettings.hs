@@ -51,10 +51,10 @@ instance NodeSignal EditorSettings "settings_changed" '[]
 --   				- @type@: @int@ (see @enum Variant.Type@)
 --   				- optionally @hint@: @int@ (see @enum PropertyHint@) and @hint_string@: @String@
 --   				__Example:__
---   				
---   @
---   
---   				editor_settings.set("category/property_name", 0)
+--   				@codeblocks@
+--   				@gdscript@
+--   				var settings = EditorInterface.get_editor_settings()
+--   				settings.set("category/property_name", 0)
 --   
 --   				var property_info = {
 --   				    "name": "category/property_name",
@@ -63,9 +63,23 @@ instance NodeSignal EditorSettings "settings_changed" '[]
 --   				    "hint_string": "one,two,three"
 --   				}
 --   
---   				editor_settings.add_property_info(property_info)
---   				
---   @
+--   				settings.add_property_info(property_info)
+--   				@/gdscript@
+--   				@csharp@
+--   				var settings = GetEditorInterface().GetEditorSettings();
+--   				settings.Set("category/property_name", 0);
+--   
+--   				var propertyInfo = new Godot.Collections.Dictionary
+--   				{
+--   				    {"name", "category/propertyName"},
+--   				    {"type", Variant.Type.Int},
+--   				    {"hint", PropertyHint.Enum},
+--   				    {"hint_string", "one,two,three"}
+--   				};
+--   
+--   				settings.AddPropertyInfo(propertyInfo);
+--   				@/csharp@
+--   				@/codeblocks@
 bindEditorSettings_add_property_info :: MethodBind
 bindEditorSettings_add_property_info
   = unsafePerformIO $
@@ -80,10 +94,10 @@ bindEditorSettings_add_property_info
 --   				- @type@: @int@ (see @enum Variant.Type@)
 --   				- optionally @hint@: @int@ (see @enum PropertyHint@) and @hint_string@: @String@
 --   				__Example:__
---   				
---   @
---   
---   				editor_settings.set("category/property_name", 0)
+--   				@codeblocks@
+--   				@gdscript@
+--   				var settings = EditorInterface.get_editor_settings()
+--   				settings.set("category/property_name", 0)
 --   
 --   				var property_info = {
 --   				    "name": "category/property_name",
@@ -92,9 +106,23 @@ bindEditorSettings_add_property_info
 --   				    "hint_string": "one,two,three"
 --   				}
 --   
---   				editor_settings.add_property_info(property_info)
---   				
---   @
+--   				settings.add_property_info(property_info)
+--   				@/gdscript@
+--   				@csharp@
+--   				var settings = GetEditorInterface().GetEditorSettings();
+--   				settings.Set("category/property_name", 0);
+--   
+--   				var propertyInfo = new Godot.Collections.Dictionary
+--   				{
+--   				    {"name", "category/propertyName"},
+--   				    {"type", Variant.Type.Int},
+--   				    {"hint", PropertyHint.Enum},
+--   				    {"hint_string", "one,two,three"}
+--   				};
+--   
+--   				settings.AddPropertyInfo(propertyInfo);
+--   				@/csharp@
+--   				@/codeblocks@
 add_property_info ::
                     (EditorSettings :< cls, Object :< cls) =>
                     cls -> Dictionary -> IO ()
@@ -291,9 +319,6 @@ instance NodeMethod EditorSettings "get_setting" '[GodotString]
 
 {-# NOINLINE bindEditorSettings_get_settings_dir #-}
 
--- | Gets the global settings path for the engine. Inside this path, you can find some standard paths such as:
---   				@settings/tmp@ - Used for temporary storage of files
---   				@settings/templates@ - Where export templates are located
 bindEditorSettings_get_settings_dir :: MethodBind
 bindEditorSettings_get_settings_dir
   = unsafePerformIO $
@@ -303,9 +328,6 @@ bindEditorSettings_get_settings_dir
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Gets the global settings path for the engine. Inside this path, you can find some standard paths such as:
---   				@settings/tmp@ - Used for temporary storage of files
---   				@settings/templates@ - Where export templates are located
 get_settings_dir ::
                    (EditorSettings :< cls, Object :< cls) => cls -> IO GodotString
 get_settings_dir cls

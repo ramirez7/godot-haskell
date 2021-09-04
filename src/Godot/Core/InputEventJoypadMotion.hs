@@ -31,7 +31,7 @@ instance NodeProperty InputEventJoypadMotion "axis_value" Float
 
 {-# NOINLINE bindInputEventJoypadMotion_get_axis #-}
 
--- | Axis identifier. Use one of the @enum JoystickList@ axis constants.
+-- | Axis identifier. Use one of the @enum JoyAxis@ axis constants.
 bindInputEventJoypadMotion_get_axis :: MethodBind
 bindInputEventJoypadMotion_get_axis
   = unsafePerformIO $
@@ -41,7 +41,7 @@ bindInputEventJoypadMotion_get_axis
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Axis identifier. Use one of the @enum JoystickList@ axis constants.
+-- | Axis identifier. Use one of the @enum JoyAxis@ axis constants.
 get_axis ::
            (InputEventJoypadMotion :< cls, Object :< cls) => cls -> IO Int
 get_axis cls
@@ -88,7 +88,7 @@ instance NodeMethod InputEventJoypadMotion "get_axis_value" '[]
 
 {-# NOINLINE bindInputEventJoypadMotion_set_axis #-}
 
--- | Axis identifier. Use one of the @enum JoystickList@ axis constants.
+-- | Axis identifier. Use one of the @enum JoyAxis@ axis constants.
 bindInputEventJoypadMotion_set_axis :: MethodBind
 bindInputEventJoypadMotion_set_axis
   = unsafePerformIO $
@@ -98,7 +98,7 @@ bindInputEventJoypadMotion_set_axis
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Axis identifier. Use one of the @enum JoystickList@ axis constants.
+-- | Axis identifier. Use one of the @enum JoyAxis@ axis constants.
 set_axis ::
            (InputEventJoypadMotion :< cls, Object :< cls) =>
            cls -> Int -> IO ()

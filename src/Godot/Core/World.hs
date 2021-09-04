@@ -46,7 +46,6 @@ instance NodeProperty World "space" Rid 'True where
 
 {-# NOINLINE bindWorld_get_direct_space_state #-}
 
--- | Direct access to the world's physics 3D space state. Used for querying current and potential collisions. Must only be accessed from within @_physics_process(delta)@.
 bindWorld_get_direct_space_state :: MethodBind
 bindWorld_get_direct_space_state
   = unsafePerformIO $
@@ -56,7 +55,6 @@ bindWorld_get_direct_space_state
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Direct access to the world's physics 3D space state. Used for querying current and potential collisions. Must only be accessed from within @_physics_process(delta)@.
 get_direct_space_state ::
                          (World :< cls, Object :< cls) => cls -> IO PhysicsDirectSpaceState
 get_direct_space_state cls
@@ -75,7 +73,6 @@ instance NodeMethod World "get_direct_space_state" '[]
 
 {-# NOINLINE bindWorld_get_environment #-}
 
--- | The World's @Environment@.
 bindWorld_get_environment :: MethodBind
 bindWorld_get_environment
   = unsafePerformIO $
@@ -85,7 +82,6 @@ bindWorld_get_environment
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The World's @Environment@.
 get_environment ::
                   (World :< cls, Object :< cls) => cls -> IO Environment
 get_environment cls
@@ -102,7 +98,6 @@ instance NodeMethod World "get_environment" '[] (IO Environment)
 
 {-# NOINLINE bindWorld_get_fallback_environment #-}
 
--- | The World's fallback_environment will be used if the World's @Environment@ fails or is missing.
 bindWorld_get_fallback_environment :: MethodBind
 bindWorld_get_fallback_environment
   = unsafePerformIO $
@@ -112,7 +107,6 @@ bindWorld_get_fallback_environment
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The World's fallback_environment will be used if the World's @Environment@ fails or is missing.
 get_fallback_environment ::
                            (World :< cls, Object :< cls) => cls -> IO Environment
 get_fallback_environment cls
@@ -131,7 +125,6 @@ instance NodeMethod World "get_fallback_environment" '[]
 
 {-# NOINLINE bindWorld_get_scenario #-}
 
--- | The World's visual scenario.
 bindWorld_get_scenario :: MethodBind
 bindWorld_get_scenario
   = unsafePerformIO $
@@ -141,7 +134,6 @@ bindWorld_get_scenario
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The World's visual scenario.
 get_scenario :: (World :< cls, Object :< cls) => cls -> IO Rid
 get_scenario cls
   = withVariantArray []
@@ -155,7 +147,6 @@ instance NodeMethod World "get_scenario" '[] (IO Rid) where
 
 {-# NOINLINE bindWorld_get_space #-}
 
--- | The World's physics space.
 bindWorld_get_space :: MethodBind
 bindWorld_get_space
   = unsafePerformIO $
@@ -165,7 +156,6 @@ bindWorld_get_space
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The World's physics space.
 get_space :: (World :< cls, Object :< cls) => cls -> IO Rid
 get_space cls
   = withVariantArray []
@@ -178,7 +168,6 @@ instance NodeMethod World "get_space" '[] (IO Rid) where
 
 {-# NOINLINE bindWorld_set_environment #-}
 
--- | The World's @Environment@.
 bindWorld_set_environment :: MethodBind
 bindWorld_set_environment
   = unsafePerformIO $
@@ -188,7 +177,6 @@ bindWorld_set_environment
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The World's @Environment@.
 set_environment ::
                   (World :< cls, Object :< cls) => cls -> Environment -> IO ()
 set_environment cls arg1
@@ -205,7 +193,6 @@ instance NodeMethod World "set_environment" '[Environment] (IO ())
 
 {-# NOINLINE bindWorld_set_fallback_environment #-}
 
--- | The World's fallback_environment will be used if the World's @Environment@ fails or is missing.
 bindWorld_set_fallback_environment :: MethodBind
 bindWorld_set_fallback_environment
   = unsafePerformIO $
@@ -215,7 +202,6 @@ bindWorld_set_fallback_environment
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The World's fallback_environment will be used if the World's @Environment@ fails or is missing.
 set_fallback_environment ::
                            (World :< cls, Object :< cls) => cls -> Environment -> IO ()
 set_fallback_environment cls arg1

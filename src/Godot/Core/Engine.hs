@@ -40,7 +40,19 @@ import Godot.Core.Object()
 
 {-# NOINLINE bindEngine_is_editor_hint #-}
 
--- | If @true@, it is running inside the editor. Useful for tool scripts.
+-- | If @true@, the script is currently running inside the editor. This is useful for @@tool@ scripts to conditionally draw editor helpers, or prevent accidentally running "game" code that would affect the scene state while in the editor:
+--   			
+--   @
+--   
+--   			if Engine.editor_hint:
+--   			    draw_gizmos()
+--   			else:
+--   			    simulate_physics()
+--   			
+--   @
+--   
+--   			See @url=https://docs.godotengine.org/en/latest/tutorials/plugins/running_code_in_the_editor.html@Running code in the editor@/url@ in the documentation for more information.
+--   			__Note:__ To detect whether the script is run from an editor @i@build@/i@ (e.g. when pressing @kbd@F5@/kbd@), use @method OS.has_feature@ with the @"editor"@ argument instead. @OS.has_feature("editor")@ will evaluate to @true@ both when the code is running in the editor and when running the project from the editor, but it will evaluate to @false@ when the code is run from an exported project.
 bindEngine_is_editor_hint :: MethodBind
 bindEngine_is_editor_hint
   = unsafePerformIO $
@@ -50,7 +62,19 @@ bindEngine_is_editor_hint
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, it is running inside the editor. Useful for tool scripts.
+-- | If @true@, the script is currently running inside the editor. This is useful for @@tool@ scripts to conditionally draw editor helpers, or prevent accidentally running "game" code that would affect the scene state while in the editor:
+--   			
+--   @
+--   
+--   			if Engine.editor_hint:
+--   			    draw_gizmos()
+--   			else:
+--   			    simulate_physics()
+--   			
+--   @
+--   
+--   			See @url=https://docs.godotengine.org/en/latest/tutorials/plugins/running_code_in_the_editor.html@Running code in the editor@/url@ in the documentation for more information.
+--   			__Note:__ To detect whether the script is run from an editor @i@build@/i@ (e.g. when pressing @kbd@F5@/kbd@), use @method OS.has_feature@ with the @"editor"@ argument instead. @OS.has_feature("editor")@ will evaluate to @true@ both when the code is running in the editor and when running the project from the editor, but it will evaluate to @false@ when the code is run from an exported project.
 is_editor_hint :: (Engine :< cls, Object :< cls) => cls -> IO Bool
 is_editor_hint cls
   = withVariantArray []
@@ -65,7 +89,19 @@ instance NodeMethod Engine "is_editor_hint" '[] (IO Bool) where
 
 {-# NOINLINE bindEngine_set_editor_hint #-}
 
--- | If @true@, it is running inside the editor. Useful for tool scripts.
+-- | If @true@, the script is currently running inside the editor. This is useful for @@tool@ scripts to conditionally draw editor helpers, or prevent accidentally running "game" code that would affect the scene state while in the editor:
+--   			
+--   @
+--   
+--   			if Engine.editor_hint:
+--   			    draw_gizmos()
+--   			else:
+--   			    simulate_physics()
+--   			
+--   @
+--   
+--   			See @url=https://docs.godotengine.org/en/latest/tutorials/plugins/running_code_in_the_editor.html@Running code in the editor@/url@ in the documentation for more information.
+--   			__Note:__ To detect whether the script is run from an editor @i@build@/i@ (e.g. when pressing @kbd@F5@/kbd@), use @method OS.has_feature@ with the @"editor"@ argument instead. @OS.has_feature("editor")@ will evaluate to @true@ both when the code is running in the editor and when running the project from the editor, but it will evaluate to @false@ when the code is run from an exported project.
 bindEngine_set_editor_hint :: MethodBind
 bindEngine_set_editor_hint
   = unsafePerformIO $
@@ -75,7 +111,19 @@ bindEngine_set_editor_hint
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, it is running inside the editor. Useful for tool scripts.
+-- | If @true@, the script is currently running inside the editor. This is useful for @@tool@ scripts to conditionally draw editor helpers, or prevent accidentally running "game" code that would affect the scene state while in the editor:
+--   			
+--   @
+--   
+--   			if Engine.editor_hint:
+--   			    draw_gizmos()
+--   			else:
+--   			    simulate_physics()
+--   			
+--   @
+--   
+--   			See @url=https://docs.godotengine.org/en/latest/tutorials/plugins/running_code_in_the_editor.html@Running code in the editor@/url@ in the documentation for more information.
+--   			__Note:__ To detect whether the script is run from an editor @i@build@/i@ (e.g. when pressing @kbd@F5@/kbd@), use @method OS.has_feature@ with the @"editor"@ argument instead. @OS.has_feature("editor")@ will evaluate to @true@ both when the code is running in the editor and when running the project from the editor, but it will evaluate to @false@ when the code is run from an exported project.
 set_editor_hint ::
                   (Engine :< cls, Object :< cls) => cls -> Bool -> IO ()
 set_editor_hint cls arg1
@@ -95,7 +143,6 @@ instance NodeProperty Engine "editor_hint" Bool 'False where
 
 {-# NOINLINE bindEngine_get_iterations_per_second #-}
 
--- | The number of fixed iterations per second. This controls how often physics simulation and @method Node._physics_process@ methods are run. This value should generally always be set to @60@ or above, as Godot doesn't interpolate the physics step. As a result, values lower than @60@ will look stuttery. This value can be increased to make input more reactive or work around tunneling issues, but keep in mind doing so will increase CPU usage.
 bindEngine_get_iterations_per_second :: MethodBind
 bindEngine_get_iterations_per_second
   = unsafePerformIO $
@@ -105,7 +152,6 @@ bindEngine_get_iterations_per_second
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The number of fixed iterations per second. This controls how often physics simulation and @method Node._physics_process@ methods are run. This value should generally always be set to @60@ or above, as Godot doesn't interpolate the physics step. As a result, values lower than @60@ will look stuttery. This value can be increased to make input more reactive or work around tunneling issues, but keep in mind doing so will increase CPU usage.
 get_iterations_per_second ::
                             (Engine :< cls, Object :< cls) => cls -> IO Int
 get_iterations_per_second cls
@@ -123,7 +169,6 @@ instance NodeMethod Engine "get_iterations_per_second" '[] (IO Int)
 
 {-# NOINLINE bindEngine_set_iterations_per_second #-}
 
--- | The number of fixed iterations per second. This controls how often physics simulation and @method Node._physics_process@ methods are run. This value should generally always be set to @60@ or above, as Godot doesn't interpolate the physics step. As a result, values lower than @60@ will look stuttery. This value can be increased to make input more reactive or work around tunneling issues, but keep in mind doing so will increase CPU usage.
 bindEngine_set_iterations_per_second :: MethodBind
 bindEngine_set_iterations_per_second
   = unsafePerformIO $
@@ -133,7 +178,6 @@ bindEngine_set_iterations_per_second
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The number of fixed iterations per second. This controls how often physics simulation and @method Node._physics_process@ methods are run. This value should generally always be set to @60@ or above, as Godot doesn't interpolate the physics step. As a result, values lower than @60@ will look stuttery. This value can be increased to make input more reactive or work around tunneling issues, but keep in mind doing so will increase CPU usage.
 set_iterations_per_second ::
                             (Engine :< cls, Object :< cls) => cls -> Int -> IO ()
 set_iterations_per_second cls arg1
@@ -158,7 +202,8 @@ instance NodeProperty Engine "iterations_per_second" Int 'False
 
 {-# NOINLINE bindEngine_get_physics_jitter_fix #-}
 
--- | Controls how much physics ticks are synchronized with real time. For 0 or less, the ticks are synchronized. Such values are recommended for network games, where clock synchronization matters. Higher values cause higher deviation of in-game clock and real clock, but allows to smooth out framerate jitters. The default value of 0.5 should be fine for most; values above 2 could cause the game to react to dropped frames with a noticeable delay and are not recommended.
+-- | Controls how much physics ticks are synchronized with real time. For 0 or less, the ticks are synchronized. Such values are recommended for network games, where clock synchronization matters. Higher values cause higher deviation of the in-game clock and real clock but smooth out framerate jitters. The default value of 0.5 should be fine for most; values above 2 could cause the game to react to dropped frames with a noticeable delay and are not recommended.
+--   			__Note:__ For best results, when using a custom physics interpolation solution, the physics jitter fix should be disabled by setting @physics_jitter_fix@ to @0@.
 bindEngine_get_physics_jitter_fix :: MethodBind
 bindEngine_get_physics_jitter_fix
   = unsafePerformIO $
@@ -168,7 +213,8 @@ bindEngine_get_physics_jitter_fix
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Controls how much physics ticks are synchronized with real time. For 0 or less, the ticks are synchronized. Such values are recommended for network games, where clock synchronization matters. Higher values cause higher deviation of in-game clock and real clock, but allows to smooth out framerate jitters. The default value of 0.5 should be fine for most; values above 2 could cause the game to react to dropped frames with a noticeable delay and are not recommended.
+-- | Controls how much physics ticks are synchronized with real time. For 0 or less, the ticks are synchronized. Such values are recommended for network games, where clock synchronization matters. Higher values cause higher deviation of the in-game clock and real clock but smooth out framerate jitters. The default value of 0.5 should be fine for most; values above 2 could cause the game to react to dropped frames with a noticeable delay and are not recommended.
+--   			__Note:__ For best results, when using a custom physics interpolation solution, the physics jitter fix should be disabled by setting @physics_jitter_fix@ to @0@.
 get_physics_jitter_fix ::
                          (Engine :< cls, Object :< cls) => cls -> IO Float
 get_physics_jitter_fix cls
@@ -186,7 +232,8 @@ instance NodeMethod Engine "get_physics_jitter_fix" '[] (IO Float)
 
 {-# NOINLINE bindEngine_set_physics_jitter_fix #-}
 
--- | Controls how much physics ticks are synchronized with real time. For 0 or less, the ticks are synchronized. Such values are recommended for network games, where clock synchronization matters. Higher values cause higher deviation of in-game clock and real clock, but allows to smooth out framerate jitters. The default value of 0.5 should be fine for most; values above 2 could cause the game to react to dropped frames with a noticeable delay and are not recommended.
+-- | Controls how much physics ticks are synchronized with real time. For 0 or less, the ticks are synchronized. Such values are recommended for network games, where clock synchronization matters. Higher values cause higher deviation of the in-game clock and real clock but smooth out framerate jitters. The default value of 0.5 should be fine for most; values above 2 could cause the game to react to dropped frames with a noticeable delay and are not recommended.
+--   			__Note:__ For best results, when using a custom physics interpolation solution, the physics jitter fix should be disabled by setting @physics_jitter_fix@ to @0@.
 bindEngine_set_physics_jitter_fix :: MethodBind
 bindEngine_set_physics_jitter_fix
   = unsafePerformIO $
@@ -196,7 +243,8 @@ bindEngine_set_physics_jitter_fix
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Controls how much physics ticks are synchronized with real time. For 0 or less, the ticks are synchronized. Such values are recommended for network games, where clock synchronization matters. Higher values cause higher deviation of in-game clock and real clock, but allows to smooth out framerate jitters. The default value of 0.5 should be fine for most; values above 2 could cause the game to react to dropped frames with a noticeable delay and are not recommended.
+-- | Controls how much physics ticks are synchronized with real time. For 0 or less, the ticks are synchronized. Such values are recommended for network games, where clock synchronization matters. Higher values cause higher deviation of the in-game clock and real clock but smooth out framerate jitters. The default value of 0.5 should be fine for most; values above 2 could cause the game to react to dropped frames with a noticeable delay and are not recommended.
+--   			__Note:__ For best results, when using a custom physics interpolation solution, the physics jitter fix should be disabled by setting @physics_jitter_fix@ to @0@.
 set_physics_jitter_fix ::
                          (Engine :< cls, Object :< cls) => cls -> Float -> IO ()
 set_physics_jitter_fix cls arg1
@@ -221,7 +269,7 @@ instance NodeProperty Engine "physics_jitter_fix" Float 'False
 
 {-# NOINLINE bindEngine_get_target_fps #-}
 
--- | The desired frames per second. If the hardware cannot keep up, this setting may not be respected. A value of 0 means no limit.
+-- | The desired frames per second. If the hardware cannot keep up, this setting may not be respected. A value of 0 means no limit. See also @physics_ticks_per_second@.
 bindEngine_get_target_fps :: MethodBind
 bindEngine_get_target_fps
   = unsafePerformIO $
@@ -231,7 +279,7 @@ bindEngine_get_target_fps
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The desired frames per second. If the hardware cannot keep up, this setting may not be respected. A value of 0 means no limit.
+-- | The desired frames per second. If the hardware cannot keep up, this setting may not be respected. A value of 0 means no limit. See also @physics_ticks_per_second@.
 get_target_fps :: (Engine :< cls, Object :< cls) => cls -> IO Int
 get_target_fps cls
   = withVariantArray []
@@ -246,7 +294,7 @@ instance NodeMethod Engine "get_target_fps" '[] (IO Int) where
 
 {-# NOINLINE bindEngine_set_target_fps #-}
 
--- | The desired frames per second. If the hardware cannot keep up, this setting may not be respected. A value of 0 means no limit.
+-- | The desired frames per second. If the hardware cannot keep up, this setting may not be respected. A value of 0 means no limit. See also @physics_ticks_per_second@.
 bindEngine_set_target_fps :: MethodBind
 bindEngine_set_target_fps
   = unsafePerformIO $
@@ -256,7 +304,7 @@ bindEngine_set_target_fps
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The desired frames per second. If the hardware cannot keep up, this setting may not be respected. A value of 0 means no limit.
+-- | The desired frames per second. If the hardware cannot keep up, this setting may not be respected. A value of 0 means no limit. See also @physics_ticks_per_second@.
 set_target_fps ::
                  (Engine :< cls, Object :< cls) => cls -> Int -> IO ()
 set_target_fps cls arg1
@@ -426,7 +474,7 @@ instance NodeMethod Engine "get_donor_info" '[] (IO Dictionary)
 
 {-# NOINLINE bindEngine_get_frames_drawn #-}
 
--- | Returns the total number of frames drawn. If the render loop is disabled with @--disable-render-loop@ via command line, this returns @0@. See also @method get_idle_frames@.
+-- | Returns the total number of frames drawn. If the render loop is disabled with @--disable-render-loop@ via command line, this returns @0@. See also @method get_process_frames@.
 bindEngine_get_frames_drawn :: MethodBind
 bindEngine_get_frames_drawn
   = unsafePerformIO $
@@ -436,7 +484,7 @@ bindEngine_get_frames_drawn
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the total number of frames drawn. If the render loop is disabled with @--disable-render-loop@ via command line, this returns @0@. See also @method get_idle_frames@.
+-- | Returns the total number of frames drawn. If the render loop is disabled with @--disable-render-loop@ via command line, this returns @0@. See also @method get_process_frames@.
 get_frames_drawn :: (Engine :< cls, Object :< cls) => cls -> IO Int
 get_frames_drawn cls
   = withVariantArray []
@@ -479,7 +527,6 @@ instance NodeMethod Engine "get_frames_per_second" '[] (IO Float)
 
 {-# NOINLINE bindEngine_get_idle_frames #-}
 
--- | Returns the total number of frames passed since engine initialization which is advanced on each __idle frame__, regardless of whether the render loop is enabled. See also @method get_frames_drawn@.
 bindEngine_get_idle_frames :: MethodBind
 bindEngine_get_idle_frames
   = unsafePerformIO $
@@ -489,7 +536,6 @@ bindEngine_get_idle_frames
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the total number of frames passed since engine initialization which is advanced on each __idle frame__, regardless of whether the render loop is enabled. See also @method get_frames_drawn@.
 get_idle_frames :: (Engine :< cls, Object :< cls) => cls -> IO Int
 get_idle_frames cls
   = withVariantArray []
@@ -639,7 +685,7 @@ instance NodeMethod Engine "get_physics_interpolation_fraction" '[]
 
 {-# NOINLINE bindEngine_get_singleton #-}
 
--- | Returns a global singleton with given @name@. Often used for plugins, e.g. @GodotPayment@ on Android.
+-- | Returns a global singleton with given @name@. Often used for plugins, e.g. GodotPayments.
 bindEngine_get_singleton :: MethodBind
 bindEngine_get_singleton
   = unsafePerformIO $
@@ -649,7 +695,7 @@ bindEngine_get_singleton
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns a global singleton with given @name@. Often used for plugins, e.g. @GodotPayment@ on Android.
+-- | Returns a global singleton with given @name@. Often used for plugins, e.g. GodotPayments.
 get_singleton ::
                 (Engine :< cls, Object :< cls) => cls -> GodotString -> IO Object
 get_singleton cls arg1
@@ -677,15 +723,24 @@ instance NodeMethod Engine "get_singleton" '[GodotString]
 --   				@year@     - Holds the year the version was released in as an int
 --   				@string@   - @major@ + @minor@ + @patch@ + @status@ + @build@ in a single String
 --   				The @hex@ value is encoded as follows, from left to right: one byte for the major, one byte for the minor, one byte for the patch version. For example, "3.1.12" would be @0x03010C@. __Note:__ It's still an int internally, and printing it will give you its decimal representation, which is not particularly meaningful. Use hexadecimal literals for easy version comparisons from code:
---   				
---   @
---   
+--   				@codeblocks@
+--   				@gdscript@
 --   				if Engine.get_version_info().hex >= 0x030200:
 --   				    # Do things specific to version 3.2 or later
 --   				else:
 --   				    # Do things specific to versions before 3.2
---   				
---   @
+--   				@/gdscript@
+--   				@csharp@
+--   				if ((int)Engine.GetVersionInfo()@"hex"@ >= 0x030200)
+--   				{
+--   				    // Do things specific to version 3.2 or later
+--   				}
+--   				else
+--   				{
+--   				    // Do things specific to versions before 3.2
+--   				}
+--   				@/csharp@
+--   				@/codeblocks@
 bindEngine_get_version_info :: MethodBind
 bindEngine_get_version_info
   = unsafePerformIO $
@@ -706,15 +761,24 @@ bindEngine_get_version_info
 --   				@year@     - Holds the year the version was released in as an int
 --   				@string@   - @major@ + @minor@ + @patch@ + @status@ + @build@ in a single String
 --   				The @hex@ value is encoded as follows, from left to right: one byte for the major, one byte for the minor, one byte for the patch version. For example, "3.1.12" would be @0x03010C@. __Note:__ It's still an int internally, and printing it will give you its decimal representation, which is not particularly meaningful. Use hexadecimal literals for easy version comparisons from code:
---   				
---   @
---   
+--   				@codeblocks@
+--   				@gdscript@
 --   				if Engine.get_version_info().hex >= 0x030200:
 --   				    # Do things specific to version 3.2 or later
 --   				else:
 --   				    # Do things specific to versions before 3.2
---   				
---   @
+--   				@/gdscript@
+--   				@csharp@
+--   				if ((int)Engine.GetVersionInfo()@"hex"@ >= 0x030200)
+--   				{
+--   				    // Do things specific to version 3.2 or later
+--   				}
+--   				else
+--   				{
+--   				    // Do things specific to versions before 3.2
+--   				}
+--   				@/csharp@
+--   				@/codeblocks@
 get_version_info ::
                    (Engine :< cls, Object :< cls) => cls -> IO Dictionary
 get_version_info cls

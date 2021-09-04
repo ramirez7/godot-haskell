@@ -55,7 +55,6 @@ instance NodeProperty Texture "flags" Int 'False where
 
 {-# NOINLINE bindTexture_draw #-}
 
--- | Draws the texture using a @CanvasItem@ with the @VisualServer@ API at the specified @position@. Equivalent to @method VisualServer.canvas_item_add_texture_rect@ with a rect at @position@ and the size of this @Texture@.
 bindTexture_draw :: MethodBind
 bindTexture_draw
   = unsafePerformIO $
@@ -65,7 +64,6 @@ bindTexture_draw
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Draws the texture using a @CanvasItem@ with the @VisualServer@ API at the specified @position@. Equivalent to @method VisualServer.canvas_item_add_texture_rect@ with a rect at @position@ and the size of this @Texture@.
 draw ::
        (Texture :< cls, Object :< cls) =>
        cls ->
@@ -89,7 +87,6 @@ instance NodeMethod Texture "draw"
 
 {-# NOINLINE bindTexture_draw_rect #-}
 
--- | Draws the texture using a @CanvasItem@ with the @VisualServer@ API. Equivalent to @method VisualServer.canvas_item_add_texture_rect@.
 bindTexture_draw_rect :: MethodBind
 bindTexture_draw_rect
   = unsafePerformIO $
@@ -99,7 +96,6 @@ bindTexture_draw_rect
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Draws the texture using a @CanvasItem@ with the @VisualServer@ API. Equivalent to @method VisualServer.canvas_item_add_texture_rect@.
 draw_rect ::
             (Texture :< cls, Object :< cls) =>
             cls ->
@@ -125,7 +121,6 @@ instance NodeMethod Texture "draw_rect"
 
 {-# NOINLINE bindTexture_draw_rect_region #-}
 
--- | Draws a part of the texture using a @CanvasItem@ with the @VisualServer@ API. Equivalent to @method VisualServer.canvas_item_add_texture_rect_region@.
 bindTexture_draw_rect_region :: MethodBind
 bindTexture_draw_rect_region
   = unsafePerformIO $
@@ -135,7 +130,6 @@ bindTexture_draw_rect_region
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Draws a part of the texture using a @CanvasItem@ with the @VisualServer@ API. Equivalent to @method VisualServer.canvas_item_add_texture_rect_region@.
 draw_rect_region ::
                    (Texture :< cls, Object :< cls) =>
                    cls ->
@@ -165,7 +159,6 @@ instance NodeMethod Texture "draw_rect_region"
 
 {-# NOINLINE bindTexture_get_data #-}
 
--- | Returns an @Image@ that is a copy of data from this @Texture@. @Image@s can be accessed and manipulated directly.
 bindTexture_get_data :: MethodBind
 bindTexture_get_data
   = unsafePerformIO $
@@ -175,7 +168,6 @@ bindTexture_get_data
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns an @Image@ that is a copy of data from this @Texture@. @Image@s can be accessed and manipulated directly.
 get_data :: (Texture :< cls, Object :< cls) => cls -> IO Image
 get_data cls
   = withVariantArray []
@@ -188,7 +180,6 @@ instance NodeMethod Texture "get_data" '[] (IO Image) where
 
 {-# NOINLINE bindTexture_get_flags #-}
 
--- | The texture's @enum Flags@. @enum Flags@ are used to set various properties of the @Texture@.
 bindTexture_get_flags :: MethodBind
 bindTexture_get_flags
   = unsafePerformIO $
@@ -198,7 +189,6 @@ bindTexture_get_flags
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The texture's @enum Flags@. @enum Flags@ are used to set various properties of the @Texture@.
 get_flags :: (Texture :< cls, Object :< cls) => cls -> IO Int
 get_flags cls
   = withVariantArray []
@@ -212,7 +202,6 @@ instance NodeMethod Texture "get_flags" '[] (IO Int) where
 
 {-# NOINLINE bindTexture_get_height #-}
 
--- | Returns the texture height.
 bindTexture_get_height :: MethodBind
 bindTexture_get_height
   = unsafePerformIO $
@@ -222,7 +211,6 @@ bindTexture_get_height
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the texture height.
 get_height :: (Texture :< cls, Object :< cls) => cls -> IO Int
 get_height cls
   = withVariantArray []
@@ -236,7 +224,6 @@ instance NodeMethod Texture "get_height" '[] (IO Int) where
 
 {-# NOINLINE bindTexture_get_size #-}
 
--- | Returns the texture size.
 bindTexture_get_size :: MethodBind
 bindTexture_get_size
   = unsafePerformIO $
@@ -246,7 +233,6 @@ bindTexture_get_size
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the texture size.
 get_size :: (Texture :< cls, Object :< cls) => cls -> IO Vector2
 get_size cls
   = withVariantArray []
@@ -259,7 +245,6 @@ instance NodeMethod Texture "get_size" '[] (IO Vector2) where
 
 {-# NOINLINE bindTexture_get_width #-}
 
--- | Returns the texture width.
 bindTexture_get_width :: MethodBind
 bindTexture_get_width
   = unsafePerformIO $
@@ -269,7 +254,6 @@ bindTexture_get_width
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the texture width.
 get_width :: (Texture :< cls, Object :< cls) => cls -> IO Int
 get_width cls
   = withVariantArray []
@@ -283,7 +267,6 @@ instance NodeMethod Texture "get_width" '[] (IO Int) where
 
 {-# NOINLINE bindTexture_has_alpha #-}
 
--- | Returns @true@ if this @Texture@ has an alpha channel.
 bindTexture_has_alpha :: MethodBind
 bindTexture_has_alpha
   = unsafePerformIO $
@@ -293,7 +276,6 @@ bindTexture_has_alpha
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns @true@ if this @Texture@ has an alpha channel.
 has_alpha :: (Texture :< cls, Object :< cls) => cls -> IO Bool
 has_alpha cls
   = withVariantArray []
@@ -307,7 +289,6 @@ instance NodeMethod Texture "has_alpha" '[] (IO Bool) where
 
 {-# NOINLINE bindTexture_set_flags #-}
 
--- | The texture's @enum Flags@. @enum Flags@ are used to set various properties of the @Texture@.
 bindTexture_set_flags :: MethodBind
 bindTexture_set_flags
   = unsafePerformIO $
@@ -317,7 +298,6 @@ bindTexture_set_flags
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The texture's @enum Flags@. @enum Flags@ are used to set various properties of the @Texture@.
 set_flags :: (Texture :< cls, Object :< cls) => cls -> Int -> IO ()
 set_flags cls arg1
   = withVariantArray [toVariant arg1]

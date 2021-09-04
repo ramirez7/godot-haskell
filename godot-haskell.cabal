@@ -1,10 +1,10 @@
 cabal-version: 2.0
 
--- This file has been generated from package.yaml by hpack version 0.33.0.
+-- This file has been generated from package.yaml by hpack version 0.34.4.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 9eee1b834a7b311c2aaf343d7472f4478f3d5840413d415e779ebfd822966642
+-- hash: 8846c56f535b05ee291080d1996eff2877a9109f28b460b92115dba74a589fac
 
 name:           godot-haskell
 version:        3.1.0.0
@@ -218,12 +218,14 @@ library
       Godot.Core.DampedSpringJoint2D
       Godot.Core.DirectionalLight
       Godot.Core.Directory
+      Godot.Core.DTLSServer
       Godot.Core.DynamicFont
       Godot.Core.DynamicFontData
       Godot.Core.EncodedObjectAsID
       Godot.Core.Engine
       Godot.Core.Environment
       Godot.Core.Expression
+      Godot.Core.ExternalTexture
       Godot.Core.File
       Godot.Core.FileDialog
       Godot.Core.Font
@@ -284,6 +286,7 @@ library
       Godot.Core.JavaClass
       Godot.Core.JavaClassWrapper
       Godot.Core.JavaScript
+      Godot.Core.JNISingleton
       Godot.Core.Joint
       Godot.Core.Joint2D
       Godot.Core.JSON
@@ -344,6 +347,7 @@ library
       Godot.Core.PackedDataContainerRef
       Godot.Core.PackedScene
       Godot.Core.PacketPeer
+      Godot.Core.PacketPeerDTLS
       Godot.Core.PacketPeerGDNative
       Godot.Core.PacketPeerStream
       Godot.Core.PacketPeerUDP
@@ -417,9 +421,7 @@ library
       Godot.Core.RemoteTransform2D
       Godot.Core.Resource
       Godot.Core.ResourceFormatLoader
-      Godot.Core.ResourceFormatLoaderCrypto
       Godot.Core.ResourceFormatSaver
-      Godot.Core.ResourceFormatSaverCrypto
       Godot.Core.ResourceImporter
       Godot.Core.ResourceInteractiveLoader
       Godot.Core.ResourceLoader
@@ -506,6 +508,7 @@ library
       Godot.Core.TreeItem
       Godot.Core.TriangleMesh
       Godot.Core.Tween
+      Godot.Core.UDPServer
       Godot.Core.UndoRedo
       Godot.Core.UPNP
       Godot.Core.UPNPDevice
@@ -688,6 +691,7 @@ library
       Godot.Tools.EditorSpatialGizmoPlugin
       Godot.Tools.EditorSpinSlider
       Godot.Tools.EditorVCSInterface
+      Godot.Tools.FileSystemDock
       Godot.Tools.ScriptCreateDialog
       Godot.Tools.ScriptEditor
       Godot.Tools.VisualScriptEditor
@@ -695,7 +699,24 @@ library
       Paths_godot_haskell
   hs-source-dirs:
       src
-  default-extensions: FlexibleContexts FlexibleInstances ScopedTypeVariables TypeApplications StandaloneDeriving DerivingStrategies DefaultSignatures MultiParamTypeClasses FunctionalDependencies TypeFamilies TemplateHaskell TypeOperators TypeInType QuasiQuotes OverloadedStrings PatternSynonyms GeneralizedNewtypeDeriving
+  default-extensions:
+      FlexibleContexts
+      FlexibleInstances
+      ScopedTypeVariables
+      TypeApplications
+      StandaloneDeriving
+      DerivingStrategies
+      DefaultSignatures
+      MultiParamTypeClasses
+      FunctionalDependencies
+      TypeFamilies
+      TemplateHaskell
+      TypeOperators
+      TypeInType
+      QuasiQuotes
+      OverloadedStrings
+      PatternSynonyms
+      GeneralizedNewtypeDeriving
   ghc-options: -O0
   include-dirs:
       godot_headers
@@ -732,7 +753,24 @@ library generate
       Paths_godot_haskell
   hs-source-dirs:
       src-generate
-  default-extensions: FlexibleContexts FlexibleInstances ScopedTypeVariables TypeApplications StandaloneDeriving DerivingStrategies DefaultSignatures MultiParamTypeClasses FunctionalDependencies TypeFamilies TemplateHaskell TypeOperators TypeInType QuasiQuotes OverloadedStrings PatternSynonyms GeneralizedNewtypeDeriving
+  default-extensions:
+      FlexibleContexts
+      FlexibleInstances
+      ScopedTypeVariables
+      TypeApplications
+      StandaloneDeriving
+      DerivingStrategies
+      DefaultSignatures
+      MultiParamTypeClasses
+      FunctionalDependencies
+      TypeFamilies
+      TemplateHaskell
+      TypeOperators
+      TypeInType
+      QuasiQuotes
+      OverloadedStrings
+      PatternSynonyms
+      GeneralizedNewtypeDeriving
   ghc-options: -O0
   build-depends:
       aeson
@@ -760,7 +798,24 @@ executable godot-haskell-project-generator
       Paths_godot_haskell
   hs-source-dirs:
       project-generator
-  default-extensions: FlexibleContexts FlexibleInstances ScopedTypeVariables TypeApplications StandaloneDeriving DerivingStrategies DefaultSignatures MultiParamTypeClasses FunctionalDependencies TypeFamilies TemplateHaskell TypeOperators TypeInType QuasiQuotes OverloadedStrings PatternSynonyms GeneralizedNewtypeDeriving
+  default-extensions:
+      FlexibleContexts
+      FlexibleInstances
+      ScopedTypeVariables
+      TypeApplications
+      StandaloneDeriving
+      DerivingStrategies
+      DefaultSignatures
+      MultiParamTypeClasses
+      FunctionalDependencies
+      TypeFamilies
+      TemplateHaskell
+      TypeOperators
+      TypeInType
+      QuasiQuotes
+      OverloadedStrings
+      PatternSynonyms
+      GeneralizedNewtypeDeriving
   ghc-options: -O0
   build-depends:
       aeson

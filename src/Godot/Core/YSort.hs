@@ -23,7 +23,6 @@ instance NodeProperty YSort "sort_enabled" Bool 'False where
 
 {-# NOINLINE bindYSort_is_sort_enabled #-}
 
--- | If @true@, child nodes are sorted, otherwise sorting is disabled.
 bindYSort_is_sort_enabled :: MethodBind
 bindYSort_is_sort_enabled
   = unsafePerformIO $
@@ -33,7 +32,6 @@ bindYSort_is_sort_enabled
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, child nodes are sorted, otherwise sorting is disabled.
 is_sort_enabled :: (YSort :< cls, Object :< cls) => cls -> IO Bool
 is_sort_enabled cls
   = withVariantArray []
@@ -48,7 +46,6 @@ instance NodeMethod YSort "is_sort_enabled" '[] (IO Bool) where
 
 {-# NOINLINE bindYSort_set_sort_enabled #-}
 
--- | If @true@, child nodes are sorted, otherwise sorting is disabled.
 bindYSort_set_sort_enabled :: MethodBind
 bindYSort_set_sort_enabled
   = unsafePerformIO $
@@ -58,7 +55,6 @@ bindYSort_set_sort_enabled
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, child nodes are sorted, otherwise sorting is disabled.
 set_sort_enabled ::
                    (YSort :< cls, Object :< cls) => cls -> Bool -> IO ()
 set_sort_enabled cls arg1

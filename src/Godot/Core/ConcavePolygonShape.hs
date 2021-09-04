@@ -24,7 +24,6 @@ instance NodeProperty ConcavePolygonShape "data" PoolVector3Array
 
 {-# NOINLINE bindConcavePolygonShape_get_faces #-}
 
--- | Returns the faces (an array of triangles).
 bindConcavePolygonShape_get_faces :: MethodBind
 bindConcavePolygonShape_get_faces
   = unsafePerformIO $
@@ -34,7 +33,6 @@ bindConcavePolygonShape_get_faces
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the faces (an array of triangles).
 get_faces ::
             (ConcavePolygonShape :< cls, Object :< cls) =>
             cls -> IO PoolVector3Array
@@ -54,7 +52,6 @@ instance NodeMethod ConcavePolygonShape "get_faces" '[]
 
 {-# NOINLINE bindConcavePolygonShape_set_faces #-}
 
--- | Sets the faces (an array of triangles).
 bindConcavePolygonShape_set_faces :: MethodBind
 bindConcavePolygonShape_set_faces
   = unsafePerformIO $
@@ -64,7 +61,6 @@ bindConcavePolygonShape_set_faces
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the faces (an array of triangles).
 set_faces ::
             (ConcavePolygonShape :< cls, Object :< cls) =>
             cls -> PoolVector3Array -> IO ()

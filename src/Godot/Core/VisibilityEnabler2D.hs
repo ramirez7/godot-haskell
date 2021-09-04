@@ -119,7 +119,6 @@ instance NodeMethod VisibilityEnabler2D "_node_removed" '[Node]
 
 {-# NOINLINE bindVisibilityEnabler2D_is_enabler_enabled #-}
 
--- | Returns whether the enabler identified by given @enum Enabler@ constant is active.
 bindVisibilityEnabler2D_is_enabler_enabled :: MethodBind
 bindVisibilityEnabler2D_is_enabler_enabled
   = unsafePerformIO $
@@ -129,7 +128,6 @@ bindVisibilityEnabler2D_is_enabler_enabled
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns whether the enabler identified by given @enum Enabler@ constant is active.
 is_enabler_enabled ::
                      (VisibilityEnabler2D :< cls, Object :< cls) =>
                      cls -> Int -> IO Bool
@@ -149,7 +147,6 @@ instance NodeMethod VisibilityEnabler2D "is_enabler_enabled" '[Int]
 
 {-# NOINLINE bindVisibilityEnabler2D_set_enabler #-}
 
--- | Sets active state of the enabler identified by given @enum Enabler@ constant.
 bindVisibilityEnabler2D_set_enabler :: MethodBind
 bindVisibilityEnabler2D_set_enabler
   = unsafePerformIO $
@@ -159,7 +156,6 @@ bindVisibilityEnabler2D_set_enabler
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets active state of the enabler identified by given @enum Enabler@ constant.
 set_enabler ::
               (VisibilityEnabler2D :< cls, Object :< cls) =>
               cls -> Int -> Bool -> IO ()

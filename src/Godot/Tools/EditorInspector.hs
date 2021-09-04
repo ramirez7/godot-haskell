@@ -510,8 +510,6 @@ instance NodeMethod EditorInspector "_vscroll_changed" '[Float]
 
 {-# NOINLINE bindEditorInspector_refresh #-}
 
--- | Refreshes the inspector.
---   				__Note:__ To save on CPU resources, calling this method will do nothing if the time specified in @docks/property_editor/auto_refresh_interval@ editor setting hasn't passed yet since this method was last called. (By default, this interval is set to 0.3 seconds.)
 bindEditorInspector_refresh :: MethodBind
 bindEditorInspector_refresh
   = unsafePerformIO $
@@ -521,8 +519,6 @@ bindEditorInspector_refresh
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Refreshes the inspector.
---   				__Note:__ To save on CPU resources, calling this method will do nothing if the time specified in @docks/property_editor/auto_refresh_interval@ editor setting hasn't passed yet since this method was last called. (By default, this interval is set to 0.3 seconds.)
 refresh :: (EditorInspector :< cls, Object :< cls) => cls -> IO ()
 refresh cls
   = withVariantArray []

@@ -173,6 +173,7 @@ instance NodeMethod SpriteBase3D "_queue_update" '[] (IO ()) where
 
 {-# NOINLINE bindSpriteBase3D_generate_triangle_mesh #-}
 
+-- | Returns a @TriangleMesh@ with the sprite's vertices following its current configuration (such as its @axis@ and @pixel_size@).
 bindSpriteBase3D_generate_triangle_mesh :: MethodBind
 bindSpriteBase3D_generate_triangle_mesh
   = unsafePerformIO $
@@ -182,6 +183,7 @@ bindSpriteBase3D_generate_triangle_mesh
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
+-- | Returns a @TriangleMesh@ with the sprite's vertices following its current configuration (such as its @axis@ and @pixel_size@).
 generate_triangle_mesh ::
                          (SpriteBase3D :< cls, Object :< cls) => cls -> IO TriangleMesh
 generate_triangle_mesh cls
@@ -200,6 +202,7 @@ instance NodeMethod SpriteBase3D "generate_triangle_mesh" '[]
 
 {-# NOINLINE bindSpriteBase3D_get_alpha_cut_mode #-}
 
+-- | The alpha cutting mode to use for the sprite. See @enum AlphaCutMode@ for possible values.
 bindSpriteBase3D_get_alpha_cut_mode :: MethodBind
 bindSpriteBase3D_get_alpha_cut_mode
   = unsafePerformIO $
@@ -209,6 +212,7 @@ bindSpriteBase3D_get_alpha_cut_mode
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
+-- | The alpha cutting mode to use for the sprite. See @enum AlphaCutMode@ for possible values.
 get_alpha_cut_mode ::
                      (SpriteBase3D :< cls, Object :< cls) => cls -> IO Int
 get_alpha_cut_mode cls
@@ -251,6 +255,7 @@ instance NodeMethod SpriteBase3D "get_axis" '[] (IO Int) where
 
 {-# NOINLINE bindSpriteBase3D_get_billboard_mode #-}
 
+-- | The billboard mode to use for the sprite. See @enum BaseMaterial3D.BillboardMode@ for possible values.
 bindSpriteBase3D_get_billboard_mode :: MethodBind
 bindSpriteBase3D_get_billboard_mode
   = unsafePerformIO $
@@ -260,6 +265,7 @@ bindSpriteBase3D_get_billboard_mode
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
+-- | The billboard mode to use for the sprite. See @enum BaseMaterial3D.BillboardMode@ for possible values.
 get_billboard_mode ::
                      (SpriteBase3D :< cls, Object :< cls) => cls -> IO Int
 get_billboard_mode cls
@@ -385,7 +391,7 @@ instance NodeMethod SpriteBase3D "get_offset" '[] (IO Vector2)
 
 {-# NOINLINE bindSpriteBase3D_get_opacity #-}
 
--- | The objects visibility on a scale from @0@ fully invisible to @1@ fully visible.
+-- | The objects' visibility on a scale from @0@ fully invisible to @1@ fully visible.
 bindSpriteBase3D_get_opacity :: MethodBind
 bindSpriteBase3D_get_opacity
   = unsafePerformIO $
@@ -395,7 +401,7 @@ bindSpriteBase3D_get_opacity
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The objects visibility on a scale from @0@ fully invisible to @1@ fully visible.
+-- | The objects' visibility on a scale from @0@ fully invisible to @1@ fully visible.
 get_opacity ::
               (SpriteBase3D :< cls, Object :< cls) => cls -> IO Float
 get_opacity cls
@@ -516,6 +522,7 @@ instance NodeMethod SpriteBase3D "is_flipped_v" '[] (IO Bool) where
 
 {-# NOINLINE bindSpriteBase3D_set_alpha_cut_mode #-}
 
+-- | The alpha cutting mode to use for the sprite. See @enum AlphaCutMode@ for possible values.
 bindSpriteBase3D_set_alpha_cut_mode :: MethodBind
 bindSpriteBase3D_set_alpha_cut_mode
   = unsafePerformIO $
@@ -525,6 +532,7 @@ bindSpriteBase3D_set_alpha_cut_mode
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
+-- | The alpha cutting mode to use for the sprite. See @enum AlphaCutMode@ for possible values.
 set_alpha_cut_mode ::
                      (SpriteBase3D :< cls, Object :< cls) => cls -> Int -> IO ()
 set_alpha_cut_mode cls arg1
@@ -569,6 +577,7 @@ instance NodeMethod SpriteBase3D "set_axis" '[Int] (IO ()) where
 
 {-# NOINLINE bindSpriteBase3D_set_billboard_mode #-}
 
+-- | The billboard mode to use for the sprite. See @enum BaseMaterial3D.BillboardMode@ for possible values.
 bindSpriteBase3D_set_billboard_mode :: MethodBind
 bindSpriteBase3D_set_billboard_mode
   = unsafePerformIO $
@@ -578,6 +587,7 @@ bindSpriteBase3D_set_billboard_mode
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
+-- | The billboard mode to use for the sprite. See @enum BaseMaterial3D.BillboardMode@ for possible values.
 set_billboard_mode ::
                      (SpriteBase3D :< cls, Object :< cls) => cls -> Int -> IO ()
 set_billboard_mode cls arg1
@@ -623,7 +633,7 @@ instance NodeMethod SpriteBase3D "set_centered" '[Bool] (IO ())
 
 {-# NOINLINE bindSpriteBase3D_set_draw_flag #-}
 
--- | If @true@, the specified flag will be enabled.
+-- | If @true@, the specified flag will be enabled. See @enum SpriteBase3D.DrawFlags@ for a list of flags.
 bindSpriteBase3D_set_draw_flag :: MethodBind
 bindSpriteBase3D_set_draw_flag
   = unsafePerformIO $
@@ -633,7 +643,7 @@ bindSpriteBase3D_set_draw_flag
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, the specified flag will be enabled.
+-- | If @true@, the specified flag will be enabled. See @enum SpriteBase3D.DrawFlags@ for a list of flags.
 set_draw_flag ::
                 (SpriteBase3D :< cls, Object :< cls) => cls -> Int -> Bool -> IO ()
 set_draw_flag cls arg1 arg2
@@ -757,7 +767,7 @@ instance NodeMethod SpriteBase3D "set_offset" '[Vector2] (IO ())
 
 {-# NOINLINE bindSpriteBase3D_set_opacity #-}
 
--- | The objects visibility on a scale from @0@ fully invisible to @1@ fully visible.
+-- | The objects' visibility on a scale from @0@ fully invisible to @1@ fully visible.
 bindSpriteBase3D_set_opacity :: MethodBind
 bindSpriteBase3D_set_opacity
   = unsafePerformIO $
@@ -767,7 +777,7 @@ bindSpriteBase3D_set_opacity
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The objects visibility on a scale from @0@ fully invisible to @1@ fully visible.
+-- | The objects' visibility on a scale from @0@ fully invisible to @1@ fully visible.
 set_opacity ::
               (SpriteBase3D :< cls, Object :< cls) => cls -> Float -> IO ()
 set_opacity cls arg1

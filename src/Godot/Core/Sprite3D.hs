@@ -60,7 +60,7 @@ instance NodeProperty Sprite3D "vframes" Int 'False where
 
 {-# NOINLINE bindSprite3D_get_frame #-}
 
--- | Current frame to display from sprite sheet. @vframes@ or @hframes@ must be greater than 1.
+-- | Current frame to display from sprite sheet. @hframes@ or @vframes@ must be greater than 1.
 bindSprite3D_get_frame :: MethodBind
 bindSprite3D_get_frame
   = unsafePerformIO $
@@ -70,7 +70,7 @@ bindSprite3D_get_frame
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Current frame to display from sprite sheet. @vframes@ or @hframes@ must be greater than 1.
+-- | Current frame to display from sprite sheet. @hframes@ or @vframes@ must be greater than 1.
 get_frame :: (Sprite3D :< cls, Object :< cls) => cls -> IO Int
 get_frame cls
   = withVariantArray []
@@ -84,7 +84,7 @@ instance NodeMethod Sprite3D "get_frame" '[] (IO Int) where
 
 {-# NOINLINE bindSprite3D_get_frame_coords #-}
 
--- | Coordinates of the frame to display from sprite sheet. This is as an alias for the @frame@ property. @vframes@ or @hframes@ must be greater than 1.
+-- | Coordinates of the frame to display from sprite sheet. This is as an alias for the @frame@ property. @hframes@ or @vframes@ must be greater than 1.
 bindSprite3D_get_frame_coords :: MethodBind
 bindSprite3D_get_frame_coords
   = unsafePerformIO $
@@ -94,7 +94,7 @@ bindSprite3D_get_frame_coords
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Coordinates of the frame to display from sprite sheet. This is as an alias for the @frame@ property. @vframes@ or @hframes@ must be greater than 1.
+-- | Coordinates of the frame to display from sprite sheet. This is as an alias for the @frame@ property. @hframes@ or @vframes@ must be greater than 1.
 get_frame_coords ::
                    (Sprite3D :< cls, Object :< cls) => cls -> IO Vector2
 get_frame_coords cls
@@ -161,7 +161,7 @@ instance NodeMethod Sprite3D "get_region_rect" '[] (IO Rect2) where
 
 {-# NOINLINE bindSprite3D_get_texture #-}
 
--- | @Texture@ object to draw. If @GeometryInstance.material_override@ is used, this will be overridden.
+-- | @Texture2D@ object to draw.
 bindSprite3D_get_texture :: MethodBind
 bindSprite3D_get_texture
   = unsafePerformIO $
@@ -171,7 +171,7 @@ bindSprite3D_get_texture
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | @Texture@ object to draw. If @GeometryInstance.material_override@ is used, this will be overridden.
+-- | @Texture2D@ object to draw.
 get_texture ::
               (Sprite3D :< cls, Object :< cls) => cls -> IO Texture
 get_texture cls
@@ -210,7 +210,6 @@ instance NodeMethod Sprite3D "get_vframes" '[] (IO Int) where
 
 {-# NOINLINE bindSprite3D_is_region #-}
 
--- | If @true@, texture will be cut from a larger atlas texture. See @region_rect@.
 bindSprite3D_is_region :: MethodBind
 bindSprite3D_is_region
   = unsafePerformIO $
@@ -220,7 +219,6 @@ bindSprite3D_is_region
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, texture will be cut from a larger atlas texture. See @region_rect@.
 is_region :: (Sprite3D :< cls, Object :< cls) => cls -> IO Bool
 is_region cls
   = withVariantArray []
@@ -234,7 +232,7 @@ instance NodeMethod Sprite3D "is_region" '[] (IO Bool) where
 
 {-# NOINLINE bindSprite3D_set_frame #-}
 
--- | Current frame to display from sprite sheet. @vframes@ or @hframes@ must be greater than 1.
+-- | Current frame to display from sprite sheet. @hframes@ or @vframes@ must be greater than 1.
 bindSprite3D_set_frame :: MethodBind
 bindSprite3D_set_frame
   = unsafePerformIO $
@@ -244,7 +242,7 @@ bindSprite3D_set_frame
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Current frame to display from sprite sheet. @vframes@ or @hframes@ must be greater than 1.
+-- | Current frame to display from sprite sheet. @hframes@ or @vframes@ must be greater than 1.
 set_frame ::
             (Sprite3D :< cls, Object :< cls) => cls -> Int -> IO ()
 set_frame cls arg1
@@ -259,7 +257,7 @@ instance NodeMethod Sprite3D "set_frame" '[Int] (IO ()) where
 
 {-# NOINLINE bindSprite3D_set_frame_coords #-}
 
--- | Coordinates of the frame to display from sprite sheet. This is as an alias for the @frame@ property. @vframes@ or @hframes@ must be greater than 1.
+-- | Coordinates of the frame to display from sprite sheet. This is as an alias for the @frame@ property. @hframes@ or @vframes@ must be greater than 1.
 bindSprite3D_set_frame_coords :: MethodBind
 bindSprite3D_set_frame_coords
   = unsafePerformIO $
@@ -269,7 +267,7 @@ bindSprite3D_set_frame_coords
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Coordinates of the frame to display from sprite sheet. This is as an alias for the @frame@ property. @vframes@ or @hframes@ must be greater than 1.
+-- | Coordinates of the frame to display from sprite sheet. This is as an alias for the @frame@ property. @hframes@ or @vframes@ must be greater than 1.
 set_frame_coords ::
                    (Sprite3D :< cls, Object :< cls) => cls -> Vector2 -> IO ()
 set_frame_coords cls arg1
@@ -311,7 +309,6 @@ instance NodeMethod Sprite3D "set_hframes" '[Int] (IO ()) where
 
 {-# NOINLINE bindSprite3D_set_region #-}
 
--- | If @true@, texture will be cut from a larger atlas texture. See @region_rect@.
 bindSprite3D_set_region :: MethodBind
 bindSprite3D_set_region
   = unsafePerformIO $
@@ -321,7 +318,6 @@ bindSprite3D_set_region
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, texture will be cut from a larger atlas texture. See @region_rect@.
 set_region ::
              (Sprite3D :< cls, Object :< cls) => cls -> Bool -> IO ()
 set_region cls arg1
@@ -363,7 +359,7 @@ instance NodeMethod Sprite3D "set_region_rect" '[Rect2] (IO ())
 
 {-# NOINLINE bindSprite3D_set_texture #-}
 
--- | @Texture@ object to draw. If @GeometryInstance.material_override@ is used, this will be overridden.
+-- | @Texture2D@ object to draw.
 bindSprite3D_set_texture :: MethodBind
 bindSprite3D_set_texture
   = unsafePerformIO $
@@ -373,7 +369,7 @@ bindSprite3D_set_texture
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | @Texture@ object to draw. If @GeometryInstance.material_override@ is used, this will be overridden.
+-- | @Texture2D@ object to draw.
 set_texture ::
               (Sprite3D :< cls, Object :< cls) => cls -> Texture -> IO ()
 set_texture cls arg1

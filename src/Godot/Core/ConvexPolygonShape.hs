@@ -24,7 +24,6 @@ instance NodeProperty ConvexPolygonShape "points" PoolVector3Array
 
 {-# NOINLINE bindConvexPolygonShape_get_points #-}
 
--- | The list of 3D points forming the convex polygon shape.
 bindConvexPolygonShape_get_points :: MethodBind
 bindConvexPolygonShape_get_points
   = unsafePerformIO $
@@ -34,7 +33,6 @@ bindConvexPolygonShape_get_points
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The list of 3D points forming the convex polygon shape.
 get_points ::
              (ConvexPolygonShape :< cls, Object :< cls) =>
              cls -> IO PoolVector3Array
@@ -54,7 +52,6 @@ instance NodeMethod ConvexPolygonShape "get_points" '[]
 
 {-# NOINLINE bindConvexPolygonShape_set_points #-}
 
--- | The list of 3D points forming the convex polygon shape.
 bindConvexPolygonShape_set_points :: MethodBind
 bindConvexPolygonShape_set_points
   = unsafePerformIO $
@@ -64,7 +61,6 @@ bindConvexPolygonShape_set_points
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The list of 3D points forming the convex polygon shape.
 set_points ::
              (ConvexPolygonShape :< cls, Object :< cls) =>
              cls -> PoolVector3Array -> IO ()

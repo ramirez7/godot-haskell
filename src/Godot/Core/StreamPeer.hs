@@ -686,12 +686,14 @@ instance NodeMethod StreamPeer "put_partial_data" '[PoolByteArray]
 
 -- | Puts a zero-terminated ASCII string into the stream prepended by a 32-bit unsigned integer representing its size.
 --   				Note: To put an ASCII string without prepending its size, you can use @method put_data@:
---   				
---   @
---   
+--   				@codeblocks@
+--   				@gdscript@
 --   				put_data("Hello world".to_ascii())
---   				
---   @
+--   				@/gdscript@
+--   				@csharp@
+--   				PutData("Hello World".ToAscii());
+--   				@/csharp@
+--   				@/codeblocks@
 bindStreamPeer_put_string :: MethodBind
 bindStreamPeer_put_string
   = unsafePerformIO $
@@ -703,12 +705,14 @@ bindStreamPeer_put_string
 
 -- | Puts a zero-terminated ASCII string into the stream prepended by a 32-bit unsigned integer representing its size.
 --   				Note: To put an ASCII string without prepending its size, you can use @method put_data@:
---   				
---   @
---   
+--   				@codeblocks@
+--   				@gdscript@
 --   				put_data("Hello world".to_ascii())
---   				
---   @
+--   				@/gdscript@
+--   				@csharp@
+--   				PutData("Hello World".ToAscii());
+--   				@/csharp@
+--   				@/codeblocks@
 put_string ::
              (StreamPeer :< cls, Object :< cls) => cls -> GodotString -> IO ()
 put_string cls arg1
@@ -826,12 +830,14 @@ instance NodeMethod StreamPeer "put_u8" '[Int] (IO ()) where
 
 -- | Puts a zero-terminated UTF-8 string into the stream prepended by a 32 bits unsigned integer representing its size.
 --   				Note: To put an UTF-8 string without prepending its size, you can use @method put_data@:
---   				
---   @
---   
+--   				@codeblocks@
+--   				@gdscript@
 --   				put_data("Hello world".to_utf8())
---   				
---   @
+--   				@/gdscript@
+--   				@csharp@
+--   				PutData("Hello World".ToUTF8());
+--   				@/csharp@
+--   				@/codeblocks@
 bindStreamPeer_put_utf8_string :: MethodBind
 bindStreamPeer_put_utf8_string
   = unsafePerformIO $
@@ -843,12 +849,14 @@ bindStreamPeer_put_utf8_string
 
 -- | Puts a zero-terminated UTF-8 string into the stream prepended by a 32 bits unsigned integer representing its size.
 --   				Note: To put an UTF-8 string without prepending its size, you can use @method put_data@:
---   				
---   @
---   
+--   				@codeblocks@
+--   				@gdscript@
 --   				put_data("Hello world".to_utf8())
---   				
---   @
+--   				@/gdscript@
+--   				@csharp@
+--   				PutData("Hello World".ToUTF8());
+--   				@/csharp@
+--   				@/codeblocks@
 put_utf8_string ::
                   (StreamPeer :< cls, Object :< cls) => cls -> GodotString -> IO ()
 put_utf8_string cls arg1

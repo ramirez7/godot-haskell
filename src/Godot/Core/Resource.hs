@@ -25,6 +25,7 @@ import Godot.Api.Types
 import Godot.Core.Reference()
 
 -- | Emitted whenever the resource changes.
+--   				__Note:__ This signal is not emitted automatically for custom resources, which means that you need to create a setter and emit the signal yourself.
 sig_changed :: Godot.Internal.Dispatch.Signal Resource
 sig_changed = Godot.Internal.Dispatch.Signal "changed"
 
@@ -47,7 +48,6 @@ instance NodeProperty Resource "resource_path" GodotString 'False
 
 {-# NOINLINE bindResource__setup_local_to_scene #-}
 
--- | Virtual function which can be overridden to customize the behavior value of @method setup_local_to_scene@.
 bindResource__setup_local_to_scene :: MethodBind
 bindResource__setup_local_to_scene
   = unsafePerformIO $
@@ -57,7 +57,6 @@ bindResource__setup_local_to_scene
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Virtual function which can be overridden to customize the behavior value of @method setup_local_to_scene@.
 _setup_local_to_scene ::
                         (Resource :< cls, Object :< cls) => cls -> IO ()
 _setup_local_to_scene cls
@@ -77,6 +76,7 @@ instance NodeMethod Resource "_setup_local_to_scene" '[] (IO ())
 
 -- | Duplicates the resource, returning a new resource. By default, sub-resources are shared between resource copies for efficiency. This can be changed by passing @true@ to the @subresources@ argument which will copy the subresources.
 --   				__Note:__ If @subresources@ is @true@, this method will only perform a shallow copy. Nested resources within subresources will not be duplicated and will still be shared.
+--   				__Note:__ When duplicating a resource, only @export@ed properties are copied. Other properties will be set to their default value in the new resource.
 bindResource_duplicate :: MethodBind
 bindResource_duplicate
   = unsafePerformIO $
@@ -88,6 +88,7 @@ bindResource_duplicate
 
 -- | Duplicates the resource, returning a new resource. By default, sub-resources are shared between resource copies for efficiency. This can be changed by passing @true@ to the @subresources@ argument which will copy the subresources.
 --   				__Note:__ If @subresources@ is @true@, this method will only perform a shallow copy. Nested resources within subresources will not be duplicated and will still be shared.
+--   				__Note:__ When duplicating a resource, only @export@ed properties are copied. Other properties will be set to their default value in the new resource.
 duplicate ::
             (Resource :< cls, Object :< cls) =>
             cls -> Maybe Bool -> IO Resource
@@ -131,7 +132,7 @@ instance NodeMethod Resource "get_local_scene" '[] (IO Node) where
 
 {-# NOINLINE bindResource_get_name #-}
 
--- | The name of the resource. This is an optional identifier.
+-- | The name of the resource. This is an optional identifier. If @resource_name@ is not empty, its value will be displayed to represent the current resource in the editor inspector. For built-in scripts, the @resource_name@ will be displayed as the tab name in the script editor.
 bindResource_get_name :: MethodBind
 bindResource_get_name
   = unsafePerformIO $
@@ -141,7 +142,7 @@ bindResource_get_name
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The name of the resource. This is an optional identifier.
+-- | The name of the resource. This is an optional identifier. If @resource_name@ is not empty, its value will be displayed to represent the current resource in the editor inspector. For built-in scripts, the @resource_name@ will be displayed as the tab name in the script editor.
 get_name ::
            (Resource :< cls, Object :< cls) => cls -> IO GodotString
 get_name cls
@@ -181,7 +182,7 @@ instance NodeMethod Resource "get_path" '[] (IO GodotString) where
 
 {-# NOINLINE bindResource_get_rid #-}
 
--- | Returns the RID of the resource (or an empty RID). Many resources (such as @Texture@, @Mesh@, etc) are high-level abstractions of resources stored in a server, so this function will return the original RID.
+-- | Returns the RID of the resource (or an empty RID). Many resources (such as @Texture2D@, @Mesh@, etc) are high-level abstractions of resources stored in a server, so this function will return the original RID.
 bindResource_get_rid :: MethodBind
 bindResource_get_rid
   = unsafePerformIO $
@@ -191,7 +192,7 @@ bindResource_get_rid
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the RID of the resource (or an empty RID). Many resources (such as @Texture@, @Mesh@, etc) are high-level abstractions of resources stored in a server, so this function will return the original RID.
+-- | Returns the RID of the resource (or an empty RID). Many resources (such as @Texture2D@, @Mesh@, etc) are high-level abstractions of resources stored in a server, so this function will return the original RID.
 get_rid :: (Resource :< cls, Object :< cls) => cls -> IO Rid
 get_rid cls
   = withVariantArray []
@@ -258,7 +259,7 @@ instance NodeMethod Resource "set_local_to_scene" '[Bool] (IO ())
 
 {-# NOINLINE bindResource_set_name #-}
 
--- | The name of the resource. This is an optional identifier.
+-- | The name of the resource. This is an optional identifier. If @resource_name@ is not empty, its value will be displayed to represent the current resource in the editor inspector. For built-in scripts, the @resource_name@ will be displayed as the tab name in the script editor.
 bindResource_set_name :: MethodBind
 bindResource_set_name
   = unsafePerformIO $
@@ -268,7 +269,7 @@ bindResource_set_name
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The name of the resource. This is an optional identifier.
+-- | The name of the resource. This is an optional identifier. If @resource_name@ is not empty, its value will be displayed to represent the current resource in the editor inspector. For built-in scripts, the @resource_name@ will be displayed as the tab name in the script editor.
 set_name ::
            (Resource :< cls, Object :< cls) => cls -> GodotString -> IO ()
 set_name cls arg1
@@ -310,7 +311,7 @@ instance NodeMethod Resource "set_path" '[GodotString] (IO ())
 
 {-# NOINLINE bindResource_setup_local_to_scene #-}
 
--- | This method is called when a resource with @resource_local_to_scene@ enabled is loaded from a @PackedScene@ instantiation. Its behavior can be customized by overriding @method _setup_local_to_scene@ from script.
+-- | This method is called when a resource with @resource_local_to_scene@ enabled is loaded from a @PackedScene@ instantiation. Its behavior can be customized by connecting @signal setup_local_to_scene_requested@ from script.
 --   				For most resources, this method performs no base logic. @ViewportTexture@ performs custom logic to properly set the proxy texture and flags in the local viewport.
 bindResource_setup_local_to_scene :: MethodBind
 bindResource_setup_local_to_scene
@@ -321,7 +322,7 @@ bindResource_setup_local_to_scene
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | This method is called when a resource with @resource_local_to_scene@ enabled is loaded from a @PackedScene@ instantiation. Its behavior can be customized by overriding @method _setup_local_to_scene@ from script.
+-- | This method is called when a resource with @resource_local_to_scene@ enabled is loaded from a @PackedScene@ instantiation. Its behavior can be customized by connecting @signal setup_local_to_scene_requested@ from script.
 --   				For most resources, this method performs no base logic. @ViewportTexture@ performs custom logic to properly set the proxy texture and flags in the local viewport.
 setup_local_to_scene ::
                        (Resource :< cls, Object :< cls) => cls -> IO ()

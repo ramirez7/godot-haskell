@@ -60,7 +60,7 @@ instance NodeMethod LightOccluder2D "_poly_changed" '[] (IO ())
 
 {-# NOINLINE bindLightOccluder2D_get_occluder_light_mask #-}
 
--- | The LightOccluder2D's light mask. The LightOccluder2D will cast shadows only from Light2D(s) that have the same light mask(s).
+-- | The LightOccluder2D's occluder light mask. The LightOccluder2D will cast shadows only from Light2D(s) that have the same light mask(s).
 bindLightOccluder2D_get_occluder_light_mask :: MethodBind
 bindLightOccluder2D_get_occluder_light_mask
   = unsafePerformIO $
@@ -70,7 +70,7 @@ bindLightOccluder2D_get_occluder_light_mask
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The LightOccluder2D's light mask. The LightOccluder2D will cast shadows only from Light2D(s) that have the same light mask(s).
+-- | The LightOccluder2D's occluder light mask. The LightOccluder2D will cast shadows only from Light2D(s) that have the same light mask(s).
 get_occluder_light_mask ::
                           (LightOccluder2D :< cls, Object :< cls) => cls -> IO Int
 get_occluder_light_mask cls
@@ -119,7 +119,7 @@ instance NodeMethod LightOccluder2D "get_occluder_polygon" '[]
 
 {-# NOINLINE bindLightOccluder2D_set_occluder_light_mask #-}
 
--- | The LightOccluder2D's light mask. The LightOccluder2D will cast shadows only from Light2D(s) that have the same light mask(s).
+-- | The LightOccluder2D's occluder light mask. The LightOccluder2D will cast shadows only from Light2D(s) that have the same light mask(s).
 bindLightOccluder2D_set_occluder_light_mask :: MethodBind
 bindLightOccluder2D_set_occluder_light_mask
   = unsafePerformIO $
@@ -129,7 +129,7 @@ bindLightOccluder2D_set_occluder_light_mask
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The LightOccluder2D's light mask. The LightOccluder2D will cast shadows only from Light2D(s) that have the same light mask(s).
+-- | The LightOccluder2D's occluder light mask. The LightOccluder2D will cast shadows only from Light2D(s) that have the same light mask(s).
 set_occluder_light_mask ::
                           (LightOccluder2D :< cls, Object :< cls) => cls -> Int -> IO ()
 set_occluder_light_mask cls arg1

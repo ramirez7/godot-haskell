@@ -129,7 +129,6 @@ instance NodeProperty HingeJoint "params/bias" Float 'False where
 
 {-# NOINLINE bindHingeJoint__get_lower_limit #-}
 
--- | The minimum rotation. Only active if @angular_limit/enable@ is @true@.
 bindHingeJoint__get_lower_limit :: MethodBind
 bindHingeJoint__get_lower_limit
   = unsafePerformIO $
@@ -139,7 +138,6 @@ bindHingeJoint__get_lower_limit
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The minimum rotation. Only active if @angular_limit/enable@ is @true@.
 _get_lower_limit ::
                    (HingeJoint :< cls, Object :< cls) => cls -> IO Float
 _get_lower_limit cls
@@ -156,7 +154,6 @@ instance NodeMethod HingeJoint "_get_lower_limit" '[] (IO Float)
 
 {-# NOINLINE bindHingeJoint__get_upper_limit #-}
 
--- | The maximum rotation. Only active if @angular_limit/enable@ is @true@.
 bindHingeJoint__get_upper_limit :: MethodBind
 bindHingeJoint__get_upper_limit
   = unsafePerformIO $
@@ -166,7 +163,6 @@ bindHingeJoint__get_upper_limit
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The maximum rotation. Only active if @angular_limit/enable@ is @true@.
 _get_upper_limit ::
                    (HingeJoint :< cls, Object :< cls) => cls -> IO Float
 _get_upper_limit cls
@@ -183,7 +179,6 @@ instance NodeMethod HingeJoint "_get_upper_limit" '[] (IO Float)
 
 {-# NOINLINE bindHingeJoint__set_lower_limit #-}
 
--- | The minimum rotation. Only active if @angular_limit/enable@ is @true@.
 bindHingeJoint__set_lower_limit :: MethodBind
 bindHingeJoint__set_lower_limit
   = unsafePerformIO $
@@ -193,7 +188,6 @@ bindHingeJoint__set_lower_limit
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The minimum rotation. Only active if @angular_limit/enable@ is @true@.
 _set_lower_limit ::
                    (HingeJoint :< cls, Object :< cls) => cls -> Float -> IO ()
 _set_lower_limit cls arg1
@@ -210,7 +204,6 @@ instance NodeMethod HingeJoint "_set_lower_limit" '[Float] (IO ())
 
 {-# NOINLINE bindHingeJoint__set_upper_limit #-}
 
--- | The maximum rotation. Only active if @angular_limit/enable@ is @true@.
 bindHingeJoint__set_upper_limit :: MethodBind
 bindHingeJoint__set_upper_limit
   = unsafePerformIO $
@@ -220,7 +213,6 @@ bindHingeJoint__set_upper_limit
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The maximum rotation. Only active if @angular_limit/enable@ is @true@.
 _set_upper_limit ::
                    (HingeJoint :< cls, Object :< cls) => cls -> Float -> IO ()
 _set_upper_limit cls arg1
@@ -237,7 +229,6 @@ instance NodeMethod HingeJoint "_set_upper_limit" '[Float] (IO ())
 
 {-# NOINLINE bindHingeJoint_get_flag #-}
 
--- | Returns the value of the specified flag.
 bindHingeJoint_get_flag :: MethodBind
 bindHingeJoint_get_flag
   = unsafePerformIO $
@@ -247,7 +238,6 @@ bindHingeJoint_get_flag
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the value of the specified flag.
 get_flag ::
            (HingeJoint :< cls, Object :< cls) => cls -> Int -> IO Bool
 get_flag cls arg1
@@ -262,7 +252,6 @@ instance NodeMethod HingeJoint "get_flag" '[Int] (IO Bool) where
 
 {-# NOINLINE bindHingeJoint_get_param #-}
 
--- | Returns the value of the specified parameter.
 bindHingeJoint_get_param :: MethodBind
 bindHingeJoint_get_param
   = unsafePerformIO $
@@ -272,7 +261,6 @@ bindHingeJoint_get_param
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the value of the specified parameter.
 get_param ::
             (HingeJoint :< cls, Object :< cls) => cls -> Int -> IO Float
 get_param cls arg1
@@ -287,7 +275,6 @@ instance NodeMethod HingeJoint "get_param" '[Int] (IO Float) where
 
 {-# NOINLINE bindHingeJoint_set_flag #-}
 
--- | If @true@, enables the specified flag.
 bindHingeJoint_set_flag :: MethodBind
 bindHingeJoint_set_flag
   = unsafePerformIO $
@@ -297,7 +284,6 @@ bindHingeJoint_set_flag
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, enables the specified flag.
 set_flag ::
            (HingeJoint :< cls, Object :< cls) => cls -> Int -> Bool -> IO ()
 set_flag cls arg1 arg2
@@ -313,7 +299,6 @@ instance NodeMethod HingeJoint "set_flag" '[Int, Bool] (IO ())
 
 {-# NOINLINE bindHingeJoint_set_param #-}
 
--- | Sets the value of the specified parameter.
 bindHingeJoint_set_param :: MethodBind
 bindHingeJoint_set_param
   = unsafePerformIO $
@@ -323,7 +308,6 @@ bindHingeJoint_set_param
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the value of the specified parameter.
 set_param ::
             (HingeJoint :< cls, Object :< cls) => cls -> Int -> Float -> IO ()
 set_param cls arg1 arg2

@@ -231,7 +231,7 @@ instance NodeMethod TranslationServer "set_locale" '[GodotString]
 
 {-# NOINLINE bindTranslationServer_translate #-}
 
--- | Returns the current locale's translation for the given message (key).
+-- | Returns the current locale's translation for the given message (key) and context.
 bindTranslationServer_translate :: MethodBind
 bindTranslationServer_translate
   = unsafePerformIO $
@@ -241,7 +241,7 @@ bindTranslationServer_translate
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the current locale's translation for the given message (key).
+-- | Returns the current locale's translation for the given message (key) and context.
 translate ::
             (TranslationServer :< cls, Object :< cls) =>
             cls -> GodotString -> IO GodotString

@@ -69,7 +69,7 @@ instance NodeProperty InputEventJoypadButton "pressure" Float
 
 {-# NOINLINE bindInputEventJoypadButton_get_button_index #-}
 
--- | Button identifier. One of the @enum JoystickList@ button constants.
+-- | Button identifier. One of the @enum JoyButton@ button constants.
 bindInputEventJoypadButton_get_button_index :: MethodBind
 bindInputEventJoypadButton_get_button_index
   = unsafePerformIO $
@@ -79,7 +79,7 @@ bindInputEventJoypadButton_get_button_index
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Button identifier. One of the @enum JoystickList@ button constants.
+-- | Button identifier. One of the @enum JoyButton@ button constants.
 get_button_index ::
                    (InputEventJoypadButton :< cls, Object :< cls) => cls -> IO Int
 get_button_index cls
@@ -127,7 +127,7 @@ instance NodeMethod InputEventJoypadButton "get_pressure" '[]
 
 {-# NOINLINE bindInputEventJoypadButton_set_button_index #-}
 
--- | Button identifier. One of the @enum JoystickList@ button constants.
+-- | Button identifier. One of the @enum JoyButton@ button constants.
 bindInputEventJoypadButton_set_button_index :: MethodBind
 bindInputEventJoypadButton_set_button_index
   = unsafePerformIO $
@@ -137,7 +137,7 @@ bindInputEventJoypadButton_set_button_index
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Button identifier. One of the @enum JoystickList@ button constants.
+-- | Button identifier. One of the @enum JoyButton@ button constants.
 set_button_index ::
                    (InputEventJoypadButton :< cls, Object :< cls) =>
                    cls -> Int -> IO ()

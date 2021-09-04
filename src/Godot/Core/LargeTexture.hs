@@ -77,7 +77,6 @@ instance NodeMethod LargeTexture "_set_data" '[Array] (IO ()) where
 
 {-# NOINLINE bindLargeTexture_add_piece #-}
 
--- | Adds @texture@ to this @LargeTexture@, starting on offset @ofs@.
 bindLargeTexture_add_piece :: MethodBind
 bindLargeTexture_add_piece
   = unsafePerformIO $
@@ -87,7 +86,6 @@ bindLargeTexture_add_piece
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Adds @texture@ to this @LargeTexture@, starting on offset @ofs@.
 add_piece ::
             (LargeTexture :< cls, Object :< cls) =>
             cls -> Vector2 -> Texture -> IO Int
@@ -106,7 +104,6 @@ instance NodeMethod LargeTexture "add_piece" '[Vector2, Texture]
 
 {-# NOINLINE bindLargeTexture_clear #-}
 
--- | Clears the @LargeTexture@.
 bindLargeTexture_clear :: MethodBind
 bindLargeTexture_clear
   = unsafePerformIO $
@@ -116,7 +113,6 @@ bindLargeTexture_clear
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Clears the @LargeTexture@.
 clear :: (LargeTexture :< cls, Object :< cls) => cls -> IO ()
 clear cls
   = withVariantArray []
@@ -130,7 +126,6 @@ instance NodeMethod LargeTexture "clear" '[] (IO ()) where
 
 {-# NOINLINE bindLargeTexture_get_piece_count #-}
 
--- | Returns the number of pieces currently in this @LargeTexture@.
 bindLargeTexture_get_piece_count :: MethodBind
 bindLargeTexture_get_piece_count
   = unsafePerformIO $
@@ -140,7 +135,6 @@ bindLargeTexture_get_piece_count
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the number of pieces currently in this @LargeTexture@.
 get_piece_count ::
                   (LargeTexture :< cls, Object :< cls) => cls -> IO Int
 get_piece_count cls
@@ -158,7 +152,6 @@ instance NodeMethod LargeTexture "get_piece_count" '[] (IO Int)
 
 {-# NOINLINE bindLargeTexture_get_piece_offset #-}
 
--- | Returns the offset of the piece with the index @idx@.
 bindLargeTexture_get_piece_offset :: MethodBind
 bindLargeTexture_get_piece_offset
   = unsafePerformIO $
@@ -168,7 +161,6 @@ bindLargeTexture_get_piece_offset
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the offset of the piece with the index @idx@.
 get_piece_offset ::
                    (LargeTexture :< cls, Object :< cls) => cls -> Int -> IO Vector2
 get_piece_offset cls arg1
@@ -187,7 +179,6 @@ instance NodeMethod LargeTexture "get_piece_offset" '[Int]
 
 {-# NOINLINE bindLargeTexture_get_piece_texture #-}
 
--- | Returns the @Texture@ of the piece with the index @idx@.
 bindLargeTexture_get_piece_texture :: MethodBind
 bindLargeTexture_get_piece_texture
   = unsafePerformIO $
@@ -197,7 +188,6 @@ bindLargeTexture_get_piece_texture
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the @Texture@ of the piece with the index @idx@.
 get_piece_texture ::
                     (LargeTexture :< cls, Object :< cls) => cls -> Int -> IO Texture
 get_piece_texture cls arg1
@@ -216,7 +206,6 @@ instance NodeMethod LargeTexture "get_piece_texture" '[Int]
 
 {-# NOINLINE bindLargeTexture_set_piece_offset #-}
 
--- | Sets the offset of the piece with the index @idx@ to @ofs@.
 bindLargeTexture_set_piece_offset :: MethodBind
 bindLargeTexture_set_piece_offset
   = unsafePerformIO $
@@ -226,7 +215,6 @@ bindLargeTexture_set_piece_offset
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the offset of the piece with the index @idx@ to @ofs@.
 set_piece_offset ::
                    (LargeTexture :< cls, Object :< cls) =>
                    cls -> Int -> Vector2 -> IO ()
@@ -246,7 +234,6 @@ instance NodeMethod LargeTexture "set_piece_offset" '[Int, Vector2]
 
 {-# NOINLINE bindLargeTexture_set_piece_texture #-}
 
--- | Sets the @Texture@ of the piece with index @idx@ to @texture@.
 bindLargeTexture_set_piece_texture :: MethodBind
 bindLargeTexture_set_piece_texture
   = unsafePerformIO $
@@ -256,7 +243,6 @@ bindLargeTexture_set_piece_texture
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the @Texture@ of the piece with index @idx@ to @texture@.
 set_piece_texture ::
                     (LargeTexture :< cls, Object :< cls) =>
                     cls -> Int -> Texture -> IO ()
@@ -277,7 +263,6 @@ instance NodeMethod LargeTexture "set_piece_texture"
 
 {-# NOINLINE bindLargeTexture_set_size #-}
 
--- | Sets the size of this @LargeTexture@.
 bindLargeTexture_set_size :: MethodBind
 bindLargeTexture_set_size
   = unsafePerformIO $
@@ -287,7 +272,6 @@ bindLargeTexture_set_size
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the size of this @LargeTexture@.
 set_size ::
            (LargeTexture :< cls, Object :< cls) => cls -> Vector2 -> IO ()
 set_size cls arg1

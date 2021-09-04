@@ -101,7 +101,7 @@ instance NodeMethod MeshInstance2D "get_normal_map" '[]
 
 {-# NOINLINE bindMeshInstance2D_get_texture #-}
 
--- | The @Texture@ that will be used if using the default @CanvasItemMaterial@. Can be accessed as @TEXTURE@ in CanvasItem shader.
+-- | The @Texture2D@ that will be used if using the default @CanvasItemMaterial@. Can be accessed as @TEXTURE@ in CanvasItem shader.
 bindMeshInstance2D_get_texture :: MethodBind
 bindMeshInstance2D_get_texture
   = unsafePerformIO $
@@ -111,7 +111,7 @@ bindMeshInstance2D_get_texture
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The @Texture@ that will be used if using the default @CanvasItemMaterial@. Can be accessed as @TEXTURE@ in CanvasItem shader.
+-- | The @Texture2D@ that will be used if using the default @CanvasItemMaterial@. Can be accessed as @TEXTURE@ in CanvasItem shader.
 get_texture ::
               (MeshInstance2D :< cls, Object :< cls) => cls -> IO Texture
 get_texture cls
@@ -185,7 +185,7 @@ instance NodeMethod MeshInstance2D "set_normal_map" '[Texture]
 
 {-# NOINLINE bindMeshInstance2D_set_texture #-}
 
--- | The @Texture@ that will be used if using the default @CanvasItemMaterial@. Can be accessed as @TEXTURE@ in CanvasItem shader.
+-- | The @Texture2D@ that will be used if using the default @CanvasItemMaterial@. Can be accessed as @TEXTURE@ in CanvasItem shader.
 bindMeshInstance2D_set_texture :: MethodBind
 bindMeshInstance2D_set_texture
   = unsafePerformIO $
@@ -195,7 +195,7 @@ bindMeshInstance2D_set_texture
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The @Texture@ that will be used if using the default @CanvasItemMaterial@. Can be accessed as @TEXTURE@ in CanvasItem shader.
+-- | The @Texture2D@ that will be used if using the default @CanvasItemMaterial@. Can be accessed as @TEXTURE@ in CanvasItem shader.
 set_texture ::
               (MeshInstance2D :< cls, Object :< cls) => cls -> Texture -> IO ()
 set_texture cls arg1

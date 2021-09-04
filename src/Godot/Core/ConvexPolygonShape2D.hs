@@ -56,7 +56,7 @@ instance NodeMethod ConvexPolygonShape2D "get_points" '[]
 
 {-# NOINLINE bindConvexPolygonShape2D_set_point_cloud #-}
 
--- | Based on the set of points provided, this creates and assigns the @points@ property using the convex hull algorithm. Removing all unneeded points. See @method Geometry.convex_hull_2d@ for details.
+-- | Based on the set of points provided, this creates and assigns the @points@ property using the convex hull algorithm. Removing all unneeded points. See @method Geometry2D.convex_hull@ for details.
 bindConvexPolygonShape2D_set_point_cloud :: MethodBind
 bindConvexPolygonShape2D_set_point_cloud
   = unsafePerformIO $
@@ -66,7 +66,7 @@ bindConvexPolygonShape2D_set_point_cloud
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Based on the set of points provided, this creates and assigns the @points@ property using the convex hull algorithm. Removing all unneeded points. See @method Geometry.convex_hull_2d@ for details.
+-- | Based on the set of points provided, this creates and assigns the @points@ property using the convex hull algorithm. Removing all unneeded points. See @method Geometry2D.convex_hull@ for details.
 set_point_cloud ::
                   (ConvexPolygonShape2D :< cls, Object :< cls) =>
                   cls -> PoolVector2Array -> IO ()

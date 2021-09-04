@@ -17,7 +17,7 @@ import Godot.Core.Reference()
 
 {-# NOINLINE bindSemaphore_post #-}
 
--- | Lowers the @Semaphore@, allowing one more thread in. Returns @OK@ on success, @ERR_BUSY@ otherwise.
+-- | Lowers the @Semaphore@, allowing one more thread in.
 bindSemaphore_post :: MethodBind
 bindSemaphore_post
   = unsafePerformIO $
@@ -27,7 +27,7 @@ bindSemaphore_post
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Lowers the @Semaphore@, allowing one more thread in. Returns @OK@ on success, @ERR_BUSY@ otherwise.
+-- | Lowers the @Semaphore@, allowing one more thread in.
 post :: (Semaphore :< cls, Object :< cls) => cls -> IO Int
 post cls
   = withVariantArray []
@@ -40,7 +40,7 @@ instance NodeMethod Semaphore "post" '[] (IO Int) where
 
 {-# NOINLINE bindSemaphore_wait #-}
 
--- | Tries to wait for the @Semaphore@, if its value is zero, blocks until non-zero. Returns @OK@ on success, @ERR_BUSY@ otherwise.
+-- | Waits for the @Semaphore@, if its value is zero, blocks until non-zero.
 bindSemaphore_wait :: MethodBind
 bindSemaphore_wait
   = unsafePerformIO $
@@ -50,7 +50,7 @@ bindSemaphore_wait
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Tries to wait for the @Semaphore@, if its value is zero, blocks until non-zero. Returns @OK@ on success, @ERR_BUSY@ otherwise.
+-- | Waits for the @Semaphore@, if its value is zero, blocks until non-zero.
 wait :: (Semaphore :< cls, Object :< cls) => cls -> IO Int
 wait cls
   = withVariantArray []

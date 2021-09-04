@@ -57,7 +57,6 @@ instance NodeProperty RemoteTransform "use_global_coordinates" Bool
 
 {-# NOINLINE bindRemoteTransform_force_update_cache #-}
 
--- | @RemoteTransform@ caches the remote node. It may not notice if the remote node disappears; @method force_update_cache@ forces it to update the cache again.
 bindRemoteTransform_force_update_cache :: MethodBind
 bindRemoteTransform_force_update_cache
   = unsafePerformIO $
@@ -67,7 +66,6 @@ bindRemoteTransform_force_update_cache
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | @RemoteTransform@ caches the remote node. It may not notice if the remote node disappears; @method force_update_cache@ forces it to update the cache again.
 force_update_cache ::
                      (RemoteTransform :< cls, Object :< cls) => cls -> IO ()
 force_update_cache cls
@@ -86,7 +84,6 @@ instance NodeMethod RemoteTransform "force_update_cache" '[]
 
 {-# NOINLINE bindRemoteTransform_get_remote_node #-}
 
--- | The @NodePath@ to the remote node, relative to the RemoteTransform's position in the scene.
 bindRemoteTransform_get_remote_node :: MethodBind
 bindRemoteTransform_get_remote_node
   = unsafePerformIO $
@@ -96,7 +93,6 @@ bindRemoteTransform_get_remote_node
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The @NodePath@ to the remote node, relative to the RemoteTransform's position in the scene.
 get_remote_node ::
                   (RemoteTransform :< cls, Object :< cls) => cls -> IO NodePath
 get_remote_node cls
@@ -115,7 +111,6 @@ instance NodeMethod RemoteTransform "get_remote_node" '[]
 
 {-# NOINLINE bindRemoteTransform_get_update_position #-}
 
--- | If @true@, the remote node's position is updated.
 bindRemoteTransform_get_update_position :: MethodBind
 bindRemoteTransform_get_update_position
   = unsafePerformIO $
@@ -125,7 +120,6 @@ bindRemoteTransform_get_update_position
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, the remote node's position is updated.
 get_update_position ::
                       (RemoteTransform :< cls, Object :< cls) => cls -> IO Bool
 get_update_position cls
@@ -144,7 +138,6 @@ instance NodeMethod RemoteTransform "get_update_position" '[]
 
 {-# NOINLINE bindRemoteTransform_get_update_rotation #-}
 
--- | If @true@, the remote node's rotation is updated.
 bindRemoteTransform_get_update_rotation :: MethodBind
 bindRemoteTransform_get_update_rotation
   = unsafePerformIO $
@@ -154,7 +147,6 @@ bindRemoteTransform_get_update_rotation
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, the remote node's rotation is updated.
 get_update_rotation ::
                       (RemoteTransform :< cls, Object :< cls) => cls -> IO Bool
 get_update_rotation cls
@@ -173,7 +165,6 @@ instance NodeMethod RemoteTransform "get_update_rotation" '[]
 
 {-# NOINLINE bindRemoteTransform_get_update_scale #-}
 
--- | If @true@, the remote node's scale is updated.
 bindRemoteTransform_get_update_scale :: MethodBind
 bindRemoteTransform_get_update_scale
   = unsafePerformIO $
@@ -183,7 +174,6 @@ bindRemoteTransform_get_update_scale
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, the remote node's scale is updated.
 get_update_scale ::
                    (RemoteTransform :< cls, Object :< cls) => cls -> IO Bool
 get_update_scale cls
@@ -202,7 +192,6 @@ instance NodeMethod RemoteTransform "get_update_scale" '[]
 
 {-# NOINLINE bindRemoteTransform_get_use_global_coordinates #-}
 
--- | If @true@, global coordinates are used. If @false@, local coordinates are used.
 bindRemoteTransform_get_use_global_coordinates :: MethodBind
 bindRemoteTransform_get_use_global_coordinates
   = unsafePerformIO $
@@ -212,7 +201,6 @@ bindRemoteTransform_get_use_global_coordinates
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, global coordinates are used. If @false@, local coordinates are used.
 get_use_global_coordinates ::
                              (RemoteTransform :< cls, Object :< cls) => cls -> IO Bool
 get_use_global_coordinates cls
@@ -233,7 +221,6 @@ instance NodeMethod RemoteTransform "get_use_global_coordinates"
 
 {-# NOINLINE bindRemoteTransform_set_remote_node #-}
 
--- | The @NodePath@ to the remote node, relative to the RemoteTransform's position in the scene.
 bindRemoteTransform_set_remote_node :: MethodBind
 bindRemoteTransform_set_remote_node
   = unsafePerformIO $
@@ -243,7 +230,6 @@ bindRemoteTransform_set_remote_node
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The @NodePath@ to the remote node, relative to the RemoteTransform's position in the scene.
 set_remote_node ::
                   (RemoteTransform :< cls, Object :< cls) => cls -> NodePath -> IO ()
 set_remote_node cls arg1
@@ -262,7 +248,6 @@ instance NodeMethod RemoteTransform "set_remote_node" '[NodePath]
 
 {-# NOINLINE bindRemoteTransform_set_update_position #-}
 
--- | If @true@, the remote node's position is updated.
 bindRemoteTransform_set_update_position :: MethodBind
 bindRemoteTransform_set_update_position
   = unsafePerformIO $
@@ -272,7 +257,6 @@ bindRemoteTransform_set_update_position
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, the remote node's position is updated.
 set_update_position ::
                       (RemoteTransform :< cls, Object :< cls) => cls -> Bool -> IO ()
 set_update_position cls arg1
@@ -291,7 +275,6 @@ instance NodeMethod RemoteTransform "set_update_position" '[Bool]
 
 {-# NOINLINE bindRemoteTransform_set_update_rotation #-}
 
--- | If @true@, the remote node's rotation is updated.
 bindRemoteTransform_set_update_rotation :: MethodBind
 bindRemoteTransform_set_update_rotation
   = unsafePerformIO $
@@ -301,7 +284,6 @@ bindRemoteTransform_set_update_rotation
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, the remote node's rotation is updated.
 set_update_rotation ::
                       (RemoteTransform :< cls, Object :< cls) => cls -> Bool -> IO ()
 set_update_rotation cls arg1
@@ -320,7 +302,6 @@ instance NodeMethod RemoteTransform "set_update_rotation" '[Bool]
 
 {-# NOINLINE bindRemoteTransform_set_update_scale #-}
 
--- | If @true@, the remote node's scale is updated.
 bindRemoteTransform_set_update_scale :: MethodBind
 bindRemoteTransform_set_update_scale
   = unsafePerformIO $
@@ -330,7 +311,6 @@ bindRemoteTransform_set_update_scale
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, the remote node's scale is updated.
 set_update_scale ::
                    (RemoteTransform :< cls, Object :< cls) => cls -> Bool -> IO ()
 set_update_scale cls arg1
@@ -349,7 +329,6 @@ instance NodeMethod RemoteTransform "set_update_scale" '[Bool]
 
 {-# NOINLINE bindRemoteTransform_set_use_global_coordinates #-}
 
--- | If @true@, global coordinates are used. If @false@, local coordinates are used.
 bindRemoteTransform_set_use_global_coordinates :: MethodBind
 bindRemoteTransform_set_use_global_coordinates
   = unsafePerformIO $
@@ -359,7 +338,6 @@ bindRemoteTransform_set_use_global_coordinates
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, global coordinates are used. If @false@, local coordinates are used.
 set_use_global_coordinates ::
                              (RemoteTransform :< cls, Object :< cls) => cls -> Bool -> IO ()
 set_use_global_coordinates cls arg1

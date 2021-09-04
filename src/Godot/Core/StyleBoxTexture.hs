@@ -48,7 +48,6 @@ _AXIS_STRETCH_MODE_TILE = 1
 _AXIS_STRETCH_MODE_STRETCH :: Int
 _AXIS_STRETCH_MODE_STRETCH = 0
 
--- | Emitted when the stylebox's texture is changed.
 sig_texture_changed ::
                     Godot.Internal.Dispatch.Signal StyleBoxTexture
 sig_texture_changed
@@ -150,7 +149,7 @@ instance NodeProperty StyleBoxTexture "texture" Texture 'False
 
 {-# NOINLINE bindStyleBoxTexture_get_expand_margin_size #-}
 
--- | Returns the size of the given @margin@'s expand margin. See @enum Margin@ for possible values.
+-- | Returns the expand margin size of the specified @enum Side@.
 bindStyleBoxTexture_get_expand_margin_size :: MethodBind
 bindStyleBoxTexture_get_expand_margin_size
   = unsafePerformIO $
@@ -160,7 +159,7 @@ bindStyleBoxTexture_get_expand_margin_size
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the size of the given @margin@'s expand margin. See @enum Margin@ for possible values.
+-- | Returns the expand margin size of the specified @enum Side@.
 get_expand_margin_size ::
                          (StyleBoxTexture :< cls, Object :< cls) => cls -> Int -> IO Float
 get_expand_margin_size cls arg1
@@ -208,7 +207,7 @@ instance NodeMethod StyleBoxTexture "get_h_axis_stretch_mode" '[]
 
 {-# NOINLINE bindStyleBoxTexture_get_margin_size #-}
 
--- | Returns the size of the given @margin@. See @enum Margin@ for possible values.
+-- | Returns the margin size of the specified @enum Side@.
 bindStyleBoxTexture_get_margin_size :: MethodBind
 bindStyleBoxTexture_get_margin_size
   = unsafePerformIO $
@@ -218,7 +217,7 @@ bindStyleBoxTexture_get_margin_size
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the size of the given @margin@. See @enum Margin@ for possible values.
+-- | Returns the margin size of the specified @enum Side@.
 get_margin_size ::
                   (StyleBoxTexture :< cls, Object :< cls) => cls -> Int -> IO Float
 get_margin_size cls arg1
@@ -265,8 +264,6 @@ instance NodeMethod StyleBoxTexture "get_modulate" '[] (IO Color)
 
 {-# NOINLINE bindStyleBoxTexture_get_normal_map #-}
 
--- | The normal map to use when drawing this style box.
---   			__Note:__ Godot expects the normal map to use X+, Y-, and Z+ coordinates. See @url=http://wiki.polycount.com/wiki/Normal_Map_Technical_Details#Common_Swizzle_Coordinates@this page@/url@ for a comparison of normal map coordinates expected by popular engines.
 bindStyleBoxTexture_get_normal_map :: MethodBind
 bindStyleBoxTexture_get_normal_map
   = unsafePerformIO $
@@ -276,8 +273,6 @@ bindStyleBoxTexture_get_normal_map
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The normal map to use when drawing this style box.
---   			__Note:__ Godot expects the normal map to use X+, Y-, and Z+ coordinates. See @url=http://wiki.polycount.com/wiki/Normal_Map_Technical_Details#Common_Swizzle_Coordinates@this page@/url@ for a comparison of normal map coordinates expected by popular engines.
 get_normal_map ::
                  (StyleBoxTexture :< cls, Object :< cls) => cls -> IO Texture
 get_normal_map cls
@@ -505,7 +500,7 @@ instance NodeMethod StyleBoxTexture "set_expand_margin_individual"
 
 {-# NOINLINE bindStyleBoxTexture_set_expand_margin_size #-}
 
--- | Sets the expand margin to @size@ pixels for the given @margin@. See @enum Margin@ for possible values.
+-- | Sets the expand margin to @size@ pixels for the specified @enum Side@.
 bindStyleBoxTexture_set_expand_margin_size :: MethodBind
 bindStyleBoxTexture_set_expand_margin_size
   = unsafePerformIO $
@@ -515,7 +510,7 @@ bindStyleBoxTexture_set_expand_margin_size
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the expand margin to @size@ pixels for the given @margin@. See @enum Margin@ for possible values.
+-- | Sets the expand margin to @size@ pixels for the specified @enum Side@.
 set_expand_margin_size ::
                          (StyleBoxTexture :< cls, Object :< cls) =>
                          cls -> Int -> Float -> IO ()
@@ -566,7 +561,7 @@ instance NodeMethod StyleBoxTexture "set_h_axis_stretch_mode"
 
 {-# NOINLINE bindStyleBoxTexture_set_margin_size #-}
 
--- | Sets the margin to @size@ pixels for the given @margin@. See @enum Margin@ for possible values.
+-- | Sets the margin to @size@ pixels for the specified @enum Side@.
 bindStyleBoxTexture_set_margin_size :: MethodBind
 bindStyleBoxTexture_set_margin_size
   = unsafePerformIO $
@@ -576,7 +571,7 @@ bindStyleBoxTexture_set_margin_size
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the margin to @size@ pixels for the given @margin@. See @enum Margin@ for possible values.
+-- | Sets the margin to @size@ pixels for the specified @enum Side@.
 set_margin_size ::
                   (StyleBoxTexture :< cls, Object :< cls) =>
                   cls -> Int -> Float -> IO ()
@@ -624,8 +619,6 @@ instance NodeMethod StyleBoxTexture "set_modulate" '[Color] (IO ())
 
 {-# NOINLINE bindStyleBoxTexture_set_normal_map #-}
 
--- | The normal map to use when drawing this style box.
---   			__Note:__ Godot expects the normal map to use X+, Y-, and Z+ coordinates. See @url=http://wiki.polycount.com/wiki/Normal_Map_Technical_Details#Common_Swizzle_Coordinates@this page@/url@ for a comparison of normal map coordinates expected by popular engines.
 bindStyleBoxTexture_set_normal_map :: MethodBind
 bindStyleBoxTexture_set_normal_map
   = unsafePerformIO $
@@ -635,8 +628,6 @@ bindStyleBoxTexture_set_normal_map
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The normal map to use when drawing this style box.
---   			__Note:__ Godot expects the normal map to use X+, Y-, and Z+ coordinates. See @url=http://wiki.polycount.com/wiki/Normal_Map_Technical_Details#Common_Swizzle_Coordinates@this page@/url@ for a comparison of normal map coordinates expected by popular engines.
 set_normal_map ::
                  (StyleBoxTexture :< cls, Object :< cls) => cls -> Texture -> IO ()
 set_normal_map cls arg1

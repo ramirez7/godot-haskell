@@ -59,7 +59,6 @@ instance NodeProperty VisualShaderNodeCubeMap "texture_type" Int
 
 {-# NOINLINE bindVisualShaderNodeCubeMap_get_cube_map #-}
 
--- | The @CubeMap@ texture to sample when using @SOURCE_TEXTURE@ as @source@.
 bindVisualShaderNodeCubeMap_get_cube_map :: MethodBind
 bindVisualShaderNodeCubeMap_get_cube_map
   = unsafePerformIO $
@@ -69,7 +68,6 @@ bindVisualShaderNodeCubeMap_get_cube_map
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The @CubeMap@ texture to sample when using @SOURCE_TEXTURE@ as @source@.
 get_cube_map ::
                (VisualShaderNodeCubeMap :< cls, Object :< cls) =>
                cls -> IO CubeMap
@@ -89,7 +87,6 @@ instance NodeMethod VisualShaderNodeCubeMap "get_cube_map" '[]
 
 {-# NOINLINE bindVisualShaderNodeCubeMap_get_source #-}
 
--- | Defines which source should be used for the sampling. See @enum Source@ for options.
 bindVisualShaderNodeCubeMap_get_source :: MethodBind
 bindVisualShaderNodeCubeMap_get_source
   = unsafePerformIO $
@@ -99,7 +96,6 @@ bindVisualShaderNodeCubeMap_get_source
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Defines which source should be used for the sampling. See @enum Source@ for options.
 get_source ::
              (VisualShaderNodeCubeMap :< cls, Object :< cls) => cls -> IO Int
 get_source cls
@@ -118,7 +114,6 @@ instance NodeMethod VisualShaderNodeCubeMap "get_source" '[]
 
 {-# NOINLINE bindVisualShaderNodeCubeMap_get_texture_type #-}
 
--- | Defines the type of data provided by the source texture. See @enum TextureType@ for options.
 bindVisualShaderNodeCubeMap_get_texture_type :: MethodBind
 bindVisualShaderNodeCubeMap_get_texture_type
   = unsafePerformIO $
@@ -128,7 +123,6 @@ bindVisualShaderNodeCubeMap_get_texture_type
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Defines the type of data provided by the source texture. See @enum TextureType@ for options.
 get_texture_type ::
                    (VisualShaderNodeCubeMap :< cls, Object :< cls) => cls -> IO Int
 get_texture_type cls
@@ -147,7 +141,6 @@ instance NodeMethod VisualShaderNodeCubeMap "get_texture_type" '[]
 
 {-# NOINLINE bindVisualShaderNodeCubeMap_set_cube_map #-}
 
--- | The @CubeMap@ texture to sample when using @SOURCE_TEXTURE@ as @source@.
 bindVisualShaderNodeCubeMap_set_cube_map :: MethodBind
 bindVisualShaderNodeCubeMap_set_cube_map
   = unsafePerformIO $
@@ -157,7 +150,6 @@ bindVisualShaderNodeCubeMap_set_cube_map
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The @CubeMap@ texture to sample when using @SOURCE_TEXTURE@ as @source@.
 set_cube_map ::
                (VisualShaderNodeCubeMap :< cls, Object :< cls) =>
                cls -> CubeMap -> IO ()
@@ -178,7 +170,6 @@ instance NodeMethod VisualShaderNodeCubeMap "set_cube_map"
 
 {-# NOINLINE bindVisualShaderNodeCubeMap_set_source #-}
 
--- | Defines which source should be used for the sampling. See @enum Source@ for options.
 bindVisualShaderNodeCubeMap_set_source :: MethodBind
 bindVisualShaderNodeCubeMap_set_source
   = unsafePerformIO $
@@ -188,7 +179,6 @@ bindVisualShaderNodeCubeMap_set_source
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Defines which source should be used for the sampling. See @enum Source@ for options.
 set_source ::
              (VisualShaderNodeCubeMap :< cls, Object :< cls) =>
              cls -> Int -> IO ()
@@ -208,7 +198,6 @@ instance NodeMethod VisualShaderNodeCubeMap "set_source" '[Int]
 
 {-# NOINLINE bindVisualShaderNodeCubeMap_set_texture_type #-}
 
--- | Defines the type of data provided by the source texture. See @enum TextureType@ for options.
 bindVisualShaderNodeCubeMap_set_texture_type :: MethodBind
 bindVisualShaderNodeCubeMap_set_texture_type
   = unsafePerformIO $
@@ -218,7 +207,6 @@ bindVisualShaderNodeCubeMap_set_texture_type
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Defines the type of data provided by the source texture. See @enum TextureType@ for options.
 set_texture_type ::
                    (VisualShaderNodeCubeMap :< cls, Object :< cls) =>
                    cls -> Int -> IO ()

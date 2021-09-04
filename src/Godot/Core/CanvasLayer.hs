@@ -239,7 +239,6 @@ instance NodeMethod CanvasLayer "get_rotation" '[] (IO Float) where
 
 {-# NOINLINE bindCanvasLayer_get_rotation_degrees #-}
 
--- | The layer's rotation in degrees.
 bindCanvasLayer_get_rotation_degrees :: MethodBind
 bindCanvasLayer_get_rotation_degrees
   = unsafePerformIO $
@@ -249,7 +248,6 @@ bindCanvasLayer_get_rotation_degrees
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The layer's rotation in degrees.
 get_rotation_degrees ::
                        (CanvasLayer :< cls, Object :< cls) => cls -> IO Float
 get_rotation_degrees cls
@@ -519,7 +517,6 @@ instance NodeMethod CanvasLayer "set_rotation" '[Float] (IO ())
 
 {-# NOINLINE bindCanvasLayer_set_rotation_degrees #-}
 
--- | The layer's rotation in degrees.
 bindCanvasLayer_set_rotation_degrees :: MethodBind
 bindCanvasLayer_set_rotation_degrees
   = unsafePerformIO $
@@ -529,7 +526,6 @@ bindCanvasLayer_set_rotation_degrees
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The layer's rotation in degrees.
 set_rotation_degrees ::
                        (CanvasLayer :< cls, Object :< cls) => cls -> Float -> IO ()
 set_rotation_degrees cls arg1

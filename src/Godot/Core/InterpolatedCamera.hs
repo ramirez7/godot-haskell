@@ -38,7 +38,6 @@ instance NodeProperty InterpolatedCamera "target" NodePath 'False
 
 {-# NOINLINE bindInterpolatedCamera_get_speed #-}
 
--- | How quickly the camera moves toward its target. Higher values will result in tighter camera motion.
 bindInterpolatedCamera_get_speed :: MethodBind
 bindInterpolatedCamera_get_speed
   = unsafePerformIO $
@@ -48,7 +47,6 @@ bindInterpolatedCamera_get_speed
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | How quickly the camera moves toward its target. Higher values will result in tighter camera motion.
 get_speed ::
             (InterpolatedCamera :< cls, Object :< cls) => cls -> IO Float
 get_speed cls
@@ -66,7 +64,6 @@ instance NodeMethod InterpolatedCamera "get_speed" '[] (IO Float)
 
 {-# NOINLINE bindInterpolatedCamera_get_target_path #-}
 
--- | The target's @NodePath@.
 bindInterpolatedCamera_get_target_path :: MethodBind
 bindInterpolatedCamera_get_target_path
   = unsafePerformIO $
@@ -76,7 +73,6 @@ bindInterpolatedCamera_get_target_path
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The target's @NodePath@.
 get_target_path ::
                   (InterpolatedCamera :< cls, Object :< cls) => cls -> IO NodePath
 get_target_path cls
@@ -95,7 +91,6 @@ instance NodeMethod InterpolatedCamera "get_target_path" '[]
 
 {-# NOINLINE bindInterpolatedCamera_is_interpolation_enabled #-}
 
--- | If @true@, and a target is set, the camera will move automatically.
 bindInterpolatedCamera_is_interpolation_enabled :: MethodBind
 bindInterpolatedCamera_is_interpolation_enabled
   = unsafePerformIO $
@@ -105,7 +100,6 @@ bindInterpolatedCamera_is_interpolation_enabled
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, and a target is set, the camera will move automatically.
 is_interpolation_enabled ::
                            (InterpolatedCamera :< cls, Object :< cls) => cls -> IO Bool
 is_interpolation_enabled cls
@@ -126,7 +120,6 @@ instance NodeMethod InterpolatedCamera "is_interpolation_enabled"
 
 {-# NOINLINE bindInterpolatedCamera_set_interpolation_enabled #-}
 
--- | If @true@, and a target is set, the camera will move automatically.
 bindInterpolatedCamera_set_interpolation_enabled :: MethodBind
 bindInterpolatedCamera_set_interpolation_enabled
   = unsafePerformIO $
@@ -136,7 +129,6 @@ bindInterpolatedCamera_set_interpolation_enabled
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, and a target is set, the camera will move automatically.
 set_interpolation_enabled ::
                             (InterpolatedCamera :< cls, Object :< cls) => cls -> Bool -> IO ()
 set_interpolation_enabled cls arg1
@@ -158,7 +150,6 @@ instance NodeMethod InterpolatedCamera "set_interpolation_enabled"
 
 {-# NOINLINE bindInterpolatedCamera_set_speed #-}
 
--- | How quickly the camera moves toward its target. Higher values will result in tighter camera motion.
 bindInterpolatedCamera_set_speed :: MethodBind
 bindInterpolatedCamera_set_speed
   = unsafePerformIO $
@@ -168,7 +159,6 @@ bindInterpolatedCamera_set_speed
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | How quickly the camera moves toward its target. Higher values will result in tighter camera motion.
 set_speed ::
             (InterpolatedCamera :< cls, Object :< cls) => cls -> Float -> IO ()
 set_speed cls arg1
@@ -186,7 +176,6 @@ instance NodeMethod InterpolatedCamera "set_speed" '[Float] (IO ())
 
 {-# NOINLINE bindInterpolatedCamera_set_target #-}
 
--- | Sets the node to move toward and orient with.
 bindInterpolatedCamera_set_target :: MethodBind
 bindInterpolatedCamera_set_target
   = unsafePerformIO $
@@ -196,7 +185,6 @@ bindInterpolatedCamera_set_target
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the node to move toward and orient with.
 set_target ::
              (InterpolatedCamera :< cls, Object :< cls) =>
              cls -> Object -> IO ()
@@ -216,7 +204,6 @@ instance NodeMethod InterpolatedCamera "set_target" '[Object]
 
 {-# NOINLINE bindInterpolatedCamera_set_target_path #-}
 
--- | The target's @NodePath@.
 bindInterpolatedCamera_set_target_path :: MethodBind
 bindInterpolatedCamera_set_target_path
   = unsafePerformIO $
@@ -226,7 +213,6 @@ bindInterpolatedCamera_set_target_path
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The target's @NodePath@.
 set_target_path ::
                   (InterpolatedCamera :< cls, Object :< cls) =>
                   cls -> NodePath -> IO ()

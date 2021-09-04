@@ -22,7 +22,6 @@ import Godot.Gdnative.Internal
 import Godot.Api.Types
 import Godot.Core.Button()
 
--- | Emitted when @PopupMenu@ of this MenuButton is about to show.
 sig_about_to_show :: Godot.Internal.Dispatch.Signal MenuButton
 sig_about_to_show = Godot.Internal.Dispatch.Signal "about_to_show"
 

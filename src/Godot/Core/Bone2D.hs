@@ -54,7 +54,7 @@ instance NodeMethod Bone2D "apply_rest" '[] (IO ()) where
 
 {-# NOINLINE bindBone2D_get_default_length #-}
 
--- | Length of the bone's representation drawn in the editor's viewport in pixels.
+-- | Deprecated. Please use  @get_length@ instead.
 bindBone2D_get_default_length :: MethodBind
 bindBone2D_get_default_length
   = unsafePerformIO $
@@ -64,7 +64,7 @@ bindBone2D_get_default_length
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Length of the bone's representation drawn in the editor's viewport in pixels.
+-- | Deprecated. Please use  @get_length@ instead.
 get_default_length ::
                      (Bone2D :< cls, Object :< cls) => cls -> IO Float
 get_default_length cls
@@ -159,7 +159,7 @@ instance NodeMethod Bone2D "get_skeleton_rest" '[] (IO Transform2d)
 
 {-# NOINLINE bindBone2D_set_default_length #-}
 
--- | Length of the bone's representation drawn in the editor's viewport in pixels.
+-- | Deprecated. Please use @set_length@ instead.
 bindBone2D_set_default_length :: MethodBind
 bindBone2D_set_default_length
   = unsafePerformIO $
@@ -169,7 +169,7 @@ bindBone2D_set_default_length
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Length of the bone's representation drawn in the editor's viewport in pixels.
+-- | Deprecated. Please use @set_length@ instead.
 set_default_length ::
                      (Bone2D :< cls, Object :< cls) => cls -> Float -> IO ()
 set_default_length cls arg1

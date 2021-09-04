@@ -1,6 +1,6 @@
 NAME = myproject
-STACKLIBFILE = $(shell stack path --local-install-root)/lib/lib$(NAME).so
-GODOTPROJECT = $(shell stack path --project-root)/game
+STACKLIBFILE = $(shell stack path --local-install-root --nix)/lib/lib$(NAME).so
+GODOTPROJECT = $(shell stack path --project-root --nix)/game
 
 all: stack
 nix:

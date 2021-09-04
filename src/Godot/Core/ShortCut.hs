@@ -24,7 +24,6 @@ instance NodeProperty ShortCut "shortcut" InputEvent 'False where
 
 {-# NOINLINE bindShortCut_get_as_text #-}
 
--- | Returns the shortcut's @InputEvent@ as a @String@.
 bindShortCut_get_as_text :: MethodBind
 bindShortCut_get_as_text
   = unsafePerformIO $
@@ -34,7 +33,6 @@ bindShortCut_get_as_text
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the shortcut's @InputEvent@ as a @String@.
 get_as_text ::
               (ShortCut :< cls, Object :< cls) => cls -> IO GodotString
 get_as_text cls
@@ -50,8 +48,6 @@ instance NodeMethod ShortCut "get_as_text" '[] (IO GodotString)
 
 {-# NOINLINE bindShortCut_get_shortcut #-}
 
--- | The shortcut's @InputEvent@.
---   			Generally the @InputEvent@ is a keyboard key, though it can be any @InputEvent@.
 bindShortCut_get_shortcut :: MethodBind
 bindShortCut_get_shortcut
   = unsafePerformIO $
@@ -61,8 +57,6 @@ bindShortCut_get_shortcut
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The shortcut's @InputEvent@.
---   			Generally the @InputEvent@ is a keyboard key, though it can be any @InputEvent@.
 get_shortcut ::
                (ShortCut :< cls, Object :< cls) => cls -> IO InputEvent
 get_shortcut cls
@@ -79,7 +73,6 @@ instance NodeMethod ShortCut "get_shortcut" '[] (IO InputEvent)
 
 {-# NOINLINE bindShortCut_is_shortcut #-}
 
--- | Returns @true@ if the shortcut's @InputEvent@ equals @event@.
 bindShortCut_is_shortcut :: MethodBind
 bindShortCut_is_shortcut
   = unsafePerformIO $
@@ -89,7 +82,6 @@ bindShortCut_is_shortcut
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns @true@ if the shortcut's @InputEvent@ equals @event@.
 is_shortcut ::
               (ShortCut :< cls, Object :< cls) => cls -> InputEvent -> IO Bool
 is_shortcut cls arg1
@@ -105,7 +97,6 @@ instance NodeMethod ShortCut "is_shortcut" '[InputEvent] (IO Bool)
 
 {-# NOINLINE bindShortCut_is_valid #-}
 
--- | If @true@, this shortcut is valid.
 bindShortCut_is_valid :: MethodBind
 bindShortCut_is_valid
   = unsafePerformIO $
@@ -115,7 +106,6 @@ bindShortCut_is_valid
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, this shortcut is valid.
 is_valid :: (ShortCut :< cls, Object :< cls) => cls -> IO Bool
 is_valid cls
   = withVariantArray []
@@ -129,8 +119,6 @@ instance NodeMethod ShortCut "is_valid" '[] (IO Bool) where
 
 {-# NOINLINE bindShortCut_set_shortcut #-}
 
--- | The shortcut's @InputEvent@.
---   			Generally the @InputEvent@ is a keyboard key, though it can be any @InputEvent@.
 bindShortCut_set_shortcut :: MethodBind
 bindShortCut_set_shortcut
   = unsafePerformIO $
@@ -140,8 +128,6 @@ bindShortCut_set_shortcut
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The shortcut's @InputEvent@.
---   			Generally the @InputEvent@ is a keyboard key, though it can be any @InputEvent@.
 set_shortcut ::
                (ShortCut :< cls, Object :< cls) => cls -> InputEvent -> IO ()
 set_shortcut cls arg1

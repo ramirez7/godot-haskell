@@ -1189,7 +1189,6 @@ instance NodeMethod EditorFileDialog "get_display_mode" '[]
 
 {-# NOINLINE bindEditorFileDialog_get_mode #-}
 
--- | The purpose of the @EditorFileDialog@, which defines the allowed behaviors.
 bindEditorFileDialog_get_mode :: MethodBind
 bindEditorFileDialog_get_mode
   = unsafePerformIO $
@@ -1199,7 +1198,6 @@ bindEditorFileDialog_get_mode
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The purpose of the @EditorFileDialog@, which defines the allowed behaviors.
 get_mode ::
            (EditorFileDialog :< cls, Object :< cls) => cls -> IO Int
 get_mode cls
@@ -1513,7 +1511,6 @@ instance NodeMethod EditorFileDialog "set_display_mode" '[Int]
 
 {-# NOINLINE bindEditorFileDialog_set_mode #-}
 
--- | The purpose of the @EditorFileDialog@, which defines the allowed behaviors.
 bindEditorFileDialog_set_mode :: MethodBind
 bindEditorFileDialog_set_mode
   = unsafePerformIO $
@@ -1523,7 +1520,6 @@ bindEditorFileDialog_set_mode
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The purpose of the @EditorFileDialog@, which defines the allowed behaviors.
 set_mode ::
            (EditorFileDialog :< cls, Object :< cls) => cls -> Int -> IO ()
 set_mode cls arg1

@@ -285,7 +285,7 @@ instance NodeMethod StyleBoxFlat "get_border_color" '[] (IO Color)
 
 {-# NOINLINE bindStyleBoxFlat_get_border_width #-}
 
--- | Returns the given @margin@'s border width. See @enum Margin@ for possible values.
+-- | Returns the specified @enum Side@'s border width.
 bindStyleBoxFlat_get_border_width :: MethodBind
 bindStyleBoxFlat_get_border_width
   = unsafePerformIO $
@@ -295,7 +295,7 @@ bindStyleBoxFlat_get_border_width
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the given @margin@'s border width. See @enum Margin@ for possible values.
+-- | Returns the specified @enum Side@'s border width.
 get_border_width ::
                    (StyleBoxFlat :< cls, Object :< cls) => cls -> Int -> IO Int
 get_border_width cls arg1
@@ -342,8 +342,8 @@ instance NodeMethod StyleBoxFlat "get_border_width_min" '[]
 
 {-# NOINLINE bindStyleBoxFlat_get_corner_detail #-}
 
--- | This sets the amount of vertices used for each corner. Higher values result in rounder corners but take more processing power to compute. When choosing a value, you should take the corner radius (@method set_corner_radius_all@) into account.
---   			For corner radii smaller than 10, @4@ or @5@ should be enough. For corner radii smaller than 30, values between @8@ and @12@ should be enough.
+-- | This sets the number of vertices used for each corner. Higher values result in rounder corners but take more processing power to compute. When choosing a value, you should take the corner radius (@method set_corner_radius_all@) into account.
+--   			For corner radii less than 10, @4@ or @5@ should be enough. For corner radii less than 30, values between @8@ and @12@ should be enough.
 --   			A corner detail of @1@ will result in chamfered corners instead of rounded corners, which is useful for some artistic effects.
 bindStyleBoxFlat_get_corner_detail :: MethodBind
 bindStyleBoxFlat_get_corner_detail
@@ -354,8 +354,8 @@ bindStyleBoxFlat_get_corner_detail
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | This sets the amount of vertices used for each corner. Higher values result in rounder corners but take more processing power to compute. When choosing a value, you should take the corner radius (@method set_corner_radius_all@) into account.
---   			For corner radii smaller than 10, @4@ or @5@ should be enough. For corner radii smaller than 30, values between @8@ and @12@ should be enough.
+-- | This sets the number of vertices used for each corner. Higher values result in rounder corners but take more processing power to compute. When choosing a value, you should take the corner radius (@method set_corner_radius_all@) into account.
+--   			For corner radii less than 10, @4@ or @5@ should be enough. For corner radii less than 30, values between @8@ and @12@ should be enough.
 --   			A corner detail of @1@ will result in chamfered corners instead of rounded corners, which is useful for some artistic effects.
 get_corner_detail ::
                     (StyleBoxFlat :< cls, Object :< cls) => cls -> IO Int
@@ -403,7 +403,7 @@ instance NodeMethod StyleBoxFlat "get_corner_radius" '[Int]
 
 {-# NOINLINE bindStyleBoxFlat_get_expand_margin #-}
 
--- | Returns the size of the given @margin@'s expand margin. See @enum Margin@ for possible values.
+-- | Returns the size of the specified @enum Side@'s expand margin.
 bindStyleBoxFlat_get_expand_margin :: MethodBind
 bindStyleBoxFlat_get_expand_margin
   = unsafePerformIO $
@@ -413,7 +413,7 @@ bindStyleBoxFlat_get_expand_margin
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the size of the given @margin@'s expand margin. See @enum Margin@ for possible values.
+-- | Returns the size of the specified @enum Side@'s expand margin.
 get_expand_margin ::
                     (StyleBoxFlat :< cls, Object :< cls) => cls -> Int -> IO Float
 get_expand_margin cls arg1
@@ -712,7 +712,7 @@ instance NodeMethod StyleBoxFlat "set_border_color" '[Color]
 
 {-# NOINLINE bindStyleBoxFlat_set_border_width #-}
 
--- | Sets the border width to @width@ pixels for the given @margin@. See @enum Margin@ for possible values.
+-- | Sets the specified @enum Side@'s border width to @width@ pixels.
 bindStyleBoxFlat_set_border_width :: MethodBind
 bindStyleBoxFlat_set_border_width
   = unsafePerformIO $
@@ -722,7 +722,7 @@ bindStyleBoxFlat_set_border_width
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the border width to @width@ pixels for the given @margin@. See @enum Margin@ for possible values.
+-- | Sets the specified @enum Side@'s border width to @width@ pixels.
 set_border_width ::
                    (StyleBoxFlat :< cls, Object :< cls) => cls -> Int -> Int -> IO ()
 set_border_width cls arg1 arg2
@@ -741,7 +741,7 @@ instance NodeMethod StyleBoxFlat "set_border_width" '[Int, Int]
 
 {-# NOINLINE bindStyleBoxFlat_set_border_width_all #-}
 
--- | Sets the border width to @width@ pixels for all margins.
+-- | Sets the border width to @width@ pixels for all sides.
 bindStyleBoxFlat_set_border_width_all :: MethodBind
 bindStyleBoxFlat_set_border_width_all
   = unsafePerformIO $
@@ -751,7 +751,7 @@ bindStyleBoxFlat_set_border_width_all
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the border width to @width@ pixels for all margins.
+-- | Sets the border width to @width@ pixels for all sides.
 set_border_width_all ::
                        (StyleBoxFlat :< cls, Object :< cls) => cls -> Int -> IO ()
 set_border_width_all cls arg1
@@ -770,8 +770,8 @@ instance NodeMethod StyleBoxFlat "set_border_width_all" '[Int]
 
 {-# NOINLINE bindStyleBoxFlat_set_corner_detail #-}
 
--- | This sets the amount of vertices used for each corner. Higher values result in rounder corners but take more processing power to compute. When choosing a value, you should take the corner radius (@method set_corner_radius_all@) into account.
---   			For corner radii smaller than 10, @4@ or @5@ should be enough. For corner radii smaller than 30, values between @8@ and @12@ should be enough.
+-- | This sets the number of vertices used for each corner. Higher values result in rounder corners but take more processing power to compute. When choosing a value, you should take the corner radius (@method set_corner_radius_all@) into account.
+--   			For corner radii less than 10, @4@ or @5@ should be enough. For corner radii less than 30, values between @8@ and @12@ should be enough.
 --   			A corner detail of @1@ will result in chamfered corners instead of rounded corners, which is useful for some artistic effects.
 bindStyleBoxFlat_set_corner_detail :: MethodBind
 bindStyleBoxFlat_set_corner_detail
@@ -782,8 +782,8 @@ bindStyleBoxFlat_set_corner_detail
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | This sets the amount of vertices used for each corner. Higher values result in rounder corners but take more processing power to compute. When choosing a value, you should take the corner radius (@method set_corner_radius_all@) into account.
---   			For corner radii smaller than 10, @4@ or @5@ should be enough. For corner radii smaller than 30, values between @8@ and @12@ should be enough.
+-- | This sets the number of vertices used for each corner. Higher values result in rounder corners but take more processing power to compute. When choosing a value, you should take the corner radius (@method set_corner_radius_all@) into account.
+--   			For corner radii less than 10, @4@ or @5@ should be enough. For corner radii less than 30, values between @8@ and @12@ should be enough.
 --   			A corner detail of @1@ will result in chamfered corners instead of rounded corners, which is useful for some artistic effects.
 set_corner_detail ::
                     (StyleBoxFlat :< cls, Object :< cls) => cls -> Int -> IO ()
@@ -921,7 +921,7 @@ instance NodeMethod StyleBoxFlat "set_draw_center" '[Bool] (IO ())
 
 {-# NOINLINE bindStyleBoxFlat_set_expand_margin #-}
 
--- | Sets the expand margin to @size@ pixels for the given @margin@. See @enum Margin@ for possible values.
+-- | Sets the expand margin to @size@ pixels for the specified @enum Side@.
 bindStyleBoxFlat_set_expand_margin :: MethodBind
 bindStyleBoxFlat_set_expand_margin
   = unsafePerformIO $
@@ -931,7 +931,7 @@ bindStyleBoxFlat_set_expand_margin
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the expand margin to @size@ pixels for the given @margin@. See @enum Margin@ for possible values.
+-- | Sets the expand margin to @size@ pixels for the specified @enum Side@.
 set_expand_margin ::
                     (StyleBoxFlat :< cls, Object :< cls) =>
                     cls -> Int -> Float -> IO ()

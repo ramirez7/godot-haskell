@@ -17,7 +17,6 @@ import Godot.Core.Translation()
 
 {-# NOINLINE bindPHashTranslation_generate #-}
 
--- | Generates and sets an optimized translation from the given @Translation@ resource.
 bindPHashTranslation_generate :: MethodBind
 bindPHashTranslation_generate
   = unsafePerformIO $
@@ -27,7 +26,6 @@ bindPHashTranslation_generate
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Generates and sets an optimized translation from the given @Translation@ resource.
 generate ::
            (PHashTranslation :< cls, Object :< cls) =>
            cls -> Translation -> IO ()

@@ -30,8 +30,8 @@ import Godot.Core.VisualShaderNode()
 
 {-# NOINLINE bindVisualShaderNodeCustom__get_category #-}
 
--- | Override this method to define the category of the associated custom node in the Visual Shader Editor's members dialog.
---   				Defining this method is __optional__. If not overridden, the node will be filed under the "Custom" category.
+-- | Override this method to define the path to the associated custom node in the Visual Shader Editor's members dialog. The path may look like @"MyGame/MyFunctions/Noise"@.
+--   				Defining this method is __optional__. If not overridden, the node will be filed under the "Addons" category.
 bindVisualShaderNodeCustom__get_category :: MethodBind
 bindVisualShaderNodeCustom__get_category
   = unsafePerformIO $
@@ -41,8 +41,8 @@ bindVisualShaderNodeCustom__get_category
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Override this method to define the category of the associated custom node in the Visual Shader Editor's members dialog.
---   				Defining this method is __optional__. If not overridden, the node will be filed under the "Custom" category.
+-- | Override this method to define the path to the associated custom node in the Visual Shader Editor's members dialog. The path may look like @"MyGame/MyFunctions/Noise"@.
+--   				Defining this method is __optional__. If not overridden, the node will be filed under the "Addons" category.
 _get_category ::
                 (VisualShaderNodeCustom :< cls, Object :< cls) =>
                 cls -> IO GodotString
@@ -443,8 +443,6 @@ instance NodeMethod VisualShaderNodeCustom "_get_return_icon_type"
 
 {-# NOINLINE bindVisualShaderNodeCustom__get_subcategory #-}
 
--- | Override this method to define the subcategory of the associated custom node in the Visual Shader Editor's members dialog.
---   				Defining this method is __optional__. If not overridden, the node will be filed under the root of the main category (see @method _get_category@).
 bindVisualShaderNodeCustom__get_subcategory :: MethodBind
 bindVisualShaderNodeCustom__get_subcategory
   = unsafePerformIO $
@@ -454,8 +452,6 @@ bindVisualShaderNodeCustom__get_subcategory
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Override this method to define the subcategory of the associated custom node in the Visual Shader Editor's members dialog.
---   				Defining this method is __optional__. If not overridden, the node will be filed under the root of the main category (see @method _get_category@).
 _get_subcategory ::
                    (VisualShaderNodeCustom :< cls, Object :< cls) =>
                    cls -> IO GodotString

@@ -21,6 +21,7 @@ import Godot.Gdnative.Internal
 import Godot.Api.Types
 import Godot.Core.Node2D()
 
+-- | Emitted when the @Bone2D@ setup attached to this skeletons changes. This is primarily used internally within the skeleton.
 sig_bone_setup_changed :: Godot.Internal.Dispatch.Signal Skeleton2D
 sig_bone_setup_changed
   = Godot.Internal.Dispatch.Signal "bone_setup_changed"

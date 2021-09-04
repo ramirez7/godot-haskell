@@ -622,7 +622,6 @@ instance NodeMethod FileDialog "clear_filters" '[] (IO ()) where
 
 {-# NOINLINE bindFileDialog_deselect_items #-}
 
--- | Clear currently selected items in the dialog.
 bindFileDialog_deselect_items :: MethodBind
 bindFileDialog_deselect_items
   = unsafePerformIO $
@@ -632,7 +631,6 @@ bindFileDialog_deselect_items
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Clear currently selected items in the dialog.
 deselect_items ::
                  (FileDialog :< cls, Object :< cls) => cls -> IO ()
 deselect_items cls
@@ -759,7 +757,7 @@ instance NodeMethod FileDialog "get_current_path" '[]
 
 {-# NOINLINE bindFileDialog_get_filters #-}
 
--- | The available file type filters. For example, this shows only @.png@ and @.gd@ files: @set_filters(PoolStringArray(@"*.png ; PNG Images","*.gd ; GDScript Files"@))@.
+-- | The available file type filters. For example, this shows only @.png@ and @.gd@ files: @set_filters(PackedStringArray(@"*.png ; PNG Images","*.gd ; GDScript Files"@))@.
 bindFileDialog_get_filters :: MethodBind
 bindFileDialog_get_filters
   = unsafePerformIO $
@@ -769,7 +767,7 @@ bindFileDialog_get_filters
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The available file type filters. For example, this shows only @.png@ and @.gd@ files: @set_filters(PoolStringArray(@"*.png ; PNG Images","*.gd ; GDScript Files"@))@.
+-- | The available file type filters. For example, this shows only @.png@ and @.gd@ files: @set_filters(PackedStringArray(@"*.png ; PNG Images","*.gd ; GDScript Files"@))@.
 get_filters ::
               (FileDialog :< cls, Object :< cls) => cls -> IO PoolStringArray
 get_filters cls
@@ -814,7 +812,6 @@ instance NodeMethod FileDialog "get_line_edit" '[] (IO LineEdit)
 
 {-# NOINLINE bindFileDialog_get_mode #-}
 
--- | The dialog's open or save mode, which affects the selection behavior. See enum @Mode@ constants.
 bindFileDialog_get_mode :: MethodBind
 bindFileDialog_get_mode
   = unsafePerformIO $
@@ -824,7 +821,6 @@ bindFileDialog_get_mode
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The dialog's open or save mode, which affects the selection behavior. See enum @Mode@ constants.
 get_mode :: (FileDialog :< cls, Object :< cls) => cls -> IO Int
 get_mode cls
   = withVariantArray []
@@ -889,7 +885,7 @@ instance NodeMethod FileDialog "invalidate" '[] (IO ()) where
 
 {-# NOINLINE bindFileDialog_is_mode_overriding_title #-}
 
--- | If @true@, changing the @Mode@ property will set the window title accordingly (e.g. setting mode to @MODE_OPEN_FILE@ will change the window title to "Open a File").
+-- | If @true@, changing the @Mode@ property will set the window title accordingly (e.g. setting mode to @FILE_MODE_OPEN_FILE@ will change the window title to "Open a File").
 bindFileDialog_is_mode_overriding_title :: MethodBind
 bindFileDialog_is_mode_overriding_title
   = unsafePerformIO $
@@ -899,7 +895,7 @@ bindFileDialog_is_mode_overriding_title
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, changing the @Mode@ property will set the window title accordingly (e.g. setting mode to @MODE_OPEN_FILE@ will change the window title to "Open a File").
+-- | If @true@, changing the @Mode@ property will set the window title accordingly (e.g. setting mode to @FILE_MODE_OPEN_FILE@ will change the window title to "Open a File").
 is_mode_overriding_title ::
                            (FileDialog :< cls, Object :< cls) => cls -> IO Bool
 is_mode_overriding_title cls
@@ -1059,7 +1055,7 @@ instance NodeMethod FileDialog "set_current_path" '[GodotString]
 
 {-# NOINLINE bindFileDialog_set_filters #-}
 
--- | The available file type filters. For example, this shows only @.png@ and @.gd@ files: @set_filters(PoolStringArray(@"*.png ; PNG Images","*.gd ; GDScript Files"@))@.
+-- | The available file type filters. For example, this shows only @.png@ and @.gd@ files: @set_filters(PackedStringArray(@"*.png ; PNG Images","*.gd ; GDScript Files"@))@.
 bindFileDialog_set_filters :: MethodBind
 bindFileDialog_set_filters
   = unsafePerformIO $
@@ -1069,7 +1065,7 @@ bindFileDialog_set_filters
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The available file type filters. For example, this shows only @.png@ and @.gd@ files: @set_filters(PoolStringArray(@"*.png ; PNG Images","*.gd ; GDScript Files"@))@.
+-- | The available file type filters. For example, this shows only @.png@ and @.gd@ files: @set_filters(PackedStringArray(@"*.png ; PNG Images","*.gd ; GDScript Files"@))@.
 set_filters ::
               (FileDialog :< cls, Object :< cls) =>
               cls -> PoolStringArray -> IO ()
@@ -1088,7 +1084,6 @@ instance NodeMethod FileDialog "set_filters" '[PoolStringArray]
 
 {-# NOINLINE bindFileDialog_set_mode #-}
 
--- | The dialog's open or save mode, which affects the selection behavior. See enum @Mode@ constants.
 bindFileDialog_set_mode :: MethodBind
 bindFileDialog_set_mode
   = unsafePerformIO $
@@ -1098,7 +1093,6 @@ bindFileDialog_set_mode
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The dialog's open or save mode, which affects the selection behavior. See enum @Mode@ constants.
 set_mode ::
            (FileDialog :< cls, Object :< cls) => cls -> Int -> IO ()
 set_mode cls arg1
@@ -1113,7 +1107,7 @@ instance NodeMethod FileDialog "set_mode" '[Int] (IO ()) where
 
 {-# NOINLINE bindFileDialog_set_mode_overrides_title #-}
 
--- | If @true@, changing the @Mode@ property will set the window title accordingly (e.g. setting mode to @MODE_OPEN_FILE@ will change the window title to "Open a File").
+-- | If @true@, changing the @Mode@ property will set the window title accordingly (e.g. setting mode to @FILE_MODE_OPEN_FILE@ will change the window title to "Open a File").
 bindFileDialog_set_mode_overrides_title :: MethodBind
 bindFileDialog_set_mode_overrides_title
   = unsafePerformIO $
@@ -1123,7 +1117,7 @@ bindFileDialog_set_mode_overrides_title
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, changing the @Mode@ property will set the window title accordingly (e.g. setting mode to @MODE_OPEN_FILE@ will change the window title to "Open a File").
+-- | If @true@, changing the @Mode@ property will set the window title accordingly (e.g. setting mode to @FILE_MODE_OPEN_FILE@ will change the window title to "Open a File").
 set_mode_overrides_title ::
                            (FileDialog :< cls, Object :< cls) => cls -> Bool -> IO ()
 set_mode_overrides_title cls arg1

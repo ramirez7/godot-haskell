@@ -27,6 +27,7 @@ module Godot.Core.CPUParticles2D
         Godot.Core.CPUParticles2D._PARAM_HUE_VARIATION,
         Godot.Core.CPUParticles2D._PARAM_ANIM_OFFSET,
         Godot.Core.CPUParticles2D._PARAM_ANGLE,
+        Godot.Core.CPUParticles2D._texture_changed,
         Godot.Core.CPUParticles2D._update_render_thread,
         Godot.Core.CPUParticles2D.convert_from_particles,
         Godot.Core.CPUParticles2D.get_amount,
@@ -556,6 +557,32 @@ instance NodeProperty CPUParticles2D "texture" Texture 'False where
         nodeProperty
           = (get_texture, wrapDroppingSetter set_texture, Nothing)
 
+{-# NOINLINE bindCPUParticles2D__texture_changed #-}
+
+bindCPUParticles2D__texture_changed :: MethodBind
+bindCPUParticles2D__texture_changed
+  = unsafePerformIO $
+      withCString "CPUParticles2D" $
+        \ clsNamePtr ->
+          withCString "_texture_changed" $
+            \ methodNamePtr ->
+              godot_method_bind_get_method clsNamePtr methodNamePtr
+
+_texture_changed ::
+                   (CPUParticles2D :< cls, Object :< cls) => cls -> IO ()
+_texture_changed cls
+  = withVariantArray []
+      (\ (arrPtr, len) ->
+         godot_method_bind_call bindCPUParticles2D__texture_changed
+           (upcast cls)
+           arrPtr
+           len
+           >>= \ (err, res) -> throwIfErr err >> fromGodotVariant res)
+
+instance NodeMethod CPUParticles2D "_texture_changed" '[] (IO ())
+         where
+        nodeMethod = Godot.Core.CPUParticles2D._texture_changed
+
 {-# NOINLINE bindCPUParticles2D__update_render_thread #-}
 
 bindCPUParticles2D__update_render_thread :: MethodBind
@@ -585,7 +612,7 @@ instance NodeMethod CPUParticles2D "_update_render_thread" '[]
 
 {-# NOINLINE bindCPUParticles2D_convert_from_particles #-}
 
--- | Sets this node's properties to match a given @Particles2D@ node with an assigned @ParticlesMaterial@.
+-- | Sets this node's properties to match a given @GPUParticles2D@ node with an assigned @ParticlesMaterial@.
 bindCPUParticles2D_convert_from_particles :: MethodBind
 bindCPUParticles2D_convert_from_particles
   = unsafePerformIO $
@@ -595,7 +622,7 @@ bindCPUParticles2D_convert_from_particles
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets this node's properties to match a given @Particles2D@ node with an assigned @ParticlesMaterial@.
+-- | Sets this node's properties to match a given @GPUParticles2D@ node with an assigned @ParticlesMaterial@.
 convert_from_particles ::
                          (CPUParticles2D :< cls, Object :< cls) => cls -> Node -> IO ()
 convert_from_particles cls arg1
@@ -666,7 +693,7 @@ instance NodeMethod CPUParticles2D "get_color" '[] (IO Color) where
 
 {-# NOINLINE bindCPUParticles2D_get_color_ramp #-}
 
--- | Each particle's color will vary along this @Gradient@.
+-- | Each particle's color will vary along this @Gradient@ (multiplied with @color@).
 bindCPUParticles2D_get_color_ramp :: MethodBind
 bindCPUParticles2D_get_color_ramp
   = unsafePerformIO $
@@ -676,7 +703,7 @@ bindCPUParticles2D_get_color_ramp
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Each particle's color will vary along this @Gradient@.
+-- | Each particle's color will vary along this @Gradient@ (multiplied with @color@).
 get_color_ramp ::
                  (CPUParticles2D :< cls, Object :< cls) => cls -> IO Gradient
 get_color_ramp cls
@@ -1097,8 +1124,6 @@ instance NodeMethod CPUParticles2D "get_lifetime_randomness" '[]
 
 {-# NOINLINE bindCPUParticles2D_get_normalmap #-}
 
--- | Normal map to be used for the @texture@ property.
---   			__Note:__ Godot expects the normal map to use X+, Y-, and Z+ coordinates. See @url=http://wiki.polycount.com/wiki/Normal_Map_Technical_Details#Common_Swizzle_Coordinates@this page@/url@ for a comparison of normal map coordinates expected by popular engines.
 bindCPUParticles2D_get_normalmap :: MethodBind
 bindCPUParticles2D_get_normalmap
   = unsafePerformIO $
@@ -1108,8 +1133,6 @@ bindCPUParticles2D_get_normalmap
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Normal map to be used for the @texture@ property.
---   			__Note:__ Godot expects the normal map to use X+, Y-, and Z+ coordinates. See @url=http://wiki.polycount.com/wiki/Normal_Map_Technical_Details#Common_Swizzle_Coordinates@this page@/url@ for a comparison of normal map coordinates expected by popular engines.
 get_normalmap ::
                 (CPUParticles2D :< cls, Object :< cls) => cls -> IO Texture
 get_normalmap cls
@@ -1154,7 +1177,6 @@ instance NodeMethod CPUParticles2D "get_one_shot" '[] (IO Bool)
 
 {-# NOINLINE bindCPUParticles2D_get_param #-}
 
--- | Returns the base value of the parameter specified by @enum Parameter@.
 bindCPUParticles2D_get_param :: MethodBind
 bindCPUParticles2D_get_param
   = unsafePerformIO $
@@ -1164,7 +1186,6 @@ bindCPUParticles2D_get_param
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the base value of the parameter specified by @enum Parameter@.
 get_param ::
             (CPUParticles2D :< cls, Object :< cls) => cls -> Int -> IO Float
 get_param cls arg1
@@ -1210,7 +1231,6 @@ instance NodeMethod CPUParticles2D "get_param_curve" '[Int]
 
 {-# NOINLINE bindCPUParticles2D_get_param_randomness #-}
 
--- | Returns the randomness factor of the parameter specified by @enum Parameter@.
 bindCPUParticles2D_get_param_randomness :: MethodBind
 bindCPUParticles2D_get_param_randomness
   = unsafePerformIO $
@@ -1220,7 +1240,6 @@ bindCPUParticles2D_get_param_randomness
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the randomness factor of the parameter specified by @enum Parameter@.
 get_param_randomness ::
                        (CPUParticles2D :< cls, Object :< cls) => cls -> Int -> IO Float
 get_param_randomness cls arg1
@@ -1239,7 +1258,7 @@ instance NodeMethod CPUParticles2D "get_param_randomness" '[Int]
 
 {-# NOINLINE bindCPUParticles2D_get_particle_flag #-}
 
--- | Returns the enabled state of the given flag (see @enum Flags@ for options).
+-- | Returns the enabled state of the given flag (see @enum ParticleFlags@ for options).
 bindCPUParticles2D_get_particle_flag :: MethodBind
 bindCPUParticles2D_get_particle_flag
   = unsafePerformIO $
@@ -1249,7 +1268,7 @@ bindCPUParticles2D_get_particle_flag
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the enabled state of the given flag (see @enum Flags@ for options).
+-- | Returns the enabled state of the given flag (see @enum ParticleFlags@ for options).
 get_particle_flag ::
                     (CPUParticles2D :< cls, Object :< cls) => cls -> Int -> IO Bool
 get_particle_flag cls arg1
@@ -1543,7 +1562,7 @@ instance NodeMethod CPUParticles2D "set_color" '[Color] (IO ())
 
 {-# NOINLINE bindCPUParticles2D_set_color_ramp #-}
 
--- | Each particle's color will vary along this @Gradient@.
+-- | Each particle's color will vary along this @Gradient@ (multiplied with @color@).
 bindCPUParticles2D_set_color_ramp :: MethodBind
 bindCPUParticles2D_set_color_ramp
   = unsafePerformIO $
@@ -1553,7 +1572,7 @@ bindCPUParticles2D_set_color_ramp
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Each particle's color will vary along this @Gradient@.
+-- | Each particle's color will vary along this @Gradient@ (multiplied with @color@).
 set_color_ramp ::
                  (CPUParticles2D :< cls, Object :< cls) => cls -> Gradient -> IO ()
 set_color_ramp cls arg1
@@ -2010,8 +2029,6 @@ instance NodeMethod CPUParticles2D "set_lifetime_randomness"
 
 {-# NOINLINE bindCPUParticles2D_set_normalmap #-}
 
--- | Normal map to be used for the @texture@ property.
---   			__Note:__ Godot expects the normal map to use X+, Y-, and Z+ coordinates. See @url=http://wiki.polycount.com/wiki/Normal_Map_Technical_Details#Common_Swizzle_Coordinates@this page@/url@ for a comparison of normal map coordinates expected by popular engines.
 bindCPUParticles2D_set_normalmap :: MethodBind
 bindCPUParticles2D_set_normalmap
   = unsafePerformIO $
@@ -2021,8 +2038,6 @@ bindCPUParticles2D_set_normalmap
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Normal map to be used for the @texture@ property.
---   			__Note:__ Godot expects the normal map to use X+, Y-, and Z+ coordinates. See @url=http://wiki.polycount.com/wiki/Normal_Map_Technical_Details#Common_Swizzle_Coordinates@this page@/url@ for a comparison of normal map coordinates expected by popular engines.
 set_normalmap ::
                 (CPUParticles2D :< cls, Object :< cls) => cls -> Texture -> IO ()
 set_normalmap cls arg1
@@ -2068,7 +2083,6 @@ instance NodeMethod CPUParticles2D "set_one_shot" '[Bool] (IO ())
 
 {-# NOINLINE bindCPUParticles2D_set_param #-}
 
--- | Sets the base value of the parameter specified by @enum Parameter@.
 bindCPUParticles2D_set_param :: MethodBind
 bindCPUParticles2D_set_param
   = unsafePerformIO $
@@ -2078,7 +2092,6 @@ bindCPUParticles2D_set_param
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the base value of the parameter specified by @enum Parameter@.
 set_param ::
             (CPUParticles2D :< cls, Object :< cls) =>
             cls -> Int -> Float -> IO ()
@@ -2127,7 +2140,6 @@ instance NodeMethod CPUParticles2D "set_param_curve" '[Int, Curve]
 
 {-# NOINLINE bindCPUParticles2D_set_param_randomness #-}
 
--- | Sets the randomness factor of the parameter specified by @enum Parameter@.
 bindCPUParticles2D_set_param_randomness :: MethodBind
 bindCPUParticles2D_set_param_randomness
   = unsafePerformIO $
@@ -2137,7 +2149,6 @@ bindCPUParticles2D_set_param_randomness
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the randomness factor of the parameter specified by @enum Parameter@.
 set_param_randomness ::
                        (CPUParticles2D :< cls, Object :< cls) =>
                        cls -> Int -> Float -> IO ()
@@ -2158,7 +2169,7 @@ instance NodeMethod CPUParticles2D "set_param_randomness"
 
 {-# NOINLINE bindCPUParticles2D_set_particle_flag #-}
 
--- | Enables or disables the given flag (see @enum Flags@ for options).
+-- | Enables or disables the given flag (see @enum ParticleFlags@ for options).
 bindCPUParticles2D_set_particle_flag :: MethodBind
 bindCPUParticles2D_set_particle_flag
   = unsafePerformIO $
@@ -2168,7 +2179,7 @@ bindCPUParticles2D_set_particle_flag
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Enables or disables the given flag (see @enum Flags@ for options).
+-- | Enables or disables the given flag (see @enum ParticleFlags@ for options).
 set_particle_flag ::
                     (CPUParticles2D :< cls, Object :< cls) =>
                     cls -> Int -> Bool -> IO ()

@@ -27,7 +27,6 @@ import Godot.Core.GeometryInstance()
 
 {-# NOINLINE bindImmediateGeometry_add_sphere #-}
 
--- | Simple helper to draw an UV sphere with given latitude, longitude and radius.
 bindImmediateGeometry_add_sphere :: MethodBind
 bindImmediateGeometry_add_sphere
   = unsafePerformIO $
@@ -37,7 +36,6 @@ bindImmediateGeometry_add_sphere
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Simple helper to draw an UV sphere with given latitude, longitude and radius.
 add_sphere ::
              (ImmediateGeometry :< cls, Object :< cls) =>
              cls -> Int -> Int -> Float -> Maybe Bool -> IO ()
@@ -60,7 +58,6 @@ instance NodeMethod ImmediateGeometry "add_sphere"
 
 {-# NOINLINE bindImmediateGeometry_add_vertex #-}
 
--- | Adds a vertex in local coordinate space with the currently set color/uv/etc.
 bindImmediateGeometry_add_vertex :: MethodBind
 bindImmediateGeometry_add_vertex
   = unsafePerformIO $
@@ -70,7 +67,6 @@ bindImmediateGeometry_add_vertex
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Adds a vertex in local coordinate space with the currently set color/uv/etc.
 add_vertex ::
              (ImmediateGeometry :< cls, Object :< cls) =>
              cls -> Vector3 -> IO ()
@@ -90,8 +86,6 @@ instance NodeMethod ImmediateGeometry "add_vertex" '[Vector3]
 
 {-# NOINLINE bindImmediateGeometry_begin #-}
 
--- | Begin drawing (and optionally pass a texture override). When done call @method end@. For more information on how this works, search for @glBegin()@ and @glEnd()@ references.
---   				For the type of primitive, see the @enum Mesh.PrimitiveType@ enum.
 bindImmediateGeometry_begin :: MethodBind
 bindImmediateGeometry_begin
   = unsafePerformIO $
@@ -101,8 +95,6 @@ bindImmediateGeometry_begin
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Begin drawing (and optionally pass a texture override). When done call @method end@. For more information on how this works, search for @glBegin()@ and @glEnd()@ references.
---   				For the type of primitive, see the @enum Mesh.PrimitiveType@ enum.
 begin ::
         (ImmediateGeometry :< cls, Object :< cls) =>
         cls -> Int -> Maybe Texture -> IO ()
@@ -122,7 +114,6 @@ instance NodeMethod ImmediateGeometry "begin" '[Int, Maybe Texture]
 
 {-# NOINLINE bindImmediateGeometry_clear #-}
 
--- | Clears everything that was drawn using begin/end.
 bindImmediateGeometry_clear :: MethodBind
 bindImmediateGeometry_clear
   = unsafePerformIO $
@@ -132,7 +123,6 @@ bindImmediateGeometry_clear
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Clears everything that was drawn using begin/end.
 clear :: (ImmediateGeometry :< cls, Object :< cls) => cls -> IO ()
 clear cls
   = withVariantArray []
@@ -147,7 +137,6 @@ instance NodeMethod ImmediateGeometry "clear" '[] (IO ()) where
 
 {-# NOINLINE bindImmediateGeometry_end #-}
 
--- | Ends a drawing context and displays the results.
 bindImmediateGeometry_end :: MethodBind
 bindImmediateGeometry_end
   = unsafePerformIO $
@@ -157,7 +146,6 @@ bindImmediateGeometry_end
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Ends a drawing context and displays the results.
 end :: (ImmediateGeometry :< cls, Object :< cls) => cls -> IO ()
 end cls
   = withVariantArray []
@@ -172,7 +160,6 @@ instance NodeMethod ImmediateGeometry "end" '[] (IO ()) where
 
 {-# NOINLINE bindImmediateGeometry_set_color #-}
 
--- | The current drawing color.
 bindImmediateGeometry_set_color :: MethodBind
 bindImmediateGeometry_set_color
   = unsafePerformIO $
@@ -182,7 +169,6 @@ bindImmediateGeometry_set_color
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The current drawing color.
 set_color ::
             (ImmediateGeometry :< cls, Object :< cls) => cls -> Color -> IO ()
 set_color cls arg1
@@ -199,7 +185,6 @@ instance NodeMethod ImmediateGeometry "set_color" '[Color] (IO ())
 
 {-# NOINLINE bindImmediateGeometry_set_normal #-}
 
--- | The next vertex's normal.
 bindImmediateGeometry_set_normal :: MethodBind
 bindImmediateGeometry_set_normal
   = unsafePerformIO $
@@ -209,7 +194,6 @@ bindImmediateGeometry_set_normal
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The next vertex's normal.
 set_normal ::
              (ImmediateGeometry :< cls, Object :< cls) =>
              cls -> Vector3 -> IO ()
@@ -229,7 +213,6 @@ instance NodeMethod ImmediateGeometry "set_normal" '[Vector3]
 
 {-# NOINLINE bindImmediateGeometry_set_tangent #-}
 
--- | The next vertex's tangent (and binormal facing).
 bindImmediateGeometry_set_tangent :: MethodBind
 bindImmediateGeometry_set_tangent
   = unsafePerformIO $
@@ -239,7 +222,6 @@ bindImmediateGeometry_set_tangent
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The next vertex's tangent (and binormal facing).
 set_tangent ::
               (ImmediateGeometry :< cls, Object :< cls) => cls -> Plane -> IO ()
 set_tangent cls arg1
@@ -258,7 +240,6 @@ instance NodeMethod ImmediateGeometry "set_tangent" '[Plane]
 
 {-# NOINLINE bindImmediateGeometry_set_uv #-}
 
--- | The next vertex's UV.
 bindImmediateGeometry_set_uv :: MethodBind
 bindImmediateGeometry_set_uv
   = unsafePerformIO $
@@ -268,7 +249,6 @@ bindImmediateGeometry_set_uv
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The next vertex's UV.
 set_uv ::
          (ImmediateGeometry :< cls, Object :< cls) =>
          cls -> Vector2 -> IO ()
@@ -286,7 +266,6 @@ instance NodeMethod ImmediateGeometry "set_uv" '[Vector2] (IO ())
 
 {-# NOINLINE bindImmediateGeometry_set_uv2 #-}
 
--- | The next vertex's second layer UV.
 bindImmediateGeometry_set_uv2 :: MethodBind
 bindImmediateGeometry_set_uv2
   = unsafePerformIO $
@@ -296,7 +275,6 @@ bindImmediateGeometry_set_uv2
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The next vertex's second layer UV.
 set_uv2 ::
           (ImmediateGeometry :< cls, Object :< cls) =>
           cls -> Vector2 -> IO ()

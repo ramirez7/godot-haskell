@@ -272,7 +272,7 @@ instance NodeMethod VisualShaderNodeGroupBase
 
 {-# NOINLINE bindVisualShaderNodeGroupBase_get_inputs #-}
 
--- | Returns a @String@ description of the input ports as as colon-separated list using the format @id,type,name;@ (see @method add_input_port@).
+-- | Returns a @String@ description of the input ports as a colon-separated list using the format @id,type,name;@ (see @method add_input_port@).
 bindVisualShaderNodeGroupBase_get_inputs :: MethodBind
 bindVisualShaderNodeGroupBase_get_inputs
   = unsafePerformIO $
@@ -282,7 +282,7 @@ bindVisualShaderNodeGroupBase_get_inputs
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns a @String@ description of the input ports as as colon-separated list using the format @id,type,name;@ (see @method add_input_port@).
+-- | Returns a @String@ description of the input ports as a colon-separated list using the format @id,type,name;@ (see @method add_input_port@).
 get_inputs ::
              (VisualShaderNodeGroupBase :< cls, Object :< cls) =>
              cls -> IO GodotString
@@ -336,7 +336,7 @@ instance NodeMethod VisualShaderNodeGroupBase
 
 {-# NOINLINE bindVisualShaderNodeGroupBase_get_outputs #-}
 
--- | Returns a @String@ description of the output ports as as colon-separated list using the format @id,type,name;@ (see @method add_output_port@).
+-- | Returns a @String@ description of the output ports as a colon-separated list using the format @id,type,name;@ (see @method add_output_port@).
 bindVisualShaderNodeGroupBase_get_outputs :: MethodBind
 bindVisualShaderNodeGroupBase_get_outputs
   = unsafePerformIO $
@@ -346,7 +346,7 @@ bindVisualShaderNodeGroupBase_get_outputs
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns a @String@ description of the output ports as as colon-separated list using the format @id,type,name;@ (see @method add_output_port@).
+-- | Returns a @String@ description of the output ports as a colon-separated list using the format @id,type,name;@ (see @method add_output_port@).
 get_outputs ::
               (VisualShaderNodeGroupBase :< cls, Object :< cls) =>
               cls -> IO GodotString
@@ -366,7 +366,6 @@ instance NodeMethod VisualShaderNodeGroupBase "get_outputs" '[]
 
 {-# NOINLINE bindVisualShaderNodeGroupBase_get_size #-}
 
--- | The size of the node in the visual shader graph.
 bindVisualShaderNodeGroupBase_get_size :: MethodBind
 bindVisualShaderNodeGroupBase_get_size
   = unsafePerformIO $
@@ -376,7 +375,6 @@ bindVisualShaderNodeGroupBase_get_size
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The size of the node in the visual shader graph.
 get_size ::
            (VisualShaderNodeGroupBase :< cls, Object :< cls) =>
            cls -> IO Vector2
@@ -753,7 +751,6 @@ instance NodeMethod VisualShaderNodeGroupBase "set_outputs"
 
 {-# NOINLINE bindVisualShaderNodeGroupBase_set_size #-}
 
--- | The size of the node in the visual shader graph.
 bindVisualShaderNodeGroupBase_set_size :: MethodBind
 bindVisualShaderNodeGroupBase_set_size
   = unsafePerformIO $
@@ -763,7 +760,6 @@ bindVisualShaderNodeGroupBase_set_size
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The size of the node in the visual shader graph.
 set_size ::
            (VisualShaderNodeGroupBase :< cls, Object :< cls) =>
            cls -> Vector2 -> IO ()

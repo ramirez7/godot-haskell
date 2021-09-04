@@ -23,7 +23,6 @@ instance NodeProperty PanoramaSky "panorama" Texture 'False where
 
 {-# NOINLINE bindPanoramaSky_get_panorama #-}
 
--- | @Texture@ to be applied to the PanoramaSky.
 bindPanoramaSky_get_panorama :: MethodBind
 bindPanoramaSky_get_panorama
   = unsafePerformIO $
@@ -33,7 +32,6 @@ bindPanoramaSky_get_panorama
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | @Texture@ to be applied to the PanoramaSky.
 get_panorama ::
                (PanoramaSky :< cls, Object :< cls) => cls -> IO Texture
 get_panorama cls
@@ -50,7 +48,6 @@ instance NodeMethod PanoramaSky "get_panorama" '[] (IO Texture)
 
 {-# NOINLINE bindPanoramaSky_set_panorama #-}
 
--- | @Texture@ to be applied to the PanoramaSky.
 bindPanoramaSky_set_panorama :: MethodBind
 bindPanoramaSky_set_panorama
   = unsafePerformIO $
@@ -60,7 +57,6 @@ bindPanoramaSky_set_panorama
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | @Texture@ to be applied to the PanoramaSky.
 set_panorama ::
                (PanoramaSky :< cls, Object :< cls) => cls -> Texture -> IO ()
 set_panorama cls arg1

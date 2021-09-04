@@ -133,7 +133,7 @@ instance NodeMethod TextureRect "get_stretch_mode" '[] (IO Int)
 
 {-# NOINLINE bindTextureRect_get_texture #-}
 
--- | The node's @Texture@ resource.
+-- | The node's @Texture2D@ resource.
 bindTextureRect_get_texture :: MethodBind
 bindTextureRect_get_texture
   = unsafePerformIO $
@@ -143,7 +143,7 @@ bindTextureRect_get_texture
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The node's @Texture@ resource.
+-- | The node's @Texture2D@ resource.
 get_texture ::
               (TextureRect :< cls, Object :< cls) => cls -> IO Texture
 get_texture cls
@@ -343,7 +343,7 @@ instance NodeMethod TextureRect "set_stretch_mode" '[Int] (IO ())
 
 {-# NOINLINE bindTextureRect_set_texture #-}
 
--- | The node's @Texture@ resource.
+-- | The node's @Texture2D@ resource.
 bindTextureRect_set_texture :: MethodBind
 bindTextureRect_set_texture
   = unsafePerformIO $
@@ -353,7 +353,7 @@ bindTextureRect_set_texture
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The node's @Texture@ resource.
+-- | The node's @Texture2D@ resource.
 set_texture ::
               (TextureRect :< cls, Object :< cls) => cls -> Texture -> IO ()
 set_texture cls arg1

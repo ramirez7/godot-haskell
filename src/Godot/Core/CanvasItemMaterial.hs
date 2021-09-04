@@ -159,7 +159,7 @@ instance NodeMethod CanvasItemMaterial "get_light_mode" '[]
 
 {-# NOINLINE bindCanvasItemMaterial_get_particles_anim_h_frames #-}
 
--- | The number of columns in the spritesheet assigned as @Texture@ for a @Particles2D@ or @CPUParticles2D@.
+-- | The number of columns in the spritesheet assigned as @Texture2D@ for a @GPUParticles2D@ or @CPUParticles2D@.
 --   			__Note:__ This property is only used and visible in the editor if @particles_animation@ is @true@.
 bindCanvasItemMaterial_get_particles_anim_h_frames :: MethodBind
 bindCanvasItemMaterial_get_particles_anim_h_frames
@@ -170,7 +170,7 @@ bindCanvasItemMaterial_get_particles_anim_h_frames
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The number of columns in the spritesheet assigned as @Texture@ for a @Particles2D@ or @CPUParticles2D@.
+-- | The number of columns in the spritesheet assigned as @Texture2D@ for a @GPUParticles2D@ or @CPUParticles2D@.
 --   			__Note:__ This property is only used and visible in the editor if @particles_animation@ is @true@.
 get_particles_anim_h_frames ::
                               (CanvasItemMaterial :< cls, Object :< cls) => cls -> IO Int
@@ -227,7 +227,7 @@ instance NodeMethod CanvasItemMaterial "get_particles_anim_loop"
 
 {-# NOINLINE bindCanvasItemMaterial_get_particles_anim_v_frames #-}
 
--- | The number of rows in the spritesheet assigned as @Texture@ for a @Particles2D@ or @CPUParticles2D@.
+-- | The number of rows in the spritesheet assigned as @Texture2D@ for a @GPUParticles2D@ or @CPUParticles2D@.
 --   			__Note:__ This property is only used and visible in the editor if @particles_animation@ is @true@.
 bindCanvasItemMaterial_get_particles_anim_v_frames :: MethodBind
 bindCanvasItemMaterial_get_particles_anim_v_frames
@@ -238,7 +238,7 @@ bindCanvasItemMaterial_get_particles_anim_v_frames
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The number of rows in the spritesheet assigned as @Texture@ for a @Particles2D@ or @CPUParticles2D@.
+-- | The number of rows in the spritesheet assigned as @Texture2D@ for a @GPUParticles2D@ or @CPUParticles2D@.
 --   			__Note:__ This property is only used and visible in the editor if @particles_animation@ is @true@.
 get_particles_anim_v_frames ::
                               (CanvasItemMaterial :< cls, Object :< cls) => cls -> IO Int
@@ -262,7 +262,7 @@ instance NodeMethod CanvasItemMaterial
 
 {-# NOINLINE bindCanvasItemMaterial_get_particles_animation #-}
 
--- | If @true@, enable spritesheet-based animation features when assigned to @Particles2D@ and @CPUParticles2D@ nodes. The @ParticlesMaterial.anim_speed@ or @CPUParticles2D.anim_speed@ should also be set to a positive value for the animation to play.
+-- | If @true@, enable spritesheet-based animation features when assigned to @GPUParticles2D@ and @CPUParticles2D@ nodes. The @ParticlesMaterial.anim_speed_max@ or @CPUParticles2D.anim_speed_max@ should also be set to a positive value for the animation to play.
 --   			This property (and other @particles_anim_*@ properties that depend on it) has no effect on other types of nodes.
 bindCanvasItemMaterial_get_particles_animation :: MethodBind
 bindCanvasItemMaterial_get_particles_animation
@@ -273,7 +273,7 @@ bindCanvasItemMaterial_get_particles_animation
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, enable spritesheet-based animation features when assigned to @Particles2D@ and @CPUParticles2D@ nodes. The @ParticlesMaterial.anim_speed@ or @CPUParticles2D.anim_speed@ should also be set to a positive value for the animation to play.
+-- | If @true@, enable spritesheet-based animation features when assigned to @GPUParticles2D@ and @CPUParticles2D@ nodes. The @ParticlesMaterial.anim_speed_max@ or @CPUParticles2D.anim_speed_max@ should also be set to a positive value for the animation to play.
 --   			This property (and other @particles_anim_*@ properties that depend on it) has no effect on other types of nodes.
 get_particles_animation ::
                           (CanvasItemMaterial :< cls, Object :< cls) => cls -> IO Bool
@@ -353,7 +353,7 @@ instance NodeMethod CanvasItemMaterial "set_light_mode" '[Int]
 
 {-# NOINLINE bindCanvasItemMaterial_set_particles_anim_h_frames #-}
 
--- | The number of columns in the spritesheet assigned as @Texture@ for a @Particles2D@ or @CPUParticles2D@.
+-- | The number of columns in the spritesheet assigned as @Texture2D@ for a @GPUParticles2D@ or @CPUParticles2D@.
 --   			__Note:__ This property is only used and visible in the editor if @particles_animation@ is @true@.
 bindCanvasItemMaterial_set_particles_anim_h_frames :: MethodBind
 bindCanvasItemMaterial_set_particles_anim_h_frames
@@ -364,7 +364,7 @@ bindCanvasItemMaterial_set_particles_anim_h_frames
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The number of columns in the spritesheet assigned as @Texture@ for a @Particles2D@ or @CPUParticles2D@.
+-- | The number of columns in the spritesheet assigned as @Texture2D@ for a @GPUParticles2D@ or @CPUParticles2D@.
 --   			__Note:__ This property is only used and visible in the editor if @particles_animation@ is @true@.
 set_particles_anim_h_frames ::
                               (CanvasItemMaterial :< cls, Object :< cls) => cls -> Int -> IO ()
@@ -421,7 +421,7 @@ instance NodeMethod CanvasItemMaterial "set_particles_anim_loop"
 
 {-# NOINLINE bindCanvasItemMaterial_set_particles_anim_v_frames #-}
 
--- | The number of rows in the spritesheet assigned as @Texture@ for a @Particles2D@ or @CPUParticles2D@.
+-- | The number of rows in the spritesheet assigned as @Texture2D@ for a @GPUParticles2D@ or @CPUParticles2D@.
 --   			__Note:__ This property is only used and visible in the editor if @particles_animation@ is @true@.
 bindCanvasItemMaterial_set_particles_anim_v_frames :: MethodBind
 bindCanvasItemMaterial_set_particles_anim_v_frames
@@ -432,7 +432,7 @@ bindCanvasItemMaterial_set_particles_anim_v_frames
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The number of rows in the spritesheet assigned as @Texture@ for a @Particles2D@ or @CPUParticles2D@.
+-- | The number of rows in the spritesheet assigned as @Texture2D@ for a @GPUParticles2D@ or @CPUParticles2D@.
 --   			__Note:__ This property is only used and visible in the editor if @particles_animation@ is @true@.
 set_particles_anim_v_frames ::
                               (CanvasItemMaterial :< cls, Object :< cls) => cls -> Int -> IO ()
@@ -456,7 +456,7 @@ instance NodeMethod CanvasItemMaterial
 
 {-# NOINLINE bindCanvasItemMaterial_set_particles_animation #-}
 
--- | If @true@, enable spritesheet-based animation features when assigned to @Particles2D@ and @CPUParticles2D@ nodes. The @ParticlesMaterial.anim_speed@ or @CPUParticles2D.anim_speed@ should also be set to a positive value for the animation to play.
+-- | If @true@, enable spritesheet-based animation features when assigned to @GPUParticles2D@ and @CPUParticles2D@ nodes. The @ParticlesMaterial.anim_speed_max@ or @CPUParticles2D.anim_speed_max@ should also be set to a positive value for the animation to play.
 --   			This property (and other @particles_anim_*@ properties that depend on it) has no effect on other types of nodes.
 bindCanvasItemMaterial_set_particles_animation :: MethodBind
 bindCanvasItemMaterial_set_particles_animation
@@ -467,7 +467,7 @@ bindCanvasItemMaterial_set_particles_animation
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, enable spritesheet-based animation features when assigned to @Particles2D@ and @CPUParticles2D@ nodes. The @ParticlesMaterial.anim_speed@ or @CPUParticles2D.anim_speed@ should also be set to a positive value for the animation to play.
+-- | If @true@, enable spritesheet-based animation features when assigned to @GPUParticles2D@ and @CPUParticles2D@ nodes. The @ParticlesMaterial.anim_speed_max@ or @CPUParticles2D.anim_speed_max@ should also be set to a positive value for the animation to play.
 --   			This property (and other @particles_anim_*@ properties that depend on it) has no effect on other types of nodes.
 set_particles_animation ::
                           (CanvasItemMaterial :< cls, Object :< cls) => cls -> Bool -> IO ()

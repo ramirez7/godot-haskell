@@ -22,7 +22,6 @@ instance NodeProperty SphereShape "radius" Float 'False where
 
 {-# NOINLINE bindSphereShape_get_radius #-}
 
--- | The sphere's radius. The shape's diameter is double the radius.
 bindSphereShape_get_radius :: MethodBind
 bindSphereShape_get_radius
   = unsafePerformIO $
@@ -32,7 +31,6 @@ bindSphereShape_get_radius
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The sphere's radius. The shape's diameter is double the radius.
 get_radius ::
              (SphereShape :< cls, Object :< cls) => cls -> IO Float
 get_radius cls
@@ -48,7 +46,6 @@ instance NodeMethod SphereShape "get_radius" '[] (IO Float) where
 
 {-# NOINLINE bindSphereShape_set_radius #-}
 
--- | The sphere's radius. The shape's diameter is double the radius.
 bindSphereShape_set_radius :: MethodBind
 bindSphereShape_set_radius
   = unsafePerformIO $
@@ -58,7 +55,6 @@ bindSphereShape_set_radius
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The sphere's radius. The shape's diameter is double the radius.
 set_radius ::
              (SphereShape :< cls, Object :< cls) => cls -> Float -> IO ()
 set_radius cls arg1

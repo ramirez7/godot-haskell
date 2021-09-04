@@ -154,7 +154,7 @@ instance NodeMethod PacketPeer "get_packet_error" '[] (IO Int)
 
 {-# NOINLINE bindPacketPeer_get_var #-}
 
--- | Gets a Variant. If @allow_objects@ (or @allow_object_decoding@) is @true@, decoding objects is allowed.
+-- | Gets a Variant. If @allow_objects@ is @true@, decoding objects is allowed.
 --   				__Warning:__ Deserialized objects can contain code which gets executed. Do not use this option if the serialized object comes from untrusted sources to avoid potential security threats such as remote code execution.
 bindPacketPeer_get_var :: MethodBind
 bindPacketPeer_get_var
@@ -165,7 +165,7 @@ bindPacketPeer_get_var
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Gets a Variant. If @allow_objects@ (or @allow_object_decoding@) is @true@, decoding objects is allowed.
+-- | Gets a Variant. If @allow_objects@ is @true@, decoding objects is allowed.
 --   				__Warning:__ Deserialized objects can contain code which gets executed. Do not use this option if the serialized object comes from untrusted sources to avoid potential security threats such as remote code execution.
 get_var ::
           (PacketPeer :< cls, Object :< cls) =>
@@ -184,9 +184,6 @@ instance NodeMethod PacketPeer "get_var" '[Maybe Bool]
 
 {-# NOINLINE bindPacketPeer_is_object_decoding_allowed #-}
 
--- | @i@Deprecated.@/i@ Use @get_var@ and @put_var@ parameters instead.
---   			If @true@, the PacketPeer will allow encoding and decoding of object via @method get_var@ and @method put_var@.
---   			__Warning:__ Deserialized objects can contain code which gets executed. Do not use this option if the serialized object comes from untrusted sources to avoid potential security threats such as remote code execution.
 bindPacketPeer_is_object_decoding_allowed :: MethodBind
 bindPacketPeer_is_object_decoding_allowed
   = unsafePerformIO $
@@ -196,9 +193,6 @@ bindPacketPeer_is_object_decoding_allowed
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | @i@Deprecated.@/i@ Use @get_var@ and @put_var@ parameters instead.
---   			If @true@, the PacketPeer will allow encoding and decoding of object via @method get_var@ and @method put_var@.
---   			__Warning:__ Deserialized objects can contain code which gets executed. Do not use this option if the serialized object comes from untrusted sources to avoid potential security threats such as remote code execution.
 is_object_decoding_allowed ::
                              (PacketPeer :< cls, Object :< cls) => cls -> IO Bool
 is_object_decoding_allowed cls
@@ -246,7 +240,7 @@ instance NodeMethod PacketPeer "put_packet" '[PoolByteArray]
 
 {-# NOINLINE bindPacketPeer_put_var #-}
 
--- | Sends a @Variant@ as a packet. If @full_objects@ (or @allow_object_decoding@) is @true@, encoding objects is allowed (and can potentially include code).
+-- | Sends a @Variant@ as a packet. If @full_objects@ is @true@, encoding objects is allowed (and can potentially include code).
 bindPacketPeer_put_var :: MethodBind
 bindPacketPeer_put_var
   = unsafePerformIO $
@@ -256,7 +250,7 @@ bindPacketPeer_put_var
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sends a @Variant@ as a packet. If @full_objects@ (or @allow_object_decoding@) is @true@, encoding objects is allowed (and can potentially include code).
+-- | Sends a @Variant@ as a packet. If @full_objects@ is @true@, encoding objects is allowed (and can potentially include code).
 put_var ::
           (PacketPeer :< cls, Object :< cls) =>
           cls -> GodotVariant -> Maybe Bool -> IO Int
@@ -276,9 +270,6 @@ instance NodeMethod PacketPeer "put_var"
 
 {-# NOINLINE bindPacketPeer_set_allow_object_decoding #-}
 
--- | @i@Deprecated.@/i@ Use @get_var@ and @put_var@ parameters instead.
---   			If @true@, the PacketPeer will allow encoding and decoding of object via @method get_var@ and @method put_var@.
---   			__Warning:__ Deserialized objects can contain code which gets executed. Do not use this option if the serialized object comes from untrusted sources to avoid potential security threats such as remote code execution.
 bindPacketPeer_set_allow_object_decoding :: MethodBind
 bindPacketPeer_set_allow_object_decoding
   = unsafePerformIO $
@@ -288,9 +279,6 @@ bindPacketPeer_set_allow_object_decoding
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | @i@Deprecated.@/i@ Use @get_var@ and @put_var@ parameters instead.
---   			If @true@, the PacketPeer will allow encoding and decoding of object via @method get_var@ and @method put_var@.
---   			__Warning:__ Deserialized objects can contain code which gets executed. Do not use this option if the serialized object comes from untrusted sources to avoid potential security threats such as remote code execution.
 set_allow_object_decoding ::
                             (PacketPeer :< cls, Object :< cls) => cls -> Bool -> IO ()
 set_allow_object_decoding cls arg1

@@ -3,8 +3,10 @@
   MultiParamTypeClasses #-}
 module Godot.Core.PacketPeerUDP
        (Godot.Core.PacketPeerUDP.close,
+        Godot.Core.PacketPeerUDP.connect_to_host,
         Godot.Core.PacketPeerUDP.get_packet_ip,
         Godot.Core.PacketPeerUDP.get_packet_port,
+        Godot.Core.PacketPeerUDP.is_connected_to_host,
         Godot.Core.PacketPeerUDP.is_listening,
         Godot.Core.PacketPeerUDP.join_multicast_group,
         Godot.Core.PacketPeerUDP.leave_multicast_group,
@@ -27,7 +29,7 @@ import Godot.Core.PacketPeer()
 
 {-# NOINLINE bindPacketPeerUDP_close #-}
 
--- | Closes the UDP socket the @PacketPeerUDP@ is currently listening on.
+-- | Closes the @PacketPeerUDP@'s underlying UDP socket.
 bindPacketPeerUDP_close :: MethodBind
 bindPacketPeerUDP_close
   = unsafePerformIO $
@@ -37,7 +39,7 @@ bindPacketPeerUDP_close
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Closes the UDP socket the @PacketPeerUDP@ is currently listening on.
+-- | Closes the @PacketPeerUDP@'s underlying UDP socket.
 close :: (PacketPeerUDP :< cls, Object :< cls) => cls -> IO ()
 close cls
   = withVariantArray []
@@ -48,6 +50,39 @@ close cls
 
 instance NodeMethod PacketPeerUDP "close" '[] (IO ()) where
         nodeMethod = Godot.Core.PacketPeerUDP.close
+
+{-# NOINLINE bindPacketPeerUDP_connect_to_host #-}
+
+-- | Calling this method connects this UDP peer to the given @host@/@port@ pair. UDP is in reality connectionless, so this option only means that incoming packets from different addresses are automatically discarded, and that outgoing packets are always sent to the connected address (future calls to @method set_dest_address@ are not allowed). This method does not send any data to the remote peer, to do that, use @method PacketPeer.put_var@ or @method PacketPeer.put_packet@ as usual. See also @UDPServer@.
+--   				__Note:__ Connecting to the remote peer does not help to protect from malicious attacks like IP spoofing, etc. Think about using an encryption technique like SSL or DTLS if you feel like your application is transferring sensitive information.
+bindPacketPeerUDP_connect_to_host :: MethodBind
+bindPacketPeerUDP_connect_to_host
+  = unsafePerformIO $
+      withCString "PacketPeerUDP" $
+        \ clsNamePtr ->
+          withCString "connect_to_host" $
+            \ methodNamePtr ->
+              godot_method_bind_get_method clsNamePtr methodNamePtr
+
+-- | Calling this method connects this UDP peer to the given @host@/@port@ pair. UDP is in reality connectionless, so this option only means that incoming packets from different addresses are automatically discarded, and that outgoing packets are always sent to the connected address (future calls to @method set_dest_address@ are not allowed). This method does not send any data to the remote peer, to do that, use @method PacketPeer.put_var@ or @method PacketPeer.put_packet@ as usual. See also @UDPServer@.
+--   				__Note:__ Connecting to the remote peer does not help to protect from malicious attacks like IP spoofing, etc. Think about using an encryption technique like SSL or DTLS if you feel like your application is transferring sensitive information.
+connect_to_host ::
+                  (PacketPeerUDP :< cls, Object :< cls) =>
+                  cls -> GodotString -> Int -> IO Int
+connect_to_host cls arg1 arg2
+  = withVariantArray [toVariant arg1, toVariant arg2]
+      (\ (arrPtr, len) ->
+         godot_method_bind_call bindPacketPeerUDP_connect_to_host
+           (upcast cls)
+           arrPtr
+           len
+           >>= \ (err, res) -> throwIfErr err >> fromGodotVariant res)
+
+instance NodeMethod PacketPeerUDP "connect_to_host"
+           '[GodotString, Int]
+           (IO Int)
+         where
+        nodeMethod = Godot.Core.PacketPeerUDP.connect_to_host
 
 {-# NOINLINE bindPacketPeerUDP_get_packet_ip #-}
 
@@ -105,9 +140,37 @@ instance NodeMethod PacketPeerUDP "get_packet_port" '[] (IO Int)
          where
         nodeMethod = Godot.Core.PacketPeerUDP.get_packet_port
 
+{-# NOINLINE bindPacketPeerUDP_is_connected_to_host #-}
+
+-- | Returns @true@ if the UDP socket is open and has been connected to a remote address. See @method connect_to_host@.
+bindPacketPeerUDP_is_connected_to_host :: MethodBind
+bindPacketPeerUDP_is_connected_to_host
+  = unsafePerformIO $
+      withCString "PacketPeerUDP" $
+        \ clsNamePtr ->
+          withCString "is_connected_to_host" $
+            \ methodNamePtr ->
+              godot_method_bind_get_method clsNamePtr methodNamePtr
+
+-- | Returns @true@ if the UDP socket is open and has been connected to a remote address. See @method connect_to_host@.
+is_connected_to_host ::
+                       (PacketPeerUDP :< cls, Object :< cls) => cls -> IO Bool
+is_connected_to_host cls
+  = withVariantArray []
+      (\ (arrPtr, len) ->
+         godot_method_bind_call bindPacketPeerUDP_is_connected_to_host
+           (upcast cls)
+           arrPtr
+           len
+           >>= \ (err, res) -> throwIfErr err >> fromGodotVariant res)
+
+instance NodeMethod PacketPeerUDP "is_connected_to_host" '[]
+           (IO Bool)
+         where
+        nodeMethod = Godot.Core.PacketPeerUDP.is_connected_to_host
+
 {-# NOINLINE bindPacketPeerUDP_is_listening #-}
 
--- | Returns whether this @PacketPeerUDP@ is listening.
 bindPacketPeerUDP_is_listening :: MethodBind
 bindPacketPeerUDP_is_listening
   = unsafePerformIO $
@@ -117,7 +180,6 @@ bindPacketPeerUDP_is_listening
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns whether this @PacketPeerUDP@ is listening.
 is_listening ::
                (PacketPeerUDP :< cls, Object :< cls) => cls -> IO Bool
 is_listening cls
@@ -200,10 +262,6 @@ instance NodeMethod PacketPeerUDP "leave_multicast_group"
 
 {-# NOINLINE bindPacketPeerUDP_listen #-}
 
--- | Makes this @PacketPeerUDP@ listen on the @port@ binding to @bind_address@ with a buffer size @recv_buf_size@.
---   				If @bind_address@ is set to @"*"@ (default), the peer will listen on all available addresses (both IPv4 and IPv6).
---   				If @bind_address@ is set to @"0.0.0.0"@ (for IPv4) or @"::"@ (for IPv6), the peer will listen on all available addresses matching that IP type.
---   				If @bind_address@ is set to any valid address (e.g. @"192.168.1.101"@, @"::1"@, etc), the peer will only listen on the interface with that addresses (or fail if no interface with the given address exists).
 bindPacketPeerUDP_listen :: MethodBind
 bindPacketPeerUDP_listen
   = unsafePerformIO $
@@ -213,10 +271,6 @@ bindPacketPeerUDP_listen
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Makes this @PacketPeerUDP@ listen on the @port@ binding to @bind_address@ with a buffer size @recv_buf_size@.
---   				If @bind_address@ is set to @"*"@ (default), the peer will listen on all available addresses (both IPv4 and IPv6).
---   				If @bind_address@ is set to @"0.0.0.0"@ (for IPv4) or @"::"@ (for IPv6), the peer will listen on all available addresses matching that IP type.
---   				If @bind_address@ is set to any valid address (e.g. @"192.168.1.101"@, @"::1"@, etc), the peer will only listen on the interface with that addresses (or fail if no interface with the given address exists).
 listen ::
          (PacketPeerUDP :< cls, Object :< cls) =>
          cls -> Int -> Maybe GodotString -> Maybe Int -> IO Int
@@ -301,7 +355,38 @@ instance NodeMethod PacketPeerUDP "set_dest_address"
 
 {-# NOINLINE bindPacketPeerUDP_wait #-}
 
--- | Waits for a packet to arrive on the listening port. See @method listen@.
+-- | Waits for a packet to arrive on the bound address. See @method bind@.
+--   				__Note:__ @method wait@ can't be interrupted once it has been called. This can be worked around by allowing the other party to send a specific "death pill" packet like this:
+--   		@codeblocks@
+--   		@gdscript@
+--   		socket = PacketPeerUDP.new()
+--   		# Server
+--   		socket.set_dest_address("127.0.0.1", 789)
+--   		socket.put_packet("Time to stop".to_ascii())
+--   
+--   		# Client
+--   		while socket.wait() == OK:
+--   		    var data = socket.get_packet().get_string_from_ascii()
+--   		    if data == "Time to stop":
+--   		        return
+--   		@/gdscript@
+--   		@csharp@
+--   		var socket = new PacketPeerUDP();
+--   		// Server
+--   		socket.SetDestAddress("127.0.0.1", 789);
+--   		socket.PutPacket("Time to stop".ToAscii());
+--   
+--   		// Client
+--   		while (socket.Wait() == OK)
+--   		{
+--   		    string data = socket.GetPacket().GetStringFromASCII();
+--   		    if (data == "Time to stop")
+--   		    {
+--   		        return;
+--   		    }
+--   		}
+--   		@/csharp@
+--   		@/codeblocks@
 bindPacketPeerUDP_wait :: MethodBind
 bindPacketPeerUDP_wait
   = unsafePerformIO $
@@ -311,7 +396,38 @@ bindPacketPeerUDP_wait
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Waits for a packet to arrive on the listening port. See @method listen@.
+-- | Waits for a packet to arrive on the bound address. See @method bind@.
+--   				__Note:__ @method wait@ can't be interrupted once it has been called. This can be worked around by allowing the other party to send a specific "death pill" packet like this:
+--   		@codeblocks@
+--   		@gdscript@
+--   		socket = PacketPeerUDP.new()
+--   		# Server
+--   		socket.set_dest_address("127.0.0.1", 789)
+--   		socket.put_packet("Time to stop".to_ascii())
+--   
+--   		# Client
+--   		while socket.wait() == OK:
+--   		    var data = socket.get_packet().get_string_from_ascii()
+--   		    if data == "Time to stop":
+--   		        return
+--   		@/gdscript@
+--   		@csharp@
+--   		var socket = new PacketPeerUDP();
+--   		// Server
+--   		socket.SetDestAddress("127.0.0.1", 789);
+--   		socket.PutPacket("Time to stop".ToAscii());
+--   
+--   		// Client
+--   		while (socket.Wait() == OK)
+--   		{
+--   		    string data = socket.GetPacket().GetStringFromASCII();
+--   		    if (data == "Time to stop")
+--   		    {
+--   		        return;
+--   		    }
+--   		}
+--   		@/csharp@
+--   		@/codeblocks@
 wait :: (PacketPeerUDP :< cls, Object :< cls) => cls -> IO Int
 wait cls
   = withVariantArray []

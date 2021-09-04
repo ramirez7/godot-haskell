@@ -23,8 +23,6 @@ import Godot.Core.Reference()
 
 {-# NOINLINE bindResourceFormatLoader_get_dependencies #-}
 
--- | If implemented, gets the dependencies of a given resource. If @add_types@ is @true@, paths should be appended @::TypeName@, where @TypeName@ is the class name of the dependency.
---   				__Note:__ Custom resource types defined by scripts aren't known by the @ClassDB@, so you might just return @"Resource"@ for them.
 bindResourceFormatLoader_get_dependencies :: MethodBind
 bindResourceFormatLoader_get_dependencies
   = unsafePerformIO $
@@ -34,8 +32,6 @@ bindResourceFormatLoader_get_dependencies
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If implemented, gets the dependencies of a given resource. If @add_types@ is @true@, paths should be appended @::TypeName@, where @TypeName@ is the class name of the dependency.
---   				__Note:__ Custom resource types defined by scripts aren't known by the @ClassDB@, so you might just return @"Resource"@ for them.
 get_dependencies ::
                    (ResourceFormatLoader :< cls, Object :< cls) =>
                    cls -> GodotString -> GodotString -> IO ()
@@ -56,7 +52,6 @@ instance NodeMethod ResourceFormatLoader "get_dependencies"
 
 {-# NOINLINE bindResourceFormatLoader_get_recognized_extensions #-}
 
--- | Gets the list of extensions for files this loader is able to read.
 bindResourceFormatLoader_get_recognized_extensions :: MethodBind
 bindResourceFormatLoader_get_recognized_extensions
   = unsafePerformIO $
@@ -66,7 +61,6 @@ bindResourceFormatLoader_get_recognized_extensions
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Gets the list of extensions for files this loader is able to read.
 get_recognized_extensions ::
                             (ResourceFormatLoader :< cls, Object :< cls) =>
                             cls -> IO PoolStringArray
@@ -90,8 +84,6 @@ instance NodeMethod ResourceFormatLoader
 
 {-# NOINLINE bindResourceFormatLoader_get_resource_type #-}
 
--- | Gets the class name of the resource associated with the given path. If the loader cannot handle it, it should return @""@.
---   				__Note:__ Custom resource types defined by scripts aren't known by the @ClassDB@, so you might just return @"Resource"@ for them.
 bindResourceFormatLoader_get_resource_type :: MethodBind
 bindResourceFormatLoader_get_resource_type
   = unsafePerformIO $
@@ -101,8 +93,6 @@ bindResourceFormatLoader_get_resource_type
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Gets the class name of the resource associated with the given path. If the loader cannot handle it, it should return @""@.
---   				__Note:__ Custom resource types defined by scripts aren't known by the @ClassDB@, so you might just return @"Resource"@ for them.
 get_resource_type ::
                     (ResourceFormatLoader :< cls, Object :< cls) =>
                     cls -> GodotString -> IO GodotString
@@ -123,8 +113,6 @@ instance NodeMethod ResourceFormatLoader "get_resource_type"
 
 {-# NOINLINE bindResourceFormatLoader_handles_type #-}
 
--- | Tells which resource class this loader can load.
---   				__Note:__ Custom resource types defined by scripts aren't known by the @ClassDB@, so you might just handle @"Resource"@ for them.
 bindResourceFormatLoader_handles_type :: MethodBind
 bindResourceFormatLoader_handles_type
   = unsafePerformIO $
@@ -134,8 +122,6 @@ bindResourceFormatLoader_handles_type
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Tells which resource class this loader can load.
---   				__Note:__ Custom resource types defined by scripts aren't known by the @ClassDB@, so you might just handle @"Resource"@ for them.
 handles_type ::
                (ResourceFormatLoader :< cls, Object :< cls) =>
                cls -> GodotString -> IO Bool
@@ -156,7 +142,6 @@ instance NodeMethod ResourceFormatLoader "handles_type"
 
 {-# NOINLINE bindResourceFormatLoader_load #-}
 
--- | Loads a resource when the engine finds this loader to be compatible. If the loaded resource is the result of an import, @original_path@ will target the source file. Returns a @Resource@ object on success, or an @enum Error@ constant in case of failure.
 bindResourceFormatLoader_load :: MethodBind
 bindResourceFormatLoader_load
   = unsafePerformIO $
@@ -166,7 +151,6 @@ bindResourceFormatLoader_load
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Loads a resource when the engine finds this loader to be compatible. If the loaded resource is the result of an import, @original_path@ will target the source file. Returns a @Resource@ object on success, or an @enum Error@ constant in case of failure.
 load ::
        (ResourceFormatLoader :< cls, Object :< cls) =>
        cls -> GodotString -> GodotString -> IO GodotVariant
@@ -186,8 +170,6 @@ instance NodeMethod ResourceFormatLoader "load"
 
 {-# NOINLINE bindResourceFormatLoader_rename_dependencies #-}
 
--- | If implemented, renames dependencies within the given resource and saves it. @renames@ is a dictionary @{ String => String }@ mapping old dependency paths to new paths.
---   				Returns @OK@ on success, or an @enum Error@ constant in case of failure.
 bindResourceFormatLoader_rename_dependencies :: MethodBind
 bindResourceFormatLoader_rename_dependencies
   = unsafePerformIO $
@@ -197,8 +179,6 @@ bindResourceFormatLoader_rename_dependencies
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If implemented, renames dependencies within the given resource and saves it. @renames@ is a dictionary @{ String => String }@ mapping old dependency paths to new paths.
---   				Returns @OK@ on success, or an @enum Error@ constant in case of failure.
 rename_dependencies ::
                       (ResourceFormatLoader :< cls, Object :< cls) =>
                       cls -> GodotString -> GodotString -> IO Int

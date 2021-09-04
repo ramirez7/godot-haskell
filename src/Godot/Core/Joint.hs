@@ -40,7 +40,6 @@ instance NodeProperty Joint "solver/priority" Int 'False where
 
 {-# NOINLINE bindJoint_get_exclude_nodes_from_collision #-}
 
--- | If @true@, the two bodies of the nodes are not able to collide with each other.
 bindJoint_get_exclude_nodes_from_collision :: MethodBind
 bindJoint_get_exclude_nodes_from_collision
   = unsafePerformIO $
@@ -50,7 +49,6 @@ bindJoint_get_exclude_nodes_from_collision
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, the two bodies of the nodes are not able to collide with each other.
 get_exclude_nodes_from_collision ::
                                    (Joint :< cls, Object :< cls) => cls -> IO Bool
 get_exclude_nodes_from_collision cls
@@ -69,7 +67,6 @@ instance NodeMethod Joint "get_exclude_nodes_from_collision" '[]
 
 {-# NOINLINE bindJoint_get_node_a #-}
 
--- | The node attached to the first side (A) of the joint.
 bindJoint_get_node_a :: MethodBind
 bindJoint_get_node_a
   = unsafePerformIO $
@@ -79,7 +76,6 @@ bindJoint_get_node_a
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The node attached to the first side (A) of the joint.
 get_node_a :: (Joint :< cls, Object :< cls) => cls -> IO NodePath
 get_node_a cls
   = withVariantArray []
@@ -92,7 +88,6 @@ instance NodeMethod Joint "get_node_a" '[] (IO NodePath) where
 
 {-# NOINLINE bindJoint_get_node_b #-}
 
--- | The node attached to the second side (B) of the joint.
 bindJoint_get_node_b :: MethodBind
 bindJoint_get_node_b
   = unsafePerformIO $
@@ -102,7 +97,6 @@ bindJoint_get_node_b
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The node attached to the second side (B) of the joint.
 get_node_b :: (Joint :< cls, Object :< cls) => cls -> IO NodePath
 get_node_b cls
   = withVariantArray []
@@ -115,7 +109,6 @@ instance NodeMethod Joint "get_node_b" '[] (IO NodePath) where
 
 {-# NOINLINE bindJoint_get_solver_priority #-}
 
--- | The priority used to define which solver is executed first for multiple joints. The lower the value, the higher the priority.
 bindJoint_get_solver_priority :: MethodBind
 bindJoint_get_solver_priority
   = unsafePerformIO $
@@ -125,7 +118,6 @@ bindJoint_get_solver_priority
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The priority used to define which solver is executed first for multiple joints. The lower the value, the higher the priority.
 get_solver_priority ::
                       (Joint :< cls, Object :< cls) => cls -> IO Int
 get_solver_priority cls
@@ -141,7 +133,6 @@ instance NodeMethod Joint "get_solver_priority" '[] (IO Int) where
 
 {-# NOINLINE bindJoint_set_exclude_nodes_from_collision #-}
 
--- | If @true@, the two bodies of the nodes are not able to collide with each other.
 bindJoint_set_exclude_nodes_from_collision :: MethodBind
 bindJoint_set_exclude_nodes_from_collision
   = unsafePerformIO $
@@ -151,7 +142,6 @@ bindJoint_set_exclude_nodes_from_collision
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, the two bodies of the nodes are not able to collide with each other.
 set_exclude_nodes_from_collision ::
                                    (Joint :< cls, Object :< cls) => cls -> Bool -> IO ()
 set_exclude_nodes_from_collision cls arg1
@@ -171,7 +161,6 @@ instance NodeMethod Joint "set_exclude_nodes_from_collision"
 
 {-# NOINLINE bindJoint_set_node_a #-}
 
--- | The node attached to the first side (A) of the joint.
 bindJoint_set_node_a :: MethodBind
 bindJoint_set_node_a
   = unsafePerformIO $
@@ -181,7 +170,6 @@ bindJoint_set_node_a
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The node attached to the first side (A) of the joint.
 set_node_a ::
              (Joint :< cls, Object :< cls) => cls -> NodePath -> IO ()
 set_node_a cls arg1
@@ -195,7 +183,6 @@ instance NodeMethod Joint "set_node_a" '[NodePath] (IO ()) where
 
 {-# NOINLINE bindJoint_set_node_b #-}
 
--- | The node attached to the second side (B) of the joint.
 bindJoint_set_node_b :: MethodBind
 bindJoint_set_node_b
   = unsafePerformIO $
@@ -205,7 +192,6 @@ bindJoint_set_node_b
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The node attached to the second side (B) of the joint.
 set_node_b ::
              (Joint :< cls, Object :< cls) => cls -> NodePath -> IO ()
 set_node_b cls arg1
@@ -219,7 +205,6 @@ instance NodeMethod Joint "set_node_b" '[NodePath] (IO ()) where
 
 {-# NOINLINE bindJoint_set_solver_priority #-}
 
--- | The priority used to define which solver is executed first for multiple joints. The lower the value, the higher the priority.
 bindJoint_set_solver_priority :: MethodBind
 bindJoint_set_solver_priority
   = unsafePerformIO $
@@ -229,7 +214,6 @@ bindJoint_set_solver_priority
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The priority used to define which solver is executed first for multiple joints. The lower the value, the higher the priority.
 set_solver_priority ::
                       (Joint :< cls, Object :< cls) => cls -> Int -> IO ()
 set_solver_priority cls arg1

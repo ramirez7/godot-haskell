@@ -75,7 +75,7 @@ instance NodeProperty InputEventMouseButton "pressed" Bool 'False
 
 {-# NOINLINE bindInputEventMouseButton_get_button_index #-}
 
--- | The mouse button identifier, one of the @enum ButtonList@ button or button wheel constants.
+-- | The mouse button identifier, one of the @enum MouseButton@ button or button wheel constants.
 bindInputEventMouseButton_get_button_index :: MethodBind
 bindInputEventMouseButton_get_button_index
   = unsafePerformIO $
@@ -85,7 +85,7 @@ bindInputEventMouseButton_get_button_index
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The mouse button identifier, one of the @enum ButtonList@ button or button wheel constants.
+-- | The mouse button identifier, one of the @enum MouseButton@ button or button wheel constants.
 get_button_index ::
                    (InputEventMouseButton :< cls, Object :< cls) => cls -> IO Int
 get_button_index cls
@@ -133,7 +133,6 @@ instance NodeMethod InputEventMouseButton "get_factor" '[]
 
 {-# NOINLINE bindInputEventMouseButton_is_doubleclick #-}
 
--- | If @true@, the mouse button's state is a double-click.
 bindInputEventMouseButton_is_doubleclick :: MethodBind
 bindInputEventMouseButton_is_doubleclick
   = unsafePerformIO $
@@ -143,7 +142,6 @@ bindInputEventMouseButton_is_doubleclick
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, the mouse button's state is a double-click.
 is_doubleclick ::
                  (InputEventMouseButton :< cls, Object :< cls) => cls -> IO Bool
 is_doubleclick cls
@@ -162,7 +160,7 @@ instance NodeMethod InputEventMouseButton "is_doubleclick" '[]
 
 {-# NOINLINE bindInputEventMouseButton_set_button_index #-}
 
--- | The mouse button identifier, one of the @enum ButtonList@ button or button wheel constants.
+-- | The mouse button identifier, one of the @enum MouseButton@ button or button wheel constants.
 bindInputEventMouseButton_set_button_index :: MethodBind
 bindInputEventMouseButton_set_button_index
   = unsafePerformIO $
@@ -172,7 +170,7 @@ bindInputEventMouseButton_set_button_index
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The mouse button identifier, one of the @enum ButtonList@ button or button wheel constants.
+-- | The mouse button identifier, one of the @enum MouseButton@ button or button wheel constants.
 set_button_index ::
                    (InputEventMouseButton :< cls, Object :< cls) =>
                    cls -> Int -> IO ()
@@ -192,7 +190,6 @@ instance NodeMethod InputEventMouseButton "set_button_index" '[Int]
 
 {-# NOINLINE bindInputEventMouseButton_set_doubleclick #-}
 
--- | If @true@, the mouse button's state is a double-click.
 bindInputEventMouseButton_set_doubleclick :: MethodBind
 bindInputEventMouseButton_set_doubleclick
   = unsafePerformIO $
@@ -202,7 +199,6 @@ bindInputEventMouseButton_set_doubleclick
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, the mouse button's state is a double-click.
 set_doubleclick ::
                   (InputEventMouseButton :< cls, Object :< cls) =>
                   cls -> Bool -> IO ()

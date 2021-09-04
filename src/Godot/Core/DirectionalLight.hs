@@ -45,7 +45,6 @@ _SHADOW_PARALLEL_2_SPLITS = 1
 
 {-# NOINLINE bindDirectionalLight_get_param #-}
 
--- | Amount of extra bias for shadow splits that are far away. If self-shadowing occurs only on the splits far away, increasing this value can fix them.
 bindDirectionalLight_get_param :: MethodBind
 bindDirectionalLight_get_param
   = unsafePerformIO $
@@ -55,7 +54,6 @@ bindDirectionalLight_get_param
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Amount of extra bias for shadow splits that are far away. If self-shadowing occurs only on the splits far away, increasing this value can fix them.
 get_param ::
             (DirectionalLight :< cls, Object :< cls) => cls -> Int -> IO Float
 get_param cls arg1
@@ -72,7 +70,6 @@ instance NodeMethod DirectionalLight "get_param" '[Int] (IO Float)
 
 {-# NOINLINE bindDirectionalLight_set_param #-}
 
--- | Amount of extra bias for shadow splits that are far away. If self-shadowing occurs only on the splits far away, increasing this value can fix them.
 bindDirectionalLight_set_param :: MethodBind
 bindDirectionalLight_set_param
   = unsafePerformIO $
@@ -82,7 +79,6 @@ bindDirectionalLight_set_param
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Amount of extra bias for shadow splits that are far away. If self-shadowing occurs only on the splits far away, increasing this value can fix them.
 set_param ::
             (DirectionalLight :< cls, Object :< cls) =>
             cls -> Int -> Float -> IO ()
@@ -177,7 +173,6 @@ instance NodeProperty DirectionalLight "directional_shadow_split_3"
 
 {-# NOINLINE bindDirectionalLight_get_shadow_depth_range #-}
 
--- | Optimizes shadow rendering for detail versus movement. See @enum ShadowDepthRange@.
 bindDirectionalLight_get_shadow_depth_range :: MethodBind
 bindDirectionalLight_get_shadow_depth_range
   = unsafePerformIO $
@@ -187,7 +182,6 @@ bindDirectionalLight_get_shadow_depth_range
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Optimizes shadow rendering for detail versus movement. See @enum ShadowDepthRange@.
 get_shadow_depth_range ::
                          (DirectionalLight :< cls, Object :< cls) => cls -> IO Int
 get_shadow_depth_range cls
@@ -206,7 +200,6 @@ instance NodeMethod DirectionalLight "get_shadow_depth_range" '[]
 
 {-# NOINLINE bindDirectionalLight_get_shadow_mode #-}
 
--- | The light's shadow rendering algorithm. See @enum ShadowMode@.
 bindDirectionalLight_get_shadow_mode :: MethodBind
 bindDirectionalLight_get_shadow_mode
   = unsafePerformIO $
@@ -216,7 +209,6 @@ bindDirectionalLight_get_shadow_mode
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The light's shadow rendering algorithm. See @enum ShadowMode@.
 get_shadow_mode ::
                   (DirectionalLight :< cls, Object :< cls) => cls -> IO Int
 get_shadow_mode cls
@@ -234,7 +226,6 @@ instance NodeMethod DirectionalLight "get_shadow_mode" '[] (IO Int)
 
 {-# NOINLINE bindDirectionalLight_is_blend_splits_enabled #-}
 
--- | If @true@, shadow detail is sacrificed in exchange for smoother transitions between splits.
 bindDirectionalLight_is_blend_splits_enabled :: MethodBind
 bindDirectionalLight_is_blend_splits_enabled
   = unsafePerformIO $
@@ -244,7 +235,6 @@ bindDirectionalLight_is_blend_splits_enabled
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, shadow detail is sacrificed in exchange for smoother transitions between splits.
 is_blend_splits_enabled ::
                           (DirectionalLight :< cls, Object :< cls) => cls -> IO Bool
 is_blend_splits_enabled cls
@@ -263,7 +253,6 @@ instance NodeMethod DirectionalLight "is_blend_splits_enabled" '[]
 
 {-# NOINLINE bindDirectionalLight_set_blend_splits #-}
 
--- | If @true@, shadow detail is sacrificed in exchange for smoother transitions between splits.
 bindDirectionalLight_set_blend_splits :: MethodBind
 bindDirectionalLight_set_blend_splits
   = unsafePerformIO $
@@ -273,7 +262,6 @@ bindDirectionalLight_set_blend_splits
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, shadow detail is sacrificed in exchange for smoother transitions between splits.
 set_blend_splits ::
                    (DirectionalLight :< cls, Object :< cls) => cls -> Bool -> IO ()
 set_blend_splits cls arg1
@@ -292,7 +280,6 @@ instance NodeMethod DirectionalLight "set_blend_splits" '[Bool]
 
 {-# NOINLINE bindDirectionalLight_set_shadow_depth_range #-}
 
--- | Optimizes shadow rendering for detail versus movement. See @enum ShadowDepthRange@.
 bindDirectionalLight_set_shadow_depth_range :: MethodBind
 bindDirectionalLight_set_shadow_depth_range
   = unsafePerformIO $
@@ -302,7 +289,6 @@ bindDirectionalLight_set_shadow_depth_range
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Optimizes shadow rendering for detail versus movement. See @enum ShadowDepthRange@.
 set_shadow_depth_range ::
                          (DirectionalLight :< cls, Object :< cls) => cls -> Int -> IO ()
 set_shadow_depth_range cls arg1
@@ -322,7 +308,6 @@ instance NodeMethod DirectionalLight "set_shadow_depth_range"
 
 {-# NOINLINE bindDirectionalLight_set_shadow_mode #-}
 
--- | The light's shadow rendering algorithm. See @enum ShadowMode@.
 bindDirectionalLight_set_shadow_mode :: MethodBind
 bindDirectionalLight_set_shadow_mode
   = unsafePerformIO $
@@ -332,7 +317,6 @@ bindDirectionalLight_set_shadow_mode
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The light's shadow rendering algorithm. See @enum ShadowMode@.
 set_shadow_mode ::
                   (DirectionalLight :< cls, Object :< cls) => cls -> Int -> IO ()
 set_shadow_mode cls arg1

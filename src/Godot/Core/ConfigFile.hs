@@ -10,7 +10,8 @@ module Godot.Core.ConfigFile
         Godot.Core.ConfigFile.has_section_key, Godot.Core.ConfigFile.load,
         Godot.Core.ConfigFile.load_encrypted,
         Godot.Core.ConfigFile.load_encrypted_pass,
-        Godot.Core.ConfigFile.save, Godot.Core.ConfigFile.save_encrypted,
+        Godot.Core.ConfigFile.parse, Godot.Core.ConfigFile.save,
+        Godot.Core.ConfigFile.save_encrypted,
         Godot.Core.ConfigFile.save_encrypted_pass,
         Godot.Core.ConfigFile.set_value)
        where
@@ -321,6 +322,33 @@ instance NodeMethod ConfigFile "load_encrypted_pass"
            (IO Int)
          where
         nodeMethod = Godot.Core.ConfigFile.load_encrypted_pass
+
+{-# NOINLINE bindConfigFile_parse #-}
+
+-- | Parses the passed string as the contents of a config file. The string is parsed and loaded in the ConfigFile object which the method was called on.
+--   				Returns one of the @enum Error@ code constants (@OK@ on success).
+bindConfigFile_parse :: MethodBind
+bindConfigFile_parse
+  = unsafePerformIO $
+      withCString "ConfigFile" $
+        \ clsNamePtr ->
+          withCString "parse" $
+            \ methodNamePtr ->
+              godot_method_bind_get_method clsNamePtr methodNamePtr
+
+-- | Parses the passed string as the contents of a config file. The string is parsed and loaded in the ConfigFile object which the method was called on.
+--   				Returns one of the @enum Error@ code constants (@OK@ on success).
+parse ::
+        (ConfigFile :< cls, Object :< cls) => cls -> GodotString -> IO Int
+parse cls arg1
+  = withVariantArray [toVariant arg1]
+      (\ (arrPtr, len) ->
+         godot_method_bind_call bindConfigFile_parse (upcast cls) arrPtr len
+           >>= \ (err, res) -> throwIfErr err >> fromGodotVariant res)
+
+instance NodeMethod ConfigFile "parse" '[GodotString] (IO Int)
+         where
+        nodeMethod = Godot.Core.ConfigFile.parse
 
 {-# NOINLINE bindConfigFile_save #-}
 

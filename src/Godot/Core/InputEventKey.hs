@@ -92,8 +92,6 @@ instance NodeProperty InputEventKey "unicode" Int 'False where
 
 {-# NOINLINE bindInputEventKey_get_scancode #-}
 
--- | The key scancode, which corresponds to one of the @enum KeyList@ constants.
---   			To get a human-readable representation of the @InputEventKey@, use @OS.get_scancode_string(event.scancode)@ where @event@ is the @InputEventKey@.
 bindInputEventKey_get_scancode :: MethodBind
 bindInputEventKey_get_scancode
   = unsafePerformIO $
@@ -103,8 +101,6 @@ bindInputEventKey_get_scancode
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The key scancode, which corresponds to one of the @enum KeyList@ constants.
---   			To get a human-readable representation of the @InputEventKey@, use @OS.get_scancode_string(event.scancode)@ where @event@ is the @InputEventKey@.
 get_scancode ::
                (InputEventKey :< cls, Object :< cls) => cls -> IO Int
 get_scancode cls
@@ -120,8 +116,6 @@ instance NodeMethod InputEventKey "get_scancode" '[] (IO Int) where
 
 {-# NOINLINE bindInputEventKey_get_scancode_with_modifiers #-}
 
--- | Returns the scancode combined with modifier keys such as @Shift@ or @Alt@. See also @InputEventWithModifiers@.
---   				To get a human-readable representation of the @InputEventKey@ with modifiers, use @OS.get_scancode_string(event.get_scancode_with_modifiers())@ where @event@ is the @InputEventKey@.
 bindInputEventKey_get_scancode_with_modifiers :: MethodBind
 bindInputEventKey_get_scancode_with_modifiers
   = unsafePerformIO $
@@ -131,8 +125,6 @@ bindInputEventKey_get_scancode_with_modifiers
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the scancode combined with modifier keys such as @Shift@ or @Alt@. See also @InputEventWithModifiers@.
---   				To get a human-readable representation of the @InputEventKey@ with modifiers, use @OS.get_scancode_string(event.get_scancode_with_modifiers())@ where @event@ is the @InputEventKey@.
 get_scancode_with_modifiers ::
                               (InputEventKey :< cls, Object :< cls) => cls -> IO Int
 get_scancode_with_modifiers cls
@@ -152,7 +144,7 @@ instance NodeMethod InputEventKey "get_scancode_with_modifiers" '[]
 
 {-# NOINLINE bindInputEventKey_get_unicode #-}
 
--- | The key Unicode identifier (when relevant). Unicode identifiers for the composite characters and complex scripts may not be available unless IME input mode is active. See @method OS.set_ime_active@ for more information.
+-- | The key Unicode identifier (when relevant). Unicode identifiers for the composite characters and complex scripts may not be available unless IME input mode is active. See @method Window.set_ime_active@ for more information.
 bindInputEventKey_get_unicode :: MethodBind
 bindInputEventKey_get_unicode
   = unsafePerformIO $
@@ -162,7 +154,7 @@ bindInputEventKey_get_unicode
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The key Unicode identifier (when relevant). Unicode identifiers for the composite characters and complex scripts may not be available unless IME input mode is active. See @method OS.set_ime_active@ for more information.
+-- | The key Unicode identifier (when relevant). Unicode identifiers for the composite characters and complex scripts may not be available unless IME input mode is active. See @method Window.set_ime_active@ for more information.
 get_unicode ::
               (InputEventKey :< cls, Object :< cls) => cls -> IO Int
 get_unicode cls
@@ -231,8 +223,6 @@ instance NodeMethod InputEventKey "set_pressed" '[Bool] (IO ())
 
 {-# NOINLINE bindInputEventKey_set_scancode #-}
 
--- | The key scancode, which corresponds to one of the @enum KeyList@ constants.
---   			To get a human-readable representation of the @InputEventKey@, use @OS.get_scancode_string(event.scancode)@ where @event@ is the @InputEventKey@.
 bindInputEventKey_set_scancode :: MethodBind
 bindInputEventKey_set_scancode
   = unsafePerformIO $
@@ -242,8 +232,6 @@ bindInputEventKey_set_scancode
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The key scancode, which corresponds to one of the @enum KeyList@ constants.
---   			To get a human-readable representation of the @InputEventKey@, use @OS.get_scancode_string(event.scancode)@ where @event@ is the @InputEventKey@.
 set_scancode ::
                (InputEventKey :< cls, Object :< cls) => cls -> Int -> IO ()
 set_scancode cls arg1
@@ -260,7 +248,7 @@ instance NodeMethod InputEventKey "set_scancode" '[Int] (IO ())
 
 {-# NOINLINE bindInputEventKey_set_unicode #-}
 
--- | The key Unicode identifier (when relevant). Unicode identifiers for the composite characters and complex scripts may not be available unless IME input mode is active. See @method OS.set_ime_active@ for more information.
+-- | The key Unicode identifier (when relevant). Unicode identifiers for the composite characters and complex scripts may not be available unless IME input mode is active. See @method Window.set_ime_active@ for more information.
 bindInputEventKey_set_unicode :: MethodBind
 bindInputEventKey_set_unicode
   = unsafePerformIO $
@@ -270,7 +258,7 @@ bindInputEventKey_set_unicode
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The key Unicode identifier (when relevant). Unicode identifiers for the composite characters and complex scripts may not be available unless IME input mode is active. See @method OS.set_ime_active@ for more information.
+-- | The key Unicode identifier (when relevant). Unicode identifiers for the composite characters and complex scripts may not be available unless IME input mode is active. See @method Window.set_ime_active@ for more information.
 set_unicode ::
               (InputEventKey :< cls, Object :< cls) => cls -> Int -> IO ()
 set_unicode cls arg1

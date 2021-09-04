@@ -24,7 +24,6 @@ instance NodeProperty BoneAttachment "bone_name" GodotString 'False
 
 {-# NOINLINE bindBoneAttachment_get_bone_name #-}
 
--- | The name of the attached bone.
 bindBoneAttachment_get_bone_name :: MethodBind
 bindBoneAttachment_get_bone_name
   = unsafePerformIO $
@@ -34,7 +33,6 @@ bindBoneAttachment_get_bone_name
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The name of the attached bone.
 get_bone_name ::
                 (BoneAttachment :< cls, Object :< cls) => cls -> IO GodotString
 get_bone_name cls
@@ -53,7 +51,6 @@ instance NodeMethod BoneAttachment "get_bone_name" '[]
 
 {-# NOINLINE bindBoneAttachment_set_bone_name #-}
 
--- | The name of the attached bone.
 bindBoneAttachment_set_bone_name :: MethodBind
 bindBoneAttachment_set_bone_name
   = unsafePerformIO $
@@ -63,7 +60,6 @@ bindBoneAttachment_set_bone_name
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The name of the attached bone.
 set_bone_name ::
                 (BoneAttachment :< cls, Object :< cls) =>
                 cls -> GodotString -> IO ()

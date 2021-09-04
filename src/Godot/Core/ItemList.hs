@@ -97,7 +97,7 @@ _SELECT_SINGLE = 0
 _ICON_MODE_TOP :: Int
 _ICON_MODE_TOP = 0
 
--- | Triggered when specified list item is activated via double-clicking or by pressing Enter.
+-- | Triggered when specified list item is activated via double-clicking or by pressing @kbd@Enter@/kbd@.
 sig_item_activated :: Godot.Internal.Dispatch.Signal ItemList
 sig_item_activated
   = Godot.Internal.Dispatch.Signal "item_activated"
@@ -293,7 +293,7 @@ instance NodeMethod ItemList "_set_items" '[Array] (IO ()) where
 
 {-# NOINLINE bindItemList_add_icon_item #-}
 
--- | Adds an item to the item list with no text, only an icon.
+-- | Adds an item to the item list with no text, only an icon. Returns the index of an added item.
 bindItemList_add_icon_item :: MethodBind
 bindItemList_add_icon_item
   = unsafePerformIO $
@@ -303,7 +303,7 @@ bindItemList_add_icon_item
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Adds an item to the item list with no text, only an icon.
+-- | Adds an item to the item list with no text, only an icon. Returns the index of an added item.
 add_icon_item ::
                 (ItemList :< cls, Object :< cls) =>
                 cls -> Texture -> Maybe Bool -> IO ()
@@ -323,7 +323,8 @@ instance NodeMethod ItemList "add_icon_item" '[Texture, Maybe Bool]
 
 {-# NOINLINE bindItemList_add_item #-}
 
--- | Adds an item to the item list with specified text. Specify an @icon@, or use @null@ as the @icon@ for a list item with no icon.
+-- | Adds an item to the item list with specified text. Returns the index of an added item.
+--   				Specify an @icon@, or use @null@ as the @icon@ for a list item with no icon.
 --   				If selectable is @true@, the list item will be selectable.
 bindItemList_add_item :: MethodBind
 bindItemList_add_item
@@ -334,7 +335,8 @@ bindItemList_add_item
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Adds an item to the item list with specified text. Specify an @icon@, or use @null@ as the @icon@ for a list item with no icon.
+-- | Adds an item to the item list with specified text. Returns the index of an added item.
+--   				Specify an @icon@, or use @null@ as the @icon@ for a list item with no icon.
 --   				If selectable is @true@, the list item will be selectable.
 add_item ::
            (ItemList :< cls, Object :< cls) =>
@@ -1498,13 +1500,6 @@ instance NodeMethod ItemList "set_icon_scale" '[Float] (IO ())
 {-# NOINLINE bindItemList_set_item_custom_bg_color #-}
 
 -- | Sets the background color of the item specified by @idx@ index to the specified @Color@.
---   				
---   @
---   
---   				var some_string = "Some text"
---   				some_string.set_item_custom_bg_color(0,Color(1, 0, 0, 1) # This will set the background color of the first item of the control to red.
---   				
---   @
 bindItemList_set_item_custom_bg_color :: MethodBind
 bindItemList_set_item_custom_bg_color
   = unsafePerformIO $
@@ -1515,13 +1510,6 @@ bindItemList_set_item_custom_bg_color
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | Sets the background color of the item specified by @idx@ index to the specified @Color@.
---   				
---   @
---   
---   				var some_string = "Some text"
---   				some_string.set_item_custom_bg_color(0,Color(1, 0, 0, 1) # This will set the background color of the first item of the control to red.
---   				
---   @
 set_item_custom_bg_color ::
                            (ItemList :< cls, Object :< cls) => cls -> Int -> Color -> IO ()
 set_item_custom_bg_color cls arg1 arg2
@@ -1542,13 +1530,6 @@ instance NodeMethod ItemList "set_item_custom_bg_color"
 {-# NOINLINE bindItemList_set_item_custom_fg_color #-}
 
 -- | Sets the foreground color of the item specified by @idx@ index to the specified @Color@.
---   				
---   @
---   
---   				var some_string = "Some text"
---   				some_string.set_item_custom_fg_color(0,Color(1, 0, 0, 1) # This will set the foreground color of the first item of the control to red.
---   				
---   @
 bindItemList_set_item_custom_fg_color :: MethodBind
 bindItemList_set_item_custom_fg_color
   = unsafePerformIO $
@@ -1559,13 +1540,6 @@ bindItemList_set_item_custom_fg_color
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | Sets the foreground color of the item specified by @idx@ index to the specified @Color@.
---   				
---   @
---   
---   				var some_string = "Some text"
---   				some_string.set_item_custom_fg_color(0,Color(1, 0, 0, 1) # This will set the foreground color of the first item of the control to red.
---   				
---   @
 set_item_custom_fg_color ::
                            (ItemList :< cls, Object :< cls) => cls -> Int -> Color -> IO ()
 set_item_custom_fg_color cls arg1 arg2
@@ -1586,7 +1560,7 @@ instance NodeMethod ItemList "set_item_custom_fg_color"
 {-# NOINLINE bindItemList_set_item_disabled #-}
 
 -- | Disables (or enables) the item at the specified index.
---   				Disabled items cannot be selected and do not trigger activation signals (when double-clicking or pressing Enter).
+--   				Disabled items cannot be selected and do not trigger activation signals (when double-clicking or pressing @kbd@Enter@/kbd@).
 bindItemList_set_item_disabled :: MethodBind
 bindItemList_set_item_disabled
   = unsafePerformIO $
@@ -1597,7 +1571,7 @@ bindItemList_set_item_disabled
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | Disables (or enables) the item at the specified index.
---   				Disabled items cannot be selected and do not trigger activation signals (when double-clicking or pressing Enter).
+--   				Disabled items cannot be selected and do not trigger activation signals (when double-clicking or pressing @kbd@Enter@/kbd@).
 set_item_disabled ::
                     (ItemList :< cls, Object :< cls) => cls -> Int -> Bool -> IO ()
 set_item_disabled cls arg1 arg2
@@ -1615,7 +1589,7 @@ instance NodeMethod ItemList "set_item_disabled" '[Int, Bool]
 
 {-# NOINLINE bindItemList_set_item_icon #-}
 
--- | Sets (or replaces) the icon's @Texture@ associated with the specified index.
+-- | Sets (or replaces) the icon's @Texture2D@ associated with the specified index.
 bindItemList_set_item_icon :: MethodBind
 bindItemList_set_item_icon
   = unsafePerformIO $
@@ -1625,7 +1599,7 @@ bindItemList_set_item_icon
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets (or replaces) the icon's @Texture@ associated with the specified index.
+-- | Sets (or replaces) the icon's @Texture2D@ associated with the specified index.
 set_item_icon ::
                 (ItemList :< cls, Object :< cls) => cls -> Int -> Texture -> IO ()
 set_item_icon cls arg1 arg2
@@ -2020,7 +1994,6 @@ instance NodeMethod ItemList "sort_items_by_text" '[] (IO ()) where
 
 {-# NOINLINE bindItemList_unselect #-}
 
--- | Ensures the item associated with the specified index is not selected.
 bindItemList_unselect :: MethodBind
 bindItemList_unselect
   = unsafePerformIO $
@@ -2030,7 +2003,6 @@ bindItemList_unselect
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Ensures the item associated with the specified index is not selected.
 unselect :: (ItemList :< cls, Object :< cls) => cls -> Int -> IO ()
 unselect cls arg1
   = withVariantArray [toVariant arg1]
@@ -2044,7 +2016,6 @@ instance NodeMethod ItemList "unselect" '[Int] (IO ()) where
 
 {-# NOINLINE bindItemList_unselect_all #-}
 
--- | Ensures there are no items selected.
 bindItemList_unselect_all :: MethodBind
 bindItemList_unselect_all
   = unsafePerformIO $
@@ -2054,7 +2025,6 @@ bindItemList_unselect_all
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Ensures there are no items selected.
 unselect_all :: (ItemList :< cls, Object :< cls) => cls -> IO ()
 unselect_all cls
   = withVariantArray []

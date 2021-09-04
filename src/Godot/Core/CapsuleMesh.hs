@@ -41,7 +41,6 @@ instance NodeProperty CapsuleMesh "rings" Int 'False where
 
 {-# NOINLINE bindCapsuleMesh_get_mid_height #-}
 
--- | Height of the capsule mesh from the center point.
 bindCapsuleMesh_get_mid_height :: MethodBind
 bindCapsuleMesh_get_mid_height
   = unsafePerformIO $
@@ -51,7 +50,6 @@ bindCapsuleMesh_get_mid_height
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Height of the capsule mesh from the center point.
 get_mid_height ::
                  (CapsuleMesh :< cls, Object :< cls) => cls -> IO Float
 get_mid_height cls
@@ -147,7 +145,6 @@ instance NodeMethod CapsuleMesh "get_rings" '[] (IO Int) where
 
 {-# NOINLINE bindCapsuleMesh_set_mid_height #-}
 
--- | Height of the capsule mesh from the center point.
 bindCapsuleMesh_set_mid_height :: MethodBind
 bindCapsuleMesh_set_mid_height
   = unsafePerformIO $
@@ -157,7 +154,6 @@ bindCapsuleMesh_set_mid_height
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Height of the capsule mesh from the center point.
 set_mid_height ::
                  (CapsuleMesh :< cls, Object :< cls) => cls -> Float -> IO ()
 set_mid_height cls arg1

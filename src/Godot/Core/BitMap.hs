@@ -222,6 +222,16 @@ instance NodeMethod BitMap "grow_mask" '[Int, Rect2] (IO ()) where
 
 {-# NOINLINE bindBitMap_opaque_to_polygons #-}
 
+-- | Creates an @Array@ of polygons covering a rectangular portion of the bitmap. It uses a marching squares algorithm, followed by Ramer-Douglas-Peucker (RDP) reduction of the number of vertices. Each polygon is described as a @PackedVector2Array@ of its vertices.
+--   				To get polygons covering the whole bitmap, pass:
+--   				
+--   @
+--   
+--   				Rect2(Vector2(), get_size())
+--   				
+--   @
+--   
+--   				@epsilon@ is passed to RDP to control how accurately the polygons cover the bitmap: a lower @epsilon@ corresponds to more points in the polygons.
 bindBitMap_opaque_to_polygons :: MethodBind
 bindBitMap_opaque_to_polygons
   = unsafePerformIO $
@@ -231,6 +241,16 @@ bindBitMap_opaque_to_polygons
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
+-- | Creates an @Array@ of polygons covering a rectangular portion of the bitmap. It uses a marching squares algorithm, followed by Ramer-Douglas-Peucker (RDP) reduction of the number of vertices. Each polygon is described as a @PackedVector2Array@ of its vertices.
+--   				To get polygons covering the whole bitmap, pass:
+--   				
+--   @
+--   
+--   				Rect2(Vector2(), get_size())
+--   				
+--   @
+--   
+--   				@epsilon@ is passed to RDP to control how accurately the polygons cover the bitmap: a lower @epsilon@ corresponds to more points in the polygons.
 opaque_to_polygons ::
                      (BitMap :< cls, Object :< cls) =>
                      cls -> Rect2 -> Maybe Float -> IO Array

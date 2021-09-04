@@ -72,7 +72,6 @@ sig_dragged = Godot.Internal.Dispatch.Signal "dragged"
 
 instance NodeSignal GraphNode "dragged" '[Vector2, Vector2]
 
--- | Emitted when the GraphNode is moved.
 sig_offset_changed :: Godot.Internal.Dispatch.Signal GraphNode
 sig_offset_changed
   = Godot.Internal.Dispatch.Signal "offset_changed"
@@ -196,7 +195,7 @@ instance NodeMethod GraphNode "clear_slot" '[Int] (IO ()) where
 
 {-# NOINLINE bindGraphNode_get_connection_input_color #-}
 
--- | Returns the color of the input connection @idx@.
+-- | Returns the @Color@ of the input connection @idx@.
 bindGraphNode_get_connection_input_color :: MethodBind
 bindGraphNode_get_connection_input_color
   = unsafePerformIO $
@@ -206,7 +205,7 @@ bindGraphNode_get_connection_input_color
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the color of the input connection @idx@.
+-- | Returns the @Color@ of the input connection @idx@.
 get_connection_input_color ::
                              (GraphNode :< cls, Object :< cls) => cls -> Int -> IO Color
 get_connection_input_color cls arg1
@@ -313,7 +312,7 @@ instance NodeMethod GraphNode "get_connection_input_type" '[Int]
 
 {-# NOINLINE bindGraphNode_get_connection_output_color #-}
 
--- | Returns the color of the output connection @idx@.
+-- | Returns the @Color@ of the output connection @idx@.
 bindGraphNode_get_connection_output_color :: MethodBind
 bindGraphNode_get_connection_output_color
   = unsafePerformIO $
@@ -323,7 +322,7 @@ bindGraphNode_get_connection_output_color
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the color of the output connection @idx@.
+-- | Returns the @Color@ of the output connection @idx@.
 get_connection_output_color ::
                               (GraphNode :< cls, Object :< cls) => cls -> Int -> IO Color
 get_connection_output_color cls arg1
@@ -430,8 +429,6 @@ instance NodeMethod GraphNode "get_connection_output_type" '[Int]
 
 {-# NOINLINE bindGraphNode_get_offset #-}
 
--- | The offset of the GraphNode, relative to the scroll offset of the @GraphEdit@.
---   			__Note:__ You cannot use position directly, as @GraphEdit@ is a @Container@.
 bindGraphNode_get_offset :: MethodBind
 bindGraphNode_get_offset
   = unsafePerformIO $
@@ -441,8 +438,6 @@ bindGraphNode_get_offset
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The offset of the GraphNode, relative to the scroll offset of the @GraphEdit@.
---   			__Note:__ You cannot use position directly, as @GraphEdit@ is a @Container@.
 get_offset ::
              (GraphNode :< cls, Object :< cls) => cls -> IO Vector2
 get_offset cls
@@ -482,7 +477,7 @@ instance NodeMethod GraphNode "get_overlay" '[] (IO Int) where
 
 {-# NOINLINE bindGraphNode_get_slot_color_left #-}
 
--- | Returns the color set to @idx@ left (input) slot.
+-- | Returns the left (input) @Color@ of the slot @idx@.
 bindGraphNode_get_slot_color_left :: MethodBind
 bindGraphNode_get_slot_color_left
   = unsafePerformIO $
@@ -492,7 +487,7 @@ bindGraphNode_get_slot_color_left
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the color set to @idx@ left (input) slot.
+-- | Returns the left (input) @Color@ of the slot @idx@.
 get_slot_color_left ::
                       (GraphNode :< cls, Object :< cls) => cls -> Int -> IO Color
 get_slot_color_left cls arg1
@@ -511,7 +506,7 @@ instance NodeMethod GraphNode "get_slot_color_left" '[Int]
 
 {-# NOINLINE bindGraphNode_get_slot_color_right #-}
 
--- | Returns the color set to @idx@ right (output) slot.
+-- | Returns the right (output) @Color@ of the slot @idx@.
 bindGraphNode_get_slot_color_right :: MethodBind
 bindGraphNode_get_slot_color_right
   = unsafePerformIO $
@@ -521,7 +516,7 @@ bindGraphNode_get_slot_color_right
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the color set to @idx@ right (output) slot.
+-- | Returns the right (output) @Color@ of the slot @idx@.
 get_slot_color_right ::
                        (GraphNode :< cls, Object :< cls) => cls -> Int -> IO Color
 get_slot_color_right cls arg1
@@ -540,7 +535,7 @@ instance NodeMethod GraphNode "get_slot_color_right" '[Int]
 
 {-# NOINLINE bindGraphNode_get_slot_type_left #-}
 
--- | Returns the (integer) type of left (input) @idx@ slot.
+-- | Returns the left (input) type of the slot @idx@.
 bindGraphNode_get_slot_type_left :: MethodBind
 bindGraphNode_get_slot_type_left
   = unsafePerformIO $
@@ -550,7 +545,7 @@ bindGraphNode_get_slot_type_left
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the (integer) type of left (input) @idx@ slot.
+-- | Returns the left (input) type of the slot @idx@.
 get_slot_type_left ::
                      (GraphNode :< cls, Object :< cls) => cls -> Int -> IO Int
 get_slot_type_left cls arg1
@@ -568,7 +563,7 @@ instance NodeMethod GraphNode "get_slot_type_left" '[Int] (IO Int)
 
 {-# NOINLINE bindGraphNode_get_slot_type_right #-}
 
--- | Returns the (integer) type of right (output) @idx@ slot.
+-- | Returns the right (output) type of the slot @idx@.
 bindGraphNode_get_slot_type_right :: MethodBind
 bindGraphNode_get_slot_type_right
   = unsafePerformIO $
@@ -578,7 +573,7 @@ bindGraphNode_get_slot_type_right
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the (integer) type of right (output) @idx@ slot.
+-- | Returns the right (output) type of the slot @idx@.
 get_slot_type_right ::
                       (GraphNode :< cls, Object :< cls) => cls -> Int -> IO Int
 get_slot_type_right cls arg1
@@ -729,7 +724,7 @@ instance NodeMethod GraphNode "is_selected" '[] (IO Bool) where
 
 {-# NOINLINE bindGraphNode_is_slot_enabled_left #-}
 
--- | Returns @true@ if left (input) slot @idx@ is enabled, @false@ otherwise.
+-- | Returns @true@ if left (input) side of the slot @idx@ is enabled.
 bindGraphNode_is_slot_enabled_left :: MethodBind
 bindGraphNode_is_slot_enabled_left
   = unsafePerformIO $
@@ -739,7 +734,7 @@ bindGraphNode_is_slot_enabled_left
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns @true@ if left (input) slot @idx@ is enabled, @false@ otherwise.
+-- | Returns @true@ if left (input) side of the slot @idx@ is enabled.
 is_slot_enabled_left ::
                        (GraphNode :< cls, Object :< cls) => cls -> Int -> IO Bool
 is_slot_enabled_left cls arg1
@@ -758,7 +753,7 @@ instance NodeMethod GraphNode "is_slot_enabled_left" '[Int]
 
 {-# NOINLINE bindGraphNode_is_slot_enabled_right #-}
 
--- | Returns @true@ if right (output) slot @idx@ is enabled, @false@ otherwise.
+-- | Returns @true@ if right (output) side of the slot @idx@ is enabled.
 bindGraphNode_is_slot_enabled_right :: MethodBind
 bindGraphNode_is_slot_enabled_right
   = unsafePerformIO $
@@ -768,7 +763,7 @@ bindGraphNode_is_slot_enabled_right
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns @true@ if right (output) slot @idx@ is enabled, @false@ otherwise.
+-- | Returns @true@ if right (output) side of the slot @idx@ is enabled.
 is_slot_enabled_right ::
                         (GraphNode :< cls, Object :< cls) => cls -> Int -> IO Bool
 is_slot_enabled_right cls arg1
@@ -813,8 +808,6 @@ instance NodeMethod GraphNode "set_comment" '[Bool] (IO ()) where
 
 {-# NOINLINE bindGraphNode_set_offset #-}
 
--- | The offset of the GraphNode, relative to the scroll offset of the @GraphEdit@.
---   			__Note:__ You cannot use position directly, as @GraphEdit@ is a @Container@.
 bindGraphNode_set_offset :: MethodBind
 bindGraphNode_set_offset
   = unsafePerformIO $
@@ -824,8 +817,6 @@ bindGraphNode_set_offset
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The offset of the GraphNode, relative to the scroll offset of the @GraphEdit@.
---   			__Note:__ You cannot use position directly, as @GraphEdit@ is a @Container@.
 set_offset ::
              (GraphNode :< cls, Object :< cls) => cls -> Vector2 -> IO ()
 set_offset cls arg1
@@ -957,6 +948,7 @@ instance NodeMethod GraphNode "set_show_close_button" '[Bool]
 --   				@color_left@/@right@ is the tint of the port's icon on this side.
 --   				@custom_left@/@right@ is a custom texture for this side's port.
 --   				__Note:__ This method only sets properties of the slot. To create the slot, add a @Control@-derived child to the GraphNode.
+--   				Individual properties can be set using one of the @set_slot_*@ methods. You must enable at least one side of the slot to do so.
 bindGraphNode_set_slot :: MethodBind
 bindGraphNode_set_slot
   = unsafePerformIO $
@@ -972,6 +964,7 @@ bindGraphNode_set_slot
 --   				@color_left@/@right@ is the tint of the port's icon on this side.
 --   				@custom_left@/@right@ is a custom texture for this side's port.
 --   				__Note:__ This method only sets properties of the slot. To create the slot, add a @Control@-derived child to the GraphNode.
+--   				Individual properties can be set using one of the @set_slot_*@ methods. You must enable at least one side of the slot to do so.
 set_slot ::
            (GraphNode :< cls, Object :< cls) =>
            cls ->

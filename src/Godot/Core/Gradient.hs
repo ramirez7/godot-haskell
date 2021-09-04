@@ -31,7 +31,7 @@ instance NodeProperty Gradient "offsets" PoolRealArray 'False where
 
 {-# NOINLINE bindGradient_add_point #-}
 
--- | Adds the specified color to the end of the ramp, with the specified offset.
+-- | Adds the specified color to the end of the gradient, with the specified offset.
 bindGradient_add_point :: MethodBind
 bindGradient_add_point
   = unsafePerformIO $
@@ -41,7 +41,7 @@ bindGradient_add_point
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Adds the specified color to the end of the ramp, with the specified offset.
+-- | Adds the specified color to the end of the gradient, with the specified offset.
 add_point ::
             (Gradient :< cls, Object :< cls) => cls -> Float -> Color -> IO ()
 add_point cls arg1 arg2
@@ -57,7 +57,7 @@ instance NodeMethod Gradient "add_point" '[Float, Color] (IO ())
 
 {-# NOINLINE bindGradient_get_color #-}
 
--- | Returns the color of the ramp color at index @point@.
+-- | Returns the color of the gradient color at index @point@.
 bindGradient_get_color :: MethodBind
 bindGradient_get_color
   = unsafePerformIO $
@@ -67,7 +67,7 @@ bindGradient_get_color
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the color of the ramp color at index @point@.
+-- | Returns the color of the gradient color at index @point@.
 get_color ::
             (Gradient :< cls, Object :< cls) => cls -> Int -> IO Color
 get_color cls arg1
@@ -82,7 +82,7 @@ instance NodeMethod Gradient "get_color" '[Int] (IO Color) where
 
 {-# NOINLINE bindGradient_get_colors #-}
 
--- | Gradient's colors returned as a @PoolColorArray@.
+-- | Gradient's colors returned as a @PackedColorArray@.
 bindGradient_get_colors :: MethodBind
 bindGradient_get_colors
   = unsafePerformIO $
@@ -92,7 +92,7 @@ bindGradient_get_colors
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Gradient's colors returned as a @PoolColorArray@.
+-- | Gradient's colors returned as a @PackedColorArray@.
 get_colors ::
              (Gradient :< cls, Object :< cls) => cls -> IO PoolColorArray
 get_colors cls
@@ -108,7 +108,7 @@ instance NodeMethod Gradient "get_colors" '[] (IO PoolColorArray)
 
 {-# NOINLINE bindGradient_get_offset #-}
 
--- | Returns the offset of the ramp color at index @point@.
+-- | Returns the offset of the gradient color at index @point@.
 bindGradient_get_offset :: MethodBind
 bindGradient_get_offset
   = unsafePerformIO $
@@ -118,7 +118,7 @@ bindGradient_get_offset
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the offset of the ramp color at index @point@.
+-- | Returns the offset of the gradient color at index @point@.
 get_offset ::
              (Gradient :< cls, Object :< cls) => cls -> Int -> IO Float
 get_offset cls arg1
@@ -133,7 +133,7 @@ instance NodeMethod Gradient "get_offset" '[Int] (IO Float) where
 
 {-# NOINLINE bindGradient_get_offsets #-}
 
--- | Gradient's offsets returned as a @PoolRealArray@.
+-- | Gradient's offsets returned as a @PackedFloat32Array@.
 bindGradient_get_offsets :: MethodBind
 bindGradient_get_offsets
   = unsafePerformIO $
@@ -143,7 +143,7 @@ bindGradient_get_offsets
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Gradient's offsets returned as a @PoolRealArray@.
+-- | Gradient's offsets returned as a @PackedFloat32Array@.
 get_offsets ::
               (Gradient :< cls, Object :< cls) => cls -> IO PoolRealArray
 get_offsets cls
@@ -159,7 +159,7 @@ instance NodeMethod Gradient "get_offsets" '[] (IO PoolRealArray)
 
 {-# NOINLINE bindGradient_get_point_count #-}
 
--- | Returns the number of colors in the ramp.
+-- | Returns the number of colors in the gradient.
 bindGradient_get_point_count :: MethodBind
 bindGradient_get_point_count
   = unsafePerformIO $
@@ -169,7 +169,7 @@ bindGradient_get_point_count
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the number of colors in the ramp.
+-- | Returns the number of colors in the gradient.
 get_point_count ::
                   (Gradient :< cls, Object :< cls) => cls -> IO Int
 get_point_count cls
@@ -211,7 +211,7 @@ instance NodeMethod Gradient "interpolate" '[Float] (IO Color)
 
 {-# NOINLINE bindGradient_remove_point #-}
 
--- | Removes the color at the index @offset@.
+-- | Removes the color at the index @point@.
 bindGradient_remove_point :: MethodBind
 bindGradient_remove_point
   = unsafePerformIO $
@@ -221,7 +221,7 @@ bindGradient_remove_point
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Removes the color at the index @offset@.
+-- | Removes the color at the index @point@.
 remove_point ::
                (Gradient :< cls, Object :< cls) => cls -> Int -> IO ()
 remove_point cls arg1
@@ -237,7 +237,7 @@ instance NodeMethod Gradient "remove_point" '[Int] (IO ()) where
 
 {-# NOINLINE bindGradient_set_color #-}
 
--- | Sets the color of the ramp color at index @point@.
+-- | Sets the color of the gradient color at index @point@.
 bindGradient_set_color :: MethodBind
 bindGradient_set_color
   = unsafePerformIO $
@@ -247,7 +247,7 @@ bindGradient_set_color
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the color of the ramp color at index @point@.
+-- | Sets the color of the gradient color at index @point@.
 set_color ::
             (Gradient :< cls, Object :< cls) => cls -> Int -> Color -> IO ()
 set_color cls arg1 arg2
@@ -263,7 +263,7 @@ instance NodeMethod Gradient "set_color" '[Int, Color] (IO ())
 
 {-# NOINLINE bindGradient_set_colors #-}
 
--- | Gradient's colors returned as a @PoolColorArray@.
+-- | Gradient's colors returned as a @PackedColorArray@.
 bindGradient_set_colors :: MethodBind
 bindGradient_set_colors
   = unsafePerformIO $
@@ -273,7 +273,7 @@ bindGradient_set_colors
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Gradient's colors returned as a @PoolColorArray@.
+-- | Gradient's colors returned as a @PackedColorArray@.
 set_colors ::
              (Gradient :< cls, Object :< cls) => cls -> PoolColorArray -> IO ()
 set_colors cls arg1
@@ -289,7 +289,7 @@ instance NodeMethod Gradient "set_colors" '[PoolColorArray] (IO ())
 
 {-# NOINLINE bindGradient_set_offset #-}
 
--- | Sets the offset for the ramp color at index @point@.
+-- | Sets the offset for the gradient color at index @point@.
 bindGradient_set_offset :: MethodBind
 bindGradient_set_offset
   = unsafePerformIO $
@@ -299,7 +299,7 @@ bindGradient_set_offset
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the offset for the ramp color at index @point@.
+-- | Sets the offset for the gradient color at index @point@.
 set_offset ::
              (Gradient :< cls, Object :< cls) => cls -> Int -> Float -> IO ()
 set_offset cls arg1 arg2
@@ -315,7 +315,7 @@ instance NodeMethod Gradient "set_offset" '[Int, Float] (IO ())
 
 {-# NOINLINE bindGradient_set_offsets #-}
 
--- | Gradient's offsets returned as a @PoolRealArray@.
+-- | Gradient's offsets returned as a @PackedFloat32Array@.
 bindGradient_set_offsets :: MethodBind
 bindGradient_set_offsets
   = unsafePerformIO $
@@ -325,7 +325,7 @@ bindGradient_set_offsets
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Gradient's offsets returned as a @PoolRealArray@.
+-- | Gradient's offsets returned as a @PackedFloat32Array@.
 set_offsets ::
               (Gradient :< cls, Object :< cls) => cls -> PoolRealArray -> IO ()
 set_offsets cls arg1

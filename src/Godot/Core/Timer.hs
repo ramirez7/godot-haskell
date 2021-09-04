@@ -89,7 +89,6 @@ instance NodeMethod Timer "get_time_left" '[] (IO Float) where
 
 {-# NOINLINE bindTimer_get_timer_process_mode #-}
 
--- | Processing mode. See @enum TimerProcessMode@.
 bindTimer_get_timer_process_mode :: MethodBind
 bindTimer_get_timer_process_mode
   = unsafePerformIO $
@@ -99,7 +98,6 @@ bindTimer_get_timer_process_mode
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Processing mode. See @enum TimerProcessMode@.
 get_timer_process_mode ::
                          (Timer :< cls, Object :< cls) => cls -> IO Int
 get_timer_process_mode cls
@@ -312,7 +310,6 @@ instance NodeMethod Timer "set_paused" '[Bool] (IO ()) where
 
 {-# NOINLINE bindTimer_set_timer_process_mode #-}
 
--- | Processing mode. See @enum TimerProcessMode@.
 bindTimer_set_timer_process_mode :: MethodBind
 bindTimer_set_timer_process_mode
   = unsafePerformIO $
@@ -322,7 +319,6 @@ bindTimer_set_timer_process_mode
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Processing mode. See @enum TimerProcessMode@.
 set_timer_process_mode ::
                          (Timer :< cls, Object :< cls) => cls -> Int -> IO ()
 set_timer_process_mode cls arg1

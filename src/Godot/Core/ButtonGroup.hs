@@ -19,7 +19,7 @@ import Godot.Core.Resource()
 
 {-# NOINLINE bindButtonGroup_get_buttons #-}
 
--- | Returns an @Array@ of @Button@s who have this as their @ButtonGroup@ (see @BaseButton.group@).
+-- | Returns an @Array@ of @Button@s who have this as their @ButtonGroup@ (see @BaseButton.button_group@).
 bindButtonGroup_get_buttons :: MethodBind
 bindButtonGroup_get_buttons
   = unsafePerformIO $
@@ -29,7 +29,7 @@ bindButtonGroup_get_buttons
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns an @Array@ of @Button@s who have this as their @ButtonGroup@ (see @BaseButton.group@).
+-- | Returns an @Array@ of @Button@s who have this as their @ButtonGroup@ (see @BaseButton.button_group@).
 get_buttons ::
               (ButtonGroup :< cls, Object :< cls) => cls -> IO Array
 get_buttons cls

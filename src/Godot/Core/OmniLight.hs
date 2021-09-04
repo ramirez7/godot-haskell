@@ -38,7 +38,6 @@ _SHADOW_CUBE = 1
 
 {-# NOINLINE bindOmniLight_get_param #-}
 
--- | The light's attenuation (drop-off) curve. A number of presets are available in the __Inspector__ by right-clicking the curve.
 bindOmniLight_get_param :: MethodBind
 bindOmniLight_get_param
   = unsafePerformIO $
@@ -48,7 +47,6 @@ bindOmniLight_get_param
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The light's attenuation (drop-off) curve. A number of presets are available in the __Inspector__ by right-clicking the curve.
 get_param ::
             (OmniLight :< cls, Object :< cls) => cls -> Int -> IO Float
 get_param cls arg1
@@ -63,7 +61,6 @@ instance NodeMethod OmniLight "get_param" '[Int] (IO Float) where
 
 {-# NOINLINE bindOmniLight_set_param #-}
 
--- | The light's attenuation (drop-off) curve. A number of presets are available in the __Inspector__ by right-clicking the curve.
 bindOmniLight_set_param :: MethodBind
 bindOmniLight_set_param
   = unsafePerformIO $
@@ -73,7 +70,6 @@ bindOmniLight_set_param
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The light's attenuation (drop-off) curve. A number of presets are available in the __Inspector__ by right-clicking the curve.
 set_param ::
             (OmniLight :< cls, Object :< cls) => cls -> Int -> Float -> IO ()
 set_param cls arg1 arg2
@@ -110,7 +106,6 @@ instance NodeProperty OmniLight "omni_shadow_mode" Int 'False where
 
 {-# NOINLINE bindOmniLight_get_shadow_detail #-}
 
--- | See @enum ShadowDetail@.
 bindOmniLight_get_shadow_detail :: MethodBind
 bindOmniLight_get_shadow_detail
   = unsafePerformIO $
@@ -120,7 +115,6 @@ bindOmniLight_get_shadow_detail
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | See @enum ShadowDetail@.
 get_shadow_detail ::
                     (OmniLight :< cls, Object :< cls) => cls -> IO Int
 get_shadow_detail cls
@@ -137,7 +131,6 @@ instance NodeMethod OmniLight "get_shadow_detail" '[] (IO Int)
 
 {-# NOINLINE bindOmniLight_get_shadow_mode #-}
 
--- | See @enum ShadowMode@.
 bindOmniLight_get_shadow_mode :: MethodBind
 bindOmniLight_get_shadow_mode
   = unsafePerformIO $
@@ -147,7 +140,6 @@ bindOmniLight_get_shadow_mode
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | See @enum ShadowMode@.
 get_shadow_mode ::
                   (OmniLight :< cls, Object :< cls) => cls -> IO Int
 get_shadow_mode cls
@@ -163,7 +155,6 @@ instance NodeMethod OmniLight "get_shadow_mode" '[] (IO Int) where
 
 {-# NOINLINE bindOmniLight_set_shadow_detail #-}
 
--- | See @enum ShadowDetail@.
 bindOmniLight_set_shadow_detail :: MethodBind
 bindOmniLight_set_shadow_detail
   = unsafePerformIO $
@@ -173,7 +164,6 @@ bindOmniLight_set_shadow_detail
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | See @enum ShadowDetail@.
 set_shadow_detail ::
                     (OmniLight :< cls, Object :< cls) => cls -> Int -> IO ()
 set_shadow_detail cls arg1
@@ -190,7 +180,6 @@ instance NodeMethod OmniLight "set_shadow_detail" '[Int] (IO ())
 
 {-# NOINLINE bindOmniLight_set_shadow_mode #-}
 
--- | See @enum ShadowMode@.
 bindOmniLight_set_shadow_mode :: MethodBind
 bindOmniLight_set_shadow_mode
   = unsafePerformIO $
@@ -200,7 +189,6 @@ bindOmniLight_set_shadow_mode
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | See @enum ShadowMode@.
 set_shadow_mode ::
                   (OmniLight :< cls, Object :< cls) => cls -> Int -> IO ()
 set_shadow_mode cls arg1

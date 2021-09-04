@@ -520,7 +520,7 @@ instance NodeMethod Polygon2D "get_offset" '[] (IO Vector2) where
 {-# NOINLINE bindPolygon2D_get_polygon #-}
 
 -- | The polygon's list of vertices. The final point will be connected to the first.
---   			__Note:__ This returns a copy of the @PoolVector2Array@ rather than a reference.
+--   			__Note:__ This returns a copy of the @PackedVector2Array@ rather than a reference.
 bindPolygon2D_get_polygon :: MethodBind
 bindPolygon2D_get_polygon
   = unsafePerformIO $
@@ -531,7 +531,7 @@ bindPolygon2D_get_polygon
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | The polygon's list of vertices. The final point will be connected to the first.
---   			__Note:__ This returns a copy of the @PoolVector2Array@ rather than a reference.
+--   			__Note:__ This returns a copy of the @PackedVector2Array@ rather than a reference.
 get_polygon ::
               (Polygon2D :< cls, Object :< cls) => cls -> IO PoolVector2Array
 get_polygon cls
@@ -680,7 +680,6 @@ instance NodeMethod Polygon2D "get_texture_rotation" '[] (IO Float)
 
 {-# NOINLINE bindPolygon2D_get_texture_rotation_degrees #-}
 
--- | The texture's rotation in degrees.
 bindPolygon2D_get_texture_rotation_degrees :: MethodBind
 bindPolygon2D_get_texture_rotation_degrees
   = unsafePerformIO $
@@ -690,7 +689,6 @@ bindPolygon2D_get_texture_rotation_degrees
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The texture's rotation in degrees.
 get_texture_rotation_degrees ::
                                (Polygon2D :< cls, Object :< cls) => cls -> IO Float
 get_texture_rotation_degrees cls
@@ -1005,7 +1003,7 @@ instance NodeMethod Polygon2D "set_offset" '[Vector2] (IO ()) where
 {-# NOINLINE bindPolygon2D_set_polygon #-}
 
 -- | The polygon's list of vertices. The final point will be connected to the first.
---   			__Note:__ This returns a copy of the @PoolVector2Array@ rather than a reference.
+--   			__Note:__ This returns a copy of the @PackedVector2Array@ rather than a reference.
 bindPolygon2D_set_polygon :: MethodBind
 bindPolygon2D_set_polygon
   = unsafePerformIO $
@@ -1016,7 +1014,7 @@ bindPolygon2D_set_polygon
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | The polygon's list of vertices. The final point will be connected to the first.
---   			__Note:__ This returns a copy of the @PoolVector2Array@ rather than a reference.
+--   			__Note:__ This returns a copy of the @PackedVector2Array@ rather than a reference.
 set_polygon ::
               (Polygon2D :< cls, Object :< cls) =>
               cls -> PoolVector2Array -> IO ()
@@ -1169,7 +1167,6 @@ instance NodeMethod Polygon2D "set_texture_rotation" '[Float]
 
 {-# NOINLINE bindPolygon2D_set_texture_rotation_degrees #-}
 
--- | The texture's rotation in degrees.
 bindPolygon2D_set_texture_rotation_degrees :: MethodBind
 bindPolygon2D_set_texture_rotation_degrees
   = unsafePerformIO $
@@ -1179,7 +1176,6 @@ bindPolygon2D_set_texture_rotation_degrees
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The texture's rotation in degrees.
 set_texture_rotation_degrees ::
                                (Polygon2D :< cls, Object :< cls) => cls -> Float -> IO ()
 set_texture_rotation_degrees cls arg1

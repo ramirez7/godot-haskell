@@ -69,8 +69,6 @@ _COMPRESSION_ZSTD = 2
 
 {-# NOINLINE bindFile_get_endian_swap #-}
 
--- | If @true@, the file's endianness is swapped. Use this if you're dealing with files written on big-endian machines.
---   			__Note:__ This is about the file format, not CPU type. This is always reset to @false@ whenever you open the file.
 bindFile_get_endian_swap :: MethodBind
 bindFile_get_endian_swap
   = unsafePerformIO $
@@ -80,8 +78,6 @@ bindFile_get_endian_swap
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, the file's endianness is swapped. Use this if you're dealing with files written on big-endian machines.
---   			__Note:__ This is about the file format, not CPU type. This is always reset to @false@ whenever you open the file.
 get_endian_swap :: (File :< cls, Object :< cls) => cls -> IO Bool
 get_endian_swap cls
   = withVariantArray []
@@ -95,8 +91,6 @@ instance NodeMethod File "get_endian_swap" '[] (IO Bool) where
 
 {-# NOINLINE bindFile_set_endian_swap #-}
 
--- | If @true@, the file's endianness is swapped. Use this if you're dealing with files written on big-endian machines.
---   			__Note:__ This is about the file format, not CPU type. This is always reset to @false@ whenever you open the file.
 bindFile_set_endian_swap :: MethodBind
 bindFile_set_endian_swap
   = unsafePerformIO $
@@ -106,8 +100,6 @@ bindFile_set_endian_swap
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, the file's endianness is swapped. Use this if you're dealing with files written on big-endian machines.
---   			__Note:__ This is about the file format, not CPU type. This is always reset to @false@ whenever you open the file.
 set_endian_swap ::
                   (File :< cls, Object :< cls) => cls -> Bool -> IO ()
 set_endian_swap cls arg1
@@ -126,7 +118,7 @@ instance NodeProperty File "endian_swap" Bool 'False where
 
 {-# NOINLINE bindFile_close #-}
 
--- | Closes the currently opened file.
+-- | Closes the currently opened file and prevents subsequent read/write operations. Use @method flush@ to persist the data to disk without closing the file.
 bindFile_close :: MethodBind
 bindFile_close
   = unsafePerformIO $
@@ -136,7 +128,7 @@ bindFile_close
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Closes the currently opened file.
+-- | Closes the currently opened file and prevents subsequent read/write operations. Use @method flush@ to persist the data to disk without closing the file.
 close :: (File :< cls, Object :< cls) => cls -> IO ()
 close cls
   = withVariantArray []
@@ -150,7 +142,7 @@ instance NodeMethod File "close" '[] (IO ()) where
 {-# NOINLINE bindFile_eof_reached #-}
 
 -- | Returns @true@ if the file cursor has read past the end of the file.
---   				__Note:__ This function will still return @false@ while at the end of the file and only activates when reading past it. This can be confusing but it conforms to how low-level file access works in all operating systems. There is always @method get_len@ and @method get_position@ to implement a custom logic.
+--   				__Note:__ This function will still return @false@ while at the end of the file and only activates when reading past it. This can be confusing but it conforms to how low-level file access works in all operating systems. There is always @method get_length@ and @method get_position@ to implement a custom logic.
 bindFile_eof_reached :: MethodBind
 bindFile_eof_reached
   = unsafePerformIO $
@@ -161,7 +153,7 @@ bindFile_eof_reached
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | Returns @true@ if the file cursor has read past the end of the file.
---   				__Note:__ This function will still return @false@ while at the end of the file and only activates when reading past it. This can be confusing but it conforms to how low-level file access works in all operating systems. There is always @method get_len@ and @method get_position@ to implement a custom logic.
+--   				__Note:__ This function will still return @false@ while at the end of the file and only activates when reading past it. This can be confusing but it conforms to how low-level file access works in all operating systems. There is always @method get_length@ and @method get_position@ to implement a custom logic.
 eof_reached :: (File :< cls, Object :< cls) => cls -> IO Bool
 eof_reached cls
   = withVariantArray []
@@ -175,7 +167,7 @@ instance NodeMethod File "eof_reached" '[] (IO Bool) where
 {-# NOINLINE bindFile_file_exists #-}
 
 -- | Returns @true@ if the file exists in the given path.
---   				__Note:__ Many resources types are imported (e.g. textures or sound files), and that their source asset will not be included in the exported game, as only the imported version is used (in the @res://.import@ folder). To check for the existence of such resources while taking into account the remapping to their imported location, use @method ResourceLoader.exists@. Typically, using @File.file_exists@ on an imported resource would work while you are developing in the editor (the source asset is present in @res://@, but fail when exported).
+--   				__Note:__ Many resources types are imported (e.g. textures or sound files), and their source asset will not be included in the exported game, as only the imported version is used. See @method ResourceLoader.exists@ for an alternative approach that takes resource remapping into account.
 bindFile_file_exists :: MethodBind
 bindFile_file_exists
   = unsafePerformIO $
@@ -186,7 +178,7 @@ bindFile_file_exists
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | Returns @true@ if the file exists in the given path.
---   				__Note:__ Many resources types are imported (e.g. textures or sound files), and that their source asset will not be included in the exported game, as only the imported version is used (in the @res://.import@ folder). To check for the existence of such resources while taking into account the remapping to their imported location, use @method ResourceLoader.exists@. Typically, using @File.file_exists@ on an imported resource would work while you are developing in the editor (the source asset is present in @res://@, but fail when exported).
+--   				__Note:__ Many resources types are imported (e.g. textures or sound files), and their source asset will not be included in the exported game, as only the imported version is used. See @method ResourceLoader.exists@ for an alternative approach that takes resource remapping into account.
 file_exists ::
               (File :< cls, Object :< cls) => cls -> GodotString -> IO Bool
 file_exists cls arg1
@@ -319,7 +311,7 @@ instance NodeMethod File "get_as_text" '[] (IO GodotString) where
 
 {-# NOINLINE bindFile_get_buffer #-}
 
--- | Returns next @len@ bytes of the file as a @PoolByteArray@.
+-- | Returns next @length@ bytes of the file as a @PackedByteArray@.
 bindFile_get_buffer :: MethodBind
 bindFile_get_buffer
   = unsafePerformIO $
@@ -329,7 +321,7 @@ bindFile_get_buffer
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns next @len@ bytes of the file as a @PoolByteArray@.
+-- | Returns next @length@ bytes of the file as a @PackedByteArray@.
 get_buffer ::
              (File :< cls, Object :< cls) => cls -> Int -> IO PoolByteArray
 get_buffer cls arg1
@@ -344,8 +336,19 @@ instance NodeMethod File "get_buffer" '[Int] (IO PoolByteArray)
 
 {-# NOINLINE bindFile_get_csv_line #-}
 
--- | Returns the next value of the file in CSV (Comma-Separated Values) format. You can pass a different delimiter @delim@ to use other than the default @","@ (comma). This delimiter must be one-character long.
---   				Text is interpreted as being UTF-8 encoded.
+-- | Returns the next value of the file in CSV (Comma-Separated Values) format. You can pass a different delimiter @delim@ to use other than the default @","@ (comma). This delimiter must be one-character long, and cannot be a double quotation mark.
+--   				Text is interpreted as being UTF-8 encoded. Text values must be enclosed in double quotes if they include the delimiter character. Double quotes within a text value can be escaped by doubling their occurrence.
+--   				For example, the following CSV lines are valid and will be properly parsed as two strings each:
+--   				
+--   @
+--   
+--   				Alice,"Hello, Bob!"
+--   				Bob,Alice! What a surprise!
+--   				Alice,"I thought you'd reply with ""Hello, world""."
+--   				
+--   @
+--   
+--   				Note how the second line can omit the enclosing quotes as it does not include the delimiter. However it @i@could@/i@ very well use quotes, it was only written without for demonstration purposes. The third line must use @""@ for each quotation mark that needs to be interpreted as such instead of the end of a text value.
 bindFile_get_csv_line :: MethodBind
 bindFile_get_csv_line
   = unsafePerformIO $
@@ -355,8 +358,19 @@ bindFile_get_csv_line
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the next value of the file in CSV (Comma-Separated Values) format. You can pass a different delimiter @delim@ to use other than the default @","@ (comma). This delimiter must be one-character long.
---   				Text is interpreted as being UTF-8 encoded.
+-- | Returns the next value of the file in CSV (Comma-Separated Values) format. You can pass a different delimiter @delim@ to use other than the default @","@ (comma). This delimiter must be one-character long, and cannot be a double quotation mark.
+--   				Text is interpreted as being UTF-8 encoded. Text values must be enclosed in double quotes if they include the delimiter character. Double quotes within a text value can be escaped by doubling their occurrence.
+--   				For example, the following CSV lines are valid and will be properly parsed as two strings each:
+--   				
+--   @
+--   
+--   				Alice,"Hello, Bob!"
+--   				Bob,Alice! What a surprise!
+--   				Alice,"I thought you'd reply with ""Hello, world""."
+--   				
+--   @
+--   
+--   				Note how the second line can omit the enclosing quotes as it does not include the delimiter. However it @i@could@/i@ very well use quotes, it was only written without for demonstration purposes. The third line must use @""@ for each quotation mark that needs to be interpreted as such instead of the end of a text value.
 get_csv_line ::
                (File :< cls, Object :< cls) =>
                cls -> Maybe GodotString -> IO PoolStringArray
@@ -443,7 +457,6 @@ instance NodeMethod File "get_float" '[] (IO Float) where
 
 {-# NOINLINE bindFile_get_len #-}
 
--- | Returns the size of the file in bytes.
 bindFile_get_len :: MethodBind
 bindFile_get_len
   = unsafePerformIO $
@@ -453,7 +466,6 @@ bindFile_get_len
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the size of the file in bytes.
 get_len :: (File :< cls, Object :< cls) => cls -> IO Int
 get_len cls
   = withVariantArray []
@@ -517,7 +529,7 @@ instance NodeMethod File "get_md5" '[GodotString] (IO GodotString)
 
 {-# NOINLINE bindFile_get_modified_time #-}
 
--- | Returns the last time the @file@ was modified in unix timestamp format or returns a @String@ "ERROR IN @file@". This unix timestamp can be converted to datetime by using @method OS.get_datetime_from_unix_time@.
+-- | Returns the last time the @file@ was modified in Unix timestamp format or returns a @String@ "ERROR IN @file@". This Unix timestamp can be converted to another format using the @Time@ singleton.
 bindFile_get_modified_time :: MethodBind
 bindFile_get_modified_time
   = unsafePerformIO $
@@ -527,7 +539,7 @@ bindFile_get_modified_time
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the last time the @file@ was modified in unix timestamp format or returns a @String@ "ERROR IN @file@". This unix timestamp can be converted to datetime by using @method OS.get_datetime_from_unix_time@.
+-- | Returns the last time the @file@ was modified in Unix timestamp format or returns a @String@ "ERROR IN @file@". This Unix timestamp can be converted to another format using the @Time@ singleton.
 get_modified_time ::
                     (File :< cls, Object :< cls) => cls -> GodotString -> IO Int
 get_modified_time cls arg1
@@ -774,6 +786,7 @@ instance NodeMethod File "open" '[GodotString, Int] (IO Int) where
 {-# NOINLINE bindFile_open_compressed #-}
 
 -- | Opens a compressed file for reading or writing.
+--   				__Note:__ @method open_compressed@ can only read files that were saved by Godot, not third-party compression formats. See @url=https://github.com/godotengine/godot/issues/28999@GitHub issue #28999@/url@ for a workaround.
 bindFile_open_compressed :: MethodBind
 bindFile_open_compressed
   = unsafePerformIO $
@@ -784,6 +797,7 @@ bindFile_open_compressed
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | Opens a compressed file for reading or writing.
+--   				__Note:__ @method open_compressed@ can only read files that were saved by Godot, not third-party compression formats. See @url=https://github.com/godotengine/godot/issues/28999@GitHub issue #28999@/url@ for a workaround.
 open_compressed ::
                   (File :< cls, Object :< cls) =>
                   cls -> GodotString -> Int -> Maybe Int -> IO Int
@@ -918,9 +932,8 @@ instance NodeMethod File "seek_end" '[Maybe Int] (IO ()) where
 -- | Stores an integer as 16 bits in the file.
 --   				__Note:__ The @value@ should lie in the interval @@0, 2^16 - 1@@. Any other value will overflow and wrap around.
 --   				To store a signed integer, use @method store_64@ or store a signed integer from the interval @@-2^15, 2^15 - 1@@ (i.e. keeping one bit for the signedness) and compute its sign manually when reading. For example:
---   				
---   @
---   
+--   				@codeblocks@
+--   				@gdscript@
 --   				const MAX_15B = 1 << 15
 --   				const MAX_16B = 1 << 16
 --   
@@ -937,8 +950,22 @@ instance NodeMethod File "seek_end" '[Maybe Int] (IO ()) where
 --   				    var read2 = f.get_16() # 121
 --   				    var converted1 = unsigned16_to_signed(read1) # -42
 --   				    var converted2 = unsigned16_to_signed(read2) # 121
---   				
---   @
+--   				@/gdscript@
+--   				@csharp@
+--   				public override void _Ready()
+--   				{
+--   				    var f = new File();
+--   				    f.Open("user://file.dat", File.ModeFlags.WriteRead);
+--   				    f.Store16(unchecked((ushort)-42)); // This wraps around and stores 65494 (2^16 - 42).
+--   				    f.Store16(121); // In bounds, will store 121.
+--   				    f.Seek(0); // Go back to start to read the stored value.
+--   				    ushort read1 = f.Get16(); // 65494
+--   				    ushort read2 = f.Get16(); // 121
+--   				    short converted1 = BitConverter.ToInt16(BitConverter.GetBytes(read1), 0); // -42
+--   				    short converted2 = BitConverter.ToInt16(BitConverter.GetBytes(read2), 0); // 121
+--   				}
+--   				@/csharp@
+--   				@/codeblocks@
 bindFile_store_16 :: MethodBind
 bindFile_store_16
   = unsafePerformIO $
@@ -951,9 +978,8 @@ bindFile_store_16
 -- | Stores an integer as 16 bits in the file.
 --   				__Note:__ The @value@ should lie in the interval @@0, 2^16 - 1@@. Any other value will overflow and wrap around.
 --   				To store a signed integer, use @method store_64@ or store a signed integer from the interval @@-2^15, 2^15 - 1@@ (i.e. keeping one bit for the signedness) and compute its sign manually when reading. For example:
---   				
---   @
---   
+--   				@codeblocks@
+--   				@gdscript@
 --   				const MAX_15B = 1 << 15
 --   				const MAX_16B = 1 << 16
 --   
@@ -970,8 +996,22 @@ bindFile_store_16
 --   				    var read2 = f.get_16() # 121
 --   				    var converted1 = unsigned16_to_signed(read1) # -42
 --   				    var converted2 = unsigned16_to_signed(read2) # 121
---   				
---   @
+--   				@/gdscript@
+--   				@csharp@
+--   				public override void _Ready()
+--   				{
+--   				    var f = new File();
+--   				    f.Open("user://file.dat", File.ModeFlags.WriteRead);
+--   				    f.Store16(unchecked((ushort)-42)); // This wraps around and stores 65494 (2^16 - 42).
+--   				    f.Store16(121); // In bounds, will store 121.
+--   				    f.Seek(0); // Go back to start to read the stored value.
+--   				    ushort read1 = f.Get16(); // 65494
+--   				    ushort read2 = f.Get16(); // 121
+--   				    short converted1 = BitConverter.ToInt16(BitConverter.GetBytes(read1), 0); // -42
+--   				    short converted2 = BitConverter.ToInt16(BitConverter.GetBytes(read2), 0); // 121
+--   				}
+--   				@/csharp@
+--   				@/codeblocks@
 store_16 :: (File :< cls, Object :< cls) => cls -> Int -> IO ()
 store_16 cls arg1
   = withVariantArray [toVariant arg1]
@@ -1089,7 +1129,7 @@ instance NodeMethod File "store_buffer" '[PoolByteArray] (IO ())
 
 {-# NOINLINE bindFile_store_csv_line #-}
 
--- | Store the given @PoolStringArray@ in the file as a line formatted in the CSV (Comma-Separated Values) format. You can pass a different delimiter @delim@ to use other than the default @","@ (comma). This delimiter must be one-character long.
+-- | Store the given @PackedStringArray@ in the file as a line formatted in the CSV (Comma-Separated Values) format. You can pass a different delimiter @delim@ to use other than the default @","@ (comma). This delimiter must be one-character long.
 --   				Text will be encoded as UTF-8.
 bindFile_store_csv_line :: MethodBind
 bindFile_store_csv_line
@@ -1100,7 +1140,7 @@ bindFile_store_csv_line
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Store the given @PoolStringArray@ in the file as a line formatted in the CSV (Comma-Separated Values) format. You can pass a different delimiter @delim@ to use other than the default @","@ (comma). This delimiter must be one-character long.
+-- | Store the given @PackedStringArray@ in the file as a line formatted in the CSV (Comma-Separated Values) format. You can pass a different delimiter @delim@ to use other than the default @","@ (comma). This delimiter must be one-character long.
 --   				Text will be encoded as UTF-8.
 store_csv_line ::
                  (File :< cls, Object :< cls) =>
@@ -1170,8 +1210,7 @@ instance NodeMethod File "store_float" '[Float] (IO ()) where
 
 {-# NOINLINE bindFile_store_line #-}
 
--- | Stores the given @String@ as a line in the file.
---   				Text will be encoded as UTF-8.
+-- | Appends @line@ to the file followed by a line return character (@\n@), encoding the text as UTF-8.
 bindFile_store_line :: MethodBind
 bindFile_store_line
   = unsafePerformIO $
@@ -1181,8 +1220,7 @@ bindFile_store_line
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Stores the given @String@ as a line in the file.
---   				Text will be encoded as UTF-8.
+-- | Appends @line@ to the file followed by a line return character (@\n@), encoding the text as UTF-8.
 store_line ::
              (File :< cls, Object :< cls) => cls -> GodotString -> IO ()
 store_line cls arg1
@@ -1249,8 +1287,7 @@ instance NodeMethod File "store_real" '[Float] (IO ()) where
 
 {-# NOINLINE bindFile_store_string #-}
 
--- | Stores the given @String@ in the file.
---   				Text will be encoded as UTF-8.
+-- | Appends @string@ to the file without a line return, encoding the text as UTF-8.
 bindFile_store_string :: MethodBind
 bindFile_store_string
   = unsafePerformIO $
@@ -1260,8 +1297,7 @@ bindFile_store_string
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Stores the given @String@ in the file.
---   				Text will be encoded as UTF-8.
+-- | Appends @string@ to the file without a line return, encoding the text as UTF-8.
 store_string ::
                (File :< cls, Object :< cls) => cls -> GodotString -> IO ()
 store_string cls arg1
@@ -1278,6 +1314,7 @@ instance NodeMethod File "store_string" '[GodotString] (IO ())
 {-# NOINLINE bindFile_store_var #-}
 
 -- | Stores any Variant value in the file. If @full_objects@ is @true@, encoding objects is allowed (and can potentially include code).
+--   				__Note:__ Not all properties are included. Only properties that are configured with the @PROPERTY_USAGE_STORAGE@ flag set will be serialized. You can add a new usage flag to a property by overriding the @method Object._get_property_list@ method in your class. You can also check how property usage is configured by calling @method Object._get_property_list@. See @enum PropertyUsageFlags@ for the possible usage flags.
 bindFile_store_var :: MethodBind
 bindFile_store_var
   = unsafePerformIO $
@@ -1288,6 +1325,7 @@ bindFile_store_var
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | Stores any Variant value in the file. If @full_objects@ is @true@, encoding objects is allowed (and can potentially include code).
+--   				__Note:__ Not all properties are included. Only properties that are configured with the @PROPERTY_USAGE_STORAGE@ flag set will be serialized. You can add a new usage flag to a property by overriding the @method Object._get_property_list@ method in your class. You can also check how property usage is configured by calling @method Object._get_property_list@. See @enum PropertyUsageFlags@ for the possible usage flags.
 store_var ::
             (File :< cls, Object :< cls) =>
             cls -> GodotVariant -> Maybe Bool -> IO ()

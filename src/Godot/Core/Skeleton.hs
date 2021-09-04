@@ -5,8 +5,9 @@ module Godot.Core.Skeleton
        (Godot.Core.Skeleton._NOTIFICATION_UPDATE_SKELETON,
         Godot.Core.Skeleton.add_bone,
         Godot.Core.Skeleton.bind_child_node_to_bone,
-        Godot.Core.Skeleton.clear_bones, Godot.Core.Skeleton.find_bone,
-        Godot.Core.Skeleton.get_bone_count,
+        Godot.Core.Skeleton.clear_bones,
+        Godot.Core.Skeleton.clear_bones_global_pose_override,
+        Godot.Core.Skeleton.find_bone, Godot.Core.Skeleton.get_bone_count,
         Godot.Core.Skeleton.get_bone_custom_pose,
         Godot.Core.Skeleton.get_bone_global_pose,
         Godot.Core.Skeleton.get_bone_name,
@@ -47,7 +48,6 @@ _NOTIFICATION_UPDATE_SKELETON = 50
 
 {-# NOINLINE bindSkeleton_add_bone #-}
 
--- | Adds a bone, with name @name@. @method get_bone_count@ will become the bone index.
 bindSkeleton_add_bone :: MethodBind
 bindSkeleton_add_bone
   = unsafePerformIO $
@@ -57,7 +57,6 @@ bindSkeleton_add_bone
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Adds a bone, with name @name@. @method get_bone_count@ will become the bone index.
 add_bone ::
            (Skeleton :< cls, Object :< cls) => cls -> GodotString -> IO ()
 add_bone cls arg1
@@ -73,7 +72,6 @@ instance NodeMethod Skeleton "add_bone" '[GodotString] (IO ())
 
 {-# NOINLINE bindSkeleton_bind_child_node_to_bone #-}
 
--- | @i@Deprecated soon.@/i@
 bindSkeleton_bind_child_node_to_bone :: MethodBind
 bindSkeleton_bind_child_node_to_bone
   = unsafePerformIO $
@@ -83,7 +81,6 @@ bindSkeleton_bind_child_node_to_bone
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | @i@Deprecated soon.@/i@
 bind_child_node_to_bone ::
                           (Skeleton :< cls, Object :< cls) => cls -> Int -> Node -> IO ()
 bind_child_node_to_bone cls arg1 arg2
@@ -102,7 +99,6 @@ instance NodeMethod Skeleton "bind_child_node_to_bone" '[Int, Node]
 
 {-# NOINLINE bindSkeleton_clear_bones #-}
 
--- | Clear all the bones in this skeleton.
 bindSkeleton_clear_bones :: MethodBind
 bindSkeleton_clear_bones
   = unsafePerformIO $
@@ -112,7 +108,6 @@ bindSkeleton_clear_bones
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Clear all the bones in this skeleton.
 clear_bones :: (Skeleton :< cls, Object :< cls) => cls -> IO ()
 clear_bones cls
   = withVariantArray []
@@ -124,9 +119,36 @@ clear_bones cls
 instance NodeMethod Skeleton "clear_bones" '[] (IO ()) where
         nodeMethod = Godot.Core.Skeleton.clear_bones
 
+{-# NOINLINE bindSkeleton_clear_bones_global_pose_override #-}
+
+bindSkeleton_clear_bones_global_pose_override :: MethodBind
+bindSkeleton_clear_bones_global_pose_override
+  = unsafePerformIO $
+      withCString "Skeleton" $
+        \ clsNamePtr ->
+          withCString "clear_bones_global_pose_override" $
+            \ methodNamePtr ->
+              godot_method_bind_get_method clsNamePtr methodNamePtr
+
+clear_bones_global_pose_override ::
+                                   (Skeleton :< cls, Object :< cls) => cls -> IO ()
+clear_bones_global_pose_override cls
+  = withVariantArray []
+      (\ (arrPtr, len) ->
+         godot_method_bind_call
+           bindSkeleton_clear_bones_global_pose_override
+           (upcast cls)
+           arrPtr
+           len
+           >>= \ (err, res) -> throwIfErr err >> fromGodotVariant res)
+
+instance NodeMethod Skeleton "clear_bones_global_pose_override" '[]
+           (IO ())
+         where
+        nodeMethod = Godot.Core.Skeleton.clear_bones_global_pose_override
+
 {-# NOINLINE bindSkeleton_find_bone #-}
 
--- | Returns the bone index that matches @name@ as its name.
 bindSkeleton_find_bone :: MethodBind
 bindSkeleton_find_bone
   = unsafePerformIO $
@@ -136,7 +158,6 @@ bindSkeleton_find_bone
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the bone index that matches @name@ as its name.
 find_bone ::
             (Skeleton :< cls, Object :< cls) => cls -> GodotString -> IO Int
 find_bone cls arg1
@@ -152,7 +173,6 @@ instance NodeMethod Skeleton "find_bone" '[GodotString] (IO Int)
 
 {-# NOINLINE bindSkeleton_get_bone_count #-}
 
--- | Returns the amount of bones in the skeleton.
 bindSkeleton_get_bone_count :: MethodBind
 bindSkeleton_get_bone_count
   = unsafePerformIO $
@@ -162,7 +182,6 @@ bindSkeleton_get_bone_count
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the amount of bones in the skeleton.
 get_bone_count :: (Skeleton :< cls, Object :< cls) => cls -> IO Int
 get_bone_count cls
   = withVariantArray []
@@ -177,7 +196,6 @@ instance NodeMethod Skeleton "get_bone_count" '[] (IO Int) where
 
 {-# NOINLINE bindSkeleton_get_bone_custom_pose #-}
 
--- | Returns the custom pose of the specified bone. Custom pose is applied on top of the rest pose.
 bindSkeleton_get_bone_custom_pose :: MethodBind
 bindSkeleton_get_bone_custom_pose
   = unsafePerformIO $
@@ -187,7 +205,6 @@ bindSkeleton_get_bone_custom_pose
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the custom pose of the specified bone. Custom pose is applied on top of the rest pose.
 get_bone_custom_pose ::
                        (Skeleton :< cls, Object :< cls) => cls -> Int -> IO Transform
 get_bone_custom_pose cls arg1
@@ -206,7 +223,6 @@ instance NodeMethod Skeleton "get_bone_custom_pose" '[Int]
 
 {-# NOINLINE bindSkeleton_get_bone_global_pose #-}
 
--- | Returns the overall transform of the specified bone, with respect to the skeleton. Being relative to the skeleton frame, this is not the actual "global" transform of the bone.
 bindSkeleton_get_bone_global_pose :: MethodBind
 bindSkeleton_get_bone_global_pose
   = unsafePerformIO $
@@ -216,7 +232,6 @@ bindSkeleton_get_bone_global_pose
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the overall transform of the specified bone, with respect to the skeleton. Being relative to the skeleton frame, this is not the actual "global" transform of the bone.
 get_bone_global_pose ::
                        (Skeleton :< cls, Object :< cls) => cls -> Int -> IO Transform
 get_bone_global_pose cls arg1
@@ -235,7 +250,6 @@ instance NodeMethod Skeleton "get_bone_global_pose" '[Int]
 
 {-# NOINLINE bindSkeleton_get_bone_name #-}
 
--- | Returns the name of the bone at index @index@.
 bindSkeleton_get_bone_name :: MethodBind
 bindSkeleton_get_bone_name
   = unsafePerformIO $
@@ -245,7 +259,6 @@ bindSkeleton_get_bone_name
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the name of the bone at index @index@.
 get_bone_name ::
                 (Skeleton :< cls, Object :< cls) => cls -> Int -> IO GodotString
 get_bone_name cls arg1
@@ -263,8 +276,6 @@ instance NodeMethod Skeleton "get_bone_name" '[Int]
 
 {-# NOINLINE bindSkeleton_get_bone_parent #-}
 
--- | Returns the bone index which is the parent of the bone at @bone_idx@. If -1, then bone has no parent.
---   				__Note:__ The parent bone returned will always be less than @bone_idx@.
 bindSkeleton_get_bone_parent :: MethodBind
 bindSkeleton_get_bone_parent
   = unsafePerformIO $
@@ -274,8 +285,6 @@ bindSkeleton_get_bone_parent
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the bone index which is the parent of the bone at @bone_idx@. If -1, then bone has no parent.
---   				__Note:__ The parent bone returned will always be less than @bone_idx@.
 get_bone_parent ::
                   (Skeleton :< cls, Object :< cls) => cls -> Int -> IO Int
 get_bone_parent cls arg1
@@ -292,7 +301,6 @@ instance NodeMethod Skeleton "get_bone_parent" '[Int] (IO Int)
 
 {-# NOINLINE bindSkeleton_get_bone_pose #-}
 
--- | Returns the pose transform of the specified bone. Pose is applied on top of the custom pose, which is applied on top the rest pose.
 bindSkeleton_get_bone_pose :: MethodBind
 bindSkeleton_get_bone_pose
   = unsafePerformIO $
@@ -302,7 +310,6 @@ bindSkeleton_get_bone_pose
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the pose transform of the specified bone. Pose is applied on top of the custom pose, which is applied on top the rest pose.
 get_bone_pose ::
                 (Skeleton :< cls, Object :< cls) => cls -> Int -> IO Transform
 get_bone_pose cls arg1
@@ -319,7 +326,6 @@ instance NodeMethod Skeleton "get_bone_pose" '[Int] (IO Transform)
 
 {-# NOINLINE bindSkeleton_get_bone_rest #-}
 
--- | Returns the rest transform for a bone @bone_idx@.
 bindSkeleton_get_bone_rest :: MethodBind
 bindSkeleton_get_bone_rest
   = unsafePerformIO $
@@ -329,7 +335,6 @@ bindSkeleton_get_bone_rest
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the rest transform for a bone @bone_idx@.
 get_bone_rest ::
                 (Skeleton :< cls, Object :< cls) => cls -> Int -> IO Transform
 get_bone_rest cls arg1
@@ -346,7 +351,6 @@ instance NodeMethod Skeleton "get_bone_rest" '[Int] (IO Transform)
 
 {-# NOINLINE bindSkeleton_get_bound_child_nodes_to_bone #-}
 
--- | @i@Deprecated soon.@/i@
 bindSkeleton_get_bound_child_nodes_to_bone :: MethodBind
 bindSkeleton_get_bound_child_nodes_to_bone
   = unsafePerformIO $
@@ -356,7 +360,6 @@ bindSkeleton_get_bound_child_nodes_to_bone
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | @i@Deprecated soon.@/i@
 get_bound_child_nodes_to_bone ::
                                 (Skeleton :< cls, Object :< cls) => cls -> Int -> IO Array
 get_bound_child_nodes_to_bone cls arg1
@@ -658,8 +661,6 @@ instance NodeMethod Skeleton "set_bone_global_pose_override"
 
 {-# NOINLINE bindSkeleton_set_bone_parent #-}
 
--- | Sets the bone index @parent_idx@ as the parent of the bone at @bone_idx@. If -1, then bone has no parent.
---   				__Note:__ @parent_idx@ must be less than @bone_idx@.
 bindSkeleton_set_bone_parent :: MethodBind
 bindSkeleton_set_bone_parent
   = unsafePerformIO $
@@ -669,8 +670,6 @@ bindSkeleton_set_bone_parent
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the bone index @parent_idx@ as the parent of the bone at @bone_idx@. If -1, then bone has no parent.
---   				__Note:__ @parent_idx@ must be less than @bone_idx@.
 set_bone_parent ::
                   (Skeleton :< cls, Object :< cls) => cls -> Int -> Int -> IO ()
 set_bone_parent cls arg1 arg2
@@ -687,7 +686,6 @@ instance NodeMethod Skeleton "set_bone_parent" '[Int, Int] (IO ())
 
 {-# NOINLINE bindSkeleton_set_bone_pose #-}
 
--- | Sets the pose transform for bone @bone_idx@.
 bindSkeleton_set_bone_pose :: MethodBind
 bindSkeleton_set_bone_pose
   = unsafePerformIO $
@@ -697,7 +695,6 @@ bindSkeleton_set_bone_pose
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the pose transform for bone @bone_idx@.
 set_bone_pose ::
                 (Skeleton :< cls, Object :< cls) =>
                 cls -> Int -> Transform -> IO ()
@@ -716,7 +713,6 @@ instance NodeMethod Skeleton "set_bone_pose" '[Int, Transform]
 
 {-# NOINLINE bindSkeleton_set_bone_rest #-}
 
--- | Sets the rest transform for bone @bone_idx@.
 bindSkeleton_set_bone_rest :: MethodBind
 bindSkeleton_set_bone_rest
   = unsafePerformIO $
@@ -726,7 +722,6 @@ bindSkeleton_set_bone_rest
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the rest transform for bone @bone_idx@.
 set_bone_rest ::
                 (Skeleton :< cls, Object :< cls) =>
                 cls -> Int -> Transform -> IO ()
@@ -745,7 +740,6 @@ instance NodeMethod Skeleton "set_bone_rest" '[Int, Transform]
 
 {-# NOINLINE bindSkeleton_unbind_child_node_from_bone #-}
 
--- | @i@Deprecated soon.@/i@
 bindSkeleton_unbind_child_node_from_bone :: MethodBind
 bindSkeleton_unbind_child_node_from_bone
   = unsafePerformIO $
@@ -755,7 +749,6 @@ bindSkeleton_unbind_child_node_from_bone
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | @i@Deprecated soon.@/i@
 unbind_child_node_from_bone ::
                               (Skeleton :< cls, Object :< cls) => cls -> Int -> Node -> IO ()
 unbind_child_node_from_bone cls arg1 arg2

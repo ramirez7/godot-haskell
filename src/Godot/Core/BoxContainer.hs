@@ -36,7 +36,7 @@ instance NodeProperty BoxContainer "alignment" Int 'False where
 
 {-# NOINLINE bindBoxContainer_add_spacer #-}
 
--- | Adds a control to the box as a spacer. If @true@, @begin@ will insert the spacer control in front of other children.
+-- | Adds a @Control@ node to the box as a spacer. If @begin@ is @true@, it will insert the @Control@ node in front of all other children.
 bindBoxContainer_add_spacer :: MethodBind
 bindBoxContainer_add_spacer
   = unsafePerformIO $
@@ -46,7 +46,7 @@ bindBoxContainer_add_spacer
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Adds a control to the box as a spacer. If @true@, @begin@ will insert the spacer control in front of other children.
+-- | Adds a @Control@ node to the box as a spacer. If @begin@ is @true@, it will insert the @Control@ node in front of all other children.
 add_spacer ::
              (BoxContainer :< cls, Object :< cls) => cls -> Bool -> IO ()
 add_spacer cls arg1
@@ -62,7 +62,7 @@ instance NodeMethod BoxContainer "add_spacer" '[Bool] (IO ()) where
 
 {-# NOINLINE bindBoxContainer_get_alignment #-}
 
--- | The alignment of the container's children (must be one of @ALIGN_BEGIN@, @ALIGN_CENTER@ or @ALIGN_END@).
+-- | The alignment of the container's children (must be one of @ALIGN_BEGIN@, @ALIGN_CENTER@, or @ALIGN_END@).
 bindBoxContainer_get_alignment :: MethodBind
 bindBoxContainer_get_alignment
   = unsafePerformIO $
@@ -72,7 +72,7 @@ bindBoxContainer_get_alignment
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The alignment of the container's children (must be one of @ALIGN_BEGIN@, @ALIGN_CENTER@ or @ALIGN_END@).
+-- | The alignment of the container's children (must be one of @ALIGN_BEGIN@, @ALIGN_CENTER@, or @ALIGN_END@).
 get_alignment ::
                 (BoxContainer :< cls, Object :< cls) => cls -> IO Int
 get_alignment cls
@@ -88,7 +88,7 @@ instance NodeMethod BoxContainer "get_alignment" '[] (IO Int) where
 
 {-# NOINLINE bindBoxContainer_set_alignment #-}
 
--- | The alignment of the container's children (must be one of @ALIGN_BEGIN@, @ALIGN_CENTER@ or @ALIGN_END@).
+-- | The alignment of the container's children (must be one of @ALIGN_BEGIN@, @ALIGN_CENTER@, or @ALIGN_END@).
 bindBoxContainer_set_alignment :: MethodBind
 bindBoxContainer_set_alignment
   = unsafePerformIO $
@@ -98,7 +98,7 @@ bindBoxContainer_set_alignment
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The alignment of the container's children (must be one of @ALIGN_BEGIN@, @ALIGN_CENTER@ or @ALIGN_END@).
+-- | The alignment of the container's children (must be one of @ALIGN_BEGIN@, @ALIGN_CENTER@, or @ALIGN_END@).
 set_alignment ::
                 (BoxContainer :< cls, Object :< cls) => cls -> Int -> IO ()
 set_alignment cls arg1

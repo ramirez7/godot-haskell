@@ -40,7 +40,7 @@ instance NodeProperty InputEventMouse "position" Vector2 'False
 
 {-# NOINLINE bindInputEventMouse_get_button_mask #-}
 
--- | The mouse button mask identifier, one of or a bitwise combination of the @enum ButtonList@ button masks.
+-- | The mouse button mask identifier, one of or a bitwise combination of the @enum MouseButton@ button masks.
 bindInputEventMouse_get_button_mask :: MethodBind
 bindInputEventMouse_get_button_mask
   = unsafePerformIO $
@@ -50,7 +50,7 @@ bindInputEventMouse_get_button_mask
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The mouse button mask identifier, one of or a bitwise combination of the @enum ButtonList@ button masks.
+-- | The mouse button mask identifier, one of or a bitwise combination of the @enum MouseButton@ button masks.
 get_button_mask ::
                   (InputEventMouse :< cls, Object :< cls) => cls -> IO Int
 get_button_mask cls
@@ -125,7 +125,7 @@ instance NodeMethod InputEventMouse "get_position" '[] (IO Vector2)
 
 {-# NOINLINE bindInputEventMouse_set_button_mask #-}
 
--- | The mouse button mask identifier, one of or a bitwise combination of the @enum ButtonList@ button masks.
+-- | The mouse button mask identifier, one of or a bitwise combination of the @enum MouseButton@ button masks.
 bindInputEventMouse_set_button_mask :: MethodBind
 bindInputEventMouse_set_button_mask
   = unsafePerformIO $
@@ -135,7 +135,7 @@ bindInputEventMouse_set_button_mask
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The mouse button mask identifier, one of or a bitwise combination of the @enum ButtonList@ button masks.
+-- | The mouse button mask identifier, one of or a bitwise combination of the @enum MouseButton@ button masks.
 set_button_mask ::
                   (InputEventMouse :< cls, Object :< cls) => cls -> Int -> IO ()
 set_button_mask cls arg1

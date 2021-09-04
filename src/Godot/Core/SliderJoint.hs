@@ -271,7 +271,6 @@ instance NodeProperty SliderJoint "linear_ortho/softness" Float
 
 {-# NOINLINE bindSliderJoint__get_lower_limit_angular #-}
 
--- | The lower limit of rotation in the slider.
 bindSliderJoint__get_lower_limit_angular :: MethodBind
 bindSliderJoint__get_lower_limit_angular
   = unsafePerformIO $
@@ -281,7 +280,6 @@ bindSliderJoint__get_lower_limit_angular
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The lower limit of rotation in the slider.
 _get_lower_limit_angular ::
                            (SliderJoint :< cls, Object :< cls) => cls -> IO Float
 _get_lower_limit_angular cls
@@ -300,7 +298,6 @@ instance NodeMethod SliderJoint "_get_lower_limit_angular" '[]
 
 {-# NOINLINE bindSliderJoint__get_upper_limit_angular #-}
 
--- | The upper limit of rotation in the slider.
 bindSliderJoint__get_upper_limit_angular :: MethodBind
 bindSliderJoint__get_upper_limit_angular
   = unsafePerformIO $
@@ -310,7 +307,6 @@ bindSliderJoint__get_upper_limit_angular
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The upper limit of rotation in the slider.
 _get_upper_limit_angular ::
                            (SliderJoint :< cls, Object :< cls) => cls -> IO Float
 _get_upper_limit_angular cls
@@ -329,7 +325,6 @@ instance NodeMethod SliderJoint "_get_upper_limit_angular" '[]
 
 {-# NOINLINE bindSliderJoint__set_lower_limit_angular #-}
 
--- | The lower limit of rotation in the slider.
 bindSliderJoint__set_lower_limit_angular :: MethodBind
 bindSliderJoint__set_lower_limit_angular
   = unsafePerformIO $
@@ -339,7 +334,6 @@ bindSliderJoint__set_lower_limit_angular
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The lower limit of rotation in the slider.
 _set_lower_limit_angular ::
                            (SliderJoint :< cls, Object :< cls) => cls -> Float -> IO ()
 _set_lower_limit_angular cls arg1
@@ -358,7 +352,6 @@ instance NodeMethod SliderJoint "_set_lower_limit_angular" '[Float]
 
 {-# NOINLINE bindSliderJoint__set_upper_limit_angular #-}
 
--- | The upper limit of rotation in the slider.
 bindSliderJoint__set_upper_limit_angular :: MethodBind
 bindSliderJoint__set_upper_limit_angular
   = unsafePerformIO $
@@ -368,7 +361,6 @@ bindSliderJoint__set_upper_limit_angular
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The upper limit of rotation in the slider.
 _set_upper_limit_angular ::
                            (SliderJoint :< cls, Object :< cls) => cls -> Float -> IO ()
 _set_upper_limit_angular cls arg1
@@ -387,8 +379,6 @@ instance NodeMethod SliderJoint "_set_upper_limit_angular" '[Float]
 
 {-# NOINLINE bindSliderJoint_get_param #-}
 
--- | The amount of damping of the rotation when the limit is surpassed.
---   			A lower damping value allows a rotation initiated by body A to travel to body B slower.
 bindSliderJoint_get_param :: MethodBind
 bindSliderJoint_get_param
   = unsafePerformIO $
@@ -398,8 +388,6 @@ bindSliderJoint_get_param
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The amount of damping of the rotation when the limit is surpassed.
---   			A lower damping value allows a rotation initiated by body A to travel to body B slower.
 get_param ::
             (SliderJoint :< cls, Object :< cls) => cls -> Int -> IO Float
 get_param cls arg1
@@ -415,8 +403,6 @@ instance NodeMethod SliderJoint "get_param" '[Int] (IO Float) where
 
 {-# NOINLINE bindSliderJoint_set_param #-}
 
--- | The amount of damping of the rotation when the limit is surpassed.
---   			A lower damping value allows a rotation initiated by body A to travel to body B slower.
 bindSliderJoint_set_param :: MethodBind
 bindSliderJoint_set_param
   = unsafePerformIO $
@@ -426,8 +412,6 @@ bindSliderJoint_set_param
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The amount of damping of the rotation when the limit is surpassed.
---   			A lower damping value allows a rotation initiated by body A to travel to body B slower.
 set_param ::
             (SliderJoint :< cls, Object :< cls) => cls -> Int -> Float -> IO ()
 set_param cls arg1 arg2

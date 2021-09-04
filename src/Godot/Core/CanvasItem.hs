@@ -143,13 +143,12 @@ sig_draw = Godot.Internal.Dispatch.Signal "draw"
 
 instance NodeSignal CanvasItem "draw" '[]
 
--- | Emitted when becoming hidden.
 sig_hide :: Godot.Internal.Dispatch.Signal CanvasItem
 sig_hide = Godot.Internal.Dispatch.Signal "hide"
 
 instance NodeSignal CanvasItem "hide" '[]
 
--- | Emitted when the item rect has changed.
+-- | Emitted when the item's @Rect2@ boundaries (position or size) have changed, or when an action is taking place that may have impacted these boundaries (e.g. changing @Sprite2D.texture@).
 sig_item_rect_changed :: Godot.Internal.Dispatch.Signal CanvasItem
 sig_item_rect_changed
   = Godot.Internal.Dispatch.Signal "item_rect_changed"
@@ -878,7 +877,7 @@ instance NodeMethod CanvasItem "draw_colored_polygon"
 
 {-# NOINLINE bindCanvasItem_draw_line #-}
 
--- | Draws a line from a 2D point to another, with a given color and width. It can be optionally antialiased.
+-- | Draws a line from a 2D point to another, with a given color and width.
 bindCanvasItem_draw_line :: MethodBind
 bindCanvasItem_draw_line
   = unsafePerformIO $
@@ -888,7 +887,7 @@ bindCanvasItem_draw_line
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Draws a line from a 2D point to another, with a given color and width. It can be optionally antialiased.
+-- | Draws a line from a 2D point to another, with a given color and width.
 draw_line ::
             (CanvasItem :< cls, Object :< cls) =>
             cls ->
@@ -949,7 +948,6 @@ instance NodeMethod CanvasItem "draw_mesh"
 {-# NOINLINE bindCanvasItem_draw_multiline #-}
 
 -- | Draws multiple, parallel lines with a uniform @color@.
---   				__Note:__ @width@ and @antialiased@ are currently not implemented and have no effect.
 bindCanvasItem_draw_multiline :: MethodBind
 bindCanvasItem_draw_multiline
   = unsafePerformIO $
@@ -960,7 +958,6 @@ bindCanvasItem_draw_multiline
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | Draws multiple, parallel lines with a uniform @color@.
---   				__Note:__ @width@ and @antialiased@ are currently not implemented and have no effect.
 draw_multiline ::
                  (CanvasItem :< cls, Object :< cls) =>
                  cls ->
@@ -985,7 +982,6 @@ instance NodeMethod CanvasItem "draw_multiline"
 {-# NOINLINE bindCanvasItem_draw_multiline_colors #-}
 
 -- | Draws multiple, parallel lines with a uniform @width@ and segment-by-segment coloring. Colors assigned to line segments match by index between @points@ and @colors@.
---   				__Note:__ @width@ and @antialiased@ are currently not implemented and have no effect.
 bindCanvasItem_draw_multiline_colors :: MethodBind
 bindCanvasItem_draw_multiline_colors
   = unsafePerformIO $
@@ -996,7 +992,6 @@ bindCanvasItem_draw_multiline_colors
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | Draws multiple, parallel lines with a uniform @width@ and segment-by-segment coloring. Colors assigned to line segments match by index between @points@ and @colors@.
---   				__Note:__ @width@ and @antialiased@ are currently not implemented and have no effect.
 draw_multiline_colors ::
                         (CanvasItem :< cls, Object :< cls) =>
                         cls ->
@@ -1092,7 +1087,7 @@ instance NodeMethod CanvasItem "draw_polygon"
 
 {-# NOINLINE bindCanvasItem_draw_polyline #-}
 
--- | Draws interconnected line segments with a uniform @color@ and @width@ and optional antialiasing.
+-- | Draws interconnected line segments with a uniform @color@ and @width@.
 bindCanvasItem_draw_polyline :: MethodBind
 bindCanvasItem_draw_polyline
   = unsafePerformIO $
@@ -1102,7 +1097,7 @@ bindCanvasItem_draw_polyline
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Draws interconnected line segments with a uniform @color@ and @width@ and optional antialiasing.
+-- | Draws interconnected line segments with a uniform @color@ and @width@.
 draw_polyline ::
                 (CanvasItem :< cls, Object :< cls) =>
                 cls ->
@@ -1126,7 +1121,7 @@ instance NodeMethod CanvasItem "draw_polyline"
 
 {-# NOINLINE bindCanvasItem_draw_polyline_colors #-}
 
--- | Draws interconnected line segments with a uniform @width@, segment-by-segment coloring, and optional antialiasing. Colors assigned to line segments match by index between @points@ and @colors@.
+-- | Draws interconnected line segments with a uniform @width@ and segment-by-segment coloring. Colors assigned to line segments match by index between @points@ and @colors@.
 bindCanvasItem_draw_polyline_colors :: MethodBind
 bindCanvasItem_draw_polyline_colors
   = unsafePerformIO $
@@ -1136,7 +1131,7 @@ bindCanvasItem_draw_polyline_colors
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Draws interconnected line segments with a uniform @width@, segment-by-segment coloring, and optional antialiasing. Colors assigned to line segments match by index between @points@ and @colors@.
+-- | Draws interconnected line segments with a uniform @width@ and segment-by-segment coloring. Colors assigned to line segments match by index between @points@ and @colors@.
 draw_polyline_colors ::
                        (CanvasItem :< cls, Object :< cls) =>
                        cls ->
@@ -1162,7 +1157,7 @@ instance NodeMethod CanvasItem "draw_polyline_colors"
 
 {-# NOINLINE bindCanvasItem_draw_primitive #-}
 
--- | Draws a custom primitive. 1 point for a point, 2 points for a line, 3 points for a triangle and 4 points for a quad.
+-- | Draws a custom primitive. 1 point for a point, 2 points for a line, 3 points for a triangle, and 4 points for a quad.
 bindCanvasItem_draw_primitive :: MethodBind
 bindCanvasItem_draw_primitive
   = unsafePerformIO $
@@ -1172,7 +1167,7 @@ bindCanvasItem_draw_primitive
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Draws a custom primitive. 1 point for a point, 2 points for a line, 3 points for a triangle and 4 points for a quad.
+-- | Draws a custom primitive. 1 point for a point, 2 points for a line, 3 points for a triangle, and 4 points for a quad.
 draw_primitive ::
                  (CanvasItem :< cls, Object :< cls) =>
                  cls ->
@@ -1201,8 +1196,8 @@ instance NodeMethod CanvasItem "draw_primitive"
 
 {-# NOINLINE bindCanvasItem_draw_rect #-}
 
--- | Draws a rectangle. If @filled@ is @true@, the rectangle will be filled with the @color@ specified. If @filled@ is @false@, the rectangle will be drawn as a stroke with the @color@ and @width@ specified. If @antialiased@ is @true@, the lines will be antialiased.
---   				__Note:__ @width@ and @antialiased@ are only effective if @filled@ is @false@.
+-- | Draws a rectangle. If @filled@ is @true@, the rectangle will be filled with the @color@ specified. If @filled@ is @false@, the rectangle will be drawn as a stroke with the @color@ and @width@ specified.
+--   				__Note:__ @width@ is only effective if @filled@ is @false@.
 bindCanvasItem_draw_rect :: MethodBind
 bindCanvasItem_draw_rect
   = unsafePerformIO $
@@ -1212,8 +1207,8 @@ bindCanvasItem_draw_rect
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Draws a rectangle. If @filled@ is @true@, the rectangle will be filled with the @color@ specified. If @filled@ is @false@, the rectangle will be drawn as a stroke with the @color@ and @width@ specified. If @antialiased@ is @true@, the lines will be antialiased.
---   				__Note:__ @width@ and @antialiased@ are only effective if @filled@ is @false@.
+-- | Draws a rectangle. If @filled@ is @true@, the rectangle will be filled with the @color@ specified. If @filled@ is @false@, the rectangle will be drawn as a stroke with the @color@ and @width@ specified.
+--   				__Note:__ @width@ is only effective if @filled@ is @false@.
 draw_rect ::
             (CanvasItem :< cls, Object :< cls) =>
             cls ->
@@ -1298,20 +1293,27 @@ instance NodeMethod CanvasItem "draw_set_transform_matrix"
 
 {-# NOINLINE bindCanvasItem_draw_string #-}
 
--- | Draws @text@ using the specified @font@ at the @position@ (top-left corner). The text will have its color multiplied by @modulate@. If @clip_w@ is greater than or equal to 0, the text will be clipped if it exceeds the specified width.
+-- | Draws @text@ using the specified @font@ at the @position@ (bottom-left corner using the baseline of the font). The text will have its color multiplied by @modulate@. If @clip_w@ is greater than or equal to 0, the text will be clipped if it exceeds the specified width.
 --   				__Example using the default project font:__
---   				
---   @
---   
+--   				@codeblocks@
+--   				@gdscript@
 --   				# If using this method in a script that redraws constantly, move the
 --   				# `default_font` declaration to a member variable assigned in `_ready()`
 --   				# so the Control is only created once.
 --   				var default_font = Control.new().get_font("font")
---   				draw_string(default_font, Vector2(64, 64), "Hello world")
---   				
---   @
---   
---   				See also @method Font.draw@.
+--   				var default_font_size = Control.new().get_font_size("font_size")
+--   				draw_string(default_font, Vector2(64, 64), "Hello world", HALIGN_LEFT, -1, font_size)
+--   				@/gdscript@
+--   				@csharp@
+--   				// If using this method in a script that redraws constantly, move the
+--   				// `default_font` declaration to a member variable assigned in `_ready()`
+--   				// so the Control is only created once.
+--   				Font defaultFont = new Control().GetFont("font");
+--   				int defaultFontSize = new Control().GetFontSize("font_size");
+--   				DrawString(defaultFont, new Vector2(64, 64), "Hello world", HALIGN_LEFT, -1, defaultFontSize);
+--   				@/csharp@
+--   				@/codeblocks@
+--   				See also @method Font.draw_string@.
 bindCanvasItem_draw_string :: MethodBind
 bindCanvasItem_draw_string
   = unsafePerformIO $
@@ -1321,20 +1323,27 @@ bindCanvasItem_draw_string
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Draws @text@ using the specified @font@ at the @position@ (top-left corner). The text will have its color multiplied by @modulate@. If @clip_w@ is greater than or equal to 0, the text will be clipped if it exceeds the specified width.
+-- | Draws @text@ using the specified @font@ at the @position@ (bottom-left corner using the baseline of the font). The text will have its color multiplied by @modulate@. If @clip_w@ is greater than or equal to 0, the text will be clipped if it exceeds the specified width.
 --   				__Example using the default project font:__
---   				
---   @
---   
+--   				@codeblocks@
+--   				@gdscript@
 --   				# If using this method in a script that redraws constantly, move the
 --   				# `default_font` declaration to a member variable assigned in `_ready()`
 --   				# so the Control is only created once.
 --   				var default_font = Control.new().get_font("font")
---   				draw_string(default_font, Vector2(64, 64), "Hello world")
---   				
---   @
---   
---   				See also @method Font.draw@.
+--   				var default_font_size = Control.new().get_font_size("font_size")
+--   				draw_string(default_font, Vector2(64, 64), "Hello world", HALIGN_LEFT, -1, font_size)
+--   				@/gdscript@
+--   				@csharp@
+--   				// If using this method in a script that redraws constantly, move the
+--   				// `default_font` declaration to a member variable assigned in `_ready()`
+--   				// so the Control is only created once.
+--   				Font defaultFont = new Control().GetFont("font");
+--   				int defaultFontSize = new Control().GetFontSize("font_size");
+--   				DrawString(defaultFont, new Vector2(64, 64), "Hello world", HALIGN_LEFT, -1, defaultFontSize);
+--   				@/csharp@
+--   				@/codeblocks@
+--   				See also @method Font.draw_string@.
 draw_string ::
               (CanvasItem :< cls, Object :< cls) =>
               cls ->
@@ -1552,7 +1561,7 @@ instance NodeMethod CanvasItem "get_canvas" '[] (IO Rid) where
 
 {-# NOINLINE bindCanvasItem_get_canvas_item #-}
 
--- | Returns the canvas item RID used by @VisualServer@ for this item.
+-- | Returns the canvas item RID used by @RenderingServer@ for this item.
 bindCanvasItem_get_canvas_item :: MethodBind
 bindCanvasItem_get_canvas_item
   = unsafePerformIO $
@@ -1562,7 +1571,7 @@ bindCanvasItem_get_canvas_item
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the canvas item RID used by @VisualServer@ for this item.
+-- | Returns the canvas item RID used by @RenderingServer@ for this item.
 get_canvas_item ::
                   (CanvasItem :< cls, Object :< cls) => cls -> IO Rid
 get_canvas_item cls
@@ -2059,7 +2068,6 @@ instance NodeMethod CanvasItem
 
 {-# NOINLINE bindCanvasItem_is_set_as_toplevel #-}
 
--- | Returns @true@ if the node is set as top-level. See @method set_as_toplevel@.
 bindCanvasItem_is_set_as_toplevel :: MethodBind
 bindCanvasItem_is_set_as_toplevel
   = unsafePerformIO $
@@ -2069,7 +2077,6 @@ bindCanvasItem_is_set_as_toplevel
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns @true@ if the node is set as top-level. See @method set_as_toplevel@.
 is_set_as_toplevel ::
                      (CanvasItem :< cls, Object :< cls) => cls -> IO Bool
 is_set_as_toplevel cls
@@ -2233,7 +2240,6 @@ instance NodeMethod CanvasItem "make_input_local" '[InputEvent]
 
 {-# NOINLINE bindCanvasItem_set_as_toplevel #-}
 
--- | If @enable@ is @true@, the node won't inherit its transform from parent canvas items.
 bindCanvasItem_set_as_toplevel :: MethodBind
 bindCanvasItem_set_as_toplevel
   = unsafePerformIO $
@@ -2243,7 +2249,6 @@ bindCanvasItem_set_as_toplevel
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @enable@ is @true@, the node won't inherit its transform from parent canvas items.
 set_as_toplevel ::
                   (CanvasItem :< cls, Object :< cls) => cls -> Bool -> IO ()
 set_as_toplevel cls arg1

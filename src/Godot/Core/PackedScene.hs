@@ -102,7 +102,6 @@ instance NodeMethod PackedScene "_set_bundled_scene" '[Dictionary]
 
 {-# NOINLINE bindPackedScene_can_instance #-}
 
--- | Returns @true@ if the scene file has nodes.
 bindPackedScene_can_instance :: MethodBind
 bindPackedScene_can_instance
   = unsafePerformIO $
@@ -112,7 +111,6 @@ bindPackedScene_can_instance
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns @true@ if the scene file has nodes.
 can_instance ::
                (PackedScene :< cls, Object :< cls) => cls -> IO Bool
 can_instance cls
@@ -155,7 +153,6 @@ instance NodeMethod PackedScene "get_state" '[] (IO SceneState)
 
 {-# NOINLINE bindPackedScene_instance' #-}
 
--- | Instantiates the scene's node hierarchy. Triggers child scene instantiation(s). Triggers a @Node.NOTIFICATION_INSTANCED@ notification on the root node.
 bindPackedScene_instance' :: MethodBind
 bindPackedScene_instance'
   = unsafePerformIO $
@@ -165,7 +162,6 @@ bindPackedScene_instance'
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Instantiates the scene's node hierarchy. Triggers child scene instantiation(s). Triggers a @Node.NOTIFICATION_INSTANCED@ notification on the root node.
 instance' ::
             (PackedScene :< cls, Object :< cls) => cls -> Maybe Int -> IO Node
 instance' cls arg1

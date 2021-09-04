@@ -159,7 +159,7 @@ instance NodeMethod NavigationPolygon "_set_polygons" '[Array]
 
 {-# NOINLINE bindNavigationPolygon_add_outline #-}
 
--- | Appends a @PoolVector2Array@ that contains the vertices of an outline to the internal array that contains all the outlines. You have to call @method make_polygons_from_outlines@ in order for this array to be converted to polygons that the engine will use.
+-- | Appends a @PackedVector2Array@ that contains the vertices of an outline to the internal array that contains all the outlines. You have to call @method make_polygons_from_outlines@ in order for this array to be converted to polygons that the engine will use.
 bindNavigationPolygon_add_outline :: MethodBind
 bindNavigationPolygon_add_outline
   = unsafePerformIO $
@@ -169,7 +169,7 @@ bindNavigationPolygon_add_outline
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Appends a @PoolVector2Array@ that contains the vertices of an outline to the internal array that contains all the outlines. You have to call @method make_polygons_from_outlines@ in order for this array to be converted to polygons that the engine will use.
+-- | Appends a @PackedVector2Array@ that contains the vertices of an outline to the internal array that contains all the outlines. You have to call @method make_polygons_from_outlines@ in order for this array to be converted to polygons that the engine will use.
 add_outline ::
               (NavigationPolygon :< cls, Object :< cls) =>
               cls -> PoolVector2Array -> IO ()
@@ -190,7 +190,7 @@ instance NodeMethod NavigationPolygon "add_outline"
 
 {-# NOINLINE bindNavigationPolygon_add_outline_at_index #-}
 
--- | Adds a @PoolVector2Array@ that contains the vertices of an outline to the internal array that contains all the outlines at a fixed position. You have to call @method make_polygons_from_outlines@ in order for this array to be converted to polygons that the engine will use.
+-- | Adds a @PackedVector2Array@ that contains the vertices of an outline to the internal array that contains all the outlines at a fixed position. You have to call @method make_polygons_from_outlines@ in order for this array to be converted to polygons that the engine will use.
 bindNavigationPolygon_add_outline_at_index :: MethodBind
 bindNavigationPolygon_add_outline_at_index
   = unsafePerformIO $
@@ -200,7 +200,7 @@ bindNavigationPolygon_add_outline_at_index
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Adds a @PoolVector2Array@ that contains the vertices of an outline to the internal array that contains all the outlines at a fixed position. You have to call @method make_polygons_from_outlines@ in order for this array to be converted to polygons that the engine will use.
+-- | Adds a @PackedVector2Array@ that contains the vertices of an outline to the internal array that contains all the outlines at a fixed position. You have to call @method make_polygons_from_outlines@ in order for this array to be converted to polygons that the engine will use.
 add_outline_at_index ::
                        (NavigationPolygon :< cls, Object :< cls) =>
                        cls -> PoolVector2Array -> Int -> IO ()
@@ -307,7 +307,7 @@ instance NodeMethod NavigationPolygon "clear_polygons" '[] (IO ())
 
 {-# NOINLINE bindNavigationPolygon_get_outline #-}
 
--- | Returns a @PoolVector2Array@ containing the vertices of an outline that was created in the editor or by script.
+-- | Returns a @PackedVector2Array@ containing the vertices of an outline that was created in the editor or by script.
 bindNavigationPolygon_get_outline :: MethodBind
 bindNavigationPolygon_get_outline
   = unsafePerformIO $
@@ -317,7 +317,7 @@ bindNavigationPolygon_get_outline
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns a @PoolVector2Array@ containing the vertices of an outline that was created in the editor or by script.
+-- | Returns a @PackedVector2Array@ containing the vertices of an outline that was created in the editor or by script.
 get_outline ::
               (NavigationPolygon :< cls, Object :< cls) =>
               cls -> Int -> IO PoolVector2Array
@@ -366,7 +366,7 @@ instance NodeMethod NavigationPolygon "get_outline_count" '[]
 
 {-# NOINLINE bindNavigationPolygon_get_polygon #-}
 
--- | Returns a @PoolIntArray@ containing the indices of the vertices of a created polygon.
+-- | Returns a @PackedInt32Array@ containing the indices of the vertices of a created polygon.
 bindNavigationPolygon_get_polygon :: MethodBind
 bindNavigationPolygon_get_polygon
   = unsafePerformIO $
@@ -376,7 +376,7 @@ bindNavigationPolygon_get_polygon
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns a @PoolIntArray@ containing the indices of the vertices of a created polygon.
+-- | Returns a @PackedInt32Array@ containing the indices of the vertices of a created polygon.
 get_polygon ::
               (NavigationPolygon :< cls, Object :< cls) =>
               cls -> Int -> IO PoolIntArray
@@ -425,7 +425,7 @@ instance NodeMethod NavigationPolygon "get_polygon_count" '[]
 
 {-# NOINLINE bindNavigationPolygon_get_vertices #-}
 
--- | Returns a @PoolVector2Array@ containing all the vertices being used to create the polygons.
+-- | Returns a @PackedVector2Array@ containing all the vertices being used to create the polygons.
 bindNavigationPolygon_get_vertices :: MethodBind
 bindNavigationPolygon_get_vertices
   = unsafePerformIO $
@@ -435,7 +435,7 @@ bindNavigationPolygon_get_vertices
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns a @PoolVector2Array@ containing all the vertices being used to create the polygons.
+-- | Returns a @PackedVector2Array@ containing all the vertices being used to create the polygons.
 get_vertices ::
                (NavigationPolygon :< cls, Object :< cls) =>
                cls -> IO PoolVector2Array

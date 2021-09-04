@@ -23,13 +23,6 @@ instance NodeProperty ColorRect "color" Color 'False where
 
 {-# NOINLINE bindColorRect_get_frame_color #-}
 
--- | The fill color.
---   			
---   @
---   
---   			$ColorRect.color = Color(1, 0, 0, 1) # Set ColorRect's color to red.
---   			
---   @
 bindColorRect_get_frame_color :: MethodBind
 bindColorRect_get_frame_color
   = unsafePerformIO $
@@ -39,13 +32,6 @@ bindColorRect_get_frame_color
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The fill color.
---   			
---   @
---   
---   			$ColorRect.color = Color(1, 0, 0, 1) # Set ColorRect's color to red.
---   			
---   @
 get_frame_color ::
                   (ColorRect :< cls, Object :< cls) => cls -> IO Color
 get_frame_color cls
@@ -62,13 +48,6 @@ instance NodeMethod ColorRect "get_frame_color" '[] (IO Color)
 
 {-# NOINLINE bindColorRect_set_frame_color #-}
 
--- | The fill color.
---   			
---   @
---   
---   			$ColorRect.color = Color(1, 0, 0, 1) # Set ColorRect's color to red.
---   			
---   @
 bindColorRect_set_frame_color :: MethodBind
 bindColorRect_set_frame_color
   = unsafePerformIO $
@@ -78,13 +57,6 @@ bindColorRect_set_frame_color
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The fill color.
---   			
---   @
---   
---   			$ColorRect.color = Color(1, 0, 0, 1) # Set ColorRect's color to red.
---   			
---   @
 set_frame_color ::
                   (ColorRect :< cls, Object :< cls) => cls -> Color -> IO ()
 set_frame_color cls arg1

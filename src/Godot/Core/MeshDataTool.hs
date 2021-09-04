@@ -403,8 +403,8 @@ instance NodeMethod MeshDataTool "get_face_vertex" '[Int, Int]
 
 {-# NOINLINE bindMeshDataTool_get_format #-}
 
--- | Returns the @Mesh@'s format. Format is an integer made up of @Mesh@ format flags combined together. For example, a mesh containing both vertices and normals would return a format of @3@ because @ArrayMesh.ARRAY_FORMAT_VERTEX@ is @1@ and @ArrayMesh.ARRAY_FORMAT_NORMAL@ is @2@.
---   				See @enum ArrayMesh.ArrayFormat@ for a list of format flags.
+-- | Returns the @Mesh@'s format. Format is an integer made up of @Mesh@ format flags combined together. For example, a mesh containing both vertices and normals would return a format of @3@ because @Mesh.ARRAY_FORMAT_VERTEX@ is @1@ and @Mesh.ARRAY_FORMAT_NORMAL@ is @2@.
+--   				See @enum Mesh.ArrayFormat@ for a list of format flags.
 bindMeshDataTool_get_format :: MethodBind
 bindMeshDataTool_get_format
   = unsafePerformIO $
@@ -414,8 +414,8 @@ bindMeshDataTool_get_format
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the @Mesh@'s format. Format is an integer made up of @Mesh@ format flags combined together. For example, a mesh containing both vertices and normals would return a format of @3@ because @ArrayMesh.ARRAY_FORMAT_VERTEX@ is @1@ and @ArrayMesh.ARRAY_FORMAT_NORMAL@ is @2@.
---   				See @enum ArrayMesh.ArrayFormat@ for a list of format flags.
+-- | Returns the @Mesh@'s format. Format is an integer made up of @Mesh@ format flags combined together. For example, a mesh containing both vertices and normals would return a format of @3@ because @Mesh.ARRAY_FORMAT_VERTEX@ is @1@ and @Mesh.ARRAY_FORMAT_NORMAL@ is @2@.
+--   				See @enum Mesh.ArrayFormat@ for a list of format flags.
 get_format :: (MeshDataTool :< cls, Object :< cls) => cls -> IO Int
 get_format cls
   = withVariantArray []

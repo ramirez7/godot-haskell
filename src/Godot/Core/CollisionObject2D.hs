@@ -48,14 +48,14 @@ sig_input_event = Godot.Internal.Dispatch.Signal "input_event"
 instance NodeSignal CollisionObject2D "input_event"
            '[Node, InputEvent, Int]
 
--- | Emitted when the mouse pointer enters any of this object's shapes. Requires @input_pickable@ to be @true@ and at least one @collision_layer@ bit to be set.
+-- | Emitted when the mouse pointer enters any of this object's shapes. Requires @input_pickable@ to be @true@ and at least one @collision_layer@ bit to be set. Note that moving between different shapes within a single @CollisionObject2D@ won't cause this signal to be emitted.
 sig_mouse_entered ::
                   Godot.Internal.Dispatch.Signal CollisionObject2D
 sig_mouse_entered = Godot.Internal.Dispatch.Signal "mouse_entered"
 
 instance NodeSignal CollisionObject2D "mouse_entered" '[]
 
--- | Emitted when the mouse pointer exits all this object's shapes. Requires @input_pickable@ to be @true@ and at least one @collision_layer@ bit to be set.
+-- | Emitted when the mouse pointer exits all this object's shapes. Requires @input_pickable@ to be @true@ and at least one @collision_layer@ bit to be set. Note that moving between different shapes within a single @CollisionObject2D@ won't cause this signal to be emitted.
 sig_mouse_exited ::
                  Godot.Internal.Dispatch.Signal CollisionObject2D
 sig_mouse_exited = Godot.Internal.Dispatch.Signal "mouse_exited"

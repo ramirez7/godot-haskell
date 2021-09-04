@@ -46,7 +46,7 @@ _PORT_TYPE_SAMPLER = 4
 _PORT_TYPE_BOOLEAN :: Int
 _PORT_TYPE_BOOLEAN = 2
 
--- | Emitted when the node requests an editor refresh. Currently called only in setter of @VisualShaderNodeTexture.source@, @VisualShaderNodeTexture@, and @VisualShaderNodeCubeMap@ (and their derivatives).
+-- | Emitted when the node requests an editor refresh. Currently called only in setter of @VisualShaderNodeTexture.source@, @VisualShaderNodeTexture@, and @VisualShaderNodeCubemap@ (and their derivatives).
 sig_editor_refresh_request ::
                            Godot.Internal.Dispatch.Signal VisualShaderNode
 sig_editor_refresh_request

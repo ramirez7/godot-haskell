@@ -39,7 +39,7 @@ instance NodeProperty Material "render_priority" Int 'False where
 {-# NOINLINE bindMaterial_get_next_pass #-}
 
 -- | Sets the @Material@ to be used for the next pass. This renders the object again using a different material.
---   			__Note:__ only applies to @SpatialMaterial@s and @ShaderMaterial@s with type "Spatial".
+--   			__Note:__ only applies to @StandardMaterial3D@s and @ShaderMaterial@s with type "Spatial".
 bindMaterial_get_next_pass :: MethodBind
 bindMaterial_get_next_pass
   = unsafePerformIO $
@@ -50,7 +50,7 @@ bindMaterial_get_next_pass
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | Sets the @Material@ to be used for the next pass. This renders the object again using a different material.
---   			__Note:__ only applies to @SpatialMaterial@s and @ShaderMaterial@s with type "Spatial".
+--   			__Note:__ only applies to @StandardMaterial3D@s and @ShaderMaterial@s with type "Spatial".
 get_next_pass ::
                 (Material :< cls, Object :< cls) => cls -> IO Material
 get_next_pass cls
@@ -98,7 +98,7 @@ instance NodeMethod Material "get_render_priority" '[] (IO Int)
 {-# NOINLINE bindMaterial_set_next_pass #-}
 
 -- | Sets the @Material@ to be used for the next pass. This renders the object again using a different material.
---   			__Note:__ only applies to @SpatialMaterial@s and @ShaderMaterial@s with type "Spatial".
+--   			__Note:__ only applies to @StandardMaterial3D@s and @ShaderMaterial@s with type "Spatial".
 bindMaterial_set_next_pass :: MethodBind
 bindMaterial_set_next_pass
   = unsafePerformIO $
@@ -109,7 +109,7 @@ bindMaterial_set_next_pass
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | Sets the @Material@ to be used for the next pass. This renders the object again using a different material.
---   			__Note:__ only applies to @SpatialMaterial@s and @ShaderMaterial@s with type "Spatial".
+--   			__Note:__ only applies to @StandardMaterial3D@s and @ShaderMaterial@s with type "Spatial".
 set_next_pass ::
                 (Material :< cls, Object :< cls) => cls -> Material -> IO ()
 set_next_pass cls arg1

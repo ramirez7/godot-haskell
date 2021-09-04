@@ -102,7 +102,7 @@ instance NodeProperty NinePatchRect "texture" Texture 'False where
 
 {-# NOINLINE bindNinePatchRect_get_h_axis_stretch_mode #-}
 
--- | Doesn't do anything at the time of writing.
+-- | The stretch mode to use for horizontal stretching/tiling. See @enum NinePatchRect.AxisStretchMode@ for possible values.
 bindNinePatchRect_get_h_axis_stretch_mode :: MethodBind
 bindNinePatchRect_get_h_axis_stretch_mode
   = unsafePerformIO $
@@ -112,7 +112,7 @@ bindNinePatchRect_get_h_axis_stretch_mode
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Doesn't do anything at the time of writing.
+-- | The stretch mode to use for horizontal stretching/tiling. See @enum NinePatchRect.AxisStretchMode@ for possible values.
 get_h_axis_stretch_mode ::
                           (NinePatchRect :< cls, Object :< cls) => cls -> IO Int
 get_h_axis_stretch_mode cls
@@ -131,7 +131,7 @@ instance NodeMethod NinePatchRect "get_h_axis_stretch_mode" '[]
 
 {-# NOINLINE bindNinePatchRect_get_patch_margin #-}
 
--- | Returns the size of the margin identified by the given @enum Margin@ constant.
+-- | Returns the size of the margin on the specified @enum Side@.
 bindNinePatchRect_get_patch_margin :: MethodBind
 bindNinePatchRect_get_patch_margin
   = unsafePerformIO $
@@ -141,7 +141,7 @@ bindNinePatchRect_get_patch_margin
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the size of the margin identified by the given @enum Margin@ constant.
+-- | Returns the size of the margin on the specified @enum Side@.
 get_patch_margin ::
                    (NinePatchRect :< cls, Object :< cls) => cls -> Int -> IO Int
 get_patch_margin cls arg1
@@ -215,7 +215,7 @@ instance NodeMethod NinePatchRect "get_texture" '[] (IO Texture)
 
 {-# NOINLINE bindNinePatchRect_get_v_axis_stretch_mode #-}
 
--- | Doesn't do anything at the time of writing.
+-- | The stretch mode to use for vertical stretching/tiling. See @enum NinePatchRect.AxisStretchMode@ for possible values.
 bindNinePatchRect_get_v_axis_stretch_mode :: MethodBind
 bindNinePatchRect_get_v_axis_stretch_mode
   = unsafePerformIO $
@@ -225,7 +225,7 @@ bindNinePatchRect_get_v_axis_stretch_mode
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Doesn't do anything at the time of writing.
+-- | The stretch mode to use for vertical stretching/tiling. See @enum NinePatchRect.AxisStretchMode@ for possible values.
 get_v_axis_stretch_mode ::
                           (NinePatchRect :< cls, Object :< cls) => cls -> IO Int
 get_v_axis_stretch_mode cls
@@ -301,7 +301,7 @@ instance NodeMethod NinePatchRect "set_draw_center" '[Bool] (IO ())
 
 {-# NOINLINE bindNinePatchRect_set_h_axis_stretch_mode #-}
 
--- | Doesn't do anything at the time of writing.
+-- | The stretch mode to use for horizontal stretching/tiling. See @enum NinePatchRect.AxisStretchMode@ for possible values.
 bindNinePatchRect_set_h_axis_stretch_mode :: MethodBind
 bindNinePatchRect_set_h_axis_stretch_mode
   = unsafePerformIO $
@@ -311,7 +311,7 @@ bindNinePatchRect_set_h_axis_stretch_mode
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Doesn't do anything at the time of writing.
+-- | The stretch mode to use for horizontal stretching/tiling. See @enum NinePatchRect.AxisStretchMode@ for possible values.
 set_h_axis_stretch_mode ::
                           (NinePatchRect :< cls, Object :< cls) => cls -> Int -> IO ()
 set_h_axis_stretch_mode cls arg1
@@ -330,7 +330,7 @@ instance NodeMethod NinePatchRect "set_h_axis_stretch_mode" '[Int]
 
 {-# NOINLINE bindNinePatchRect_set_patch_margin #-}
 
--- | Sets the size of the margin identified by the given @enum Margin@ constant to @value@ in pixels.
+-- | Sets the size of the margin on the specified @enum Side@ to @value@ pixels.
 bindNinePatchRect_set_patch_margin :: MethodBind
 bindNinePatchRect_set_patch_margin
   = unsafePerformIO $
@@ -340,7 +340,7 @@ bindNinePatchRect_set_patch_margin
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the size of the margin identified by the given @enum Margin@ constant to @value@ in pixels.
+-- | Sets the size of the margin on the specified @enum Side@ to @value@ pixels.
 set_patch_margin ::
                    (NinePatchRect :< cls, Object :< cls) => cls -> Int -> Int -> IO ()
 set_patch_margin cls arg1 arg2
@@ -415,7 +415,7 @@ instance NodeMethod NinePatchRect "set_texture" '[Texture] (IO ())
 
 {-# NOINLINE bindNinePatchRect_set_v_axis_stretch_mode #-}
 
--- | Doesn't do anything at the time of writing.
+-- | The stretch mode to use for vertical stretching/tiling. See @enum NinePatchRect.AxisStretchMode@ for possible values.
 bindNinePatchRect_set_v_axis_stretch_mode :: MethodBind
 bindNinePatchRect_set_v_axis_stretch_mode
   = unsafePerformIO $
@@ -425,7 +425,7 @@ bindNinePatchRect_set_v_axis_stretch_mode
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Doesn't do anything at the time of writing.
+-- | The stretch mode to use for vertical stretching/tiling. See @enum NinePatchRect.AxisStretchMode@ for possible values.
 set_v_axis_stretch_mode ::
                           (NinePatchRect :< cls, Object :< cls) => cls -> Int -> IO ()
 set_v_axis_stretch_mode cls arg1

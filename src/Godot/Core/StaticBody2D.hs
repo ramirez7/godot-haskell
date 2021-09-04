@@ -89,8 +89,6 @@ instance NodeMethod StaticBody2D "_reload_physics_characteristics"
 
 {-# NOINLINE bindStaticBody2D_get_bounce #-}
 
--- | The body's bounciness. Values range from @0@ (no bounce) to @1@ (full bounciness).
---   			Deprecated, use @PhysicsMaterial.bounce@ instead via @physics_material_override@.
 bindStaticBody2D_get_bounce :: MethodBind
 bindStaticBody2D_get_bounce
   = unsafePerformIO $
@@ -100,8 +98,6 @@ bindStaticBody2D_get_bounce
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The body's bounciness. Values range from @0@ (no bounce) to @1@ (full bounciness).
---   			Deprecated, use @PhysicsMaterial.bounce@ instead via @physics_material_override@.
 get_bounce ::
              (StaticBody2D :< cls, Object :< cls) => cls -> IO Float
 get_bounce cls
@@ -117,7 +113,7 @@ instance NodeMethod StaticBody2D "get_bounce" '[] (IO Float) where
 
 {-# NOINLINE bindStaticBody2D_get_constant_angular_velocity #-}
 
--- | The body's constant angular velocity. This does not rotate the body, but affects colliding bodies, as if it were rotating.
+-- | The body's constant angular velocity. This does not rotate the body (unless @kinematic_motion@ is enabled), but affects other bodies that touch it, as if it were rotating.
 bindStaticBody2D_get_constant_angular_velocity :: MethodBind
 bindStaticBody2D_get_constant_angular_velocity
   = unsafePerformIO $
@@ -127,7 +123,7 @@ bindStaticBody2D_get_constant_angular_velocity
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The body's constant angular velocity. This does not rotate the body, but affects colliding bodies, as if it were rotating.
+-- | The body's constant angular velocity. This does not rotate the body (unless @kinematic_motion@ is enabled), but affects other bodies that touch it, as if it were rotating.
 get_constant_angular_velocity ::
                                 (StaticBody2D :< cls, Object :< cls) => cls -> IO Float
 get_constant_angular_velocity cls
@@ -148,7 +144,7 @@ instance NodeMethod StaticBody2D "get_constant_angular_velocity"
 
 {-# NOINLINE bindStaticBody2D_get_constant_linear_velocity #-}
 
--- | The body's constant linear velocity. This does not move the body, but affects colliding bodies, as if it were moving.
+-- | The body's constant linear velocity. This does not move the body (unless @kinematic_motion@ is enabled), but affects other bodies that touch it, as if it were moving.
 bindStaticBody2D_get_constant_linear_velocity :: MethodBind
 bindStaticBody2D_get_constant_linear_velocity
   = unsafePerformIO $
@@ -158,7 +154,7 @@ bindStaticBody2D_get_constant_linear_velocity
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The body's constant linear velocity. This does not move the body, but affects colliding bodies, as if it were moving.
+-- | The body's constant linear velocity. This does not move the body (unless @kinematic_motion@ is enabled), but affects other bodies that touch it, as if it were moving.
 get_constant_linear_velocity ::
                                (StaticBody2D :< cls, Object :< cls) => cls -> IO Vector2
 get_constant_linear_velocity cls
@@ -178,8 +174,6 @@ instance NodeMethod StaticBody2D "get_constant_linear_velocity" '[]
 
 {-# NOINLINE bindStaticBody2D_get_friction #-}
 
--- | The body's friction. Values range from @0@ (no friction) to @1@ (full friction).
---   			Deprecated, use @PhysicsMaterial.friction@ instead via @physics_material_override@.
 bindStaticBody2D_get_friction :: MethodBind
 bindStaticBody2D_get_friction
   = unsafePerformIO $
@@ -189,8 +183,6 @@ bindStaticBody2D_get_friction
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The body's friction. Values range from @0@ (no friction) to @1@ (full friction).
---   			Deprecated, use @PhysicsMaterial.friction@ instead via @physics_material_override@.
 get_friction ::
                (StaticBody2D :< cls, Object :< cls) => cls -> IO Float
 get_friction cls
@@ -240,8 +232,6 @@ instance NodeMethod StaticBody2D "get_physics_material_override"
 
 {-# NOINLINE bindStaticBody2D_set_bounce #-}
 
--- | The body's bounciness. Values range from @0@ (no bounce) to @1@ (full bounciness).
---   			Deprecated, use @PhysicsMaterial.bounce@ instead via @physics_material_override@.
 bindStaticBody2D_set_bounce :: MethodBind
 bindStaticBody2D_set_bounce
   = unsafePerformIO $
@@ -251,8 +241,6 @@ bindStaticBody2D_set_bounce
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The body's bounciness. Values range from @0@ (no bounce) to @1@ (full bounciness).
---   			Deprecated, use @PhysicsMaterial.bounce@ instead via @physics_material_override@.
 set_bounce ::
              (StaticBody2D :< cls, Object :< cls) => cls -> Float -> IO ()
 set_bounce cls arg1
@@ -269,7 +257,7 @@ instance NodeMethod StaticBody2D "set_bounce" '[Float] (IO ())
 
 {-# NOINLINE bindStaticBody2D_set_constant_angular_velocity #-}
 
--- | The body's constant angular velocity. This does not rotate the body, but affects colliding bodies, as if it were rotating.
+-- | The body's constant angular velocity. This does not rotate the body (unless @kinematic_motion@ is enabled), but affects other bodies that touch it, as if it were rotating.
 bindStaticBody2D_set_constant_angular_velocity :: MethodBind
 bindStaticBody2D_set_constant_angular_velocity
   = unsafePerformIO $
@@ -279,7 +267,7 @@ bindStaticBody2D_set_constant_angular_velocity
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The body's constant angular velocity. This does not rotate the body, but affects colliding bodies, as if it were rotating.
+-- | The body's constant angular velocity. This does not rotate the body (unless @kinematic_motion@ is enabled), but affects other bodies that touch it, as if it were rotating.
 set_constant_angular_velocity ::
                                 (StaticBody2D :< cls, Object :< cls) => cls -> Float -> IO ()
 set_constant_angular_velocity cls arg1
@@ -300,7 +288,7 @@ instance NodeMethod StaticBody2D "set_constant_angular_velocity"
 
 {-# NOINLINE bindStaticBody2D_set_constant_linear_velocity #-}
 
--- | The body's constant linear velocity. This does not move the body, but affects colliding bodies, as if it were moving.
+-- | The body's constant linear velocity. This does not move the body (unless @kinematic_motion@ is enabled), but affects other bodies that touch it, as if it were moving.
 bindStaticBody2D_set_constant_linear_velocity :: MethodBind
 bindStaticBody2D_set_constant_linear_velocity
   = unsafePerformIO $
@@ -310,7 +298,7 @@ bindStaticBody2D_set_constant_linear_velocity
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The body's constant linear velocity. This does not move the body, but affects colliding bodies, as if it were moving.
+-- | The body's constant linear velocity. This does not move the body (unless @kinematic_motion@ is enabled), but affects other bodies that touch it, as if it were moving.
 set_constant_linear_velocity ::
                                (StaticBody2D :< cls, Object :< cls) => cls -> Vector2 -> IO ()
 set_constant_linear_velocity cls arg1
@@ -331,8 +319,6 @@ instance NodeMethod StaticBody2D "set_constant_linear_velocity"
 
 {-# NOINLINE bindStaticBody2D_set_friction #-}
 
--- | The body's friction. Values range from @0@ (no friction) to @1@ (full friction).
---   			Deprecated, use @PhysicsMaterial.friction@ instead via @physics_material_override@.
 bindStaticBody2D_set_friction :: MethodBind
 bindStaticBody2D_set_friction
   = unsafePerformIO $
@@ -342,8 +328,6 @@ bindStaticBody2D_set_friction
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The body's friction. Values range from @0@ (no friction) to @1@ (full friction).
---   			Deprecated, use @PhysicsMaterial.friction@ instead via @physics_material_override@.
 set_friction ::
                (StaticBody2D :< cls, Object :< cls) => cls -> Float -> IO ()
 set_friction cls arg1

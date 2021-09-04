@@ -25,7 +25,6 @@ instance NodeProperty LineShape2D "normal" Vector2 'False where
 
 {-# NOINLINE bindLineShape2D_get_d #-}
 
--- | The line's distance from the origin.
 bindLineShape2D_get_d :: MethodBind
 bindLineShape2D_get_d
   = unsafePerformIO $
@@ -35,7 +34,6 @@ bindLineShape2D_get_d
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The line's distance from the origin.
 get_d :: (LineShape2D :< cls, Object :< cls) => cls -> IO Float
 get_d cls
   = withVariantArray []
@@ -49,7 +47,6 @@ instance NodeMethod LineShape2D "get_d" '[] (IO Float) where
 
 {-# NOINLINE bindLineShape2D_get_normal #-}
 
--- | The line's normal.
 bindLineShape2D_get_normal :: MethodBind
 bindLineShape2D_get_normal
   = unsafePerformIO $
@@ -59,7 +56,6 @@ bindLineShape2D_get_normal
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The line's normal.
 get_normal ::
              (LineShape2D :< cls, Object :< cls) => cls -> IO Vector2
 get_normal cls
@@ -75,7 +71,6 @@ instance NodeMethod LineShape2D "get_normal" '[] (IO Vector2) where
 
 {-# NOINLINE bindLineShape2D_set_d #-}
 
--- | The line's distance from the origin.
 bindLineShape2D_set_d :: MethodBind
 bindLineShape2D_set_d
   = unsafePerformIO $
@@ -85,7 +80,6 @@ bindLineShape2D_set_d
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The line's distance from the origin.
 set_d ::
         (LineShape2D :< cls, Object :< cls) => cls -> Float -> IO ()
 set_d cls arg1
@@ -100,7 +94,6 @@ instance NodeMethod LineShape2D "set_d" '[Float] (IO ()) where
 
 {-# NOINLINE bindLineShape2D_set_normal #-}
 
--- | The line's normal.
 bindLineShape2D_set_normal :: MethodBind
 bindLineShape2D_set_normal
   = unsafePerformIO $
@@ -110,7 +103,6 @@ bindLineShape2D_set_normal
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The line's normal.
 set_normal ::
              (LineShape2D :< cls, Object :< cls) => cls -> Vector2 -> IO ()
 set_normal cls arg1

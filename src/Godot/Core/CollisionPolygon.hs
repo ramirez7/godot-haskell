@@ -64,7 +64,6 @@ instance NodeMethod CollisionPolygon "_is_editable_3d_polygon" '[]
 
 {-# NOINLINE bindCollisionPolygon_get_depth #-}
 
--- | Length that the resulting collision extends in either direction perpendicular to its polygon.
 bindCollisionPolygon_get_depth :: MethodBind
 bindCollisionPolygon_get_depth
   = unsafePerformIO $
@@ -74,7 +73,6 @@ bindCollisionPolygon_get_depth
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Length that the resulting collision extends in either direction perpendicular to its polygon.
 get_depth ::
             (CollisionPolygon :< cls, Object :< cls) => cls -> IO Float
 get_depth cls
@@ -91,8 +89,6 @@ instance NodeMethod CollisionPolygon "get_depth" '[] (IO Float)
 
 {-# NOINLINE bindCollisionPolygon_get_polygon #-}
 
--- | Array of vertices which define the polygon.
---   			__Note:__ The returned value is a copy of the original. Methods which mutate the size or properties of the return value will not impact the original polygon. To change properties of the polygon, assign it to a temporary variable and make changes before reassigning the @polygon@ member.
 bindCollisionPolygon_get_polygon :: MethodBind
 bindCollisionPolygon_get_polygon
   = unsafePerformIO $
@@ -102,8 +98,6 @@ bindCollisionPolygon_get_polygon
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Array of vertices which define the polygon.
---   			__Note:__ The returned value is a copy of the original. Methods which mutate the size or properties of the return value will not impact the original polygon. To change properties of the polygon, assign it to a temporary variable and make changes before reassigning the @polygon@ member.
 get_polygon ::
               (CollisionPolygon :< cls, Object :< cls) =>
               cls -> IO PoolVector2Array
@@ -123,7 +117,6 @@ instance NodeMethod CollisionPolygon "get_polygon" '[]
 
 {-# NOINLINE bindCollisionPolygon_is_disabled #-}
 
--- | If @true@, no collision will be produced.
 bindCollisionPolygon_is_disabled :: MethodBind
 bindCollisionPolygon_is_disabled
   = unsafePerformIO $
@@ -133,7 +126,6 @@ bindCollisionPolygon_is_disabled
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, no collision will be produced.
 is_disabled ::
               (CollisionPolygon :< cls, Object :< cls) => cls -> IO Bool
 is_disabled cls
@@ -151,7 +143,6 @@ instance NodeMethod CollisionPolygon "is_disabled" '[] (IO Bool)
 
 {-# NOINLINE bindCollisionPolygon_set_depth #-}
 
--- | Length that the resulting collision extends in either direction perpendicular to its polygon.
 bindCollisionPolygon_set_depth :: MethodBind
 bindCollisionPolygon_set_depth
   = unsafePerformIO $
@@ -161,7 +152,6 @@ bindCollisionPolygon_set_depth
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Length that the resulting collision extends in either direction perpendicular to its polygon.
 set_depth ::
             (CollisionPolygon :< cls, Object :< cls) => cls -> Float -> IO ()
 set_depth cls arg1
@@ -178,7 +168,6 @@ instance NodeMethod CollisionPolygon "set_depth" '[Float] (IO ())
 
 {-# NOINLINE bindCollisionPolygon_set_disabled #-}
 
--- | If @true@, no collision will be produced.
 bindCollisionPolygon_set_disabled :: MethodBind
 bindCollisionPolygon_set_disabled
   = unsafePerformIO $
@@ -188,7 +177,6 @@ bindCollisionPolygon_set_disabled
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, no collision will be produced.
 set_disabled ::
                (CollisionPolygon :< cls, Object :< cls) => cls -> Bool -> IO ()
 set_disabled cls arg1
@@ -206,8 +194,6 @@ instance NodeMethod CollisionPolygon "set_disabled" '[Bool] (IO ())
 
 {-# NOINLINE bindCollisionPolygon_set_polygon #-}
 
--- | Array of vertices which define the polygon.
---   			__Note:__ The returned value is a copy of the original. Methods which mutate the size or properties of the return value will not impact the original polygon. To change properties of the polygon, assign it to a temporary variable and make changes before reassigning the @polygon@ member.
 bindCollisionPolygon_set_polygon :: MethodBind
 bindCollisionPolygon_set_polygon
   = unsafePerformIO $
@@ -217,8 +203,6 @@ bindCollisionPolygon_set_polygon
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Array of vertices which define the polygon.
---   			__Note:__ The returned value is a copy of the original. Methods which mutate the size or properties of the return value will not impact the original polygon. To change properties of the polygon, assign it to a temporary variable and make changes before reassigning the @polygon@ member.
 set_polygon ::
               (CollisionPolygon :< cls, Object :< cls) =>
               cls -> PoolVector2Array -> IO ()

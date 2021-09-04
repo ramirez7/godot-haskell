@@ -19,11 +19,11 @@ import Data.Colour.SRGB(sRGB)
 import System.IO.Unsafe
 import Godot.Gdnative.Internal
 import Godot.Api.Types
-import Godot.Core.Reference()
+import Godot.Core.Object()
 
 {-# NOINLINE bindMarshalls_base64_to_raw #-}
 
--- | Returns a decoded @PoolByteArray@ corresponding to the Base64-encoded string @base64_str@.
+-- | Returns a decoded @PackedByteArray@ corresponding to the Base64-encoded string @base64_str@.
 bindMarshalls_base64_to_raw :: MethodBind
 bindMarshalls_base64_to_raw
   = unsafePerformIO $
@@ -33,7 +33,7 @@ bindMarshalls_base64_to_raw
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns a decoded @PoolByteArray@ corresponding to the Base64-encoded string @base64_str@.
+-- | Returns a decoded @PackedByteArray@ corresponding to the Base64-encoded string @base64_str@.
 base64_to_raw ::
                 (Marshalls :< cls, Object :< cls) =>
                 cls -> GodotString -> IO PoolByteArray
@@ -114,7 +114,7 @@ instance NodeMethod Marshalls "base64_to_variant"
 
 {-# NOINLINE bindMarshalls_raw_to_base64 #-}
 
--- | Returns a Base64-encoded string of a given @PoolByteArray@.
+-- | Returns a Base64-encoded string of a given @PackedByteArray@.
 bindMarshalls_raw_to_base64 :: MethodBind
 bindMarshalls_raw_to_base64
   = unsafePerformIO $
@@ -124,7 +124,7 @@ bindMarshalls_raw_to_base64
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns a Base64-encoded string of a given @PoolByteArray@.
+-- | Returns a Base64-encoded string of a given @PackedByteArray@.
 raw_to_base64 ::
                 (Marshalls :< cls, Object :< cls) =>
                 cls -> PoolByteArray -> IO GodotString

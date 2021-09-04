@@ -19,6 +19,7 @@ import Godot.Gdnative.Internal
 import Godot.Api.Types
 import Godot.Core.VisualShaderNode()
 
+-- | Emitted when input is changed via @input_name@.
 sig_input_type_changed ::
                        Godot.Internal.Dispatch.Signal VisualShaderNodeInput
 sig_input_type_changed
@@ -65,6 +66,7 @@ instance NodeMethod VisualShaderNodeInput "get_input_name" '[]
 
 {-# NOINLINE bindVisualShaderNodeInput_get_input_real_name #-}
 
+-- | Returns a translated name of the current constant in the Godot Shader Language. E.g. @"ALBEDO"@ if the @input_name@ equal to @"albedo"@.
 bindVisualShaderNodeInput_get_input_real_name :: MethodBind
 bindVisualShaderNodeInput_get_input_real_name
   = unsafePerformIO $
@@ -74,6 +76,7 @@ bindVisualShaderNodeInput_get_input_real_name
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
+-- | Returns a translated name of the current constant in the Godot Shader Language. E.g. @"ALBEDO"@ if the @input_name@ equal to @"albedo"@.
 get_input_real_name ::
                       (VisualShaderNodeInput :< cls, Object :< cls) =>
                       cls -> IO GodotString

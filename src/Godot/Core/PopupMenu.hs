@@ -24,6 +24,7 @@ module Godot.Core.PopupMenu
         Godot.Core.PopupMenu.add_shortcut,
         Godot.Core.PopupMenu.add_submenu_item, Godot.Core.PopupMenu.clear,
         Godot.Core.PopupMenu.get_allow_search,
+        Godot.Core.PopupMenu.get_current_index,
         Godot.Core.PopupMenu.get_item_accelerator,
         Godot.Core.PopupMenu.get_item_count,
         Godot.Core.PopupMenu.get_item_icon,
@@ -266,7 +267,7 @@ instance NodeMethod PopupMenu "add_check_item"
 
 {-# NOINLINE bindPopupMenu_add_check_shortcut #-}
 
--- | Adds a new checkable item and assigns the specified @ShortCut@ to it. Sets the label of the checkbox to the @ShortCut@'s name.
+-- | Adds a new checkable item and assigns the specified @Shortcut@ to it. Sets the label of the checkbox to the @Shortcut@'s name.
 --   				An @id@ can optionally be provided. If no @id@ is provided, one will be created from the index.
 --   				__Note:__ Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See @method set_item_checked@ for more info on how to control it.
 bindPopupMenu_add_check_shortcut :: MethodBind
@@ -278,7 +279,7 @@ bindPopupMenu_add_check_shortcut
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Adds a new checkable item and assigns the specified @ShortCut@ to it. Sets the label of the checkbox to the @ShortCut@'s name.
+-- | Adds a new checkable item and assigns the specified @Shortcut@ to it. Sets the label of the checkbox to the @Shortcut@'s name.
 --   				An @id@ can optionally be provided. If no @id@ is provided, one will be created from the index.
 --   				__Note:__ Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See @method set_item_checked@ for more info on how to control it.
 add_check_shortcut ::
@@ -341,7 +342,7 @@ instance NodeMethod PopupMenu "add_icon_check_item"
 
 {-# NOINLINE bindPopupMenu_add_icon_check_shortcut #-}
 
--- | Adds a new checkable item and assigns the specified @ShortCut@ and icon @texture@ to it. Sets the label of the checkbox to the @ShortCut@'s name.
+-- | Adds a new checkable item and assigns the specified @Shortcut@ and icon @texture@ to it. Sets the label of the checkbox to the @Shortcut@'s name.
 --   				An @id@ can optionally be provided. If no @id@ is provided, one will be created from the index.
 --   				__Note:__ Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See @method set_item_checked@ for more info on how to control it.
 bindPopupMenu_add_icon_check_shortcut :: MethodBind
@@ -353,7 +354,7 @@ bindPopupMenu_add_icon_check_shortcut
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Adds a new checkable item and assigns the specified @ShortCut@ and icon @texture@ to it. Sets the label of the checkbox to the @ShortCut@'s name.
+-- | Adds a new checkable item and assigns the specified @Shortcut@ and icon @texture@ to it. Sets the label of the checkbox to the @Shortcut@'s name.
 --   				An @id@ can optionally be provided. If no @id@ is provided, one will be created from the index.
 --   				__Note:__ Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See @method set_item_checked@ for more info on how to control it.
 add_icon_check_shortcut ::
@@ -482,7 +483,7 @@ instance NodeMethod PopupMenu "add_icon_radio_check_shortcut"
 
 {-# NOINLINE bindPopupMenu_add_icon_shortcut #-}
 
--- | Adds a new item and assigns the specified @ShortCut@ and icon @texture@ to it. Sets the label of the checkbox to the @ShortCut@'s name.
+-- | Adds a new item and assigns the specified @Shortcut@ and icon @texture@ to it. Sets the label of the checkbox to the @Shortcut@'s name.
 --   				An @id@ can optionally be provided. If no @id@ is provided, one will be created from the index.
 bindPopupMenu_add_icon_shortcut :: MethodBind
 bindPopupMenu_add_icon_shortcut
@@ -493,7 +494,7 @@ bindPopupMenu_add_icon_shortcut
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Adds a new item and assigns the specified @ShortCut@ and icon @texture@ to it. Sets the label of the checkbox to the @ShortCut@'s name.
+-- | Adds a new item and assigns the specified @Shortcut@ and icon @texture@ to it. Sets the label of the checkbox to the @Shortcut@'s name.
 --   				An @id@ can optionally be provided. If no @id@ is provided, one will be created from the index.
 add_icon_shortcut ::
                     (PopupMenu :< cls, Object :< cls) =>
@@ -627,7 +628,7 @@ instance NodeMethod PopupMenu "add_radio_check_item"
 
 {-# NOINLINE bindPopupMenu_add_radio_check_shortcut #-}
 
--- | Adds a new radio check button and assigns a @ShortCut@ to it. Sets the label of the checkbox to the @ShortCut@'s name.
+-- | Adds a new radio check button and assigns a @Shortcut@ to it. Sets the label of the checkbox to the @Shortcut@'s name.
 --   				An @id@ can optionally be provided. If no @id@ is provided, one will be created from the index.
 --   				__Note:__ Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See @method set_item_checked@ for more info on how to control it.
 bindPopupMenu_add_radio_check_shortcut :: MethodBind
@@ -639,7 +640,7 @@ bindPopupMenu_add_radio_check_shortcut
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Adds a new radio check button and assigns a @ShortCut@ to it. Sets the label of the checkbox to the @ShortCut@'s name.
+-- | Adds a new radio check button and assigns a @Shortcut@ to it. Sets the label of the checkbox to the @Shortcut@'s name.
 --   				An @id@ can optionally be provided. If no @id@ is provided, one will be created from the index.
 --   				__Note:__ Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See @method set_item_checked@ for more info on how to control it.
 add_radio_check_shortcut ::
@@ -664,7 +665,8 @@ instance NodeMethod PopupMenu "add_radio_check_shortcut"
 
 {-# NOINLINE bindPopupMenu_add_separator #-}
 
--- | Adds a separator between items. Separators also occupy an index.
+-- | Adds a separator between items. Separators also occupy an index, which you can set by using the @id@ parameter.
+--   				A @label@ can optionally be provided, which will appear at the center of the separator.
 bindPopupMenu_add_separator :: MethodBind
 bindPopupMenu_add_separator
   = unsafePerformIO $
@@ -674,7 +676,8 @@ bindPopupMenu_add_separator
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Adds a separator between items. Separators also occupy an index.
+-- | Adds a separator between items. Separators also occupy an index, which you can set by using the @id@ parameter.
+--   				A @label@ can optionally be provided, which will appear at the center of the separator.
 add_separator ::
                 (PopupMenu :< cls, Object :< cls) =>
                 cls -> Maybe GodotString -> IO ()
@@ -693,7 +696,7 @@ instance NodeMethod PopupMenu "add_separator" '[Maybe GodotString]
 
 {-# NOINLINE bindPopupMenu_add_shortcut #-}
 
--- | Adds a @ShortCut@.
+-- | Adds a @Shortcut@.
 --   				An @id@ can optionally be provided. If no @id@ is provided, one will be created from the index.
 bindPopupMenu_add_shortcut :: MethodBind
 bindPopupMenu_add_shortcut
@@ -704,7 +707,7 @@ bindPopupMenu_add_shortcut
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Adds a @ShortCut@.
+-- | Adds a @Shortcut@.
 --   				An @id@ can optionally be provided. If no @id@ is provided, one will be created from the index.
 add_shortcut ::
                (PopupMenu :< cls, Object :< cls) =>
@@ -784,7 +787,7 @@ instance NodeMethod PopupMenu "clear" '[] (IO ()) where
 
 {-# NOINLINE bindPopupMenu_get_allow_search #-}
 
--- | If @true@, allows to navigate @PopupMenu@ with letter keys.
+-- | If @true@, allows navigating @PopupMenu@ with letter keys.
 bindPopupMenu_get_allow_search :: MethodBind
 bindPopupMenu_get_allow_search
   = unsafePerformIO $
@@ -794,7 +797,7 @@ bindPopupMenu_get_allow_search
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, allows to navigate @PopupMenu@ with letter keys.
+-- | If @true@, allows navigating @PopupMenu@ with letter keys.
 get_allow_search ::
                    (PopupMenu :< cls, Object :< cls) => cls -> IO Bool
 get_allow_search cls
@@ -808,6 +811,33 @@ get_allow_search cls
 instance NodeMethod PopupMenu "get_allow_search" '[] (IO Bool)
          where
         nodeMethod = Godot.Core.PopupMenu.get_allow_search
+
+{-# NOINLINE bindPopupMenu_get_current_index #-}
+
+-- | Returns the index of the currently focused item. Returns @-1@ if no item is focused.
+bindPopupMenu_get_current_index :: MethodBind
+bindPopupMenu_get_current_index
+  = unsafePerformIO $
+      withCString "PopupMenu" $
+        \ clsNamePtr ->
+          withCString "get_current_index" $
+            \ methodNamePtr ->
+              godot_method_bind_get_method clsNamePtr methodNamePtr
+
+-- | Returns the index of the currently focused item. Returns @-1@ if no item is focused.
+get_current_index ::
+                    (PopupMenu :< cls, Object :< cls) => cls -> IO Int
+get_current_index cls
+  = withVariantArray []
+      (\ (arrPtr, len) ->
+         godot_method_bind_call bindPopupMenu_get_current_index (upcast cls)
+           arrPtr
+           len
+           >>= \ (err, res) -> throwIfErr err >> fromGodotVariant res)
+
+instance NodeMethod PopupMenu "get_current_index" '[] (IO Int)
+         where
+        nodeMethod = Godot.Core.PopupMenu.get_current_index
 
 {-# NOINLINE bindPopupMenu_get_item_accelerator #-}
 
@@ -974,7 +1004,7 @@ instance NodeMethod PopupMenu "get_item_metadata" '[Int]
 
 {-# NOINLINE bindPopupMenu_get_item_shortcut #-}
 
--- | Returns the @ShortCut@ associated with the specified @idx@ item.
+-- | Returns the @Shortcut@ associated with the specified @idx@ item.
 bindPopupMenu_get_item_shortcut :: MethodBind
 bindPopupMenu_get_item_shortcut
   = unsafePerformIO $
@@ -984,7 +1014,7 @@ bindPopupMenu_get_item_shortcut
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the @ShortCut@ associated with the specified @idx@ item.
+-- | Returns the @Shortcut@ associated with the specified @idx@ item.
 get_item_shortcut ::
                     (PopupMenu :< cls, Object :< cls) => cls -> Int -> IO ShortCut
 get_item_shortcut cls arg1
@@ -1206,7 +1236,6 @@ instance NodeMethod PopupMenu "is_hide_on_state_item_selection" '[]
 
 {-# NOINLINE bindPopupMenu_is_hide_on_window_lose_focus #-}
 
--- | Returns @true@ if the popup will be hidden when the window loses focus or not.
 bindPopupMenu_is_hide_on_window_lose_focus :: MethodBind
 bindPopupMenu_is_hide_on_window_lose_focus
   = unsafePerformIO $
@@ -1216,7 +1245,6 @@ bindPopupMenu_is_hide_on_window_lose_focus
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns @true@ if the popup will be hidden when the window loses focus or not.
 is_hide_on_window_lose_focus ::
                                (PopupMenu :< cls, Object :< cls) => cls -> IO Bool
 is_hide_on_window_lose_focus cls
@@ -1435,7 +1463,7 @@ instance NodeMethod PopupMenu "remove_item" '[Int] (IO ()) where
 
 {-# NOINLINE bindPopupMenu_set_allow_search #-}
 
--- | If @true@, allows to navigate @PopupMenu@ with letter keys.
+-- | If @true@, allows navigating @PopupMenu@ with letter keys.
 bindPopupMenu_set_allow_search :: MethodBind
 bindPopupMenu_set_allow_search
   = unsafePerformIO $
@@ -1445,7 +1473,7 @@ bindPopupMenu_set_allow_search
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, allows to navigate @PopupMenu@ with letter keys.
+-- | If @true@, allows navigating @PopupMenu@ with letter keys.
 set_allow_search ::
                    (PopupMenu :< cls, Object :< cls) => cls -> Bool -> IO ()
 set_allow_search cls arg1
@@ -1555,7 +1583,6 @@ instance NodeMethod PopupMenu "set_hide_on_state_item_selection"
 
 {-# NOINLINE bindPopupMenu_set_hide_on_window_lose_focus #-}
 
--- | Hides the @PopupMenu@ when the window loses focus.
 bindPopupMenu_set_hide_on_window_lose_focus :: MethodBind
 bindPopupMenu_set_hide_on_window_lose_focus
   = unsafePerformIO $
@@ -1565,7 +1592,6 @@ bindPopupMenu_set_hide_on_window_lose_focus
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Hides the @PopupMenu@ when the window loses focus.
 set_hide_on_window_lose_focus ::
                                 (PopupMenu :< cls, Object :< cls) => cls -> Bool -> IO ()
 set_hide_on_window_lose_focus cls arg1
@@ -1760,7 +1786,7 @@ instance NodeMethod PopupMenu "set_item_disabled" '[Int, Bool]
 
 {-# NOINLINE bindPopupMenu_set_item_icon #-}
 
--- | Replaces the @Texture@ icon of the specified @idx@.
+-- | Replaces the @Texture2D@ icon of the specified @idx@.
 bindPopupMenu_set_item_icon :: MethodBind
 bindPopupMenu_set_item_icon
   = unsafePerformIO $
@@ -1770,7 +1796,7 @@ bindPopupMenu_set_item_icon
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Replaces the @Texture@ icon of the specified @idx@.
+-- | Replaces the @Texture2D@ icon of the specified @idx@.
 set_item_icon ::
                 (PopupMenu :< cls, Object :< cls) => cls -> Int -> Texture -> IO ()
 set_item_icon cls arg1 arg2
@@ -1845,7 +1871,7 @@ instance NodeMethod PopupMenu "set_item_metadata"
 
 {-# NOINLINE bindPopupMenu_set_item_multistate #-}
 
--- | Sets the state of an multistate item. See @method add_multistate_item@ for details.
+-- | Sets the state of a multistate item. See @method add_multistate_item@ for details.
 bindPopupMenu_set_item_multistate :: MethodBind
 bindPopupMenu_set_item_multistate
   = unsafePerformIO $
@@ -1855,7 +1881,7 @@ bindPopupMenu_set_item_multistate
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the state of an multistate item. See @method add_multistate_item@ for details.
+-- | Sets the state of a multistate item. See @method add_multistate_item@ for details.
 set_item_multistate ::
                       (PopupMenu :< cls, Object :< cls) => cls -> Int -> Int -> IO ()
 set_item_multistate cls arg1 arg2
@@ -1874,7 +1900,7 @@ instance NodeMethod PopupMenu "set_item_multistate" '[Int, Int]
 
 {-# NOINLINE bindPopupMenu_set_item_shortcut #-}
 
--- | Sets a @ShortCut@ for the specified item @idx@.
+-- | Sets a @Shortcut@ for the specified item @idx@.
 bindPopupMenu_set_item_shortcut :: MethodBind
 bindPopupMenu_set_item_shortcut
   = unsafePerformIO $
@@ -1884,7 +1910,7 @@ bindPopupMenu_set_item_shortcut
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets a @ShortCut@ for the specified item @idx@.
+-- | Sets a @Shortcut@ for the specified item @idx@.
 set_item_shortcut ::
                     (PopupMenu :< cls, Object :< cls) =>
                     cls -> Int -> ShortCut -> Maybe Bool -> IO ()
@@ -1906,7 +1932,7 @@ instance NodeMethod PopupMenu "set_item_shortcut"
 
 {-# NOINLINE bindPopupMenu_set_item_shortcut_disabled #-}
 
--- | Disables the @ShortCut@ of the specified index @idx@.
+-- | Disables the @Shortcut@ of the specified index @idx@.
 bindPopupMenu_set_item_shortcut_disabled :: MethodBind
 bindPopupMenu_set_item_shortcut_disabled
   = unsafePerformIO $
@@ -1916,7 +1942,7 @@ bindPopupMenu_set_item_shortcut_disabled
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Disables the @ShortCut@ of the specified index @idx@.
+-- | Disables the @Shortcut@ of the specified index @idx@.
 set_item_shortcut_disabled ::
                              (PopupMenu :< cls, Object :< cls) => cls -> Int -> Bool -> IO ()
 set_item_shortcut_disabled cls arg1 arg2
@@ -2082,7 +2108,7 @@ instance NodeMethod PopupMenu "toggle_item_checked" '[Int] (IO ())
 
 {-# NOINLINE bindPopupMenu_toggle_item_multistate #-}
 
--- | Cycle to the next state of an multistate item. See @method add_multistate_item@ for details.
+-- | Cycle to the next state of a multistate item. See @method add_multistate_item@ for details.
 bindPopupMenu_toggle_item_multistate :: MethodBind
 bindPopupMenu_toggle_item_multistate
   = unsafePerformIO $
@@ -2092,7 +2118,7 @@ bindPopupMenu_toggle_item_multistate
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Cycle to the next state of an multistate item. See @method add_multistate_item@ for details.
+-- | Cycle to the next state of a multistate item. See @method add_multistate_item@ for details.
 toggle_item_multistate ::
                          (PopupMenu :< cls, Object :< cls) => cls -> Int -> IO ()
 toggle_item_multistate cls arg1

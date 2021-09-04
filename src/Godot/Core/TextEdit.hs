@@ -82,6 +82,7 @@ module Godot.Core.TextEdit
         Godot.Core.TextEdit.is_show_line_numbers_enabled,
         Godot.Core.TextEdit.is_smooth_scroll_enabled,
         Godot.Core.TextEdit.is_syntax_coloring_enabled,
+        Godot.Core.TextEdit.is_virtual_keyboard_enabled,
         Godot.Core.TextEdit.is_wrap_enabled,
         Godot.Core.TextEdit.menu_option, Godot.Core.TextEdit.paste,
         Godot.Core.TextEdit.redo, Godot.Core.TextEdit.remove_breakpoints,
@@ -96,6 +97,7 @@ module Godot.Core.TextEdit
         Godot.Core.TextEdit.set_hiding_enabled,
         Godot.Core.TextEdit.set_highlight_all_occurrences,
         Godot.Core.TextEdit.set_highlight_current_line,
+        Godot.Core.TextEdit.set_line,
         Godot.Core.TextEdit.set_line_as_hidden,
         Godot.Core.TextEdit.set_minimap_width,
         Godot.Core.TextEdit.set_override_selected_font_color,
@@ -108,6 +110,7 @@ module Godot.Core.TextEdit
         Godot.Core.TextEdit.set_syntax_coloring,
         Godot.Core.TextEdit.set_text, Godot.Core.TextEdit.set_v_scroll,
         Godot.Core.TextEdit.set_v_scroll_speed,
+        Godot.Core.TextEdit.set_virtual_keyboard_enabled,
         Godot.Core.TextEdit.set_wrap_enabled,
         Godot.Core.TextEdit.toggle_fold_line, Godot.Core.TextEdit.undo,
         Godot.Core.TextEdit.unfold_line,
@@ -164,21 +167,18 @@ _SEARCH_RESULT_LINE = 1
 _SEARCH_MATCH_CASE :: Int
 _SEARCH_MATCH_CASE = 1
 
--- | Emitted when a breakpoint is placed via the breakpoint gutter.
 sig_breakpoint_toggled :: Godot.Internal.Dispatch.Signal TextEdit
 sig_breakpoint_toggled
   = Godot.Internal.Dispatch.Signal "breakpoint_toggled"
 
 instance NodeSignal TextEdit "breakpoint_toggled" '[Int]
 
--- | Emitted when the cursor changes.
 sig_cursor_changed :: Godot.Internal.Dispatch.Signal TextEdit
 sig_cursor_changed
   = Godot.Internal.Dispatch.Signal "cursor_changed"
 
 instance NodeSignal TextEdit "cursor_changed" '[]
 
--- | Emitted when the info icon is clicked.
 sig_info_clicked :: Godot.Internal.Dispatch.Signal TextEdit
 sig_info_clicked = Godot.Internal.Dispatch.Signal "info_clicked"
 
@@ -332,6 +332,13 @@ instance NodeProperty TextEdit "v_scroll_speed" Float 'False where
         nodeProperty
           = (get_v_scroll_speed, wrapDroppingSetter set_v_scroll_speed,
              Nothing)
+
+instance NodeProperty TextEdit "virtual_keyboard_enabled" Bool
+           'False
+         where
+        nodeProperty
+          = (is_virtual_keyboard_enabled,
+             wrapDroppingSetter set_virtual_keyboard_enabled, Nothing)
 
 instance NodeProperty TextEdit "wrap_enabled" Bool 'False where
         nodeProperty
@@ -557,7 +564,6 @@ instance NodeMethod TextEdit "_v_scroll_input" '[] (IO ()) where
 
 {-# NOINLINE bindTextEdit_add_color_region #-}
 
--- | Adds color region (given the delimiters) and its colors.
 bindTextEdit_add_color_region :: MethodBind
 bindTextEdit_add_color_region
   = unsafePerformIO $
@@ -567,7 +573,6 @@ bindTextEdit_add_color_region
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Adds color region (given the delimiters) and its colors.
 add_color_region ::
                    (TextEdit :< cls, Object :< cls) =>
                    cls -> GodotString -> GodotString -> Color -> Maybe Bool -> IO ()
@@ -589,7 +594,6 @@ instance NodeMethod TextEdit "add_color_region"
 
 {-# NOINLINE bindTextEdit_add_keyword_color #-}
 
--- | Adds a @keyword@ and its @Color@.
 bindTextEdit_add_keyword_color :: MethodBind
 bindTextEdit_add_keyword_color
   = unsafePerformIO $
@@ -599,7 +603,6 @@ bindTextEdit_add_keyword_color
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Adds a @keyword@ and its @Color@.
 add_keyword_color ::
                     (TextEdit :< cls, Object :< cls) =>
                     cls -> GodotString -> Color -> IO ()
@@ -619,7 +622,6 @@ instance NodeMethod TextEdit "add_keyword_color"
 
 {-# NOINLINE bindTextEdit_can_fold #-}
 
--- | Returns if the given line is foldable, that is, it has indented lines right below it.
 bindTextEdit_can_fold :: MethodBind
 bindTextEdit_can_fold
   = unsafePerformIO $
@@ -629,7 +631,6 @@ bindTextEdit_can_fold
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns if the given line is foldable, that is, it has indented lines right below it.
 can_fold ::
            (TextEdit :< cls, Object :< cls) => cls -> Int -> IO Bool
 can_fold cls arg1
@@ -644,7 +645,6 @@ instance NodeMethod TextEdit "can_fold" '[Int] (IO Bool) where
 
 {-# NOINLINE bindTextEdit_center_viewport_to_cursor #-}
 
--- | Centers the viewport on the line the editing cursor is at. This also resets the @scroll_horizontal@ value to @0@.
 bindTextEdit_center_viewport_to_cursor :: MethodBind
 bindTextEdit_center_viewport_to_cursor
   = unsafePerformIO $
@@ -654,7 +654,6 @@ bindTextEdit_center_viewport_to_cursor
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Centers the viewport on the line the editing cursor is at. This also resets the @scroll_horizontal@ value to @0@.
 center_viewport_to_cursor ::
                             (TextEdit :< cls, Object :< cls) => cls -> IO ()
 center_viewport_to_cursor cls
@@ -673,7 +672,6 @@ instance NodeMethod TextEdit "center_viewport_to_cursor" '[]
 
 {-# NOINLINE bindTextEdit_clear_colors #-}
 
--- | Clears all custom syntax coloring information previously added with @method add_color_region@ or @method add_keyword_color@.
 bindTextEdit_clear_colors :: MethodBind
 bindTextEdit_clear_colors
   = unsafePerformIO $
@@ -683,7 +681,6 @@ bindTextEdit_clear_colors
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Clears all custom syntax coloring information previously added with @method add_color_region@ or @method add_keyword_color@.
 clear_colors :: (TextEdit :< cls, Object :< cls) => cls -> IO ()
 clear_colors cls
   = withVariantArray []
@@ -724,7 +721,7 @@ instance NodeMethod TextEdit "clear_undo_history" '[] (IO ()) where
 
 {-# NOINLINE bindTextEdit_copy #-}
 
--- | Copy's the current text selection.
+-- | Copies the current text selection. Can be overridden with @method _copy@.
 bindTextEdit_copy :: MethodBind
 bindTextEdit_copy
   = unsafePerformIO $
@@ -734,7 +731,7 @@ bindTextEdit_copy
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Copy's the current text selection.
+-- | Copies the current text selection. Can be overridden with @method _copy@.
 copy :: (TextEdit :< cls, Object :< cls) => cls -> IO ()
 copy cls
   = withVariantArray []
@@ -747,7 +744,6 @@ instance NodeMethod TextEdit "copy" '[] (IO ()) where
 
 {-# NOINLINE bindTextEdit_cursor_get_blink_enabled #-}
 
--- | If @true@, the caret (visual cursor) blinks.
 bindTextEdit_cursor_get_blink_enabled :: MethodBind
 bindTextEdit_cursor_get_blink_enabled
   = unsafePerformIO $
@@ -757,7 +753,6 @@ bindTextEdit_cursor_get_blink_enabled
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, the caret (visual cursor) blinks.
 cursor_get_blink_enabled ::
                            (TextEdit :< cls, Object :< cls) => cls -> IO Bool
 cursor_get_blink_enabled cls
@@ -776,7 +771,6 @@ instance NodeMethod TextEdit "cursor_get_blink_enabled" '[]
 
 {-# NOINLINE bindTextEdit_cursor_get_blink_speed #-}
 
--- | Duration (in seconds) of a caret's blinking cycle.
 bindTextEdit_cursor_get_blink_speed :: MethodBind
 bindTextEdit_cursor_get_blink_speed
   = unsafePerformIO $
@@ -786,7 +780,6 @@ bindTextEdit_cursor_get_blink_speed
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Duration (in seconds) of a caret's blinking cycle.
 cursor_get_blink_speed ::
                          (TextEdit :< cls, Object :< cls) => cls -> IO Float
 cursor_get_blink_speed cls
@@ -805,7 +798,6 @@ instance NodeMethod TextEdit "cursor_get_blink_speed" '[]
 
 {-# NOINLINE bindTextEdit_cursor_get_column #-}
 
--- | Returns the column the editing cursor is at.
 bindTextEdit_cursor_get_column :: MethodBind
 bindTextEdit_cursor_get_column
   = unsafePerformIO $
@@ -815,7 +807,6 @@ bindTextEdit_cursor_get_column
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the column the editing cursor is at.
 cursor_get_column ::
                     (TextEdit :< cls, Object :< cls) => cls -> IO Int
 cursor_get_column cls
@@ -831,7 +822,6 @@ instance NodeMethod TextEdit "cursor_get_column" '[] (IO Int) where
 
 {-# NOINLINE bindTextEdit_cursor_get_line #-}
 
--- | Returns the line the editing cursor is at.
 bindTextEdit_cursor_get_line :: MethodBind
 bindTextEdit_cursor_get_line
   = unsafePerformIO $
@@ -841,7 +831,6 @@ bindTextEdit_cursor_get_line
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the line the editing cursor is at.
 cursor_get_line ::
                   (TextEdit :< cls, Object :< cls) => cls -> IO Int
 cursor_get_line cls
@@ -857,8 +846,6 @@ instance NodeMethod TextEdit "cursor_get_line" '[] (IO Int) where
 
 {-# NOINLINE bindTextEdit_cursor_is_block_mode #-}
 
--- | If @true@, the caret displays as a rectangle.
---   			If @false@, the caret displays as a bar.
 bindTextEdit_cursor_is_block_mode :: MethodBind
 bindTextEdit_cursor_is_block_mode
   = unsafePerformIO $
@@ -868,8 +855,6 @@ bindTextEdit_cursor_is_block_mode
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, the caret displays as a rectangle.
---   			If @false@, the caret displays as a bar.
 cursor_is_block_mode ::
                        (TextEdit :< cls, Object :< cls) => cls -> IO Bool
 cursor_is_block_mode cls
@@ -887,7 +872,6 @@ instance NodeMethod TextEdit "cursor_is_block_mode" '[] (IO Bool)
 
 {-# NOINLINE bindTextEdit_cursor_set_blink_enabled #-}
 
--- | If @true@, the caret (visual cursor) blinks.
 bindTextEdit_cursor_set_blink_enabled :: MethodBind
 bindTextEdit_cursor_set_blink_enabled
   = unsafePerformIO $
@@ -897,7 +881,6 @@ bindTextEdit_cursor_set_blink_enabled
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, the caret (visual cursor) blinks.
 cursor_set_blink_enabled ::
                            (TextEdit :< cls, Object :< cls) => cls -> Bool -> IO ()
 cursor_set_blink_enabled cls arg1
@@ -916,7 +899,6 @@ instance NodeMethod TextEdit "cursor_set_blink_enabled" '[Bool]
 
 {-# NOINLINE bindTextEdit_cursor_set_blink_speed #-}
 
--- | Duration (in seconds) of a caret's blinking cycle.
 bindTextEdit_cursor_set_blink_speed :: MethodBind
 bindTextEdit_cursor_set_blink_speed
   = unsafePerformIO $
@@ -926,7 +908,6 @@ bindTextEdit_cursor_set_blink_speed
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Duration (in seconds) of a caret's blinking cycle.
 cursor_set_blink_speed ::
                          (TextEdit :< cls, Object :< cls) => cls -> Float -> IO ()
 cursor_set_blink_speed cls arg1
@@ -945,8 +926,6 @@ instance NodeMethod TextEdit "cursor_set_blink_speed" '[Float]
 
 {-# NOINLINE bindTextEdit_cursor_set_block_mode #-}
 
--- | If @true@, the caret displays as a rectangle.
---   			If @false@, the caret displays as a bar.
 bindTextEdit_cursor_set_block_mode :: MethodBind
 bindTextEdit_cursor_set_block_mode
   = unsafePerformIO $
@@ -956,8 +935,6 @@ bindTextEdit_cursor_set_block_mode
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, the caret displays as a rectangle.
---   			If @false@, the caret displays as a bar.
 cursor_set_block_mode ::
                         (TextEdit :< cls, Object :< cls) => cls -> Bool -> IO ()
 cursor_set_block_mode cls arg1
@@ -976,8 +953,6 @@ instance NodeMethod TextEdit "cursor_set_block_mode" '[Bool]
 
 {-# NOINLINE bindTextEdit_cursor_set_column #-}
 
--- | Moves the cursor at the specified @column@ index.
---   				If @adjust_viewport@ is set to @true@, the viewport will center at the cursor position after the move occurs.
 bindTextEdit_cursor_set_column :: MethodBind
 bindTextEdit_cursor_set_column
   = unsafePerformIO $
@@ -987,8 +962,6 @@ bindTextEdit_cursor_set_column
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Moves the cursor at the specified @column@ index.
---   				If @adjust_viewport@ is set to @true@, the viewport will center at the cursor position after the move occurs.
 cursor_set_column ::
                     (TextEdit :< cls, Object :< cls) =>
                     cls -> Int -> Maybe Bool -> IO ()
@@ -1008,9 +981,6 @@ instance NodeMethod TextEdit "cursor_set_column" '[Int, Maybe Bool]
 
 {-# NOINLINE bindTextEdit_cursor_set_line #-}
 
--- | Moves the cursor at the specified @line@ index.
---   				If @adjust_viewport@ is set to @true@, the viewport will center at the cursor position after the move occurs.
---   				If @can_be_hidden@ is set to @true@, the specified @line@ can be hidden using @method set_line_as_hidden@.
 bindTextEdit_cursor_set_line :: MethodBind
 bindTextEdit_cursor_set_line
   = unsafePerformIO $
@@ -1020,9 +990,6 @@ bindTextEdit_cursor_set_line
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Moves the cursor at the specified @line@ index.
---   				If @adjust_viewport@ is set to @true@, the viewport will center at the cursor position after the move occurs.
---   				If @can_be_hidden@ is set to @true@, the specified @line@ can be hidden using @method set_line_as_hidden@.
 cursor_set_line ::
                   (TextEdit :< cls, Object :< cls) =>
                   cls -> Int -> Maybe Bool -> Maybe Bool -> Maybe Int -> IO ()
@@ -1045,7 +1012,7 @@ instance NodeMethod TextEdit "cursor_set_line"
 
 {-# NOINLINE bindTextEdit_cut #-}
 
--- | Cut's the current selection.
+-- | Cut's the current selection. Can be overridden with @method _cut@.
 bindTextEdit_cut :: MethodBind
 bindTextEdit_cut
   = unsafePerformIO $
@@ -1055,7 +1022,7 @@ bindTextEdit_cut
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Cut's the current selection.
+-- | Cut's the current selection. Can be overridden with @method _cut@.
 cut :: (TextEdit :< cls, Object :< cls) => cls -> IO ()
 cut cls
   = withVariantArray []
@@ -1118,7 +1085,6 @@ instance NodeMethod TextEdit "draw_minimap" '[Bool] (IO ()) where
 
 {-# NOINLINE bindTextEdit_fold_all_lines #-}
 
--- | Folds all lines that are possible to be folded (see @method can_fold@).
 bindTextEdit_fold_all_lines :: MethodBind
 bindTextEdit_fold_all_lines
   = unsafePerformIO $
@@ -1128,7 +1094,6 @@ bindTextEdit_fold_all_lines
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Folds all lines that are possible to be folded (see @method can_fold@).
 fold_all_lines :: (TextEdit :< cls, Object :< cls) => cls -> IO ()
 fold_all_lines cls
   = withVariantArray []
@@ -1143,7 +1108,6 @@ instance NodeMethod TextEdit "fold_all_lines" '[] (IO ()) where
 
 {-# NOINLINE bindTextEdit_fold_line #-}
 
--- | Folds the given line, if possible (see @method can_fold@).
 bindTextEdit_fold_line :: MethodBind
 bindTextEdit_fold_line
   = unsafePerformIO $
@@ -1153,7 +1117,6 @@ bindTextEdit_fold_line
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Folds the given line, if possible (see @method can_fold@).
 fold_line ::
             (TextEdit :< cls, Object :< cls) => cls -> Int -> IO ()
 fold_line cls arg1
@@ -1168,7 +1131,6 @@ instance NodeMethod TextEdit "fold_line" '[Int] (IO ()) where
 
 {-# NOINLINE bindTextEdit_get_breakpoints #-}
 
--- | Returns an array containing the line number of each breakpoint.
 bindTextEdit_get_breakpoints :: MethodBind
 bindTextEdit_get_breakpoints
   = unsafePerformIO $
@@ -1178,7 +1140,6 @@ bindTextEdit_get_breakpoints
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns an array containing the line number of each breakpoint.
 get_breakpoints ::
                   (TextEdit :< cls, Object :< cls) => cls -> IO Array
 get_breakpoints cls
@@ -1194,7 +1155,7 @@ instance NodeMethod TextEdit "get_breakpoints" '[] (IO Array) where
 
 {-# NOINLINE bindTextEdit_get_h_scroll #-}
 
--- | The current horizontal scroll value.
+-- | If there is a horizontal scrollbar, this determines the current horizontal scroll value in pixels.
 bindTextEdit_get_h_scroll :: MethodBind
 bindTextEdit_get_h_scroll
   = unsafePerformIO $
@@ -1204,7 +1165,7 @@ bindTextEdit_get_h_scroll
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The current horizontal scroll value.
+-- | If there is a horizontal scrollbar, this determines the current horizontal scroll value in pixels.
 get_h_scroll :: (TextEdit :< cls, Object :< cls) => cls -> IO Int
 get_h_scroll cls
   = withVariantArray []
@@ -1219,7 +1180,6 @@ instance NodeMethod TextEdit "get_h_scroll" '[] (IO Int) where
 
 {-# NOINLINE bindTextEdit_get_keyword_color #-}
 
--- | Returns the @Color@ of the specified @keyword@.
 bindTextEdit_get_keyword_color :: MethodBind
 bindTextEdit_get_keyword_color
   = unsafePerformIO $
@@ -1229,7 +1189,6 @@ bindTextEdit_get_keyword_color
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the @Color@ of the specified @keyword@.
 get_keyword_color ::
                     (TextEdit :< cls, Object :< cls) => cls -> GodotString -> IO Color
 get_keyword_color cls arg1
@@ -1405,7 +1364,6 @@ instance NodeMethod TextEdit "get_selection_from_line" '[] (IO Int)
 
 {-# NOINLINE bindTextEdit_get_selection_text #-}
 
--- | Returns the text inside the selection.
 bindTextEdit_get_selection_text :: MethodBind
 bindTextEdit_get_selection_text
   = unsafePerformIO $
@@ -1415,7 +1373,6 @@ bindTextEdit_get_selection_text
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the text inside the selection.
 get_selection_text ::
                      (TextEdit :< cls, Object :< cls) => cls -> IO GodotString
 get_selection_text cls
@@ -1514,7 +1471,7 @@ instance NodeMethod TextEdit "get_text" '[] (IO GodotString) where
 
 {-# NOINLINE bindTextEdit_get_v_scroll #-}
 
--- | The current vertical scroll value.
+-- | If there is a vertical scrollbar, this determines the current vertical scroll value in line numbers, starting at 0 for the top line.
 bindTextEdit_get_v_scroll :: MethodBind
 bindTextEdit_get_v_scroll
   = unsafePerformIO $
@@ -1524,7 +1481,7 @@ bindTextEdit_get_v_scroll
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The current vertical scroll value.
+-- | If there is a vertical scrollbar, this determines the current vertical scroll value in line numbers, starting at 0 for the top line.
 get_v_scroll :: (TextEdit :< cls, Object :< cls) => cls -> IO Float
 get_v_scroll cls
   = withVariantArray []
@@ -1539,7 +1496,7 @@ instance NodeMethod TextEdit "get_v_scroll" '[] (IO Float) where
 
 {-# NOINLINE bindTextEdit_get_v_scroll_speed #-}
 
--- | Vertical scroll sensitivity.
+-- | Sets the scroll speed with the minimap or when @scroll_smooth@ is enabled.
 bindTextEdit_get_v_scroll_speed :: MethodBind
 bindTextEdit_get_v_scroll_speed
   = unsafePerformIO $
@@ -1549,7 +1506,7 @@ bindTextEdit_get_v_scroll_speed
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Vertical scroll sensitivity.
+-- | Sets the scroll speed with the minimap or when @scroll_smooth@ is enabled.
 get_v_scroll_speed ::
                      (TextEdit :< cls, Object :< cls) => cls -> IO Float
 get_v_scroll_speed cls
@@ -1566,7 +1523,6 @@ instance NodeMethod TextEdit "get_v_scroll_speed" '[] (IO Float)
 
 {-# NOINLINE bindTextEdit_get_word_under_cursor #-}
 
--- | Returns a @String@ text with the word under the mouse cursor location.
 bindTextEdit_get_word_under_cursor :: MethodBind
 bindTextEdit_get_word_under_cursor
   = unsafePerformIO $
@@ -1576,7 +1532,6 @@ bindTextEdit_get_word_under_cursor
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns a @String@ text with the word under the mouse cursor location.
 get_word_under_cursor ::
                         (TextEdit :< cls, Object :< cls) => cls -> IO GodotString
 get_word_under_cursor cls
@@ -1595,7 +1550,6 @@ instance NodeMethod TextEdit "get_word_under_cursor" '[]
 
 {-# NOINLINE bindTextEdit_has_keyword_color #-}
 
--- | Returns whether the specified @keyword@ has a color set to it or not.
 bindTextEdit_has_keyword_color :: MethodBind
 bindTextEdit_has_keyword_color
   = unsafePerformIO $
@@ -1605,7 +1559,6 @@ bindTextEdit_has_keyword_color
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns whether the specified @keyword@ has a color set to it or not.
 has_keyword_color ::
                     (TextEdit :< cls, Object :< cls) => cls -> GodotString -> IO Bool
 has_keyword_color cls arg1
@@ -1623,7 +1576,6 @@ instance NodeMethod TextEdit "has_keyword_color" '[GodotString]
 
 {-# NOINLINE bindTextEdit_insert_text_at_cursor #-}
 
--- | Insert the specified text at the cursor position.
 bindTextEdit_insert_text_at_cursor :: MethodBind
 bindTextEdit_insert_text_at_cursor
   = unsafePerformIO $
@@ -1633,7 +1585,6 @@ bindTextEdit_insert_text_at_cursor
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Insert the specified text at the cursor position.
 insert_text_at_cursor ::
                         (TextEdit :< cls, Object :< cls) => cls -> GodotString -> IO ()
 insert_text_at_cursor cls arg1
@@ -1652,7 +1603,6 @@ instance NodeMethod TextEdit "insert_text_at_cursor" '[GodotString]
 
 {-# NOINLINE bindTextEdit_is_breakpoint_gutter_enabled #-}
 
--- | If @true@, the breakpoint gutter is visible.
 bindTextEdit_is_breakpoint_gutter_enabled :: MethodBind
 bindTextEdit_is_breakpoint_gutter_enabled
   = unsafePerformIO $
@@ -1662,7 +1612,6 @@ bindTextEdit_is_breakpoint_gutter_enabled
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, the breakpoint gutter is visible.
 is_breakpoint_gutter_enabled ::
                                (TextEdit :< cls, Object :< cls) => cls -> IO Bool
 is_breakpoint_gutter_enabled cls
@@ -1710,7 +1659,6 @@ instance NodeMethod TextEdit "is_context_menu_enabled" '[]
 
 {-# NOINLINE bindTextEdit_is_drawing_fold_gutter #-}
 
--- | If @true@, the fold gutter is visible. This enables folding groups of indented lines.
 bindTextEdit_is_drawing_fold_gutter :: MethodBind
 bindTextEdit_is_drawing_fold_gutter
   = unsafePerformIO $
@@ -1720,7 +1668,6 @@ bindTextEdit_is_drawing_fold_gutter
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, the fold gutter is visible. This enables folding groups of indented lines.
 is_drawing_fold_gutter ::
                          (TextEdit :< cls, Object :< cls) => cls -> IO Bool
 is_drawing_fold_gutter cls
@@ -1818,7 +1765,6 @@ instance NodeMethod TextEdit "is_drawing_tabs" '[] (IO Bool) where
 
 {-# NOINLINE bindTextEdit_is_folded #-}
 
--- | Returns whether the line at the specified index is folded or not.
 bindTextEdit_is_folded :: MethodBind
 bindTextEdit_is_folded
   = unsafePerformIO $
@@ -1828,7 +1774,6 @@ bindTextEdit_is_folded
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns whether the line at the specified index is folded or not.
 is_folded ::
             (TextEdit :< cls, Object :< cls) => cls -> Int -> IO Bool
 is_folded cls arg1
@@ -1843,7 +1788,6 @@ instance NodeMethod TextEdit "is_folded" '[Int] (IO Bool) where
 
 {-# NOINLINE bindTextEdit_is_hiding_enabled #-}
 
--- | If @true@, all lines that have been set to hidden by @method set_line_as_hidden@, will not be visible.
 bindTextEdit_is_hiding_enabled :: MethodBind
 bindTextEdit_is_hiding_enabled
   = unsafePerformIO $
@@ -1853,7 +1797,6 @@ bindTextEdit_is_hiding_enabled
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, all lines that have been set to hidden by @method set_line_as_hidden@, will not be visible.
 is_hiding_enabled ::
                     (TextEdit :< cls, Object :< cls) => cls -> IO Bool
 is_hiding_enabled cls
@@ -1933,7 +1876,6 @@ instance NodeMethod TextEdit "is_highlight_current_line_enabled"
 
 {-# NOINLINE bindTextEdit_is_line_hidden #-}
 
--- | Returns whether the line at the specified index is hidden or not.
 bindTextEdit_is_line_hidden :: MethodBind
 bindTextEdit_is_line_hidden
   = unsafePerformIO $
@@ -1943,7 +1885,6 @@ bindTextEdit_is_line_hidden
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns whether the line at the specified index is hidden or not.
 is_line_hidden ::
                  (TextEdit :< cls, Object :< cls) => cls -> Int -> IO Bool
 is_line_hidden cls arg1
@@ -1960,7 +1901,7 @@ instance NodeMethod TextEdit "is_line_hidden" '[Int] (IO Bool)
 
 {-# NOINLINE bindTextEdit_is_overriding_selected_font_color #-}
 
--- | If @true@, custom @font_color_selected@ will be used for selected text.
+-- | If @true@, custom @font_selected_color@ will be used for selected text.
 bindTextEdit_is_overriding_selected_font_color :: MethodBind
 bindTextEdit_is_overriding_selected_font_color
   = unsafePerformIO $
@@ -1970,7 +1911,7 @@ bindTextEdit_is_overriding_selected_font_color
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, custom @font_color_selected@ will be used for selected text.
+-- | If @true@, custom @font_selected_color@ will be used for selected text.
 is_overriding_selected_font_color ::
                                     (TextEdit :< cls, Object :< cls) => cls -> IO Bool
 is_overriding_selected_font_color cls
@@ -1991,7 +1932,6 @@ instance NodeMethod TextEdit "is_overriding_selected_font_color"
 
 {-# NOINLINE bindTextEdit_is_readonly #-}
 
--- | If @true@, read-only mode is enabled. Existing text cannot be modified and new text cannot be added.
 bindTextEdit_is_readonly :: MethodBind
 bindTextEdit_is_readonly
   = unsafePerformIO $
@@ -2001,7 +1941,6 @@ bindTextEdit_is_readonly
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, read-only mode is enabled. Existing text cannot be modified and new text cannot be added.
 is_readonly :: (TextEdit :< cls, Object :< cls) => cls -> IO Bool
 is_readonly cls
   = withVariantArray []
@@ -2015,8 +1954,6 @@ instance NodeMethod TextEdit "is_readonly" '[] (IO Bool) where
 
 {-# NOINLINE bindTextEdit_is_right_click_moving_caret #-}
 
--- | If @true@, a right-click moves the cursor at the mouse position before displaying the context menu.
---   			If @false@, the context menu disregards mouse location.
 bindTextEdit_is_right_click_moving_caret :: MethodBind
 bindTextEdit_is_right_click_moving_caret
   = unsafePerformIO $
@@ -2026,8 +1963,6 @@ bindTextEdit_is_right_click_moving_caret
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, a right-click moves the cursor at the mouse position before displaying the context menu.
---   			If @false@, the context menu disregards mouse location.
 is_right_click_moving_caret ::
                               (TextEdit :< cls, Object :< cls) => cls -> IO Bool
 is_right_click_moving_caret cls
@@ -2076,7 +2011,6 @@ instance NodeMethod TextEdit "is_selecting_enabled" '[] (IO Bool)
 
 {-# NOINLINE bindTextEdit_is_selection_active #-}
 
--- | Returns @true@ if the selection is active.
 bindTextEdit_is_selection_active :: MethodBind
 bindTextEdit_is_selection_active
   = unsafePerformIO $
@@ -2086,7 +2020,6 @@ bindTextEdit_is_selection_active
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns @true@ if the selection is active.
 is_selection_active ::
                       (TextEdit :< cls, Object :< cls) => cls -> IO Bool
 is_selection_active cls
@@ -2133,7 +2066,6 @@ instance NodeMethod TextEdit "is_shortcut_keys_enabled" '[]
 
 {-# NOINLINE bindTextEdit_is_show_line_numbers_enabled #-}
 
--- | If @true@, line numbers are displayed to the left of the text.
 bindTextEdit_is_show_line_numbers_enabled :: MethodBind
 bindTextEdit_is_show_line_numbers_enabled
   = unsafePerformIO $
@@ -2143,7 +2075,6 @@ bindTextEdit_is_show_line_numbers_enabled
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, line numbers are displayed to the left of the text.
 is_show_line_numbers_enabled ::
                                (TextEdit :< cls, Object :< cls) => cls -> IO Bool
 is_show_line_numbers_enabled cls
@@ -2162,7 +2093,7 @@ instance NodeMethod TextEdit "is_show_line_numbers_enabled" '[]
 
 {-# NOINLINE bindTextEdit_is_smooth_scroll_enabled #-}
 
--- | If @true@, sets the @step@ of the scrollbars to @0.25@ which results in smoother scrolling.
+-- | Scroll smoothly over the text rather then jumping to the next location.
 bindTextEdit_is_smooth_scroll_enabled :: MethodBind
 bindTextEdit_is_smooth_scroll_enabled
   = unsafePerformIO $
@@ -2172,7 +2103,7 @@ bindTextEdit_is_smooth_scroll_enabled
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, sets the @step@ of the scrollbars to @0.25@ which results in smoother scrolling.
+-- | Scroll smoothly over the text rather then jumping to the next location.
 is_smooth_scroll_enabled ::
                            (TextEdit :< cls, Object :< cls) => cls -> IO Bool
 is_smooth_scroll_enabled cls
@@ -2191,7 +2122,6 @@ instance NodeMethod TextEdit "is_smooth_scroll_enabled" '[]
 
 {-# NOINLINE bindTextEdit_is_syntax_coloring_enabled #-}
 
--- | If @true@, any custom color properties that have been set for this @TextEdit@ will be visible.
 bindTextEdit_is_syntax_coloring_enabled :: MethodBind
 bindTextEdit_is_syntax_coloring_enabled
   = unsafePerformIO $
@@ -2201,7 +2131,6 @@ bindTextEdit_is_syntax_coloring_enabled
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, any custom color properties that have been set for this @TextEdit@ will be visible.
 is_syntax_coloring_enabled ::
                              (TextEdit :< cls, Object :< cls) => cls -> IO Bool
 is_syntax_coloring_enabled cls
@@ -2218,9 +2147,37 @@ instance NodeMethod TextEdit "is_syntax_coloring_enabled" '[]
          where
         nodeMethod = Godot.Core.TextEdit.is_syntax_coloring_enabled
 
+{-# NOINLINE bindTextEdit_is_virtual_keyboard_enabled #-}
+
+-- | If @true@, the native virtual keyboard is shown when focused on platforms that support it.
+bindTextEdit_is_virtual_keyboard_enabled :: MethodBind
+bindTextEdit_is_virtual_keyboard_enabled
+  = unsafePerformIO $
+      withCString "TextEdit" $
+        \ clsNamePtr ->
+          withCString "is_virtual_keyboard_enabled" $
+            \ methodNamePtr ->
+              godot_method_bind_get_method clsNamePtr methodNamePtr
+
+-- | If @true@, the native virtual keyboard is shown when focused on platforms that support it.
+is_virtual_keyboard_enabled ::
+                              (TextEdit :< cls, Object :< cls) => cls -> IO Bool
+is_virtual_keyboard_enabled cls
+  = withVariantArray []
+      (\ (arrPtr, len) ->
+         godot_method_bind_call bindTextEdit_is_virtual_keyboard_enabled
+           (upcast cls)
+           arrPtr
+           len
+           >>= \ (err, res) -> throwIfErr err >> fromGodotVariant res)
+
+instance NodeMethod TextEdit "is_virtual_keyboard_enabled" '[]
+           (IO Bool)
+         where
+        nodeMethod = Godot.Core.TextEdit.is_virtual_keyboard_enabled
+
 {-# NOINLINE bindTextEdit_is_wrap_enabled #-}
 
--- | If @true@, enables text wrapping when it goes beyond the edge of what is visible.
 bindTextEdit_is_wrap_enabled :: MethodBind
 bindTextEdit_is_wrap_enabled
   = unsafePerformIO $
@@ -2230,7 +2187,6 @@ bindTextEdit_is_wrap_enabled
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, enables text wrapping when it goes beyond the edge of what is visible.
 is_wrap_enabled ::
                   (TextEdit :< cls, Object :< cls) => cls -> IO Bool
 is_wrap_enabled cls
@@ -2271,7 +2227,7 @@ instance NodeMethod TextEdit "menu_option" '[Int] (IO ()) where
 
 {-# NOINLINE bindTextEdit_paste #-}
 
--- | Paste the current selection.
+-- | Paste at the current location. Can be overridden with @method _paste@.
 bindTextEdit_paste :: MethodBind
 bindTextEdit_paste
   = unsafePerformIO $
@@ -2281,7 +2237,7 @@ bindTextEdit_paste
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Paste the current selection.
+-- | Paste at the current location. Can be overridden with @method _paste@.
 paste :: (TextEdit :< cls, Object :< cls) => cls -> IO ()
 paste cls
   = withVariantArray []
@@ -2317,7 +2273,6 @@ instance NodeMethod TextEdit "redo" '[] (IO ()) where
 
 {-# NOINLINE bindTextEdit_remove_breakpoints #-}
 
--- | Removes all the breakpoints. This will not fire the @signal breakpoint_toggled@ signal.
 bindTextEdit_remove_breakpoints :: MethodBind
 bindTextEdit_remove_breakpoints
   = unsafePerformIO $
@@ -2327,7 +2282,6 @@ bindTextEdit_remove_breakpoints
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Removes all the breakpoints. This will not fire the @signal breakpoint_toggled@ signal.
 remove_breakpoints ::
                      (TextEdit :< cls, Object :< cls) => cls -> IO ()
 remove_breakpoints cls
@@ -2344,17 +2298,25 @@ instance NodeMethod TextEdit "remove_breakpoints" '[] (IO ()) where
 {-# NOINLINE bindTextEdit_search #-}
 
 -- | Perform a search inside the text. Search flags can be specified in the @enum SearchFlags@ enum.
---   				Returns an empty @PoolIntArray@ if no result was found. Otherwise, the result line and column can be accessed at indices specified in the @enum SearchResult@ enum, e.g:
---   				
---   @
---   
---   				var result = search(key, flags, line, column)
---   				if result.size() > 0:
+--   				In the returned vector, @x@ is the column, @y@ is the line. If no results are found, both are equal to @-1@.
+--   				@codeblocks@
+--   				@gdscript@
+--   				var result = search("print", SEARCH_WHOLE_WORDS, 0, 0)
+--   				if  result.x != -1:
 --   				    # Result found.
---   				    var res_line = result@TextEdit.SEARCH_RESULT_LINE@
---   				    var res_column = result@TextEdit.SEARCH_RESULT_COLUMN@
---   				
---   @
+--   				    var line_number = result.y
+--   				    var column_number = result.x
+--   				@/gdscript@
+--   				@csharp@
+--   				Vector2i result = Search("print", (uint)TextEdit.SearchFlags.WholeWords, 0, 0);
+--   				if (result.Length > 0)
+--   				{
+--   				    // Result found.
+--   				    int lineNumber = result.y;
+--   				    int columnNumber = result.x;
+--   				}
+--   				@/csharp@
+--   				@/codeblocks@
 bindTextEdit_search :: MethodBind
 bindTextEdit_search
   = unsafePerformIO $
@@ -2365,17 +2327,25 @@ bindTextEdit_search
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | Perform a search inside the text. Search flags can be specified in the @enum SearchFlags@ enum.
---   				Returns an empty @PoolIntArray@ if no result was found. Otherwise, the result line and column can be accessed at indices specified in the @enum SearchResult@ enum, e.g:
---   				
---   @
---   
---   				var result = search(key, flags, line, column)
---   				if result.size() > 0:
+--   				In the returned vector, @x@ is the column, @y@ is the line. If no results are found, both are equal to @-1@.
+--   				@codeblocks@
+--   				@gdscript@
+--   				var result = search("print", SEARCH_WHOLE_WORDS, 0, 0)
+--   				if  result.x != -1:
 --   				    # Result found.
---   				    var res_line = result@TextEdit.SEARCH_RESULT_LINE@
---   				    var res_column = result@TextEdit.SEARCH_RESULT_COLUMN@
---   				
---   @
+--   				    var line_number = result.y
+--   				    var column_number = result.x
+--   				@/gdscript@
+--   				@csharp@
+--   				Vector2i result = Search("print", (uint)TextEdit.SearchFlags.WholeWords, 0, 0);
+--   				if (result.Length > 0)
+--   				{
+--   				    // Result found.
+--   				    int lineNumber = result.y;
+--   				    int columnNumber = result.x;
+--   				}
+--   				@/csharp@
+--   				@/codeblocks@
 search ::
          (TextEdit :< cls, Object :< cls) =>
          cls -> GodotString -> Int -> Int -> Int -> IO PoolIntArray
@@ -2448,7 +2418,6 @@ instance NodeMethod TextEdit "select_all" '[] (IO ()) where
 
 {-# NOINLINE bindTextEdit_set_breakpoint_gutter_enabled #-}
 
--- | If @true@, the breakpoint gutter is visible.
 bindTextEdit_set_breakpoint_gutter_enabled :: MethodBind
 bindTextEdit_set_breakpoint_gutter_enabled
   = unsafePerformIO $
@@ -2458,7 +2427,6 @@ bindTextEdit_set_breakpoint_gutter_enabled
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, the breakpoint gutter is visible.
 set_breakpoint_gutter_enabled ::
                                 (TextEdit :< cls, Object :< cls) => cls -> Bool -> IO ()
 set_breakpoint_gutter_enabled cls arg1
@@ -2507,7 +2475,6 @@ instance NodeMethod TextEdit "set_context_menu_enabled" '[Bool]
 
 {-# NOINLINE bindTextEdit_set_draw_fold_gutter #-}
 
--- | If @true@, the fold gutter is visible. This enables folding groups of indented lines.
 bindTextEdit_set_draw_fold_gutter :: MethodBind
 bindTextEdit_set_draw_fold_gutter
   = unsafePerformIO $
@@ -2517,7 +2484,6 @@ bindTextEdit_set_draw_fold_gutter
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, the fold gutter is visible. This enables folding groups of indented lines.
 set_draw_fold_gutter ::
                        (TextEdit :< cls, Object :< cls) => cls -> Bool -> IO ()
 set_draw_fold_gutter cls arg1
@@ -2588,7 +2554,7 @@ instance NodeMethod TextEdit "set_draw_tabs" '[Bool] (IO ()) where
 
 {-# NOINLINE bindTextEdit_set_h_scroll #-}
 
--- | The current horizontal scroll value.
+-- | If there is a horizontal scrollbar, this determines the current horizontal scroll value in pixels.
 bindTextEdit_set_h_scroll :: MethodBind
 bindTextEdit_set_h_scroll
   = unsafePerformIO $
@@ -2598,7 +2564,7 @@ bindTextEdit_set_h_scroll
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The current horizontal scroll value.
+-- | If there is a horizontal scrollbar, this determines the current horizontal scroll value in pixels.
 set_h_scroll ::
                (TextEdit :< cls, Object :< cls) => cls -> Int -> IO ()
 set_h_scroll cls arg1
@@ -2614,7 +2580,6 @@ instance NodeMethod TextEdit "set_h_scroll" '[Int] (IO ()) where
 
 {-# NOINLINE bindTextEdit_set_hiding_enabled #-}
 
--- | If @true@, all lines that have been set to hidden by @method set_line_as_hidden@, will not be visible.
 bindTextEdit_set_hiding_enabled :: MethodBind
 bindTextEdit_set_hiding_enabled
   = unsafePerformIO $
@@ -2624,7 +2589,6 @@ bindTextEdit_set_hiding_enabled
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, all lines that have been set to hidden by @method set_line_as_hidden@, will not be visible.
 set_hiding_enabled ::
                      (TextEdit :< cls, Object :< cls) => cls -> Bool -> IO ()
 set_hiding_enabled cls arg1
@@ -2698,9 +2662,35 @@ instance NodeMethod TextEdit "set_highlight_current_line" '[Bool]
          where
         nodeMethod = Godot.Core.TextEdit.set_highlight_current_line
 
+{-# NOINLINE bindTextEdit_set_line #-}
+
+-- | Sets the text for a specific line.
+bindTextEdit_set_line :: MethodBind
+bindTextEdit_set_line
+  = unsafePerformIO $
+      withCString "TextEdit" $
+        \ clsNamePtr ->
+          withCString "set_line" $
+            \ methodNamePtr ->
+              godot_method_bind_get_method clsNamePtr methodNamePtr
+
+-- | Sets the text for a specific line.
+set_line ::
+           (TextEdit :< cls, Object :< cls) =>
+           cls -> Int -> GodotString -> IO ()
+set_line cls arg1 arg2
+  = withVariantArray [toVariant arg1, toVariant arg2]
+      (\ (arrPtr, len) ->
+         godot_method_bind_call bindTextEdit_set_line (upcast cls) arrPtr
+           len
+           >>= \ (err, res) -> throwIfErr err >> fromGodotVariant res)
+
+instance NodeMethod TextEdit "set_line" '[Int, GodotString] (IO ())
+         where
+        nodeMethod = Godot.Core.TextEdit.set_line
+
 {-# NOINLINE bindTextEdit_set_line_as_hidden #-}
 
--- | If @true@, hides the line of the specified index.
 bindTextEdit_set_line_as_hidden :: MethodBind
 bindTextEdit_set_line_as_hidden
   = unsafePerformIO $
@@ -2710,7 +2700,6 @@ bindTextEdit_set_line_as_hidden
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, hides the line of the specified index.
 set_line_as_hidden ::
                      (TextEdit :< cls, Object :< cls) => cls -> Int -> Bool -> IO ()
 set_line_as_hidden cls arg1 arg2
@@ -2755,7 +2744,7 @@ instance NodeMethod TextEdit "set_minimap_width" '[Int] (IO ())
 
 {-# NOINLINE bindTextEdit_set_override_selected_font_color #-}
 
--- | If @true@, custom @font_color_selected@ will be used for selected text.
+-- | If @true@, custom @font_selected_color@ will be used for selected text.
 bindTextEdit_set_override_selected_font_color :: MethodBind
 bindTextEdit_set_override_selected_font_color
   = unsafePerformIO $
@@ -2765,7 +2754,7 @@ bindTextEdit_set_override_selected_font_color
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, custom @font_color_selected@ will be used for selected text.
+-- | If @true@, custom @font_selected_color@ will be used for selected text.
 set_override_selected_font_color ::
                                    (TextEdit :< cls, Object :< cls) => cls -> Bool -> IO ()
 set_override_selected_font_color cls arg1
@@ -2786,7 +2775,6 @@ instance NodeMethod TextEdit "set_override_selected_font_color"
 
 {-# NOINLINE bindTextEdit_set_readonly #-}
 
--- | If @true@, read-only mode is enabled. Existing text cannot be modified and new text cannot be added.
 bindTextEdit_set_readonly :: MethodBind
 bindTextEdit_set_readonly
   = unsafePerformIO $
@@ -2796,7 +2784,6 @@ bindTextEdit_set_readonly
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, read-only mode is enabled. Existing text cannot be modified and new text cannot be added.
 set_readonly ::
                (TextEdit :< cls, Object :< cls) => cls -> Bool -> IO ()
 set_readonly cls arg1
@@ -2812,8 +2799,6 @@ instance NodeMethod TextEdit "set_readonly" '[Bool] (IO ()) where
 
 {-# NOINLINE bindTextEdit_set_right_click_moves_caret #-}
 
--- | If @true@, a right-click moves the cursor at the mouse position before displaying the context menu.
---   			If @false@, the context menu disregards mouse location.
 bindTextEdit_set_right_click_moves_caret :: MethodBind
 bindTextEdit_set_right_click_moves_caret
   = unsafePerformIO $
@@ -2823,8 +2808,6 @@ bindTextEdit_set_right_click_moves_caret
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, a right-click moves the cursor at the mouse position before displaying the context menu.
---   			If @false@, the context menu disregards mouse location.
 set_right_click_moves_caret ::
                               (TextEdit :< cls, Object :< cls) => cls -> Bool -> IO ()
 set_right_click_moves_caret cls arg1
@@ -2903,7 +2886,6 @@ instance NodeMethod TextEdit "set_shortcut_keys_enabled" '[Bool]
 
 {-# NOINLINE bindTextEdit_set_show_line_numbers #-}
 
--- | If @true@, line numbers are displayed to the left of the text.
 bindTextEdit_set_show_line_numbers :: MethodBind
 bindTextEdit_set_show_line_numbers
   = unsafePerformIO $
@@ -2913,7 +2895,6 @@ bindTextEdit_set_show_line_numbers
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, line numbers are displayed to the left of the text.
 set_show_line_numbers ::
                         (TextEdit :< cls, Object :< cls) => cls -> Bool -> IO ()
 set_show_line_numbers cls arg1
@@ -2932,7 +2913,7 @@ instance NodeMethod TextEdit "set_show_line_numbers" '[Bool]
 
 {-# NOINLINE bindTextEdit_set_smooth_scroll_enable #-}
 
--- | If @true@, sets the @step@ of the scrollbars to @0.25@ which results in smoother scrolling.
+-- | Scroll smoothly over the text rather then jumping to the next location.
 bindTextEdit_set_smooth_scroll_enable :: MethodBind
 bindTextEdit_set_smooth_scroll_enable
   = unsafePerformIO $
@@ -2942,7 +2923,7 @@ bindTextEdit_set_smooth_scroll_enable
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, sets the @step@ of the scrollbars to @0.25@ which results in smoother scrolling.
+-- | Scroll smoothly over the text rather then jumping to the next location.
 set_smooth_scroll_enable ::
                            (TextEdit :< cls, Object :< cls) => cls -> Bool -> IO ()
 set_smooth_scroll_enable cls arg1
@@ -2961,7 +2942,6 @@ instance NodeMethod TextEdit "set_smooth_scroll_enable" '[Bool]
 
 {-# NOINLINE bindTextEdit_set_syntax_coloring #-}
 
--- | If @true@, any custom color properties that have been set for this @TextEdit@ will be visible.
 bindTextEdit_set_syntax_coloring :: MethodBind
 bindTextEdit_set_syntax_coloring
   = unsafePerformIO $
@@ -2971,7 +2951,6 @@ bindTextEdit_set_syntax_coloring
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, any custom color properties that have been set for this @TextEdit@ will be visible.
 set_syntax_coloring ::
                       (TextEdit :< cls, Object :< cls) => cls -> Bool -> IO ()
 set_syntax_coloring cls arg1
@@ -3015,7 +2994,7 @@ instance NodeMethod TextEdit "set_text" '[GodotString] (IO ())
 
 {-# NOINLINE bindTextEdit_set_v_scroll #-}
 
--- | The current vertical scroll value.
+-- | If there is a vertical scrollbar, this determines the current vertical scroll value in line numbers, starting at 0 for the top line.
 bindTextEdit_set_v_scroll :: MethodBind
 bindTextEdit_set_v_scroll
   = unsafePerformIO $
@@ -3025,7 +3004,7 @@ bindTextEdit_set_v_scroll
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The current vertical scroll value.
+-- | If there is a vertical scrollbar, this determines the current vertical scroll value in line numbers, starting at 0 for the top line.
 set_v_scroll ::
                (TextEdit :< cls, Object :< cls) => cls -> Float -> IO ()
 set_v_scroll cls arg1
@@ -3041,7 +3020,7 @@ instance NodeMethod TextEdit "set_v_scroll" '[Float] (IO ()) where
 
 {-# NOINLINE bindTextEdit_set_v_scroll_speed #-}
 
--- | Vertical scroll sensitivity.
+-- | Sets the scroll speed with the minimap or when @scroll_smooth@ is enabled.
 bindTextEdit_set_v_scroll_speed :: MethodBind
 bindTextEdit_set_v_scroll_speed
   = unsafePerformIO $
@@ -3051,7 +3030,7 @@ bindTextEdit_set_v_scroll_speed
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Vertical scroll sensitivity.
+-- | Sets the scroll speed with the minimap or when @scroll_smooth@ is enabled.
 set_v_scroll_speed ::
                      (TextEdit :< cls, Object :< cls) => cls -> Float -> IO ()
 set_v_scroll_speed cls arg1
@@ -3066,9 +3045,37 @@ instance NodeMethod TextEdit "set_v_scroll_speed" '[Float] (IO ())
          where
         nodeMethod = Godot.Core.TextEdit.set_v_scroll_speed
 
+{-# NOINLINE bindTextEdit_set_virtual_keyboard_enabled #-}
+
+-- | If @true@, the native virtual keyboard is shown when focused on platforms that support it.
+bindTextEdit_set_virtual_keyboard_enabled :: MethodBind
+bindTextEdit_set_virtual_keyboard_enabled
+  = unsafePerformIO $
+      withCString "TextEdit" $
+        \ clsNamePtr ->
+          withCString "set_virtual_keyboard_enabled" $
+            \ methodNamePtr ->
+              godot_method_bind_get_method clsNamePtr methodNamePtr
+
+-- | If @true@, the native virtual keyboard is shown when focused on platforms that support it.
+set_virtual_keyboard_enabled ::
+                               (TextEdit :< cls, Object :< cls) => cls -> Bool -> IO ()
+set_virtual_keyboard_enabled cls arg1
+  = withVariantArray [toVariant arg1]
+      (\ (arrPtr, len) ->
+         godot_method_bind_call bindTextEdit_set_virtual_keyboard_enabled
+           (upcast cls)
+           arrPtr
+           len
+           >>= \ (err, res) -> throwIfErr err >> fromGodotVariant res)
+
+instance NodeMethod TextEdit "set_virtual_keyboard_enabled" '[Bool]
+           (IO ())
+         where
+        nodeMethod = Godot.Core.TextEdit.set_virtual_keyboard_enabled
+
 {-# NOINLINE bindTextEdit_set_wrap_enabled #-}
 
--- | If @true@, enables text wrapping when it goes beyond the edge of what is visible.
 bindTextEdit_set_wrap_enabled :: MethodBind
 bindTextEdit_set_wrap_enabled
   = unsafePerformIO $
@@ -3078,7 +3085,6 @@ bindTextEdit_set_wrap_enabled
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, enables text wrapping when it goes beyond the edge of what is visible.
 set_wrap_enabled ::
                    (TextEdit :< cls, Object :< cls) => cls -> Bool -> IO ()
 set_wrap_enabled cls arg1
@@ -3095,7 +3101,6 @@ instance NodeMethod TextEdit "set_wrap_enabled" '[Bool] (IO ())
 
 {-# NOINLINE bindTextEdit_toggle_fold_line #-}
 
--- | Toggle the folding of the code block at the given line.
 bindTextEdit_toggle_fold_line :: MethodBind
 bindTextEdit_toggle_fold_line
   = unsafePerformIO $
@@ -3105,7 +3110,6 @@ bindTextEdit_toggle_fold_line
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Toggle the folding of the code block at the given line.
 toggle_fold_line ::
                    (TextEdit :< cls, Object :< cls) => cls -> Int -> IO ()
 toggle_fold_line cls arg1
@@ -3145,7 +3149,6 @@ instance NodeMethod TextEdit "undo" '[] (IO ()) where
 
 {-# NOINLINE bindTextEdit_unfold_line #-}
 
--- | Unfolds the given line, if folded.
 bindTextEdit_unfold_line :: MethodBind
 bindTextEdit_unfold_line
   = unsafePerformIO $
@@ -3155,7 +3158,6 @@ bindTextEdit_unfold_line
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Unfolds the given line, if folded.
 unfold_line ::
               (TextEdit :< cls, Object :< cls) => cls -> Int -> IO ()
 unfold_line cls arg1
@@ -3170,7 +3172,6 @@ instance NodeMethod TextEdit "unfold_line" '[Int] (IO ()) where
 
 {-# NOINLINE bindTextEdit_unhide_all_lines #-}
 
--- | Unhide all lines that were previously set to hidden by @method set_line_as_hidden@.
 bindTextEdit_unhide_all_lines :: MethodBind
 bindTextEdit_unhide_all_lines
   = unsafePerformIO $
@@ -3180,7 +3181,6 @@ bindTextEdit_unhide_all_lines
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Unhide all lines that were previously set to hidden by @method set_line_as_hidden@.
 unhide_all_lines ::
                    (TextEdit :< cls, Object :< cls) => cls -> IO ()
 unhide_all_lines cls

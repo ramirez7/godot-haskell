@@ -7,6 +7,7 @@ module Godot.Core.DynamicFont
         Godot.Core.DynamicFont._SPACING_CHAR,
         Godot.Core.DynamicFont._SPACING_BOTTOM,
         Godot.Core.DynamicFont.add_fallback,
+        Godot.Core.DynamicFont.get_available_chars,
         Godot.Core.DynamicFont.get_fallback,
         Godot.Core.DynamicFont.get_fallback_count,
         Godot.Core.DynamicFont.get_font_data,
@@ -103,7 +104,6 @@ instance NodeProperty DynamicFont "use_mipmaps" Bool 'False where
 
 {-# NOINLINE bindDynamicFont_add_fallback #-}
 
--- | Adds a fallback font.
 bindDynamicFont_add_fallback :: MethodBind
 bindDynamicFont_add_fallback
   = unsafePerformIO $
@@ -113,7 +113,6 @@ bindDynamicFont_add_fallback
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Adds a fallback font.
 add_fallback ::
                (DynamicFont :< cls, Object :< cls) =>
                cls -> DynamicFontData -> IO ()
@@ -130,9 +129,35 @@ instance NodeMethod DynamicFont "add_fallback" '[DynamicFontData]
          where
         nodeMethod = Godot.Core.DynamicFont.add_fallback
 
+{-# NOINLINE bindDynamicFont_get_available_chars #-}
+
+bindDynamicFont_get_available_chars :: MethodBind
+bindDynamicFont_get_available_chars
+  = unsafePerformIO $
+      withCString "DynamicFont" $
+        \ clsNamePtr ->
+          withCString "get_available_chars" $
+            \ methodNamePtr ->
+              godot_method_bind_get_method clsNamePtr methodNamePtr
+
+get_available_chars ::
+                      (DynamicFont :< cls, Object :< cls) => cls -> IO GodotString
+get_available_chars cls
+  = withVariantArray []
+      (\ (arrPtr, len) ->
+         godot_method_bind_call bindDynamicFont_get_available_chars
+           (upcast cls)
+           arrPtr
+           len
+           >>= \ (err, res) -> throwIfErr err >> fromGodotVariant res)
+
+instance NodeMethod DynamicFont "get_available_chars" '[]
+           (IO GodotString)
+         where
+        nodeMethod = Godot.Core.DynamicFont.get_available_chars
+
 {-# NOINLINE bindDynamicFont_get_fallback #-}
 
--- | Returns the fallback font at index @idx@.
 bindDynamicFont_get_fallback :: MethodBind
 bindDynamicFont_get_fallback
   = unsafePerformIO $
@@ -142,7 +167,6 @@ bindDynamicFont_get_fallback
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the fallback font at index @idx@.
 get_fallback ::
                (DynamicFont :< cls, Object :< cls) =>
                cls -> Int -> IO DynamicFontData
@@ -161,7 +185,6 @@ instance NodeMethod DynamicFont "get_fallback" '[Int]
 
 {-# NOINLINE bindDynamicFont_get_fallback_count #-}
 
--- | Returns the number of fallback fonts.
 bindDynamicFont_get_fallback_count :: MethodBind
 bindDynamicFont_get_fallback_count
   = unsafePerformIO $
@@ -171,7 +194,6 @@ bindDynamicFont_get_fallback_count
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the number of fallback fonts.
 get_fallback_count ::
                      (DynamicFont :< cls, Object :< cls) => cls -> IO Int
 get_fallback_count cls
@@ -189,7 +211,6 @@ instance NodeMethod DynamicFont "get_fallback_count" '[] (IO Int)
 
 {-# NOINLINE bindDynamicFont_get_font_data #-}
 
--- | The font data.
 bindDynamicFont_get_font_data :: MethodBind
 bindDynamicFont_get_font_data
   = unsafePerformIO $
@@ -199,7 +220,6 @@ bindDynamicFont_get_font_data
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The font data.
 get_font_data ::
                 (DynamicFont :< cls, Object :< cls) => cls -> IO DynamicFontData
 get_font_data cls
@@ -217,8 +237,6 @@ instance NodeMethod DynamicFont "get_font_data" '[]
 
 {-# NOINLINE bindDynamicFont_get_outline_color #-}
 
--- | The font outline's color.
---   			__Note:__ It's recommended to leave this at the default value so that you can adjust it in individual controls. For example, if the outline is made black here, it won't be possible to change its color using a Label's font outline modulate theme item.
 bindDynamicFont_get_outline_color :: MethodBind
 bindDynamicFont_get_outline_color
   = unsafePerformIO $
@@ -228,8 +246,6 @@ bindDynamicFont_get_outline_color
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The font outline's color.
---   			__Note:__ It's recommended to leave this at the default value so that you can adjust it in individual controls. For example, if the outline is made black here, it won't be possible to change its color using a Label's font outline modulate theme item.
 get_outline_color ::
                     (DynamicFont :< cls, Object :< cls) => cls -> IO Color
 get_outline_color cls
@@ -247,7 +263,6 @@ instance NodeMethod DynamicFont "get_outline_color" '[] (IO Color)
 
 {-# NOINLINE bindDynamicFont_get_outline_size #-}
 
--- | The font outline's thickness in pixels (not relative to the font size).
 bindDynamicFont_get_outline_size :: MethodBind
 bindDynamicFont_get_outline_size
   = unsafePerformIO $
@@ -257,7 +272,6 @@ bindDynamicFont_get_outline_size
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The font outline's thickness in pixels (not relative to the font size).
 get_outline_size ::
                    (DynamicFont :< cls, Object :< cls) => cls -> IO Int
 get_outline_size cls
@@ -275,7 +289,6 @@ instance NodeMethod DynamicFont "get_outline_size" '[] (IO Int)
 
 {-# NOINLINE bindDynamicFont_get_size #-}
 
--- | The font size in pixels.
 bindDynamicFont_get_size :: MethodBind
 bindDynamicFont_get_size
   = unsafePerformIO $
@@ -285,7 +298,6 @@ bindDynamicFont_get_size
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The font size in pixels.
 get_size :: (DynamicFont :< cls, Object :< cls) => cls -> IO Int
 get_size cls
   = withVariantArray []
@@ -299,7 +311,6 @@ instance NodeMethod DynamicFont "get_size" '[] (IO Int) where
 
 {-# NOINLINE bindDynamicFont_get_spacing #-}
 
--- | Returns the spacing for the given @type@ (see @enum SpacingType@).
 bindDynamicFont_get_spacing :: MethodBind
 bindDynamicFont_get_spacing
   = unsafePerformIO $
@@ -309,7 +320,6 @@ bindDynamicFont_get_spacing
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the spacing for the given @type@ (see @enum SpacingType@).
 get_spacing ::
               (DynamicFont :< cls, Object :< cls) => cls -> Int -> IO Int
 get_spacing cls arg1
@@ -325,7 +335,6 @@ instance NodeMethod DynamicFont "get_spacing" '[Int] (IO Int) where
 
 {-# NOINLINE bindDynamicFont_get_use_filter #-}
 
--- | If @true@, filtering is used. This makes the font blurry instead of pixelated when scaling it if font oversampling is disabled or ineffective. It's recommended to enable this when using the font in a control whose size changes over time, unless a pixel art aesthetic is desired.
 bindDynamicFont_get_use_filter :: MethodBind
 bindDynamicFont_get_use_filter
   = unsafePerformIO $
@@ -335,7 +344,6 @@ bindDynamicFont_get_use_filter
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, filtering is used. This makes the font blurry instead of pixelated when scaling it if font oversampling is disabled or ineffective. It's recommended to enable this when using the font in a control whose size changes over time, unless a pixel art aesthetic is desired.
 get_use_filter ::
                  (DynamicFont :< cls, Object :< cls) => cls -> IO Bool
 get_use_filter cls
@@ -352,7 +360,6 @@ instance NodeMethod DynamicFont "get_use_filter" '[] (IO Bool)
 
 {-# NOINLINE bindDynamicFont_get_use_mipmaps #-}
 
--- | If @true@, mipmapping is used. This improves the font's appearance when downscaling it if font oversampling is disabled or ineffective.
 bindDynamicFont_get_use_mipmaps :: MethodBind
 bindDynamicFont_get_use_mipmaps
   = unsafePerformIO $
@@ -362,7 +369,6 @@ bindDynamicFont_get_use_mipmaps
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, mipmapping is used. This improves the font's appearance when downscaling it if font oversampling is disabled or ineffective.
 get_use_mipmaps ::
                   (DynamicFont :< cls, Object :< cls) => cls -> IO Bool
 get_use_mipmaps cls
@@ -379,7 +385,6 @@ instance NodeMethod DynamicFont "get_use_mipmaps" '[] (IO Bool)
 
 {-# NOINLINE bindDynamicFont_remove_fallback #-}
 
--- | Removes the fallback font at index @idx@.
 bindDynamicFont_remove_fallback :: MethodBind
 bindDynamicFont_remove_fallback
   = unsafePerformIO $
@@ -389,7 +394,6 @@ bindDynamicFont_remove_fallback
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Removes the fallback font at index @idx@.
 remove_fallback ::
                   (DynamicFont :< cls, Object :< cls) => cls -> Int -> IO ()
 remove_fallback cls arg1
@@ -406,7 +410,6 @@ instance NodeMethod DynamicFont "remove_fallback" '[Int] (IO ())
 
 {-# NOINLINE bindDynamicFont_set_fallback #-}
 
--- | Sets the fallback font at index @idx@.
 bindDynamicFont_set_fallback :: MethodBind
 bindDynamicFont_set_fallback
   = unsafePerformIO $
@@ -416,7 +419,6 @@ bindDynamicFont_set_fallback
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the fallback font at index @idx@.
 set_fallback ::
                (DynamicFont :< cls, Object :< cls) =>
                cls -> Int -> DynamicFontData -> IO ()
@@ -436,7 +438,6 @@ instance NodeMethod DynamicFont "set_fallback"
 
 {-# NOINLINE bindDynamicFont_set_font_data #-}
 
--- | The font data.
 bindDynamicFont_set_font_data :: MethodBind
 bindDynamicFont_set_font_data
   = unsafePerformIO $
@@ -446,7 +447,6 @@ bindDynamicFont_set_font_data
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The font data.
 set_font_data ::
                 (DynamicFont :< cls, Object :< cls) =>
                 cls -> DynamicFontData -> IO ()
@@ -465,8 +465,6 @@ instance NodeMethod DynamicFont "set_font_data" '[DynamicFontData]
 
 {-# NOINLINE bindDynamicFont_set_outline_color #-}
 
--- | The font outline's color.
---   			__Note:__ It's recommended to leave this at the default value so that you can adjust it in individual controls. For example, if the outline is made black here, it won't be possible to change its color using a Label's font outline modulate theme item.
 bindDynamicFont_set_outline_color :: MethodBind
 bindDynamicFont_set_outline_color
   = unsafePerformIO $
@@ -476,8 +474,6 @@ bindDynamicFont_set_outline_color
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The font outline's color.
---   			__Note:__ It's recommended to leave this at the default value so that you can adjust it in individual controls. For example, if the outline is made black here, it won't be possible to change its color using a Label's font outline modulate theme item.
 set_outline_color ::
                     (DynamicFont :< cls, Object :< cls) => cls -> Color -> IO ()
 set_outline_color cls arg1
@@ -496,7 +492,6 @@ instance NodeMethod DynamicFont "set_outline_color" '[Color]
 
 {-# NOINLINE bindDynamicFont_set_outline_size #-}
 
--- | The font outline's thickness in pixels (not relative to the font size).
 bindDynamicFont_set_outline_size :: MethodBind
 bindDynamicFont_set_outline_size
   = unsafePerformIO $
@@ -506,7 +501,6 @@ bindDynamicFont_set_outline_size
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The font outline's thickness in pixels (not relative to the font size).
 set_outline_size ::
                    (DynamicFont :< cls, Object :< cls) => cls -> Int -> IO ()
 set_outline_size cls arg1
@@ -524,7 +518,6 @@ instance NodeMethod DynamicFont "set_outline_size" '[Int] (IO ())
 
 {-# NOINLINE bindDynamicFont_set_size #-}
 
--- | The font size in pixels.
 bindDynamicFont_set_size :: MethodBind
 bindDynamicFont_set_size
   = unsafePerformIO $
@@ -534,7 +527,6 @@ bindDynamicFont_set_size
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The font size in pixels.
 set_size ::
            (DynamicFont :< cls, Object :< cls) => cls -> Int -> IO ()
 set_size cls arg1
@@ -549,7 +541,6 @@ instance NodeMethod DynamicFont "set_size" '[Int] (IO ()) where
 
 {-# NOINLINE bindDynamicFont_set_spacing #-}
 
--- | Sets the spacing for @type@ (see @enum SpacingType@) to @value@ in pixels (not relative to the font size).
 bindDynamicFont_set_spacing :: MethodBind
 bindDynamicFont_set_spacing
   = unsafePerformIO $
@@ -559,7 +550,6 @@ bindDynamicFont_set_spacing
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the spacing for @type@ (see @enum SpacingType@) to @value@ in pixels (not relative to the font size).
 set_spacing ::
               (DynamicFont :< cls, Object :< cls) => cls -> Int -> Int -> IO ()
 set_spacing cls arg1 arg2
@@ -576,7 +566,6 @@ instance NodeMethod DynamicFont "set_spacing" '[Int, Int] (IO ())
 
 {-# NOINLINE bindDynamicFont_set_use_filter #-}
 
--- | If @true@, filtering is used. This makes the font blurry instead of pixelated when scaling it if font oversampling is disabled or ineffective. It's recommended to enable this when using the font in a control whose size changes over time, unless a pixel art aesthetic is desired.
 bindDynamicFont_set_use_filter :: MethodBind
 bindDynamicFont_set_use_filter
   = unsafePerformIO $
@@ -586,7 +575,6 @@ bindDynamicFont_set_use_filter
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, filtering is used. This makes the font blurry instead of pixelated when scaling it if font oversampling is disabled or ineffective. It's recommended to enable this when using the font in a control whose size changes over time, unless a pixel art aesthetic is desired.
 set_use_filter ::
                  (DynamicFont :< cls, Object :< cls) => cls -> Bool -> IO ()
 set_use_filter cls arg1
@@ -603,7 +591,6 @@ instance NodeMethod DynamicFont "set_use_filter" '[Bool] (IO ())
 
 {-# NOINLINE bindDynamicFont_set_use_mipmaps #-}
 
--- | If @true@, mipmapping is used. This improves the font's appearance when downscaling it if font oversampling is disabled or ineffective.
 bindDynamicFont_set_use_mipmaps :: MethodBind
 bindDynamicFont_set_use_mipmaps
   = unsafePerformIO $
@@ -613,7 +600,6 @@ bindDynamicFont_set_use_mipmaps
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, mipmapping is used. This improves the font's appearance when downscaling it if font oversampling is disabled or ineffective.
 set_use_mipmaps ::
                   (DynamicFont :< cls, Object :< cls) => cls -> Bool -> IO ()
 set_use_mipmaps cls arg1

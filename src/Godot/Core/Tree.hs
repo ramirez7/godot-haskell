@@ -694,7 +694,7 @@ instance NodeMethod Tree "get_custom_popup_rect" '[] (IO Rect2)
 
 {-# NOINLINE bindTree_get_drop_mode_flags #-}
 
--- | The drop mode as an OR combination of flags. See @enum DropModeFlags@ constants. Once dropping is done, reverts to @DROP_MODE_DISABLED@. Setting this during @method Control.can_drop_data@ is recommended.
+-- | The drop mode as an OR combination of flags. See @enum DropModeFlags@ constants. Once dropping is done, reverts to @DROP_MODE_DISABLED@. Setting this during @method Control._can_drop_data@ is recommended.
 --   			This controls the drop sections, i.e. the decision and drawing of possible drop locations based on the mouse position.
 bindTree_get_drop_mode_flags :: MethodBind
 bindTree_get_drop_mode_flags
@@ -705,7 +705,7 @@ bindTree_get_drop_mode_flags
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The drop mode as an OR combination of flags. See @enum DropModeFlags@ constants. Once dropping is done, reverts to @DROP_MODE_DISABLED@. Setting this during @method Control.can_drop_data@ is recommended.
+-- | The drop mode as an OR combination of flags. See @enum DropModeFlags@ constants. Once dropping is done, reverts to @DROP_MODE_DISABLED@. Setting this during @method Control._can_drop_data@ is recommended.
 --   			This controls the drop sections, i.e. the decision and drawing of possible drop locations based on the mouse position.
 get_drop_mode_flags ::
                       (Tree :< cls, Object :< cls) => cls -> IO Int
@@ -755,7 +755,27 @@ instance NodeMethod Tree "get_drop_section_at_position" '[Vector2]
 
 {-# NOINLINE bindTree_get_edited #-}
 
--- | Returns the currently edited item. This is only available for custom cell mode.
+-- | Returns the currently edited item. Can be used with @signal item_edited@ to get the item that was modified.
+--   				@codeblocks@
+--   				@gdscript@
+--   				func _ready():
+--   				    $Tree.item_edited.connect(on_Tree_item_edited)
+--   
+--   				func on_Tree_item_edited():
+--   				    print($Tree.get_edited()) # This item just got edited (e.g. checked).
+--   				@/gdscript@
+--   				@csharp@
+--   				public override void _Ready()
+--   				{
+--   				    GetNode<Tree>("Tree").ItemEdited += OnTreeItemEdited;
+--   				}
+--   
+--   				public void OnTreeItemEdited()
+--   				{
+--   				    GD.Print(GetNode<Tree>("Tree").GetEdited()); // This item just got edited (e.g. checked).
+--   				}
+--   				@/csharp@
+--   				@/codeblocks@
 bindTree_get_edited :: MethodBind
 bindTree_get_edited
   = unsafePerformIO $
@@ -765,7 +785,27 @@ bindTree_get_edited
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the currently edited item. This is only available for custom cell mode.
+-- | Returns the currently edited item. Can be used with @signal item_edited@ to get the item that was modified.
+--   				@codeblocks@
+--   				@gdscript@
+--   				func _ready():
+--   				    $Tree.item_edited.connect(on_Tree_item_edited)
+--   
+--   				func on_Tree_item_edited():
+--   				    print($Tree.get_edited()) # This item just got edited (e.g. checked).
+--   				@/gdscript@
+--   				@csharp@
+--   				public override void _Ready()
+--   				{
+--   				    GetNode<Tree>("Tree").ItemEdited += OnTreeItemEdited;
+--   				}
+--   
+--   				public void OnTreeItemEdited()
+--   				{
+--   				    GD.Print(GetNode<Tree>("Tree").GetEdited()); // This item just got edited (e.g. checked).
+--   				}
+--   				@/csharp@
+--   				@/codeblocks@
 get_edited :: (Tree :< cls, Object :< cls) => cls -> IO TreeItem
 get_edited cls
   = withVariantArray []
@@ -778,7 +818,7 @@ instance NodeMethod Tree "get_edited" '[] (IO TreeItem) where
 
 {-# NOINLINE bindTree_get_edited_column #-}
 
--- | Returns the column for the currently edited item. This is only available for custom cell mode.
+-- | Returns the column for the currently edited item.
 bindTree_get_edited_column :: MethodBind
 bindTree_get_edited_column
   = unsafePerformIO $
@@ -788,7 +828,7 @@ bindTree_get_edited_column
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the column for the currently edited item. This is only available for custom cell mode.
+-- | Returns the column for the currently edited item.
 get_edited_column :: (Tree :< cls, Object :< cls) => cls -> IO Int
 get_edited_column cls
   = withVariantArray []
@@ -1173,7 +1213,6 @@ instance NodeMethod Tree "set_column_expand" '[Int, Bool] (IO ())
 
 {-# NOINLINE bindTree_set_column_min_width #-}
 
--- | Sets the minimum width of a column. Columns that have the "Expand" flag will use their "min_width" in a similar fashion to @Control.size_flags_stretch_ratio@.
 bindTree_set_column_min_width :: MethodBind
 bindTree_set_column_min_width
   = unsafePerformIO $
@@ -1183,7 +1222,6 @@ bindTree_set_column_min_width
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the minimum width of a column. Columns that have the "Expand" flag will use their "min_width" in a similar fashion to @Control.size_flags_stretch_ratio@.
 set_column_min_width ::
                        (Tree :< cls, Object :< cls) => cls -> Int -> Int -> IO ()
 set_column_min_width cls arg1 arg2
@@ -1280,7 +1318,7 @@ instance NodeMethod Tree "set_columns" '[Int] (IO ()) where
 
 {-# NOINLINE bindTree_set_drop_mode_flags #-}
 
--- | The drop mode as an OR combination of flags. See @enum DropModeFlags@ constants. Once dropping is done, reverts to @DROP_MODE_DISABLED@. Setting this during @method Control.can_drop_data@ is recommended.
+-- | The drop mode as an OR combination of flags. See @enum DropModeFlags@ constants. Once dropping is done, reverts to @DROP_MODE_DISABLED@. Setting this during @method Control._can_drop_data@ is recommended.
 --   			This controls the drop sections, i.e. the decision and drawing of possible drop locations based on the mouse position.
 bindTree_set_drop_mode_flags :: MethodBind
 bindTree_set_drop_mode_flags
@@ -1291,7 +1329,7 @@ bindTree_set_drop_mode_flags
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The drop mode as an OR combination of flags. See @enum DropModeFlags@ constants. Once dropping is done, reverts to @DROP_MODE_DISABLED@. Setting this during @method Control.can_drop_data@ is recommended.
+-- | The drop mode as an OR combination of flags. See @enum DropModeFlags@ constants. Once dropping is done, reverts to @DROP_MODE_DISABLED@. Setting this during @method Control._can_drop_data@ is recommended.
 --   			This controls the drop sections, i.e. the decision and drawing of possible drop locations based on the mouse position.
 set_drop_mode_flags ::
                       (Tree :< cls, Object :< cls) => cls -> Int -> IO ()

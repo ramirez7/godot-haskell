@@ -87,8 +87,6 @@ instance NodeMethod StaticBody "_reload_physics_characteristics"
 
 {-# NOINLINE bindStaticBody_get_bounce #-}
 
--- | The body's bounciness. Values range from @0@ (no bounce) to @1@ (full bounciness).
---   			Deprecated, use @PhysicsMaterial.bounce@ instead via @physics_material_override@.
 bindStaticBody_get_bounce :: MethodBind
 bindStaticBody_get_bounce
   = unsafePerformIO $
@@ -98,8 +96,6 @@ bindStaticBody_get_bounce
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The body's bounciness. Values range from @0@ (no bounce) to @1@ (full bounciness).
---   			Deprecated, use @PhysicsMaterial.bounce@ instead via @physics_material_override@.
 get_bounce :: (StaticBody :< cls, Object :< cls) => cls -> IO Float
 get_bounce cls
   = withVariantArray []
@@ -114,7 +110,6 @@ instance NodeMethod StaticBody "get_bounce" '[] (IO Float) where
 
 {-# NOINLINE bindStaticBody_get_constant_angular_velocity #-}
 
--- | The body's constant angular velocity. This does not rotate the body, but affects other bodies that touch it, as if it was in a state of rotation.
 bindStaticBody_get_constant_angular_velocity :: MethodBind
 bindStaticBody_get_constant_angular_velocity
   = unsafePerformIO $
@@ -124,7 +119,6 @@ bindStaticBody_get_constant_angular_velocity
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The body's constant angular velocity. This does not rotate the body, but affects other bodies that touch it, as if it was in a state of rotation.
 get_constant_angular_velocity ::
                                 (StaticBody :< cls, Object :< cls) => cls -> IO Vector3
 get_constant_angular_velocity cls
@@ -143,7 +137,6 @@ instance NodeMethod StaticBody "get_constant_angular_velocity" '[]
 
 {-# NOINLINE bindStaticBody_get_constant_linear_velocity #-}
 
--- | The body's constant linear velocity. This does not move the body, but affects other bodies that touch it, as if it was in a state of movement.
 bindStaticBody_get_constant_linear_velocity :: MethodBind
 bindStaticBody_get_constant_linear_velocity
   = unsafePerformIO $
@@ -153,7 +146,6 @@ bindStaticBody_get_constant_linear_velocity
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The body's constant linear velocity. This does not move the body, but affects other bodies that touch it, as if it was in a state of movement.
 get_constant_linear_velocity ::
                                (StaticBody :< cls, Object :< cls) => cls -> IO Vector3
 get_constant_linear_velocity cls
@@ -172,8 +164,6 @@ instance NodeMethod StaticBody "get_constant_linear_velocity" '[]
 
 {-# NOINLINE bindStaticBody_get_friction #-}
 
--- | The body's friction, from 0 (frictionless) to 1 (full friction).
---   			Deprecated, use @PhysicsMaterial.friction@ instead via @physics_material_override@.
 bindStaticBody_get_friction :: MethodBind
 bindStaticBody_get_friction
   = unsafePerformIO $
@@ -183,8 +173,6 @@ bindStaticBody_get_friction
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The body's friction, from 0 (frictionless) to 1 (full friction).
---   			Deprecated, use @PhysicsMaterial.friction@ instead via @physics_material_override@.
 get_friction ::
                (StaticBody :< cls, Object :< cls) => cls -> IO Float
 get_friction cls
@@ -200,8 +188,6 @@ instance NodeMethod StaticBody "get_friction" '[] (IO Float) where
 
 {-# NOINLINE bindStaticBody_get_physics_material_override #-}
 
--- | The physics material override for the body.
---   			If a material is assigned to this property, it will be used instead of any other physics material, such as an inherited one.
 bindStaticBody_get_physics_material_override :: MethodBind
 bindStaticBody_get_physics_material_override
   = unsafePerformIO $
@@ -211,8 +197,6 @@ bindStaticBody_get_physics_material_override
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The physics material override for the body.
---   			If a material is assigned to this property, it will be used instead of any other physics material, such as an inherited one.
 get_physics_material_override ::
                                 (StaticBody :< cls, Object :< cls) => cls -> IO PhysicsMaterial
 get_physics_material_override cls
@@ -231,8 +215,6 @@ instance NodeMethod StaticBody "get_physics_material_override" '[]
 
 {-# NOINLINE bindStaticBody_set_bounce #-}
 
--- | The body's bounciness. Values range from @0@ (no bounce) to @1@ (full bounciness).
---   			Deprecated, use @PhysicsMaterial.bounce@ instead via @physics_material_override@.
 bindStaticBody_set_bounce :: MethodBind
 bindStaticBody_set_bounce
   = unsafePerformIO $
@@ -242,8 +224,6 @@ bindStaticBody_set_bounce
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The body's bounciness. Values range from @0@ (no bounce) to @1@ (full bounciness).
---   			Deprecated, use @PhysicsMaterial.bounce@ instead via @physics_material_override@.
 set_bounce ::
              (StaticBody :< cls, Object :< cls) => cls -> Float -> IO ()
 set_bounce cls arg1
@@ -259,7 +239,6 @@ instance NodeMethod StaticBody "set_bounce" '[Float] (IO ()) where
 
 {-# NOINLINE bindStaticBody_set_constant_angular_velocity #-}
 
--- | The body's constant angular velocity. This does not rotate the body, but affects other bodies that touch it, as if it was in a state of rotation.
 bindStaticBody_set_constant_angular_velocity :: MethodBind
 bindStaticBody_set_constant_angular_velocity
   = unsafePerformIO $
@@ -269,7 +248,6 @@ bindStaticBody_set_constant_angular_velocity
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The body's constant angular velocity. This does not rotate the body, but affects other bodies that touch it, as if it was in a state of rotation.
 set_constant_angular_velocity ::
                                 (StaticBody :< cls, Object :< cls) => cls -> Vector3 -> IO ()
 set_constant_angular_velocity cls arg1
@@ -289,7 +267,6 @@ instance NodeMethod StaticBody "set_constant_angular_velocity"
 
 {-# NOINLINE bindStaticBody_set_constant_linear_velocity #-}
 
--- | The body's constant linear velocity. This does not move the body, but affects other bodies that touch it, as if it was in a state of movement.
 bindStaticBody_set_constant_linear_velocity :: MethodBind
 bindStaticBody_set_constant_linear_velocity
   = unsafePerformIO $
@@ -299,7 +276,6 @@ bindStaticBody_set_constant_linear_velocity
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The body's constant linear velocity. This does not move the body, but affects other bodies that touch it, as if it was in a state of movement.
 set_constant_linear_velocity ::
                                (StaticBody :< cls, Object :< cls) => cls -> Vector3 -> IO ()
 set_constant_linear_velocity cls arg1
@@ -319,8 +295,6 @@ instance NodeMethod StaticBody "set_constant_linear_velocity"
 
 {-# NOINLINE bindStaticBody_set_friction #-}
 
--- | The body's friction, from 0 (frictionless) to 1 (full friction).
---   			Deprecated, use @PhysicsMaterial.friction@ instead via @physics_material_override@.
 bindStaticBody_set_friction :: MethodBind
 bindStaticBody_set_friction
   = unsafePerformIO $
@@ -330,8 +304,6 @@ bindStaticBody_set_friction
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The body's friction, from 0 (frictionless) to 1 (full friction).
---   			Deprecated, use @PhysicsMaterial.friction@ instead via @physics_material_override@.
 set_friction ::
                (StaticBody :< cls, Object :< cls) => cls -> Float -> IO ()
 set_friction cls arg1
@@ -348,8 +320,6 @@ instance NodeMethod StaticBody "set_friction" '[Float] (IO ())
 
 {-# NOINLINE bindStaticBody_set_physics_material_override #-}
 
--- | The physics material override for the body.
---   			If a material is assigned to this property, it will be used instead of any other physics material, such as an inherited one.
 bindStaticBody_set_physics_material_override :: MethodBind
 bindStaticBody_set_physics_material_override
   = unsafePerformIO $
@@ -359,8 +329,6 @@ bindStaticBody_set_physics_material_override
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The physics material override for the body.
---   			If a material is assigned to this property, it will be used instead of any other physics material, such as an inherited one.
 set_physics_material_override ::
                                 (StaticBody :< cls, Object :< cls) =>
                                 cls -> PhysicsMaterial -> IO ()

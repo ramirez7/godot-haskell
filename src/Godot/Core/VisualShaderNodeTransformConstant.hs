@@ -26,7 +26,7 @@ instance NodeProperty VisualShaderNodeTransformConstant "constant"
 
 {-# NOINLINE bindVisualShaderNodeTransformConstant_get_constant #-}
 
--- | A @Transform@ constant which represents the state of this node.
+-- | A @Transform3D@ constant which represents the state of this node.
 bindVisualShaderNodeTransformConstant_get_constant :: MethodBind
 bindVisualShaderNodeTransformConstant_get_constant
   = unsafePerformIO $
@@ -36,7 +36,7 @@ bindVisualShaderNodeTransformConstant_get_constant
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | A @Transform@ constant which represents the state of this node.
+-- | A @Transform3D@ constant which represents the state of this node.
 get_constant ::
                (VisualShaderNodeTransformConstant :< cls, Object :< cls) =>
                cls -> IO Transform
@@ -60,7 +60,7 @@ instance NodeMethod VisualShaderNodeTransformConstant
 
 {-# NOINLINE bindVisualShaderNodeTransformConstant_set_constant #-}
 
--- | A @Transform@ constant which represents the state of this node.
+-- | A @Transform3D@ constant which represents the state of this node.
 bindVisualShaderNodeTransformConstant_set_constant :: MethodBind
 bindVisualShaderNodeTransformConstant_set_constant
   = unsafePerformIO $
@@ -70,7 +70,7 @@ bindVisualShaderNodeTransformConstant_set_constant
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | A @Transform@ constant which represents the state of this node.
+-- | A @Transform3D@ constant which represents the state of this node.
 set_constant ::
                (VisualShaderNodeTransformConstant :< cls, Object :< cls) =>
                cls -> Transform -> IO ()

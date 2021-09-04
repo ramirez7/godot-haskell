@@ -8,24 +8,32 @@ module Godot.Tools.EditorInterface
         Godot.Tools.EditorInterface.get_edited_scene_root,
         Godot.Tools.EditorInterface.get_editor_settings,
         Godot.Tools.EditorInterface.get_editor_viewport,
+        Godot.Tools.EditorInterface.get_file_system_dock,
         Godot.Tools.EditorInterface.get_inspector,
         Godot.Tools.EditorInterface.get_open_scenes,
+        Godot.Tools.EditorInterface.get_playing_scene,
         Godot.Tools.EditorInterface.get_resource_filesystem,
         Godot.Tools.EditorInterface.get_resource_previewer,
         Godot.Tools.EditorInterface.get_script_editor,
         Godot.Tools.EditorInterface.get_selected_path,
         Godot.Tools.EditorInterface.get_selection,
         Godot.Tools.EditorInterface.inspect_object,
+        Godot.Tools.EditorInterface.is_distraction_free_mode_enabled,
+        Godot.Tools.EditorInterface.is_playing_scene,
         Godot.Tools.EditorInterface.is_plugin_enabled,
         Godot.Tools.EditorInterface.make_mesh_previews,
         Godot.Tools.EditorInterface.open_scene_from_path,
+        Godot.Tools.EditorInterface.play_current_scene,
+        Godot.Tools.EditorInterface.play_custom_scene,
+        Godot.Tools.EditorInterface.play_main_scene,
         Godot.Tools.EditorInterface.reload_scene_from_path,
         Godot.Tools.EditorInterface.save_scene,
         Godot.Tools.EditorInterface.save_scene_as,
         Godot.Tools.EditorInterface.select_file,
         Godot.Tools.EditorInterface.set_distraction_free_mode,
         Godot.Tools.EditorInterface.set_main_screen_editor,
-        Godot.Tools.EditorInterface.set_plugin_enabled)
+        Godot.Tools.EditorInterface.set_plugin_enabled,
+        Godot.Tools.EditorInterface.stop_playing_scene)
        where
 import Data.Coerce
 import Foreign.C
@@ -38,6 +46,13 @@ import System.IO.Unsafe
 import Godot.Gdnative.Internal
 import Godot.Api.Types
 import Godot.Core.Node()
+
+instance NodeProperty EditorInterface "distraction_free_mode" Bool
+           'False
+         where
+        nodeProperty
+          = (is_distraction_free_mode_enabled,
+             wrapDroppingSetter set_distraction_free_mode, Nothing)
 
 {-# NOINLINE bindEditorInterface_edit_resource #-}
 
@@ -186,8 +201,6 @@ instance NodeMethod EditorInterface "get_editor_settings" '[]
 
 {-# NOINLINE bindEditorInterface_get_editor_viewport #-}
 
--- | Returns the main editor control. Use this as a parent for main screens.
---   				__Note:__ This returns the main editor control containing the whole editor, not the 2D or 3D viewports specifically.
 bindEditorInterface_get_editor_viewport :: MethodBind
 bindEditorInterface_get_editor_viewport
   = unsafePerformIO $
@@ -197,8 +210,6 @@ bindEditorInterface_get_editor_viewport
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the main editor control. Use this as a parent for main screens.
---   				__Note:__ This returns the main editor control containing the whole editor, not the 2D or 3D viewports specifically.
 get_editor_viewport ::
                       (EditorInterface :< cls, Object :< cls) => cls -> IO Control
 get_editor_viewport cls
@@ -214,6 +225,35 @@ instance NodeMethod EditorInterface "get_editor_viewport" '[]
            (IO Control)
          where
         nodeMethod = Godot.Tools.EditorInterface.get_editor_viewport
+
+{-# NOINLINE bindEditorInterface_get_file_system_dock #-}
+
+-- | Returns the editor's @FileSystemDock@ instance.
+bindEditorInterface_get_file_system_dock :: MethodBind
+bindEditorInterface_get_file_system_dock
+  = unsafePerformIO $
+      withCString "EditorInterface" $
+        \ clsNamePtr ->
+          withCString "get_file_system_dock" $
+            \ methodNamePtr ->
+              godot_method_bind_get_method clsNamePtr methodNamePtr
+
+-- | Returns the editor's @FileSystemDock@ instance.
+get_file_system_dock ::
+                       (EditorInterface :< cls, Object :< cls) => cls -> IO FileSystemDock
+get_file_system_dock cls
+  = withVariantArray []
+      (\ (arrPtr, len) ->
+         godot_method_bind_call bindEditorInterface_get_file_system_dock
+           (upcast cls)
+           arrPtr
+           len
+           >>= \ (err, res) -> throwIfErr err >> fromGodotVariant res)
+
+instance NodeMethod EditorInterface "get_file_system_dock" '[]
+           (IO FileSystemDock)
+         where
+        nodeMethod = Godot.Tools.EditorInterface.get_file_system_dock
 
 {-# NOINLINE bindEditorInterface_get_inspector #-}
 
@@ -273,6 +313,35 @@ instance NodeMethod EditorInterface "get_open_scenes" '[]
            (IO Array)
          where
         nodeMethod = Godot.Tools.EditorInterface.get_open_scenes
+
+{-# NOINLINE bindEditorInterface_get_playing_scene #-}
+
+-- | Returns the name of the scene that is being played. If no scene is currently being played, returns an empty string.
+bindEditorInterface_get_playing_scene :: MethodBind
+bindEditorInterface_get_playing_scene
+  = unsafePerformIO $
+      withCString "EditorInterface" $
+        \ clsNamePtr ->
+          withCString "get_playing_scene" $
+            \ methodNamePtr ->
+              godot_method_bind_get_method clsNamePtr methodNamePtr
+
+-- | Returns the name of the scene that is being played. If no scene is currently being played, returns an empty string.
+get_playing_scene ::
+                    (EditorInterface :< cls, Object :< cls) => cls -> IO GodotString
+get_playing_scene cls
+  = withVariantArray []
+      (\ (arrPtr, len) ->
+         godot_method_bind_call bindEditorInterface_get_playing_scene
+           (upcast cls)
+           arrPtr
+           len
+           >>= \ (err, res) -> throwIfErr err >> fromGodotVariant res)
+
+instance NodeMethod EditorInterface "get_playing_scene" '[]
+           (IO GodotString)
+         where
+        nodeMethod = Godot.Tools.EditorInterface.get_playing_scene
 
 {-# NOINLINE bindEditorInterface_get_resource_filesystem #-}
 
@@ -424,7 +493,7 @@ instance NodeMethod EditorInterface "get_selection" '[]
 
 {-# NOINLINE bindEditorInterface_inspect_object #-}
 
--- | Shows the given property on the given @object@ in the editor's Inspector dock.
+-- | Shows the given property on the given @object@ in the editor's Inspector dock. If @inspector_only@ is @true@, plugins will not attempt to edit @object@.
 bindEditorInterface_inspect_object :: MethodBind
 bindEditorInterface_inspect_object
   = unsafePerformIO $
@@ -434,7 +503,7 @@ bindEditorInterface_inspect_object
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Shows the given property on the given @object@ in the editor's Inspector dock.
+-- | Shows the given property on the given @object@ in the editor's Inspector dock. If @inspector_only@ is @true@, plugins will not attempt to edit @object@.
 inspect_object ::
                  (EditorInterface :< cls, Object :< cls) =>
                  cls -> Object -> Maybe GodotString -> IO ()
@@ -453,6 +522,69 @@ instance NodeMethod EditorInterface "inspect_object"
            (IO ())
          where
         nodeMethod = Godot.Tools.EditorInterface.inspect_object
+
+{-# NOINLINE bindEditorInterface_is_distraction_free_mode_enabled
+             #-}
+
+-- | If @true@, enables distraction-free mode which hides side docks to increase the space available for the main view.
+bindEditorInterface_is_distraction_free_mode_enabled :: MethodBind
+bindEditorInterface_is_distraction_free_mode_enabled
+  = unsafePerformIO $
+      withCString "EditorInterface" $
+        \ clsNamePtr ->
+          withCString "is_distraction_free_mode_enabled" $
+            \ methodNamePtr ->
+              godot_method_bind_get_method clsNamePtr methodNamePtr
+
+-- | If @true@, enables distraction-free mode which hides side docks to increase the space available for the main view.
+is_distraction_free_mode_enabled ::
+                                   (EditorInterface :< cls, Object :< cls) => cls -> IO Bool
+is_distraction_free_mode_enabled cls
+  = withVariantArray []
+      (\ (arrPtr, len) ->
+         godot_method_bind_call
+           bindEditorInterface_is_distraction_free_mode_enabled
+           (upcast cls)
+           arrPtr
+           len
+           >>= \ (err, res) -> throwIfErr err >> fromGodotVariant res)
+
+instance NodeMethod EditorInterface
+           "is_distraction_free_mode_enabled"
+           '[]
+           (IO Bool)
+         where
+        nodeMethod
+          = Godot.Tools.EditorInterface.is_distraction_free_mode_enabled
+
+{-# NOINLINE bindEditorInterface_is_playing_scene #-}
+
+-- | Returns @true@ if a scene is currently being played, @false@ otherwise. Paused scenes are considered as being played.
+bindEditorInterface_is_playing_scene :: MethodBind
+bindEditorInterface_is_playing_scene
+  = unsafePerformIO $
+      withCString "EditorInterface" $
+        \ clsNamePtr ->
+          withCString "is_playing_scene" $
+            \ methodNamePtr ->
+              godot_method_bind_get_method clsNamePtr methodNamePtr
+
+-- | Returns @true@ if a scene is currently being played, @false@ otherwise. Paused scenes are considered as being played.
+is_playing_scene ::
+                   (EditorInterface :< cls, Object :< cls) => cls -> IO Bool
+is_playing_scene cls
+  = withVariantArray []
+      (\ (arrPtr, len) ->
+         godot_method_bind_call bindEditorInterface_is_playing_scene
+           (upcast cls)
+           arrPtr
+           len
+           >>= \ (err, res) -> throwIfErr err >> fromGodotVariant res)
+
+instance NodeMethod EditorInterface "is_playing_scene" '[]
+           (IO Bool)
+         where
+        nodeMethod = Godot.Tools.EditorInterface.is_playing_scene
 
 {-# NOINLINE bindEditorInterface_is_plugin_enabled #-}
 
@@ -487,7 +619,7 @@ instance NodeMethod EditorInterface "is_plugin_enabled"
 
 {-# NOINLINE bindEditorInterface_make_mesh_previews #-}
 
--- | Returns mesh previews rendered at the given size as an @Array@ of @Texture@s.
+-- | Returns mesh previews rendered at the given size as an @Array@ of @Texture2D@s.
 bindEditorInterface_make_mesh_previews :: MethodBind
 bindEditorInterface_make_mesh_previews
   = unsafePerformIO $
@@ -497,7 +629,7 @@ bindEditorInterface_make_mesh_previews
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns mesh previews rendered at the given size as an @Array@ of @Texture@s.
+-- | Returns mesh previews rendered at the given size as an @Array@ of @Texture2D@s.
 make_mesh_previews ::
                      (EditorInterface :< cls, Object :< cls) =>
                      cls -> Array -> Int -> IO Array
@@ -546,6 +678,94 @@ instance NodeMethod EditorInterface "open_scene_from_path"
            (IO ())
          where
         nodeMethod = Godot.Tools.EditorInterface.open_scene_from_path
+
+{-# NOINLINE bindEditorInterface_play_current_scene #-}
+
+-- | Plays the currently active scene.
+bindEditorInterface_play_current_scene :: MethodBind
+bindEditorInterface_play_current_scene
+  = unsafePerformIO $
+      withCString "EditorInterface" $
+        \ clsNamePtr ->
+          withCString "play_current_scene" $
+            \ methodNamePtr ->
+              godot_method_bind_get_method clsNamePtr methodNamePtr
+
+-- | Plays the currently active scene.
+play_current_scene ::
+                     (EditorInterface :< cls, Object :< cls) => cls -> IO ()
+play_current_scene cls
+  = withVariantArray []
+      (\ (arrPtr, len) ->
+         godot_method_bind_call bindEditorInterface_play_current_scene
+           (upcast cls)
+           arrPtr
+           len
+           >>= \ (err, res) -> throwIfErr err >> fromGodotVariant res)
+
+instance NodeMethod EditorInterface "play_current_scene" '[]
+           (IO ())
+         where
+        nodeMethod = Godot.Tools.EditorInterface.play_current_scene
+
+{-# NOINLINE bindEditorInterface_play_custom_scene #-}
+
+-- | Plays the scene specified by its filepath.
+bindEditorInterface_play_custom_scene :: MethodBind
+bindEditorInterface_play_custom_scene
+  = unsafePerformIO $
+      withCString "EditorInterface" $
+        \ clsNamePtr ->
+          withCString "play_custom_scene" $
+            \ methodNamePtr ->
+              godot_method_bind_get_method clsNamePtr methodNamePtr
+
+-- | Plays the scene specified by its filepath.
+play_custom_scene ::
+                    (EditorInterface :< cls, Object :< cls) =>
+                    cls -> GodotString -> IO ()
+play_custom_scene cls arg1
+  = withVariantArray [toVariant arg1]
+      (\ (arrPtr, len) ->
+         godot_method_bind_call bindEditorInterface_play_custom_scene
+           (upcast cls)
+           arrPtr
+           len
+           >>= \ (err, res) -> throwIfErr err >> fromGodotVariant res)
+
+instance NodeMethod EditorInterface "play_custom_scene"
+           '[GodotString]
+           (IO ())
+         where
+        nodeMethod = Godot.Tools.EditorInterface.play_custom_scene
+
+{-# NOINLINE bindEditorInterface_play_main_scene #-}
+
+-- | Plays the main scene.
+bindEditorInterface_play_main_scene :: MethodBind
+bindEditorInterface_play_main_scene
+  = unsafePerformIO $
+      withCString "EditorInterface" $
+        \ clsNamePtr ->
+          withCString "play_main_scene" $
+            \ methodNamePtr ->
+              godot_method_bind_get_method clsNamePtr methodNamePtr
+
+-- | Plays the main scene.
+play_main_scene ::
+                  (EditorInterface :< cls, Object :< cls) => cls -> IO ()
+play_main_scene cls
+  = withVariantArray []
+      (\ (arrPtr, len) ->
+         godot_method_bind_call bindEditorInterface_play_main_scene
+           (upcast cls)
+           arrPtr
+           len
+           >>= \ (err, res) -> throwIfErr err >> fromGodotVariant res)
+
+instance NodeMethod EditorInterface "play_main_scene" '[] (IO ())
+         where
+        nodeMethod = Godot.Tools.EditorInterface.play_main_scene
 
 {-# NOINLINE bindEditorInterface_reload_scene_from_path #-}
 
@@ -757,3 +977,32 @@ instance NodeMethod EditorInterface "set_plugin_enabled"
            (IO ())
          where
         nodeMethod = Godot.Tools.EditorInterface.set_plugin_enabled
+
+{-# NOINLINE bindEditorInterface_stop_playing_scene #-}
+
+-- | Stops the scene that is currently playing.
+bindEditorInterface_stop_playing_scene :: MethodBind
+bindEditorInterface_stop_playing_scene
+  = unsafePerformIO $
+      withCString "EditorInterface" $
+        \ clsNamePtr ->
+          withCString "stop_playing_scene" $
+            \ methodNamePtr ->
+              godot_method_bind_get_method clsNamePtr methodNamePtr
+
+-- | Stops the scene that is currently playing.
+stop_playing_scene ::
+                     (EditorInterface :< cls, Object :< cls) => cls -> IO ()
+stop_playing_scene cls
+  = withVariantArray []
+      (\ (arrPtr, len) ->
+         godot_method_bind_call bindEditorInterface_stop_playing_scene
+           (upcast cls)
+           arrPtr
+           len
+           >>= \ (err, res) -> throwIfErr err >> fromGodotVariant res)
+
+instance NodeMethod EditorInterface "stop_playing_scene" '[]
+           (IO ())
+         where
+        nodeMethod = Godot.Tools.EditorInterface.stop_playing_scene

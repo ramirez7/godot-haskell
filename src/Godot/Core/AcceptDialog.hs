@@ -134,6 +134,7 @@ instance NodeMethod AcceptDialog "_ok" '[] (IO ()) where
 
 -- | Adds a button with label @text@ and a custom @action@ to the dialog and returns the created button. @action@ will be passed to the @signal custom_action@ signal when pressed.
 --   				If @true@, @right@ will place the button to the right of any sibling buttons.
+--   				You can use @method remove_button@ method to remove a button created with this method from the dialog.
 bindAcceptDialog_add_button :: MethodBind
 bindAcceptDialog_add_button
   = unsafePerformIO $
@@ -145,6 +146,7 @@ bindAcceptDialog_add_button
 
 -- | Adds a button with label @text@ and a custom @action@ to the dialog and returns the created button. @action@ will be passed to the @signal custom_action@ signal when pressed.
 --   				If @true@, @right@ will place the button to the right of any sibling buttons.
+--   				You can use @method remove_button@ method to remove a button created with this method from the dialog.
 add_button ::
              (AcceptDialog :< cls, Object :< cls) =>
              cls -> GodotString -> Maybe Bool -> Maybe GodotString -> IO Button
@@ -166,7 +168,6 @@ instance NodeMethod AcceptDialog "add_button"
 
 {-# NOINLINE bindAcceptDialog_add_cancel #-}
 
--- | Adds a button with label @name@ and a cancel action to the dialog and returns the created button.
 bindAcceptDialog_add_cancel :: MethodBind
 bindAcceptDialog_add_cancel
   = unsafePerformIO $
@@ -176,7 +177,6 @@ bindAcceptDialog_add_cancel
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Adds a button with label @name@ and a cancel action to the dialog and returns the created button.
 add_cancel ::
              (AcceptDialog :< cls, Object :< cls) =>
              cls -> GodotString -> IO Button
@@ -250,7 +250,6 @@ instance NodeMethod AcceptDialog "get_label" '[] (IO Label) where
 
 {-# NOINLINE bindAcceptDialog_get_ok #-}
 
--- | Returns the OK @Button@ instance.
 bindAcceptDialog_get_ok :: MethodBind
 bindAcceptDialog_get_ok
   = unsafePerformIO $
@@ -260,7 +259,6 @@ bindAcceptDialog_get_ok
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the OK @Button@ instance.
 get_ok :: (AcceptDialog :< cls, Object :< cls) => cls -> IO Button
 get_ok cls
   = withVariantArray []

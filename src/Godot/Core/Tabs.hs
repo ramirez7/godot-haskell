@@ -97,13 +97,11 @@ sig_tab_clicked = Godot.Internal.Dispatch.Signal "tab_clicked"
 
 instance NodeSignal Tabs "tab_clicked" '[Int]
 
--- | Emitted when a tab is closed.
 sig_tab_close :: Godot.Internal.Dispatch.Signal Tabs
 sig_tab_close = Godot.Internal.Dispatch.Signal "tab_close"
 
 instance NodeSignal Tabs "tab_close" '[Int]
 
--- | Emitted when a tab is hovered by the mouse.
 sig_tab_hover :: Godot.Internal.Dispatch.Signal Tabs
 sig_tab_hover = Godot.Internal.Dispatch.Signal "tab_hover"
 
@@ -340,7 +338,7 @@ instance NodeMethod Tabs "get_offset_buttons_visible" '[] (IO Bool)
 
 {-# NOINLINE bindTabs_get_scrolling_enabled #-}
 
--- | if @true@, the mouse's scroll wheel cab be used to navigate the scroll view.
+-- | if @true@, the mouse's scroll wheel can be used to navigate the scroll view.
 bindTabs_get_scrolling_enabled :: MethodBind
 bindTabs_get_scrolling_enabled
   = unsafePerformIO $
@@ -350,7 +348,7 @@ bindTabs_get_scrolling_enabled
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | if @true@, the mouse's scroll wheel cab be used to navigate the scroll view.
+-- | if @true@, the mouse's scroll wheel can be used to navigate the scroll view.
 get_scrolling_enabled ::
                         (Tabs :< cls, Object :< cls) => cls -> IO Bool
 get_scrolling_enabled cls
@@ -496,7 +494,7 @@ instance NodeMethod Tabs "get_tab_disabled" '[Int] (IO Bool) where
 
 {-# NOINLINE bindTabs_get_tab_icon #-}
 
--- | Returns the @Texture@ for the tab at index @tab_idx@ or @null@ if the tab has no @Texture@.
+-- | Returns the @Texture2D@ for the tab at index @tab_idx@ or @null@ if the tab has no @Texture2D@.
 bindTabs_get_tab_icon :: MethodBind
 bindTabs_get_tab_icon
   = unsafePerformIO $
@@ -506,7 +504,7 @@ bindTabs_get_tab_icon
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the @Texture@ for the tab at index @tab_idx@ or @null@ if the tab has no @Texture@.
+-- | Returns the @Texture2D@ for the tab at index @tab_idx@ or @null@ if the tab has no @Texture2D@.
 get_tab_icon ::
                (Tabs :< cls, Object :< cls) => cls -> Int -> IO Texture
 get_tab_icon cls arg1
@@ -725,7 +723,7 @@ instance NodeMethod Tabs "set_drag_to_rearrange_enabled" '[Bool]
 
 {-# NOINLINE bindTabs_set_scrolling_enabled #-}
 
--- | if @true@, the mouse's scroll wheel cab be used to navigate the scroll view.
+-- | if @true@, the mouse's scroll wheel can be used to navigate the scroll view.
 bindTabs_set_scrolling_enabled :: MethodBind
 bindTabs_set_scrolling_enabled
   = unsafePerformIO $
@@ -735,7 +733,7 @@ bindTabs_set_scrolling_enabled
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | if @true@, the mouse's scroll wheel cab be used to navigate the scroll view.
+-- | if @true@, the mouse's scroll wheel can be used to navigate the scroll view.
 set_scrolling_enabled ::
                         (Tabs :< cls, Object :< cls) => cls -> Bool -> IO ()
 set_scrolling_enabled cls arg1

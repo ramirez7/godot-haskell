@@ -354,7 +354,7 @@ instance NodeMethod MultiMesh "_set_transform_array"
 
 {-# NOINLINE bindMultiMesh_get_aabb #-}
 
--- | Returns the visibility axis-aligned bounding box in local space. See also @method VisualInstance.get_transformed_aabb@.
+-- | Returns the visibility axis-aligned bounding box in local space. See also @method VisualInstance3D.get_transformed_aabb@.
 bindMultiMesh_get_aabb :: MethodBind
 bindMultiMesh_get_aabb
   = unsafePerformIO $
@@ -364,7 +364,7 @@ bindMultiMesh_get_aabb
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the visibility axis-aligned bounding box in local space. See also @method VisualInstance.get_transformed_aabb@.
+-- | Returns the visibility axis-aligned bounding box in local space. See also @method VisualInstance3D.get_transformed_aabb@.
 get_aabb :: (MultiMesh :< cls, Object :< cls) => cls -> IO Aabb
 get_aabb cls
   = withVariantArray []
@@ -378,7 +378,6 @@ instance NodeMethod MultiMesh "get_aabb" '[] (IO Aabb) where
 
 {-# NOINLINE bindMultiMesh_get_color_format #-}
 
--- | Format of colors in color array that gets passed to shader.
 bindMultiMesh_get_color_format :: MethodBind
 bindMultiMesh_get_color_format
   = unsafePerformIO $
@@ -388,7 +387,6 @@ bindMultiMesh_get_color_format
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Format of colors in color array that gets passed to shader.
 get_color_format ::
                    (MultiMesh :< cls, Object :< cls) => cls -> IO Int
 get_color_format cls
@@ -404,7 +402,6 @@ instance NodeMethod MultiMesh "get_color_format" '[] (IO Int) where
 
 {-# NOINLINE bindMultiMesh_get_custom_data_format #-}
 
--- | Format of custom data in custom data array that gets passed to shader.
 bindMultiMesh_get_custom_data_format :: MethodBind
 bindMultiMesh_get_custom_data_format
   = unsafePerformIO $
@@ -414,7 +411,6 @@ bindMultiMesh_get_custom_data_format
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Format of custom data in custom data array that gets passed to shader.
 get_custom_data_format ::
                          (MultiMesh :< cls, Object :< cls) => cls -> IO Int
 get_custom_data_format cls
@@ -518,7 +514,7 @@ instance NodeMethod MultiMesh "get_instance_custom_data" '[Int]
 
 {-# NOINLINE bindMultiMesh_get_instance_transform #-}
 
--- | Returns the @Transform@ of a specific instance.
+-- | Returns the @Transform3D@ of a specific instance.
 bindMultiMesh_get_instance_transform :: MethodBind
 bindMultiMesh_get_instance_transform
   = unsafePerformIO $
@@ -528,7 +524,7 @@ bindMultiMesh_get_instance_transform
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the @Transform@ of a specific instance.
+-- | Returns the @Transform3D@ of a specific instance.
 get_instance_transform ::
                          (MultiMesh :< cls, Object :< cls) => cls -> Int -> IO Transform
 get_instance_transform cls arg1
@@ -657,9 +653,6 @@ instance NodeMethod MultiMesh "get_visible_instance_count" '[]
 
 {-# NOINLINE bindMultiMesh_set_as_bulk_array #-}
 
--- | Sets all data related to the instances in one go. This is especially useful when loading the data from disk or preparing the data from GDNative.
---   				All data is packed in one large float array. An array may look like this: Transform for instance 1, color data for instance 1, custom data for instance 1, transform for instance 2, color data for instance 2, etc...
---   				@Transform@ is stored as 12 floats, @Transform2D@ is stored as 8 floats, @COLOR_8BIT@ / @CUSTOM_DATA_8BIT@ is stored as 1 float (4 bytes as is) and @COLOR_FLOAT@ / @CUSTOM_DATA_FLOAT@ is stored as 4 floats.
 bindMultiMesh_set_as_bulk_array :: MethodBind
 bindMultiMesh_set_as_bulk_array
   = unsafePerformIO $
@@ -669,9 +662,6 @@ bindMultiMesh_set_as_bulk_array
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets all data related to the instances in one go. This is especially useful when loading the data from disk or preparing the data from GDNative.
---   				All data is packed in one large float array. An array may look like this: Transform for instance 1, color data for instance 1, custom data for instance 1, transform for instance 2, color data for instance 2, etc...
---   				@Transform@ is stored as 12 floats, @Transform2D@ is stored as 8 floats, @COLOR_8BIT@ / @CUSTOM_DATA_8BIT@ is stored as 1 float (4 bytes as is) and @COLOR_FLOAT@ / @CUSTOM_DATA_FLOAT@ is stored as 4 floats.
 set_as_bulk_array ::
                     (MultiMesh :< cls, Object :< cls) => cls -> PoolRealArray -> IO ()
 set_as_bulk_array cls arg1
@@ -689,7 +679,6 @@ instance NodeMethod MultiMesh "set_as_bulk_array" '[PoolRealArray]
 
 {-# NOINLINE bindMultiMesh_set_color_format #-}
 
--- | Format of colors in color array that gets passed to shader.
 bindMultiMesh_set_color_format :: MethodBind
 bindMultiMesh_set_color_format
   = unsafePerformIO $
@@ -699,7 +688,6 @@ bindMultiMesh_set_color_format
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Format of colors in color array that gets passed to shader.
 set_color_format ::
                    (MultiMesh :< cls, Object :< cls) => cls -> Int -> IO ()
 set_color_format cls arg1
@@ -716,7 +704,6 @@ instance NodeMethod MultiMesh "set_color_format" '[Int] (IO ())
 
 {-# NOINLINE bindMultiMesh_set_custom_data_format #-}
 
--- | Format of custom data in custom data array that gets passed to shader.
 bindMultiMesh_set_custom_data_format :: MethodBind
 bindMultiMesh_set_custom_data_format
   = unsafePerformIO $
@@ -726,7 +713,6 @@ bindMultiMesh_set_custom_data_format
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Format of custom data in custom data array that gets passed to shader.
 set_custom_data_format ::
                          (MultiMesh :< cls, Object :< cls) => cls -> Int -> IO ()
 set_custom_data_format cls arg1
@@ -745,8 +731,8 @@ instance NodeMethod MultiMesh "set_custom_data_format" '[Int]
 
 {-# NOINLINE bindMultiMesh_set_instance_color #-}
 
--- | Sets the color of a specific instance.
---   				For the color to take effect, ensure that @color_format@ is non-@null@ on the @MultiMesh@ and @SpatialMaterial.vertex_color_use_as_albedo@ is @true@ on the material.
+-- | Sets the color of a specific instance by @i@multiplying@/i@ the mesh's existing vertex colors.
+--   				For the color to take effect, ensure that @use_colors@ is @true@ on the @MultiMesh@ and @BaseMaterial3D.vertex_color_use_as_albedo@ is @true@ on the material.
 bindMultiMesh_set_instance_color :: MethodBind
 bindMultiMesh_set_instance_color
   = unsafePerformIO $
@@ -756,8 +742,8 @@ bindMultiMesh_set_instance_color
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the color of a specific instance.
---   				For the color to take effect, ensure that @color_format@ is non-@null@ on the @MultiMesh@ and @SpatialMaterial.vertex_color_use_as_albedo@ is @true@ on the material.
+-- | Sets the color of a specific instance by @i@multiplying@/i@ the mesh's existing vertex colors.
+--   				For the color to take effect, ensure that @use_colors@ is @true@ on the @MultiMesh@ and @BaseMaterial3D.vertex_color_use_as_albedo@ is @true@ on the material.
 set_instance_color ::
                      (MultiMesh :< cls, Object :< cls) => cls -> Int -> Color -> IO ()
 set_instance_color cls arg1 arg2
@@ -804,7 +790,8 @@ instance NodeMethod MultiMesh "set_instance_count" '[Int] (IO ())
 
 {-# NOINLINE bindMultiMesh_set_instance_custom_data #-}
 
--- | Sets custom data for a specific instance. Although @Color@ is used, it is just a container for 4 floating point numbers. The format of the number can change depending on the @enum CustomDataFormat@ used.
+-- | Sets custom data for a specific instance. Although @Color@ is used, it is just a container for 4 floating point numbers.
+--   				For the custom data to be used, ensure that @use_custom_data@ is @true@.
 bindMultiMesh_set_instance_custom_data :: MethodBind
 bindMultiMesh_set_instance_custom_data
   = unsafePerformIO $
@@ -814,7 +801,8 @@ bindMultiMesh_set_instance_custom_data
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets custom data for a specific instance. Although @Color@ is used, it is just a container for 4 floating point numbers. The format of the number can change depending on the @enum CustomDataFormat@ used.
+-- | Sets custom data for a specific instance. Although @Color@ is used, it is just a container for 4 floating point numbers.
+--   				For the custom data to be used, ensure that @use_custom_data@ is @true@.
 set_instance_custom_data ::
                            (MultiMesh :< cls, Object :< cls) => cls -> Int -> Color -> IO ()
 set_instance_custom_data cls arg1 arg2
@@ -834,7 +822,7 @@ instance NodeMethod MultiMesh "set_instance_custom_data"
 
 {-# NOINLINE bindMultiMesh_set_instance_transform #-}
 
--- | Sets the @Transform@ for a specific instance.
+-- | Sets the @Transform3D@ for a specific instance.
 bindMultiMesh_set_instance_transform :: MethodBind
 bindMultiMesh_set_instance_transform
   = unsafePerformIO $
@@ -844,7 +832,7 @@ bindMultiMesh_set_instance_transform
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the @Transform@ for a specific instance.
+-- | Sets the @Transform3D@ for a specific instance.
 set_instance_transform ::
                          (MultiMesh :< cls, Object :< cls) =>
                          cls -> Int -> Transform -> IO ()

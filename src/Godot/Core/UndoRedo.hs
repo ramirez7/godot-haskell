@@ -253,7 +253,7 @@ instance NodeMethod UndoRedo "clear_history" '[Maybe Bool] (IO ())
 
 {-# NOINLINE bindUndoRedo_commit_action #-}
 
--- | Commit the action. All "do" methods/properties are called/set when this function is called.
+-- | Commit the action. If @execute@ is true (default), all "do" methods/properties are called/set when this function is called.
 bindUndoRedo_commit_action :: MethodBind
 bindUndoRedo_commit_action
   = unsafePerformIO $
@@ -263,7 +263,7 @@ bindUndoRedo_commit_action
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Commit the action. All "do" methods/properties are called/set when this function is called.
+-- | Commit the action. If @execute@ is true (default), all "do" methods/properties are called/set when this function is called.
 commit_action :: (UndoRedo :< cls, Object :< cls) => cls -> IO ()
 commit_action cls
   = withVariantArray []
@@ -311,7 +311,7 @@ instance NodeMethod UndoRedo "create_action"
 
 {-# NOINLINE bindUndoRedo_get_current_action_name #-}
 
--- | Gets the name of the current action.
+-- | Gets the name of the current action, equivalent to @get_action_name(get_current_action())@.
 bindUndoRedo_get_current_action_name :: MethodBind
 bindUndoRedo_get_current_action_name
   = unsafePerformIO $
@@ -321,7 +321,7 @@ bindUndoRedo_get_current_action_name
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Gets the name of the current action.
+-- | Gets the name of the current action, equivalent to @get_action_name(get_current_action())@.
 get_current_action_name ::
                           (UndoRedo :< cls, Object :< cls) => cls -> IO GodotString
 get_current_action_name cls
@@ -414,7 +414,6 @@ instance NodeMethod UndoRedo "has_undo" '[] (IO Bool) where
 
 {-# NOINLINE bindUndoRedo_is_commiting_action #-}
 
--- | Returns @true@ if the @UndoRedo@ is currently committing the action, i.e. running its "do" method or property change (see @method commit_action@).
 bindUndoRedo_is_commiting_action :: MethodBind
 bindUndoRedo_is_commiting_action
   = unsafePerformIO $
@@ -424,7 +423,6 @@ bindUndoRedo_is_commiting_action
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns @true@ if the @UndoRedo@ is currently committing the action, i.e. running its "do" method or property change (see @method commit_action@).
 is_commiting_action ::
                       (UndoRedo :< cls, Object :< cls) => cls -> IO Bool
 is_commiting_action cls

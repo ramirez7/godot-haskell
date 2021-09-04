@@ -68,7 +68,6 @@ instance NodeProperty CharFXTransform "visible" Bool 'False where
 
 {-# NOINLINE bindCharFXTransform_get_absolute_index #-}
 
--- | The index of the current character (starting from 0). Setting this property won't affect drawing.
 bindCharFXTransform_get_absolute_index :: MethodBind
 bindCharFXTransform_get_absolute_index
   = unsafePerformIO $
@@ -78,7 +77,6 @@ bindCharFXTransform_get_absolute_index
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The index of the current character (starting from 0). Setting this property won't affect drawing.
 get_absolute_index ::
                      (CharFXTransform :< cls, Object :< cls) => cls -> IO Int
 get_absolute_index cls
@@ -97,15 +95,6 @@ instance NodeMethod CharFXTransform "get_absolute_index" '[]
 
 {-# NOINLINE bindCharFXTransform_get_character #-}
 
--- | The Unicode codepoint the character will use. This only affects non-whitespace characters. @method @GDScript.ord@ can be useful here. For example, the following will replace all characters with asterisks:
---   			
---   @
---   
---   			# `char_fx` is the CharFXTransform parameter from `_process_custom_fx()`.
---   			# See the RichTextEffect documentation for details.
---   			char_fx.character = ord("*")
---   			
---   @
 bindCharFXTransform_get_character :: MethodBind
 bindCharFXTransform_get_character
   = unsafePerformIO $
@@ -115,15 +104,6 @@ bindCharFXTransform_get_character
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The Unicode codepoint the character will use. This only affects non-whitespace characters. @method @GDScript.ord@ can be useful here. For example, the following will replace all characters with asterisks:
---   			
---   @
---   
---   			# `char_fx` is the CharFXTransform parameter from `_process_custom_fx()`.
---   			# See the RichTextEffect documentation for details.
---   			char_fx.character = ord("*")
---   			
---   @
 get_character ::
                 (CharFXTransform :< cls, Object :< cls) => cls -> IO Int
 get_character cls
@@ -168,7 +148,7 @@ instance NodeMethod CharFXTransform "get_color" '[] (IO Color)
 
 {-# NOINLINE bindCharFXTransform_get_elapsed_time #-}
 
--- | The time elapsed since the @RichTextLabel@ was added to the scene tree (in seconds). Time stops when the project is paused, unless the @RichTextLabel@'s @Node.pause_mode@ is set to @Node.PAUSE_MODE_PROCESS@.
+-- | The time elapsed since the @RichTextLabel@ was added to the scene tree (in seconds). Time stops when the project is paused depending on the value of the @RichTextLabel@'s @Node.process_mode@.
 --   			__Note:__ Time still passes while the @RichTextLabel@ is hidden.
 bindCharFXTransform_get_elapsed_time :: MethodBind
 bindCharFXTransform_get_elapsed_time
@@ -179,7 +159,7 @@ bindCharFXTransform_get_elapsed_time
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The time elapsed since the @RichTextLabel@ was added to the scene tree (in seconds). Time stops when the project is paused, unless the @RichTextLabel@'s @Node.pause_mode@ is set to @Node.PAUSE_MODE_PROCESS@.
+-- | The time elapsed since the @RichTextLabel@ was added to the scene tree (in seconds). Time stops when the project is paused depending on the value of the @RichTextLabel@'s @Node.process_mode@.
 --   			__Note:__ Time still passes while the @RichTextLabel@ is hidden.
 get_elapsed_time ::
                    (CharFXTransform :< cls, Object :< cls) => cls -> IO Float
@@ -269,7 +249,6 @@ instance NodeMethod CharFXTransform "get_offset" '[] (IO Vector2)
 
 {-# NOINLINE bindCharFXTransform_get_relative_index #-}
 
--- | The index of the current character (starting from 0). Setting this property won't affect drawing.
 bindCharFXTransform_get_relative_index :: MethodBind
 bindCharFXTransform_get_relative_index
   = unsafePerformIO $
@@ -279,7 +258,6 @@ bindCharFXTransform_get_relative_index
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The index of the current character (starting from 0). Setting this property won't affect drawing.
 get_relative_index ::
                      (CharFXTransform :< cls, Object :< cls) => cls -> IO Int
 get_relative_index cls
@@ -325,7 +303,6 @@ instance NodeMethod CharFXTransform "is_visible" '[] (IO Bool)
 
 {-# NOINLINE bindCharFXTransform_set_absolute_index #-}
 
--- | The index of the current character (starting from 0). Setting this property won't affect drawing.
 bindCharFXTransform_set_absolute_index :: MethodBind
 bindCharFXTransform_set_absolute_index
   = unsafePerformIO $
@@ -335,7 +312,6 @@ bindCharFXTransform_set_absolute_index
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The index of the current character (starting from 0). Setting this property won't affect drawing.
 set_absolute_index ::
                      (CharFXTransform :< cls, Object :< cls) => cls -> Int -> IO ()
 set_absolute_index cls arg1
@@ -354,15 +330,6 @@ instance NodeMethod CharFXTransform "set_absolute_index" '[Int]
 
 {-# NOINLINE bindCharFXTransform_set_character #-}
 
--- | The Unicode codepoint the character will use. This only affects non-whitespace characters. @method @GDScript.ord@ can be useful here. For example, the following will replace all characters with asterisks:
---   			
---   @
---   
---   			# `char_fx` is the CharFXTransform parameter from `_process_custom_fx()`.
---   			# See the RichTextEffect documentation for details.
---   			char_fx.character = ord("*")
---   			
---   @
 bindCharFXTransform_set_character :: MethodBind
 bindCharFXTransform_set_character
   = unsafePerformIO $
@@ -372,15 +339,6 @@ bindCharFXTransform_set_character
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The Unicode codepoint the character will use. This only affects non-whitespace characters. @method @GDScript.ord@ can be useful here. For example, the following will replace all characters with asterisks:
---   			
---   @
---   
---   			# `char_fx` is the CharFXTransform parameter from `_process_custom_fx()`.
---   			# See the RichTextEffect documentation for details.
---   			char_fx.character = ord("*")
---   			
---   @
 set_character ::
                 (CharFXTransform :< cls, Object :< cls) => cls -> Int -> IO ()
 set_character cls arg1
@@ -425,7 +383,7 @@ instance NodeMethod CharFXTransform "set_color" '[Color] (IO ())
 
 {-# NOINLINE bindCharFXTransform_set_elapsed_time #-}
 
--- | The time elapsed since the @RichTextLabel@ was added to the scene tree (in seconds). Time stops when the project is paused, unless the @RichTextLabel@'s @Node.pause_mode@ is set to @Node.PAUSE_MODE_PROCESS@.
+-- | The time elapsed since the @RichTextLabel@ was added to the scene tree (in seconds). Time stops when the project is paused depending on the value of the @RichTextLabel@'s @Node.process_mode@.
 --   			__Note:__ Time still passes while the @RichTextLabel@ is hidden.
 bindCharFXTransform_set_elapsed_time :: MethodBind
 bindCharFXTransform_set_elapsed_time
@@ -436,7 +394,7 @@ bindCharFXTransform_set_elapsed_time
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The time elapsed since the @RichTextLabel@ was added to the scene tree (in seconds). Time stops when the project is paused, unless the @RichTextLabel@'s @Node.pause_mode@ is set to @Node.PAUSE_MODE_PROCESS@.
+-- | The time elapsed since the @RichTextLabel@ was added to the scene tree (in seconds). Time stops when the project is paused depending on the value of the @RichTextLabel@'s @Node.process_mode@.
 --   			__Note:__ Time still passes while the @RichTextLabel@ is hidden.
 set_elapsed_time ::
                    (CharFXTransform :< cls, Object :< cls) => cls -> Float -> IO ()
@@ -527,7 +485,6 @@ instance NodeMethod CharFXTransform "set_offset" '[Vector2] (IO ())
 
 {-# NOINLINE bindCharFXTransform_set_relative_index #-}
 
--- | The index of the current character (starting from 0). Setting this property won't affect drawing.
 bindCharFXTransform_set_relative_index :: MethodBind
 bindCharFXTransform_set_relative_index
   = unsafePerformIO $
@@ -537,7 +494,6 @@ bindCharFXTransform_set_relative_index
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The index of the current character (starting from 0). Setting this property won't affect drawing.
 set_relative_index ::
                      (CharFXTransform :< cls, Object :< cls) => cls -> Int -> IO ()
 set_relative_index cls arg1

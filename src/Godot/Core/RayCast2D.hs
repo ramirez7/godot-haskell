@@ -152,7 +152,7 @@ instance NodeMethod RayCast2D "clear_exceptions" '[] (IO ()) where
 {-# NOINLINE bindRayCast2D_force_raycast_update #-}
 
 -- | Updates the collision information for the ray. Use this method to update the collision information immediately instead of waiting for the next @_physics_process@ call, for example if the ray or its parent has changed state.
---   				__Note:__ @enabled@ is not required for this to work.
+--   				__Note:__ @enabled@ does not need to be @true@ for this to work.
 bindRayCast2D_force_raycast_update :: MethodBind
 bindRayCast2D_force_raycast_update
   = unsafePerformIO $
@@ -163,7 +163,7 @@ bindRayCast2D_force_raycast_update
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | Updates the collision information for the ray. Use this method to update the collision information immediately instead of waiting for the next @_physics_process@ call, for example if the ray or its parent has changed state.
---   				__Note:__ @enabled@ is not required for this to work.
+--   				__Note:__ @enabled@ does not need to be @true@ for this to work.
 force_raycast_update ::
                        (RayCast2D :< cls, Object :< cls) => cls -> IO ()
 force_raycast_update cls
@@ -181,7 +181,6 @@ instance NodeMethod RayCast2D "force_raycast_update" '[] (IO ())
 
 {-# NOINLINE bindRayCast2D_get_cast_to #-}
 
--- | The ray's destination point, relative to the RayCast's @position@.
 bindRayCast2D_get_cast_to :: MethodBind
 bindRayCast2D_get_cast_to
   = unsafePerformIO $
@@ -191,7 +190,6 @@ bindRayCast2D_get_cast_to
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The ray's destination point, relative to the RayCast's @position@.
 get_cast_to ::
               (RayCast2D :< cls, Object :< cls) => cls -> IO Vector2
 get_cast_to cls
@@ -289,7 +287,6 @@ instance NodeMethod RayCast2D "get_collision_mask" '[] (IO Int)
 
 {-# NOINLINE bindRayCast2D_get_collision_mask_bit #-}
 
--- | Returns an individual bit on the collision mask.
 bindRayCast2D_get_collision_mask_bit :: MethodBind
 bindRayCast2D_get_collision_mask_bit
   = unsafePerformIO $
@@ -299,7 +296,6 @@ bindRayCast2D_get_collision_mask_bit
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns an individual bit on the collision mask.
 get_collision_mask_bit ::
                          (RayCast2D :< cls, Object :< cls) => cls -> Int -> IO Bool
 get_collision_mask_bit cls arg1
@@ -569,7 +565,6 @@ instance NodeMethod RayCast2D "remove_exception_rid" '[Rid] (IO ())
 
 {-# NOINLINE bindRayCast2D_set_cast_to #-}
 
--- | The ray's destination point, relative to the RayCast's @position@.
 bindRayCast2D_set_cast_to :: MethodBind
 bindRayCast2D_set_cast_to
   = unsafePerformIO $
@@ -579,7 +574,6 @@ bindRayCast2D_set_cast_to
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The ray's destination point, relative to the RayCast's @position@.
 set_cast_to ::
               (RayCast2D :< cls, Object :< cls) => cls -> Vector2 -> IO ()
 set_cast_to cls arg1
@@ -682,7 +676,6 @@ instance NodeMethod RayCast2D "set_collision_mask" '[Int] (IO ())
 
 {-# NOINLINE bindRayCast2D_set_collision_mask_bit #-}
 
--- | Sets or clears individual bits on the collision mask. This makes selecting the areas scanned easier.
 bindRayCast2D_set_collision_mask_bit :: MethodBind
 bindRayCast2D_set_collision_mask_bit
   = unsafePerformIO $
@@ -692,7 +685,6 @@ bindRayCast2D_set_collision_mask_bit
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets or clears individual bits on the collision mask. This makes selecting the areas scanned easier.
 set_collision_mask_bit ::
                          (RayCast2D :< cls, Object :< cls) => cls -> Int -> Bool -> IO ()
 set_collision_mask_bit cls arg1 arg2

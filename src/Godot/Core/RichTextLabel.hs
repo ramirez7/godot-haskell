@@ -49,6 +49,7 @@ module Godot.Core.RichTextLabel
         Godot.Core.RichTextLabel.get_visible_characters,
         Godot.Core.RichTextLabel.get_visible_line_count,
         Godot.Core.RichTextLabel.install_effect,
+        Godot.Core.RichTextLabel.is_fit_content_height_enabled,
         Godot.Core.RichTextLabel.is_meta_underlined,
         Godot.Core.RichTextLabel.is_overriding_selected_font_color,
         Godot.Core.RichTextLabel.is_scroll_active,
@@ -77,6 +78,7 @@ module Godot.Core.RichTextLabel
         Godot.Core.RichTextLabel.scroll_to_line,
         Godot.Core.RichTextLabel.set_bbcode,
         Godot.Core.RichTextLabel.set_effects,
+        Godot.Core.RichTextLabel.set_fit_content_height,
         Godot.Core.RichTextLabel.set_meta_underline,
         Godot.Core.RichTextLabel.set_override_selected_font_color,
         Godot.Core.RichTextLabel.set_percent_visible,
@@ -218,6 +220,13 @@ instance NodeProperty RichTextLabel "custom_effects" Array 'False
         nodeProperty
           = (get_effects, wrapDroppingSetter set_effects, Nothing)
 
+instance NodeProperty RichTextLabel "fit_content_height" Bool
+           'False
+         where
+        nodeProperty
+          = (is_fit_content_height_enabled,
+             wrapDroppingSetter set_fit_content_height, Nothing)
+
 instance NodeProperty RichTextLabel "meta_underlined" Bool 'False
          where
         nodeProperty
@@ -323,7 +332,7 @@ instance NodeMethod RichTextLabel "_scroll_changed" '[Float]
 
 {-# NOINLINE bindRichTextLabel_add_image #-}
 
--- | Adds an image's opening and closing tags to the tag stack, optionally providing a @width@ and @height@ to resize the image.
+-- | Adds an image's opening and closing tags to the tag stack, optionally providing a @width@ and @height@ to resize the image and a @color@ to tint the image.
 --   				If @width@ or @height@ is set to 0, the image size will be adjusted in order to keep the original aspect ratio.
 bindRichTextLabel_add_image :: MethodBind
 bindRichTextLabel_add_image
@@ -334,7 +343,7 @@ bindRichTextLabel_add_image
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Adds an image's opening and closing tags to the tag stack, optionally providing a @width@ and @height@ to resize the image.
+-- | Adds an image's opening and closing tags to the tag stack, optionally providing a @width@ and @height@ to resize the image and a @color@ to tint the image.
 --   				If @width@ or @height@ is set to 0, the image size will be adjusted in order to keep the original aspect ratio.
 add_image ::
             (RichTextLabel :< cls, Object :< cls) =>
@@ -386,6 +395,7 @@ instance NodeMethod RichTextLabel "add_text" '[GodotString] (IO ())
 {-# NOINLINE bindRichTextLabel_append_bbcode #-}
 
 -- | Parses @bbcode@ and adds tags to the tag stack as needed. Returns the result of the parsing, @OK@ if successful.
+--   				__Note:__ Using this method, you can't close a tag that was opened in a previous @method append_bbcode@ call. This is done to improve performance, especially when updating large RichTextLabels since rebuilding the whole BBCode every time would be slower. If you absolutely need to close a tag in a future method call, append the @bbcode_text@ instead of using @method append_bbcode@.
 bindRichTextLabel_append_bbcode :: MethodBind
 bindRichTextLabel_append_bbcode
   = unsafePerformIO $
@@ -396,6 +406,7 @@ bindRichTextLabel_append_bbcode
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | Parses @bbcode@ and adds tags to the tag stack as needed. Returns the result of the parsing, @OK@ if successful.
+--   				__Note:__ Using this method, you can't close a tag that was opened in a previous @method append_bbcode@ call. This is done to improve performance, especially when updating large RichTextLabels since rebuilding the whole BBCode every time would be slower. If you absolutely need to close a tag in a future method call, append the @bbcode_text@ instead of using @method append_bbcode@.
 append_bbcode ::
                 (RichTextLabel :< cls, Object :< cls) =>
                 cls -> GodotString -> IO Int
@@ -439,7 +450,7 @@ instance NodeMethod RichTextLabel "clear" '[] (IO ()) where
 {-# NOINLINE bindRichTextLabel_get_bbcode #-}
 
 -- | The label's text in BBCode format. Is not representative of manual modifications to the internal tag stack. Erases changes made by other methods when edited.
---   			__Note:__ It is unadvised to use @+=@ operator with @bbcode_text@ (e.g. @bbcode_text += "some string"@) as it replaces the whole text and can cause slowdowns. Use @method append_bbcode@ for adding text instead.
+--   			__Note:__ It is unadvised to use the @+=@ operator with @bbcode_text@ (e.g. @bbcode_text += "some string"@) as it replaces the whole text and can cause slowdowns. Use @method append_bbcode@ for adding text instead, unless you absolutely need to close a tag that was opened in an earlier method call.
 bindRichTextLabel_get_bbcode :: MethodBind
 bindRichTextLabel_get_bbcode
   = unsafePerformIO $
@@ -450,7 +461,7 @@ bindRichTextLabel_get_bbcode
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | The label's text in BBCode format. Is not representative of manual modifications to the internal tag stack. Erases changes made by other methods when edited.
---   			__Note:__ It is unadvised to use @+=@ operator with @bbcode_text@ (e.g. @bbcode_text += "some string"@) as it replaces the whole text and can cause slowdowns. Use @method append_bbcode@ for adding text instead.
+--   			__Note:__ It is unadvised to use the @+=@ operator with @bbcode_text@ (e.g. @bbcode_text += "some string"@) as it replaces the whole text and can cause slowdowns. Use @method append_bbcode@ for adding text instead, unless you absolutely need to close a tag that was opened in an earlier method call.
 get_bbcode ::
              (RichTextLabel :< cls, Object :< cls) => cls -> IO GodotString
 get_bbcode cls
@@ -524,7 +535,7 @@ instance NodeMethod RichTextLabel "get_effects" '[] (IO Array)
 
 {-# NOINLINE bindRichTextLabel_get_line_count #-}
 
--- | Returns the total number of newlines in the tag stack's text tags. Considers wrapped text as one line.
+-- | Returns the total number of lines in the text. Wrapped text is counted as multiple lines.
 bindRichTextLabel_get_line_count :: MethodBind
 bindRichTextLabel_get_line_count
   = unsafePerformIO $
@@ -534,7 +545,7 @@ bindRichTextLabel_get_line_count
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the total number of newlines in the tag stack's text tags. Considers wrapped text as one line.
+-- | Returns the total number of lines in the text. Wrapped text is counted as multiple lines.
 get_line_count ::
                  (RichTextLabel :< cls, Object :< cls) => cls -> IO Int
 get_line_count cls
@@ -696,6 +707,7 @@ instance NodeMethod RichTextLabel "get_v_scroll" '[]
 {-# NOINLINE bindRichTextLabel_get_visible_characters #-}
 
 -- | The restricted number of characters to display in the label. If @-1@, all characters will be displayed.
+--   			__Note:__ Setting this property updates @percent_visible@ based on current @method get_total_character_count@.
 bindRichTextLabel_get_visible_characters :: MethodBind
 bindRichTextLabel_get_visible_characters
   = unsafePerformIO $
@@ -706,6 +718,7 @@ bindRichTextLabel_get_visible_characters
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | The restricted number of characters to display in the label. If @-1@, all characters will be displayed.
+--   			__Note:__ Setting this property updates @percent_visible@ based on current @method get_total_character_count@.
 get_visible_characters ::
                          (RichTextLabel :< cls, Object :< cls) => cls -> IO Int
 get_visible_characters cls
@@ -780,6 +793,39 @@ instance NodeMethod RichTextLabel "install_effect" '[GodotVariant]
            (IO ())
          where
         nodeMethod = Godot.Core.RichTextLabel.install_effect
+
+{-# NOINLINE bindRichTextLabel_is_fit_content_height_enabled #-}
+
+-- | If @true@, the label's height will be automatically updated to fit its content.
+--   			__Note:__ This property is used as a workaround to fix issues with @RichTextLabel@ in @Container@s, but it's unreliable in some cases and will be removed in future versions.
+bindRichTextLabel_is_fit_content_height_enabled :: MethodBind
+bindRichTextLabel_is_fit_content_height_enabled
+  = unsafePerformIO $
+      withCString "RichTextLabel" $
+        \ clsNamePtr ->
+          withCString "is_fit_content_height_enabled" $
+            \ methodNamePtr ->
+              godot_method_bind_get_method clsNamePtr methodNamePtr
+
+-- | If @true@, the label's height will be automatically updated to fit its content.
+--   			__Note:__ This property is used as a workaround to fix issues with @RichTextLabel@ in @Container@s, but it's unreliable in some cases and will be removed in future versions.
+is_fit_content_height_enabled ::
+                                (RichTextLabel :< cls, Object :< cls) => cls -> IO Bool
+is_fit_content_height_enabled cls
+  = withVariantArray []
+      (\ (arrPtr, len) ->
+         godot_method_bind_call
+           bindRichTextLabel_is_fit_content_height_enabled
+           (upcast cls)
+           arrPtr
+           len
+           >>= \ (err, res) -> throwIfErr err >> fromGodotVariant res)
+
+instance NodeMethod RichTextLabel "is_fit_content_height_enabled"
+           '[]
+           (IO Bool)
+         where
+        nodeMethod = Godot.Core.RichTextLabel.is_fit_content_height_enabled
 
 {-# NOINLINE bindRichTextLabel_is_meta_underlined #-}
 
@@ -1070,7 +1116,6 @@ instance NodeMethod RichTextLabel "pop" '[] (IO ()) where
 
 {-# NOINLINE bindRichTextLabel_push_align #-}
 
--- | Adds an @@align@@ tag based on the given @align@ value. See @enum Align@ for possible values.
 bindRichTextLabel_push_align :: MethodBind
 bindRichTextLabel_push_align
   = unsafePerformIO $
@@ -1080,7 +1125,6 @@ bindRichTextLabel_push_align
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Adds an @@align@@ tag based on the given @align@ value. See @enum Align@ for possible values.
 push_align ::
              (RichTextLabel :< cls, Object :< cls) => cls -> Int -> IO ()
 push_align cls arg1
@@ -1280,7 +1324,7 @@ instance NodeMethod RichTextLabel "push_italics" '[] (IO ()) where
 
 {-# NOINLINE bindRichTextLabel_push_list #-}
 
--- | Adds a @@list@@ tag to the tag stack. Similar to the BBCodes @@ol@@ or @@ul@@, but supports more list types. Not fully implemented!
+-- | Adds @@ol@@ or @@ul@@ tag to the tag stack. Multiplies @level@ by current @tab_size@ to determine new margin length.
 bindRichTextLabel_push_list :: MethodBind
 bindRichTextLabel_push_list
   = unsafePerformIO $
@@ -1290,7 +1334,7 @@ bindRichTextLabel_push_list
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Adds a @@list@@ tag to the tag stack. Similar to the BBCodes @@ol@@ or @@ul@@, but supports more list types. Not fully implemented!
+-- | Adds @@ol@@ or @@ul@@ tag to the tag stack. Multiplies @level@ by current @tab_size@ to determine new margin length.
 push_list ::
             (RichTextLabel :< cls, Object :< cls) => cls -> Int -> IO ()
 push_list cls arg1
@@ -1414,7 +1458,7 @@ instance NodeMethod RichTextLabel "push_strikethrough" '[] (IO ())
 
 {-# NOINLINE bindRichTextLabel_push_table #-}
 
--- | Adds a @@table=columns@@ tag to the tag stack.
+-- | Adds a @@table=columns,inline_align@@ tag to the tag stack.
 bindRichTextLabel_push_table :: MethodBind
 bindRichTextLabel_push_table
   = unsafePerformIO $
@@ -1424,7 +1468,7 @@ bindRichTextLabel_push_table
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Adds a @@table=columns@@ tag to the tag stack.
+-- | Adds a @@table=columns,inline_align@@ tag to the tag stack.
 push_table ::
              (RichTextLabel :< cls, Object :< cls) => cls -> Int -> IO ()
 push_table cls arg1
@@ -1526,7 +1570,7 @@ instance NodeMethod RichTextLabel "scroll_to_line" '[Int] (IO ())
 {-# NOINLINE bindRichTextLabel_set_bbcode #-}
 
 -- | The label's text in BBCode format. Is not representative of manual modifications to the internal tag stack. Erases changes made by other methods when edited.
---   			__Note:__ It is unadvised to use @+=@ operator with @bbcode_text@ (e.g. @bbcode_text += "some string"@) as it replaces the whole text and can cause slowdowns. Use @method append_bbcode@ for adding text instead.
+--   			__Note:__ It is unadvised to use the @+=@ operator with @bbcode_text@ (e.g. @bbcode_text += "some string"@) as it replaces the whole text and can cause slowdowns. Use @method append_bbcode@ for adding text instead, unless you absolutely need to close a tag that was opened in an earlier method call.
 bindRichTextLabel_set_bbcode :: MethodBind
 bindRichTextLabel_set_bbcode
   = unsafePerformIO $
@@ -1537,7 +1581,7 @@ bindRichTextLabel_set_bbcode
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | The label's text in BBCode format. Is not representative of manual modifications to the internal tag stack. Erases changes made by other methods when edited.
---   			__Note:__ It is unadvised to use @+=@ operator with @bbcode_text@ (e.g. @bbcode_text += "some string"@) as it replaces the whole text and can cause slowdowns. Use @method append_bbcode@ for adding text instead.
+--   			__Note:__ It is unadvised to use the @+=@ operator with @bbcode_text@ (e.g. @bbcode_text += "some string"@) as it replaces the whole text and can cause slowdowns. Use @method append_bbcode@ for adding text instead, unless you absolutely need to close a tag that was opened in an earlier method call.
 set_bbcode ::
              (RichTextLabel :< cls, Object :< cls) =>
              cls -> GodotString -> IO ()
@@ -1582,6 +1626,37 @@ set_effects cls arg1
 instance NodeMethod RichTextLabel "set_effects" '[Array] (IO ())
          where
         nodeMethod = Godot.Core.RichTextLabel.set_effects
+
+{-# NOINLINE bindRichTextLabel_set_fit_content_height #-}
+
+-- | If @true@, the label's height will be automatically updated to fit its content.
+--   			__Note:__ This property is used as a workaround to fix issues with @RichTextLabel@ in @Container@s, but it's unreliable in some cases and will be removed in future versions.
+bindRichTextLabel_set_fit_content_height :: MethodBind
+bindRichTextLabel_set_fit_content_height
+  = unsafePerformIO $
+      withCString "RichTextLabel" $
+        \ clsNamePtr ->
+          withCString "set_fit_content_height" $
+            \ methodNamePtr ->
+              godot_method_bind_get_method clsNamePtr methodNamePtr
+
+-- | If @true@, the label's height will be automatically updated to fit its content.
+--   			__Note:__ This property is used as a workaround to fix issues with @RichTextLabel@ in @Container@s, but it's unreliable in some cases and will be removed in future versions.
+set_fit_content_height ::
+                         (RichTextLabel :< cls, Object :< cls) => cls -> Bool -> IO ()
+set_fit_content_height cls arg1
+  = withVariantArray [toVariant arg1]
+      (\ (arrPtr, len) ->
+         godot_method_bind_call bindRichTextLabel_set_fit_content_height
+           (upcast cls)
+           arrPtr
+           len
+           >>= \ (err, res) -> throwIfErr err >> fromGodotVariant res)
+
+instance NodeMethod RichTextLabel "set_fit_content_height" '[Bool]
+           (IO ())
+         where
+        nodeMethod = Godot.Core.RichTextLabel.set_fit_content_height
 
 {-# NOINLINE bindRichTextLabel_set_meta_underline #-}
 
@@ -1886,6 +1961,7 @@ instance NodeMethod RichTextLabel "set_use_bbcode" '[Bool] (IO ())
 {-# NOINLINE bindRichTextLabel_set_visible_characters #-}
 
 -- | The restricted number of characters to display in the label. If @-1@, all characters will be displayed.
+--   			__Note:__ Setting this property updates @percent_visible@ based on current @method get_total_character_count@.
 bindRichTextLabel_set_visible_characters :: MethodBind
 bindRichTextLabel_set_visible_characters
   = unsafePerformIO $
@@ -1896,6 +1972,7 @@ bindRichTextLabel_set_visible_characters
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | The restricted number of characters to display in the label. If @-1@, all characters will be displayed.
+--   			__Note:__ Setting this property updates @percent_visible@ based on current @method get_total_character_count@.
 set_visible_characters ::
                          (RichTextLabel :< cls, Object :< cls) => cls -> Int -> IO ()
 set_visible_characters cls arg1

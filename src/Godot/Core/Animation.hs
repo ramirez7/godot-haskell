@@ -467,7 +467,7 @@ instance NodeMethod Animation "audio_track_set_key_start_offset"
 
 {-# NOINLINE bindAnimation_audio_track_set_key_stream #-}
 
--- | Sets the stream of the key identified by @key_idx@ to value @offset@. The @track_idx@ must be the index of an Audio Track.
+-- | Sets the stream of the key identified by @key_idx@ to value @stream@. The @track_idx@ must be the index of an Audio Track.
 bindAnimation_audio_track_set_key_stream :: MethodBind
 bindAnimation_audio_track_set_key_stream
   = unsafePerformIO $
@@ -477,7 +477,7 @@ bindAnimation_audio_track_set_key_stream
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the stream of the key identified by @key_idx@ to value @offset@. The @track_idx@ must be the index of an Audio Track.
+-- | Sets the stream of the key identified by @key_idx@ to value @stream@. The @track_idx@ must be the index of an Audio Track.
 audio_track_set_key_stream ::
                              (Animation :< cls, Object :< cls) =>
                              cls -> Int -> Int -> Resource -> IO ()
@@ -906,7 +906,7 @@ instance NodeMethod Animation "get_track_count" '[] (IO Int) where
 
 {-# NOINLINE bindAnimation_has_loop #-}
 
--- | A flag indicating that the animation must loop. This is uses for correct interpolation of animation cycles, and for hinting the player that it must restart the animation.
+-- | A flag indicating that the animation must loop. This is used for correct interpolation of animation cycles, and for hinting the player that it must restart the animation.
 bindAnimation_has_loop :: MethodBind
 bindAnimation_has_loop
   = unsafePerformIO $
@@ -916,7 +916,7 @@ bindAnimation_has_loop
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | A flag indicating that the animation must loop. This is uses for correct interpolation of animation cycles, and for hinting the player that it must restart the animation.
+-- | A flag indicating that the animation must loop. This is used for correct interpolation of animation cycles, and for hinting the player that it must restart the animation.
 has_loop :: (Animation :< cls, Object :< cls) => cls -> IO Bool
 has_loop cls
   = withVariantArray []
@@ -1073,7 +1073,7 @@ instance NodeMethod Animation "set_length" '[Float] (IO ()) where
 
 {-# NOINLINE bindAnimation_set_loop #-}
 
--- | A flag indicating that the animation must loop. This is uses for correct interpolation of animation cycles, and for hinting the player that it must restart the animation.
+-- | A flag indicating that the animation must loop. This is used for correct interpolation of animation cycles, and for hinting the player that it must restart the animation.
 bindAnimation_set_loop :: MethodBind
 bindAnimation_set_loop
   = unsafePerformIO $
@@ -1083,7 +1083,7 @@ bindAnimation_set_loop
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | A flag indicating that the animation must loop. This is uses for correct interpolation of animation cycles, and for hinting the player that it must restart the animation.
+-- | A flag indicating that the animation must loop. This is used for correct interpolation of animation cycles, and for hinting the player that it must restart the animation.
 set_loop ::
            (Animation :< cls, Object :< cls) => cls -> Bool -> IO ()
 set_loop cls arg1
@@ -1272,7 +1272,7 @@ instance NodeMethod Animation "track_get_key_time" '[Int, Int]
 
 {-# NOINLINE bindAnimation_track_get_key_transition #-}
 
--- | Returns the transition curve (easing) for a specific key (see the built-in math function @method @GDScript.ease@).
+-- | Returns the transition curve (easing) for a specific key (see the built-in math function @method @GlobalScope.ease@).
 bindAnimation_track_get_key_transition :: MethodBind
 bindAnimation_track_get_key_transition
   = unsafePerformIO $
@@ -1282,7 +1282,7 @@ bindAnimation_track_get_key_transition
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the transition curve (easing) for a specific key (see the built-in math function @method @GDScript.ease@).
+-- | Returns the transition curve (easing) for a specific key (see the built-in math function @method @GlobalScope.ease@).
 track_get_key_transition ::
                            (Animation :< cls, Object :< cls) => cls -> Int -> Int -> IO Float
 track_get_key_transition cls arg1 arg2
@@ -1580,7 +1580,6 @@ instance NodeMethod Animation "track_remove_key" '[Int, Int]
 
 {-# NOINLINE bindAnimation_track_remove_key_at_position #-}
 
--- | Removes a key by position (seconds) in a given track.
 bindAnimation_track_remove_key_at_position :: MethodBind
 bindAnimation_track_remove_key_at_position
   = unsafePerformIO $
@@ -1590,7 +1589,6 @@ bindAnimation_track_remove_key_at_position
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Removes a key by position (seconds) in a given track.
 track_remove_key_at_position ::
                                (Animation :< cls, Object :< cls) => cls -> Int -> Float -> IO ()
 track_remove_key_at_position cls arg1 arg2
@@ -1759,7 +1757,7 @@ instance NodeMethod Animation "track_set_key_time"
 
 {-# NOINLINE bindAnimation_track_set_key_transition #-}
 
--- | Sets the transition curve (easing) for a specific key (see the built-in math function @method @GDScript.ease@).
+-- | Sets the transition curve (easing) for a specific key (see the built-in math function @method @GlobalScope.ease@).
 bindAnimation_track_set_key_transition :: MethodBind
 bindAnimation_track_set_key_transition
   = unsafePerformIO $
@@ -1769,7 +1767,7 @@ bindAnimation_track_set_key_transition
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the transition curve (easing) for a specific key (see the built-in math function @method @GDScript.ease@).
+-- | Sets the transition curve (easing) for a specific key (see the built-in math function @method @GlobalScope.ease@).
 track_set_key_transition ::
                            (Animation :< cls, Object :< cls) =>
                            cls -> Int -> Int -> Float -> IO ()
@@ -1821,7 +1819,7 @@ instance NodeMethod Animation "track_set_key_value"
 
 {-# NOINLINE bindAnimation_track_set_path #-}
 
--- | Sets the path of a track. Paths must be valid scene-tree paths to a node, and must be specified starting from the parent node of the node that will reproduce the animation. Tracks that control properties or bones must append their name after the path, separated by @":"@.
+-- | Sets the path of a track. Paths must be valid scene-tree paths to a node and must be specified starting from the parent node of the node that will reproduce the animation. Tracks that control properties or bones must append their name after the path, separated by @":"@.
 --   				For example, @"character/skeleton:ankle"@ or @"character/mesh:transform/local"@.
 bindAnimation_track_set_path :: MethodBind
 bindAnimation_track_set_path
@@ -1832,7 +1830,7 @@ bindAnimation_track_set_path
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the path of a track. Paths must be valid scene-tree paths to a node, and must be specified starting from the parent node of the node that will reproduce the animation. Tracks that control properties or bones must append their name after the path, separated by @":"@.
+-- | Sets the path of a track. Paths must be valid scene-tree paths to a node and must be specified starting from the parent node of the node that will reproduce the animation. Tracks that control properties or bones must append their name after the path, separated by @":"@.
 --   				For example, @"character/skeleton:ankle"@ or @"character/mesh:transform/local"@.
 track_set_path ::
                  (Animation :< cls, Object :< cls) =>
@@ -1911,7 +1909,7 @@ instance NodeMethod Animation "transform_track_insert_key"
 
 {-# NOINLINE bindAnimation_transform_track_interpolate #-}
 
--- | Returns the interpolated value of a transform track at a given time (in seconds). An array consisting of 3 elements: position (@Vector3@), rotation (@Quat@) and scale (@Vector3@).
+-- | Returns the interpolated value of a transform track at a given time (in seconds). An array consisting of 3 elements: position (@Vector3@), rotation (@Quaternion@) and scale (@Vector3@).
 bindAnimation_transform_track_interpolate :: MethodBind
 bindAnimation_transform_track_interpolate
   = unsafePerformIO $
@@ -1921,7 +1919,7 @@ bindAnimation_transform_track_interpolate
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the interpolated value of a transform track at a given time (in seconds). An array consisting of 3 elements: position (@Vector3@), rotation (@Quat@) and scale (@Vector3@).
+-- | Returns the interpolated value of a transform track at a given time (in seconds). An array consisting of 3 elements: position (@Vector3@), rotation (@Quaternion@) and scale (@Vector3@).
 transform_track_interpolate ::
                               (Animation :< cls, Object :< cls) =>
                               cls -> Int -> Float -> IO Array

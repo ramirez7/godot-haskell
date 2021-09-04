@@ -24,7 +24,8 @@ module Godot.Core.Object
         Godot.Core.Object.get_property_list, Godot.Core.Object.get_script,
         Godot.Core.Object.get_signal_connection_list,
         Godot.Core.Object.get_signal_list, Godot.Core.Object.has_meta,
-        Godot.Core.Object.has_method, Godot.Core.Object.has_user_signal,
+        Godot.Core.Object.has_method, Godot.Core.Object.has_signal,
+        Godot.Core.Object.has_user_signal,
         Godot.Core.Object.is_blocking_signals, Godot.Core.Object.is_class,
         Godot.Core.Object.is_connected,
         Godot.Core.Object.is_queued_for_deletion,
@@ -270,13 +271,16 @@ instance NodeMethod Object "add_user_signal"
 {-# NOINLINE bindObject_call #-}
 
 -- | Calls the @method@ on the object and returns the result. This method supports a variable number of arguments, so parameters are passed as a comma separated list. Example:
---   				
---   @
---   
---   				call("set", "position", Vector2(42.0, 0.0))
---   				
---   @
---   
+--   				@codeblocks@
+--   				@gdscript@
+--   				var node = Node2D.new()
+--   				node.call("set", "position", Vector2(42, 0))
+--   				@/gdscript@
+--   				@csharp@
+--   				var node = new Node2D();
+--   				node.Call("set", "position", new Vector2(42, 0));
+--   				@/csharp@
+--   				@/codeblocks@
 --   				__Note:__ In C#, the method name must be specified as snake_case if it is defined by a built-in Godot node. This doesn't apply to user-defined methods where you should use the same convention as in the C# source (typically PascalCase).
 bindObject_call :: MethodBind
 bindObject_call
@@ -288,13 +292,16 @@ bindObject_call
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | Calls the @method@ on the object and returns the result. This method supports a variable number of arguments, so parameters are passed as a comma separated list. Example:
---   				
---   @
---   
---   				call("set", "position", Vector2(42.0, 0.0))
---   				
---   @
---   
+--   				@codeblocks@
+--   				@gdscript@
+--   				var node = Node2D.new()
+--   				node.call("set", "position", Vector2(42, 0))
+--   				@/gdscript@
+--   				@csharp@
+--   				var node = new Node2D();
+--   				node.Call("set", "position", new Vector2(42, 0));
+--   				@/csharp@
+--   				@/codeblocks@
 --   				__Note:__ In C#, the method name must be specified as snake_case if it is defined by a built-in Godot node. This doesn't apply to user-defined methods where you should use the same convention as in the C# source (typically PascalCase).
 call ::
        (Object :< cls, Object :< cls) =>
@@ -314,13 +321,16 @@ instance NodeMethod Object "call"
 {-# NOINLINE bindObject_call_deferred #-}
 
 -- | Calls the @method@ on the object during idle time. This method supports a variable number of arguments, so parameters are passed as a comma separated list. Example:
---   				
---   @
---   
---   				call_deferred("set", "position", Vector2(42.0, 0.0))
---   				
---   @
---   
+--   				@codeblocks@
+--   				@gdscript@
+--   				var node = Node2D.new()
+--   				node.call_deferred("set", "position", Vector2(42, 0))
+--   				@/gdscript@
+--   				@csharp@
+--   				var node = new Node2D();
+--   				node.CallDeferred("set", "position", new Vector2(42, 0));
+--   				@/csharp@
+--   				@/codeblocks@
 --   				__Note:__ In C#, the method name must be specified as snake_case if it is defined by a built-in Godot node. This doesn't apply to user-defined methods where you should use the same convention as in the C# source (typically PascalCase).
 bindObject_call_deferred :: MethodBind
 bindObject_call_deferred
@@ -332,13 +342,16 @@ bindObject_call_deferred
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | Calls the @method@ on the object during idle time. This method supports a variable number of arguments, so parameters are passed as a comma separated list. Example:
---   				
---   @
---   
---   				call_deferred("set", "position", Vector2(42.0, 0.0))
---   				
---   @
---   
+--   				@codeblocks@
+--   				@gdscript@
+--   				var node = Node2D.new()
+--   				node.call_deferred("set", "position", Vector2(42, 0))
+--   				@/gdscript@
+--   				@csharp@
+--   				var node = new Node2D();
+--   				node.CallDeferred("set", "position", new Vector2(42, 0));
+--   				@/csharp@
+--   				@/codeblocks@
 --   				__Note:__ In C#, the method name must be specified as snake_case if it is defined by a built-in Godot node. This doesn't apply to user-defined methods where you should use the same convention as in the C# source (typically PascalCase).
 call_deferred ::
                 (Object :< cls, Object :< cls) =>
@@ -359,12 +372,16 @@ instance NodeMethod Object "call_deferred"
 {-# NOINLINE bindObject_callv #-}
 
 -- | Calls the @method@ on the object and returns the result. Contrarily to @method call@, this method does not support a variable number of arguments but expects all parameters to be via a single @Array@.
---   				
---   @
---   
---   				callv("set", @ "position", Vector2(42.0, 0.0) @)
---   				
---   @
+--   				@codeblocks@
+--   				@gdscript@
+--   				var node = Node2D.new()
+--   				node.callv("set", @"position", Vector2(42, 0)@)
+--   				@/gdscript@
+--   				@csharp@
+--   				var node = new Node2D();
+--   				node.Callv("set", new Godot.Collections.Array { "position", new Vector2(42, 0) });
+--   				@/csharp@
+--   				@/codeblocks@
 bindObject_callv :: MethodBind
 bindObject_callv
   = unsafePerformIO $
@@ -375,12 +392,16 @@ bindObject_callv
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | Calls the @method@ on the object and returns the result. Contrarily to @method call@, this method does not support a variable number of arguments but expects all parameters to be via a single @Array@.
---   				
---   @
---   
---   				callv("set", @ "position", Vector2(42.0, 0.0) @)
---   				
---   @
+--   				@codeblocks@
+--   				@gdscript@
+--   				var node = Node2D.new()
+--   				node.callv("set", @"position", Vector2(42, 0)@)
+--   				@/gdscript@
+--   				@csharp@
+--   				var node = new Node2D();
+--   				node.Callv("set", new Godot.Collections.Array { "position", new Vector2(42, 0) });
+--   				@/csharp@
+--   				@/codeblocks@
 callv ::
         (Object :< cls, Object :< cls) =>
         cls -> GodotString -> Array -> IO GodotVariant
@@ -425,29 +446,140 @@ instance NodeMethod Object "can_translate_messages" '[] (IO Bool)
 
 {-# NOINLINE bindObject_connect #-}
 
--- | Connects a @signal@ to a @method@ on a @target@ object. Pass optional @binds@ to the call as an @Array@ of parameters. These parameters will be passed to the method after any parameter used in the call to @method emit_signal@. Use @flags@ to set deferred or one-shot connections. See @enum ConnectFlags@ constants.
---   				A @signal@ can only be connected once to a @method@. It will throw an error if already connected, unless the signal was connected with @CONNECT_REFERENCE_COUNTED@. To avoid this, first, use @method is_connected@ to check for existing connections.
---   				If the @target@ is destroyed in the game's lifecycle, the connection will be lost.
---   				Examples:
---   				
---   @
+-- | Connects a @signal@ to a @callable@. Pass optional @binds@ to the call as an @Array@ of parameters. These parameters will be passed to the @Callable@'s method after any parameter used in the call to @method emit_signal@. Use @flags@ to set deferred or one-shot connections. See @enum ConnectFlags@ constants.
+--   				__Note:__ This method is the legacy implementation for connecting signals. The recommended modern approach is to use @method Signal.connect@ and to use @method Callable.bind@ to add and validate parameter binds. Both syntaxes are shown below.
+--   				A signal can only be connected once to a @Callable@. It will throw an error if already connected, unless the signal was connected with @CONNECT_REFERENCE_COUNTED@. To avoid this, first, use @method is_connected@ to check for existing connections.
+--   				If the callable's target is destroyed in the game's lifecycle, the connection will be lost.
+--   				__Examples with recommended syntax:__
+--   				Connecting signals is one of the most common operations in Godot and the API gives many options to do so, which are described further down. The code block below shows the recommended approach for both GDScript and C#.
+--   				@codeblocks@
+--   				@gdscript@
+--   				func _ready():
+--   				    var button = Button.new()
+--   				    # `button_down` here is a Signal object, and we thus call the Signal.connect() method,
+--   				    # not Object.connect(). See discussion below for a more in-depth overview of the API.
+--   				    button.button_down.connect(_on_button_down)
 --   
---   				connect("pressed", self, "_on_Button_pressed") # BaseButton signal
---   				connect("text_entered", self, "_on_LineEdit_text_entered") # LineEdit signal
---   				connect("hit", self, "_on_Player_hit", @ weapon_type, damage @) # User-defined signal
---   				
---   @
+--   				    # This assumes that a `Player` class exists which defines a `hit` signal.
+--   				    var player = Player.new()
+--   				    # We use Signal.connect() again, and we also use the Callable.bind() method which
+--   				    # returns a new Callable with the parameter binds.
+--   				    player.hit.connect(_on_player_hit.bind("sword", 100))
 --   
---   				An example of the relationship between @binds@ passed to @method connect@ and parameters used when calling @method emit_signal@:
---   				
---   @
+--   				func _on_button_down():
+--   				    print("Button down!")
 --   
---   				connect("hit", self, "_on_Player_hit", @ weapon_type, damage @) # weapon_type and damage are passed last
---   				emit_signal("hit", "Dark lord", 5) # "Dark lord" and 5 are passed first
---   				func _on_Player_hit(hit_by, level, weapon_type, damage):
---   				    print("Hit by %s (lvl %d) with weapon %s for %d damage" % @hit_by, level, weapon_type, damage@)
---   				
---   @
+--   				func _on_player_hit(weapon_type, damage):
+--   				    print("Hit with weapon %s for %d damage." % @weapon_type, damage@)
+--   				@/gdscript@
+--   				@csharp@
+--   				public override void _Ready()
+--   				{
+--   				    var button = new Button();
+--   				    // C# supports passing signals as events, so we can use this idiomatic construct:
+--   				    button.ButtonDown += OnButtonDown;
+--   
+--   				    // This assumes that a `Player` class exists which defines a `Hit` signal.
+--   				    var player = new Player();
+--   				    // Signals as events (`player.Hit += OnPlayerHit;`) do not support argument binding. You have to use:
+--   				    player.Hit.Connect(OnPlayerHit, new Godot.Collections.Array {"sword", 100 });
+--   				}
+--   
+--   				private void OnButtonDown()
+--   				{
+--   				    GD.Print("Button down!");
+--   				}
+--   
+--   				private void OnPlayerHit(string weaponType, int damage)
+--   				{
+--   				    GD.Print(String.Format("Hit with weapon {0} for {1} damage.", weaponType, damage));
+--   				}
+--   				@/csharp@
+--   				@/codeblocks@
+--   				__@Object.connect()@ or @Signal.connect()@?__
+--   				As seen above, the recommended method to connect signals is not @method Object.connect@. The code block below shows the four options for connecting signals, using either this legacy method or the recommended @method Signal.connect@, and using either an implicit @Callable@ or a manually defined one.
+--   				@codeblocks@
+--   				@gdscript@
+--   				func _ready():
+--   				    var button = Button.new()
+--   				    # Option 1: Object.connect() with an implicit Callable for the defined function.
+--   				    button.connect("button_down", _on_button_down)
+--   				    # Option 2: Object.connect() with a constructed Callable using a target object and method name.
+--   				    button.connect("button_down", Callable(self, "_on_button_down"))
+--   				    # Option 3: Signal.connect() with an implicit Callable for the defined function.
+--   				    button.button_down.connect(_on_button_down)
+--   				    # Option 4: Signal.connect() with a constructed Callable using a target object and method name.
+--   				    button.button_down.connect(Callable(self, "_on_button_down"))
+--   
+--   				func _on_button_down():
+--   				    print("Button down!")
+--   				@/gdscript@
+--   				@csharp@
+--   				public override void _Ready()
+--   				{
+--   				    var button = new Button();
+--   				    // Option 1: Object.Connect() with an implicit Callable for the defined function.
+--   				    button.Connect("button_down", OnButtonDown);
+--   				    // Option 2: Object.connect() with a constructed Callable using a target object and method name.
+--   				    button.Connect("button_down", new Callable(self, nameof(OnButtonDown)));
+--   				    // Option 3: Signal.connect() with an implicit Callable for the defined function.
+--   				    button.ButtonDown.Connect(OnButtonDown);
+--   				    // Option 3b: In C#, we can use signals as events and connect with this more idiomatic syntax:
+--   				    button.ButtonDown += OnButtonDown;
+--   				    // Option 4: Signal.connect() with a constructed Callable using a target object and method name.
+--   				    button.ButtonDown.Connect(new Callable(self, nameof(OnButtonDown)));
+--   				}
+--   
+--   				private void OnButtonDown()
+--   				{
+--   				    GD.Print("Button down!");
+--   				}
+--   				@/csharp@
+--   				@/codeblocks@
+--   				While all options have the same outcome (@button@'s @signal BaseButton.button_down@ signal will be connected to @_on_button_down@), option 3 offers the best validation: it will throw a compile-time error if either the @button_down@ signal or the @_on_button_down@ callable are undefined. On the other hand, option 2 only relies on string names and will only be able to validate either names at runtime: it will throw a runtime error if @"button_down"@ doesn't correspond to a signal, or if @"_on_button_down"@ is not a registered method in the object @self@. The main reason for using options 1, 2, or 4 would be if you actually need to use strings (e.g. to connect signals programmatically based on strings read from a configuration file). Otherwise, option 3 is the recommended (and fastest) method.
+--   				__Parameter bindings and passing:__
+--   				For legacy or language-specific reasons, there are also several ways to bind parameters to signals. One can pass a @binds@ @Array@ to @method Object.connect@ or @method Signal.connect@, or use the recommended @method Callable.bind@ method to create a new callable from an existing one, with the given parameter binds.
+--   				One can also pass additional parameters when emitting the signal with @method emit_signal@. The examples below show the relationship between those two types of parameters.
+--   				@codeblocks@
+--   				@gdscript@
+--   				func _ready():
+--   				    # This assumes that a `Player` class exists which defines a `hit` signal.
+--   				    var player = Player.new()
+--   				    # Option 1: Using Callable.bind().
+--   				    player.hit.connect(_on_player_hit.bind("sword", 100))
+--   				    # Option 2: Using a `binds` Array in Signal.connect() (same syntax for Object.connect()).
+--   				    player.hit.connect(_on_player_hit, @"sword", 100@)
+--   
+--   				    # Parameters added when emitting the signal are passed first.
+--   				    player.emit_signal("hit", "Dark lord", 5)
+--   
+--   				# Four arguments, since we pass two when emitting (hit_by, level)
+--   				# and two when connecting (weapon_type, damage).
+--   				func _on_player_hit(hit_by, level, weapon_type, damage):
+--   				    print("Hit by %s (level %d) with weapon %s for %d damage." % @hit_by, level, weapon_type, damage@)
+--   				@/gdscript@
+--   				@csharp@
+--   				public override void _Ready()
+--   				{
+--   				    // This assumes that a `Player` class exists which defines a `Hit` signal.
+--   				    var player = new Player();
+--   				    // Option 1: Using Callable.Bind(). This way we can still use signals as events.
+--   				    player.Hit += OnPlayerHit.Bind("sword", 100);
+--   				    // Option 2: Using a `binds` Array in Signal.Connect() (same syntax for Object.Connect()).
+--   				    player.Hit.Connect(OnPlayerHit, new Godot.Collections.Array{ "sword", 100 });
+--   
+--   				    // Parameters added when emitting the signal are passed first.
+--   				    player.EmitSignal("hit", "Dark lord", 5);
+--   				}
+--   
+--   				// Four arguments, since we pass two when emitting (hitBy, level)
+--   				// and two when connecting (weaponType, damage).
+--   				private void OnPlayerHit(string hitBy, int level, string weaponType, int damage)
+--   				{
+--   				    GD.Print(String.Format("Hit by {0} (level {1}) with weapon {2} for {3} damage.", hitBy, level, weaponType, damage));
+--   				}
+--   				@/csharp@
+--   				@/codeblocks@
 bindObject_connect :: MethodBind
 bindObject_connect
   = unsafePerformIO $
@@ -457,29 +589,140 @@ bindObject_connect
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Connects a @signal@ to a @method@ on a @target@ object. Pass optional @binds@ to the call as an @Array@ of parameters. These parameters will be passed to the method after any parameter used in the call to @method emit_signal@. Use @flags@ to set deferred or one-shot connections. See @enum ConnectFlags@ constants.
---   				A @signal@ can only be connected once to a @method@. It will throw an error if already connected, unless the signal was connected with @CONNECT_REFERENCE_COUNTED@. To avoid this, first, use @method is_connected@ to check for existing connections.
---   				If the @target@ is destroyed in the game's lifecycle, the connection will be lost.
---   				Examples:
---   				
---   @
+-- | Connects a @signal@ to a @callable@. Pass optional @binds@ to the call as an @Array@ of parameters. These parameters will be passed to the @Callable@'s method after any parameter used in the call to @method emit_signal@. Use @flags@ to set deferred or one-shot connections. See @enum ConnectFlags@ constants.
+--   				__Note:__ This method is the legacy implementation for connecting signals. The recommended modern approach is to use @method Signal.connect@ and to use @method Callable.bind@ to add and validate parameter binds. Both syntaxes are shown below.
+--   				A signal can only be connected once to a @Callable@. It will throw an error if already connected, unless the signal was connected with @CONNECT_REFERENCE_COUNTED@. To avoid this, first, use @method is_connected@ to check for existing connections.
+--   				If the callable's target is destroyed in the game's lifecycle, the connection will be lost.
+--   				__Examples with recommended syntax:__
+--   				Connecting signals is one of the most common operations in Godot and the API gives many options to do so, which are described further down. The code block below shows the recommended approach for both GDScript and C#.
+--   				@codeblocks@
+--   				@gdscript@
+--   				func _ready():
+--   				    var button = Button.new()
+--   				    # `button_down` here is a Signal object, and we thus call the Signal.connect() method,
+--   				    # not Object.connect(). See discussion below for a more in-depth overview of the API.
+--   				    button.button_down.connect(_on_button_down)
 --   
---   				connect("pressed", self, "_on_Button_pressed") # BaseButton signal
---   				connect("text_entered", self, "_on_LineEdit_text_entered") # LineEdit signal
---   				connect("hit", self, "_on_Player_hit", @ weapon_type, damage @) # User-defined signal
---   				
---   @
+--   				    # This assumes that a `Player` class exists which defines a `hit` signal.
+--   				    var player = Player.new()
+--   				    # We use Signal.connect() again, and we also use the Callable.bind() method which
+--   				    # returns a new Callable with the parameter binds.
+--   				    player.hit.connect(_on_player_hit.bind("sword", 100))
 --   
---   				An example of the relationship between @binds@ passed to @method connect@ and parameters used when calling @method emit_signal@:
---   				
---   @
+--   				func _on_button_down():
+--   				    print("Button down!")
 --   
---   				connect("hit", self, "_on_Player_hit", @ weapon_type, damage @) # weapon_type and damage are passed last
---   				emit_signal("hit", "Dark lord", 5) # "Dark lord" and 5 are passed first
---   				func _on_Player_hit(hit_by, level, weapon_type, damage):
---   				    print("Hit by %s (lvl %d) with weapon %s for %d damage" % @hit_by, level, weapon_type, damage@)
---   				
---   @
+--   				func _on_player_hit(weapon_type, damage):
+--   				    print("Hit with weapon %s for %d damage." % @weapon_type, damage@)
+--   				@/gdscript@
+--   				@csharp@
+--   				public override void _Ready()
+--   				{
+--   				    var button = new Button();
+--   				    // C# supports passing signals as events, so we can use this idiomatic construct:
+--   				    button.ButtonDown += OnButtonDown;
+--   
+--   				    // This assumes that a `Player` class exists which defines a `Hit` signal.
+--   				    var player = new Player();
+--   				    // Signals as events (`player.Hit += OnPlayerHit;`) do not support argument binding. You have to use:
+--   				    player.Hit.Connect(OnPlayerHit, new Godot.Collections.Array {"sword", 100 });
+--   				}
+--   
+--   				private void OnButtonDown()
+--   				{
+--   				    GD.Print("Button down!");
+--   				}
+--   
+--   				private void OnPlayerHit(string weaponType, int damage)
+--   				{
+--   				    GD.Print(String.Format("Hit with weapon {0} for {1} damage.", weaponType, damage));
+--   				}
+--   				@/csharp@
+--   				@/codeblocks@
+--   				__@Object.connect()@ or @Signal.connect()@?__
+--   				As seen above, the recommended method to connect signals is not @method Object.connect@. The code block below shows the four options for connecting signals, using either this legacy method or the recommended @method Signal.connect@, and using either an implicit @Callable@ or a manually defined one.
+--   				@codeblocks@
+--   				@gdscript@
+--   				func _ready():
+--   				    var button = Button.new()
+--   				    # Option 1: Object.connect() with an implicit Callable for the defined function.
+--   				    button.connect("button_down", _on_button_down)
+--   				    # Option 2: Object.connect() with a constructed Callable using a target object and method name.
+--   				    button.connect("button_down", Callable(self, "_on_button_down"))
+--   				    # Option 3: Signal.connect() with an implicit Callable for the defined function.
+--   				    button.button_down.connect(_on_button_down)
+--   				    # Option 4: Signal.connect() with a constructed Callable using a target object and method name.
+--   				    button.button_down.connect(Callable(self, "_on_button_down"))
+--   
+--   				func _on_button_down():
+--   				    print("Button down!")
+--   				@/gdscript@
+--   				@csharp@
+--   				public override void _Ready()
+--   				{
+--   				    var button = new Button();
+--   				    // Option 1: Object.Connect() with an implicit Callable for the defined function.
+--   				    button.Connect("button_down", OnButtonDown);
+--   				    // Option 2: Object.connect() with a constructed Callable using a target object and method name.
+--   				    button.Connect("button_down", new Callable(self, nameof(OnButtonDown)));
+--   				    // Option 3: Signal.connect() with an implicit Callable for the defined function.
+--   				    button.ButtonDown.Connect(OnButtonDown);
+--   				    // Option 3b: In C#, we can use signals as events and connect with this more idiomatic syntax:
+--   				    button.ButtonDown += OnButtonDown;
+--   				    // Option 4: Signal.connect() with a constructed Callable using a target object and method name.
+--   				    button.ButtonDown.Connect(new Callable(self, nameof(OnButtonDown)));
+--   				}
+--   
+--   				private void OnButtonDown()
+--   				{
+--   				    GD.Print("Button down!");
+--   				}
+--   				@/csharp@
+--   				@/codeblocks@
+--   				While all options have the same outcome (@button@'s @signal BaseButton.button_down@ signal will be connected to @_on_button_down@), option 3 offers the best validation: it will throw a compile-time error if either the @button_down@ signal or the @_on_button_down@ callable are undefined. On the other hand, option 2 only relies on string names and will only be able to validate either names at runtime: it will throw a runtime error if @"button_down"@ doesn't correspond to a signal, or if @"_on_button_down"@ is not a registered method in the object @self@. The main reason for using options 1, 2, or 4 would be if you actually need to use strings (e.g. to connect signals programmatically based on strings read from a configuration file). Otherwise, option 3 is the recommended (and fastest) method.
+--   				__Parameter bindings and passing:__
+--   				For legacy or language-specific reasons, there are also several ways to bind parameters to signals. One can pass a @binds@ @Array@ to @method Object.connect@ or @method Signal.connect@, or use the recommended @method Callable.bind@ method to create a new callable from an existing one, with the given parameter binds.
+--   				One can also pass additional parameters when emitting the signal with @method emit_signal@. The examples below show the relationship between those two types of parameters.
+--   				@codeblocks@
+--   				@gdscript@
+--   				func _ready():
+--   				    # This assumes that a `Player` class exists which defines a `hit` signal.
+--   				    var player = Player.new()
+--   				    # Option 1: Using Callable.bind().
+--   				    player.hit.connect(_on_player_hit.bind("sword", 100))
+--   				    # Option 2: Using a `binds` Array in Signal.connect() (same syntax for Object.connect()).
+--   				    player.hit.connect(_on_player_hit, @"sword", 100@)
+--   
+--   				    # Parameters added when emitting the signal are passed first.
+--   				    player.emit_signal("hit", "Dark lord", 5)
+--   
+--   				# Four arguments, since we pass two when emitting (hit_by, level)
+--   				# and two when connecting (weapon_type, damage).
+--   				func _on_player_hit(hit_by, level, weapon_type, damage):
+--   				    print("Hit by %s (level %d) with weapon %s for %d damage." % @hit_by, level, weapon_type, damage@)
+--   				@/gdscript@
+--   				@csharp@
+--   				public override void _Ready()
+--   				{
+--   				    // This assumes that a `Player` class exists which defines a `Hit` signal.
+--   				    var player = new Player();
+--   				    // Option 1: Using Callable.Bind(). This way we can still use signals as events.
+--   				    player.Hit += OnPlayerHit.Bind("sword", 100);
+--   				    // Option 2: Using a `binds` Array in Signal.Connect() (same syntax for Object.Connect()).
+--   				    player.Hit.Connect(OnPlayerHit, new Godot.Collections.Array{ "sword", 100 });
+--   
+--   				    // Parameters added when emitting the signal are passed first.
+--   				    player.EmitSignal("hit", "Dark lord", 5);
+--   				}
+--   
+--   				// Four arguments, since we pass two when emitting (hitBy, level)
+--   				// and two when connecting (weaponType, damage).
+--   				private void OnPlayerHit(string hitBy, int level, string weaponType, int damage)
+--   				{
+--   				    GD.Print(String.Format("Hit by {0} (level {1}) with weapon {2} for {3} damage.", hitBy, level, weaponType, damage));
+--   				}
+--   				@/csharp@
+--   				@/codeblocks@
 connect ::
           (Object :< cls, Object :< cls) =>
           cls ->
@@ -502,7 +745,7 @@ instance NodeMethod Object "connect"
 
 {-# NOINLINE bindObject_disconnect #-}
 
--- | Disconnects a @signal@ from a @method@ on the given @target@.
+-- | Disconnects a @signal@ from a given @callable@.
 --   				If you try to disconnect a connection that does not exist, the method will throw an error. Use @method is_connected@ to ensure that the connection exists.
 bindObject_disconnect :: MethodBind
 bindObject_disconnect
@@ -513,7 +756,7 @@ bindObject_disconnect
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Disconnects a @signal@ from a @method@ on the given @target@.
+-- | Disconnects a @signal@ from a given @callable@.
 --   				If you try to disconnect a connection that does not exist, the method will throw an error. Use @method is_connected@ to ensure that the connection exists.
 disconnect ::
              (Object :< cls, Object :< cls) =>
@@ -534,13 +777,16 @@ instance NodeMethod Object "disconnect"
 {-# NOINLINE bindObject_emit_signal #-}
 
 -- | Emits the given @signal@. The signal must exist, so it should be a built-in signal of this class or one of its parent classes, or a user-defined signal. This method supports a variable number of arguments, so parameters are passed as a comma separated list. Example:
---   				
---   @
---   
---   				emit_signal("hit", weapon_type, damage)
+--   				@codeblocks@
+--   				@gdscript@
+--   				emit_signal("hit", "sword", 100)
 --   				emit_signal("game_over")
---   				
---   @
+--   				@/gdscript@
+--   				@csharp@
+--   				EmitSignal("hit", "sword", 100);
+--   				EmitSignal("game_over");
+--   				@/csharp@
+--   				@/codeblocks@
 bindObject_emit_signal :: MethodBind
 bindObject_emit_signal
   = unsafePerformIO $
@@ -551,13 +797,16 @@ bindObject_emit_signal
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | Emits the given @signal@. The signal must exist, so it should be a built-in signal of this class or one of its parent classes, or a user-defined signal. This method supports a variable number of arguments, so parameters are passed as a comma separated list. Example:
---   				
---   @
---   
---   				emit_signal("hit", weapon_type, damage)
+--   				@codeblocks@
+--   				@gdscript@
+--   				emit_signal("hit", "sword", 100)
 --   				emit_signal("game_over")
---   				
---   @
+--   				@/gdscript@
+--   				@csharp@
+--   				EmitSignal("hit", "sword", 100);
+--   				EmitSignal("game_over");
+--   				@/csharp@
+--   				@/codeblocks@
 emit_signal ::
               (Object :< cls, Object :< cls) =>
               cls -> GodotString -> [Variant 'GodotTy] -> IO ()
@@ -717,7 +966,7 @@ instance NodeMethod Object "get_indexed" '[NodePath]
 {-# NOINLINE bindObject_get_instance_id #-}
 
 -- | Returns the object's unique instance ID.
---   				This ID can be saved in @EncodedObjectAsID@, and can be used to retrieve the object instance with @method @GDScript.instance_from_id@.
+--   				This ID can be saved in @EncodedObjectAsID@, and can be used to retrieve the object instance with @method @GlobalScope.instance_from_id@.
 bindObject_get_instance_id :: MethodBind
 bindObject_get_instance_id
   = unsafePerformIO $
@@ -728,7 +977,7 @@ bindObject_get_instance_id
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | Returns the object's unique instance ID.
---   				This ID can be saved in @EncodedObjectAsID@, and can be used to retrieve the object instance with @method @GDScript.instance_from_id@.
+--   				This ID can be saved in @EncodedObjectAsID@, and can be used to retrieve the object instance with @method @GlobalScope.instance_from_id@.
 get_instance_id :: (Object :< cls, Object :< cls) => cls -> IO Int
 get_instance_id cls
   = withVariantArray []
@@ -770,7 +1019,7 @@ instance NodeMethod Object "get_meta" '[GodotString]
 
 {-# NOINLINE bindObject_get_meta_list #-}
 
--- | Returns the object's metadata as a @PoolStringArray@.
+-- | Returns the object's metadata as a @PackedStringArray@.
 bindObject_get_meta_list :: MethodBind
 bindObject_get_meta_list
   = unsafePerformIO $
@@ -780,7 +1029,7 @@ bindObject_get_meta_list
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the object's metadata as a @PoolStringArray@.
+-- | Returns the object's metadata as a @PackedStringArray@.
 get_meta_list ::
                 (Object :< cls, Object :< cls) => cls -> IO PoolStringArray
 get_meta_list cls
@@ -979,6 +1228,32 @@ instance NodeMethod Object "has_method" '[GodotString] (IO Bool)
          where
         nodeMethod = Godot.Core.Object.has_method
 
+{-# NOINLINE bindObject_has_signal #-}
+
+-- | Returns @true@ if the given @signal@ exists.
+bindObject_has_signal :: MethodBind
+bindObject_has_signal
+  = unsafePerformIO $
+      withCString "Object" $
+        \ clsNamePtr ->
+          withCString "has_signal" $
+            \ methodNamePtr ->
+              godot_method_bind_get_method clsNamePtr methodNamePtr
+
+-- | Returns @true@ if the given @signal@ exists.
+has_signal ::
+             (Object :< cls, Object :< cls) => cls -> GodotString -> IO Bool
+has_signal cls arg1
+  = withVariantArray [toVariant arg1]
+      (\ (arrPtr, len) ->
+         godot_method_bind_call bindObject_has_signal (upcast cls) arrPtr
+           len
+           >>= \ (err, res) -> throwIfErr err >> fromGodotVariant res)
+
+instance NodeMethod Object "has_signal" '[GodotString] (IO Bool)
+         where
+        nodeMethod = Godot.Core.Object.has_signal
+
 {-# NOINLINE bindObject_has_user_signal #-}
 
 -- | Returns @true@ if the given user-defined @signal@ exists. Only signals added using @method add_user_signal@ are taken into account.
@@ -1061,7 +1336,7 @@ instance NodeMethod Object "is_class" '[GodotString] (IO Bool)
 
 {-# NOINLINE bindObject_is_connected #-}
 
--- | Returns @true@ if a connection exists for a given @signal@, @target@, and @method@.
+-- | Returns @true@ if a connection exists for a given @signal@ and @callable@.
 bindObject_is_connected :: MethodBind
 bindObject_is_connected
   = unsafePerformIO $
@@ -1071,7 +1346,7 @@ bindObject_is_connected
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns @true@ if a connection exists for a given @signal@, @target@, and @method@.
+-- | Returns @true@ if a connection exists for a given @signal@ and @callable@.
 is_connected ::
                (Object :< cls, Object :< cls) =>
                cls -> GodotString -> Object -> GodotString -> IO Bool
@@ -1148,7 +1423,6 @@ instance NodeMethod Object "notification" '[Int, Maybe Bool]
 
 {-# NOINLINE bindObject_property_list_changed_notify #-}
 
--- | Notify the editor that the property list has changed, so that editor plugins can take the new values into account. Does nothing on export builds.
 bindObject_property_list_changed_notify :: MethodBind
 bindObject_property_list_changed_notify
   = unsafePerformIO $
@@ -1158,7 +1432,6 @@ bindObject_property_list_changed_notify
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Notify the editor that the property list has changed, so that editor plugins can take the new values into account. Does nothing on export builds.
 property_list_changed_notify ::
                                (Object :< cls, Object :< cls) => cls -> IO ()
 property_list_changed_notify cls
@@ -1291,14 +1564,20 @@ instance NodeMethod Object "set_deferred"
 {-# NOINLINE bindObject_set_indexed #-}
 
 -- | Assigns a new value to the property identified by the @NodePath@. The node path should be relative to the current object and can use the colon character (@:@) to access nested properties. Example:
---   				
---   @
---   
---   				set_indexed("position", Vector2(42, 0))
---   				set_indexed("position:y", -10)
---   				print(position) # (42, -10)
---   				
---   @
+--   				@codeblocks@
+--   				@gdscript@
+--   				var node = Node2D.new()
+--   				node.set_indexed("position", Vector2(42, 0))
+--   				node.set_indexed("position:y", -10)
+--   				print(node.position) # (42, -10)
+--   				@/gdscript@
+--   				@csharp@
+--   				var node = new Node2D();
+--   				node.SetIndexed("position", new Vector2(42, 0));
+--   				node.SetIndexed("position:y", -10);
+--   				GD.Print(node.Position); // (42, -10)
+--   				@/csharp@
+--   				@/codeblocks@
 bindObject_set_indexed :: MethodBind
 bindObject_set_indexed
   = unsafePerformIO $
@@ -1309,14 +1588,20 @@ bindObject_set_indexed
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | Assigns a new value to the property identified by the @NodePath@. The node path should be relative to the current object and can use the colon character (@:@) to access nested properties. Example:
---   				
---   @
---   
---   				set_indexed("position", Vector2(42, 0))
---   				set_indexed("position:y", -10)
---   				print(position) # (42, -10)
---   				
---   @
+--   				@codeblocks@
+--   				@gdscript@
+--   				var node = Node2D.new()
+--   				node.set_indexed("position", Vector2(42, 0))
+--   				node.set_indexed("position:y", -10)
+--   				print(node.position) # (42, -10)
+--   				@/gdscript@
+--   				@csharp@
+--   				var node = new Node2D();
+--   				node.SetIndexed("position", new Vector2(42, 0));
+--   				node.SetIndexed("position:y", -10);
+--   				GD.Print(node.Position); // (42, -10)
+--   				@/csharp@
+--   				@/codeblocks@
 set_indexed ::
               (Object :< cls, Object :< cls) =>
               cls -> NodePath -> GodotVariant -> IO ()
@@ -1445,8 +1730,9 @@ instance NodeMethod Object "to_string" '[] (IO GodotString) where
 
 {-# NOINLINE bindObject_tr #-}
 
--- | Translates a message using translation catalogs configured in the Project Settings.
+-- | Translates a message using translation catalogs configured in the Project Settings. An additional context could be used to specify the translation context.
 --   				Only works if message translation is enabled (which it is by default), otherwise it returns the @message@ unchanged. See @method set_message_translation@.
+--   				See @url=https://docs.godotengine.org/en/latest/tutorials/i18n/internationalizing_games.html@Internationalizing games@/url@ for examples of the usage of this method.
 bindObject_tr :: MethodBind
 bindObject_tr
   = unsafePerformIO $
@@ -1456,8 +1742,9 @@ bindObject_tr
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Translates a message using translation catalogs configured in the Project Settings.
+-- | Translates a message using translation catalogs configured in the Project Settings. An additional context could be used to specify the translation context.
 --   				Only works if message translation is enabled (which it is by default), otherwise it returns the @message@ unchanged. See @method set_message_translation@.
+--   				See @url=https://docs.godotengine.org/en/latest/tutorials/i18n/internationalizing_games.html@Internationalizing games@/url@ for examples of the usage of this method.
 tr ::
      (Object :< cls, Object :< cls) =>
      cls -> GodotString -> IO GodotString

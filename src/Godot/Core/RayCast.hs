@@ -70,7 +70,6 @@ instance NodeProperty RayCast "exclude_parent" Bool 'False where
 
 {-# NOINLINE bindRayCast_add_exception #-}
 
--- | Adds a collision exception so the ray does not report collisions with the specified node.
 bindRayCast_add_exception :: MethodBind
 bindRayCast_add_exception
   = unsafePerformIO $
@@ -80,7 +79,6 @@ bindRayCast_add_exception
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Adds a collision exception so the ray does not report collisions with the specified node.
 add_exception ::
                 (RayCast :< cls, Object :< cls) => cls -> Object -> IO ()
 add_exception cls arg1
@@ -96,7 +94,6 @@ instance NodeMethod RayCast "add_exception" '[Object] (IO ()) where
 
 {-# NOINLINE bindRayCast_add_exception_rid #-}
 
--- | Adds a collision exception so the ray does not report collisions with the specified @RID@.
 bindRayCast_add_exception_rid :: MethodBind
 bindRayCast_add_exception_rid
   = unsafePerformIO $
@@ -106,7 +103,6 @@ bindRayCast_add_exception_rid
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Adds a collision exception so the ray does not report collisions with the specified @RID@.
 add_exception_rid ::
                     (RayCast :< cls, Object :< cls) => cls -> Rid -> IO ()
 add_exception_rid cls arg1
@@ -123,7 +119,6 @@ instance NodeMethod RayCast "add_exception_rid" '[Rid] (IO ())
 
 {-# NOINLINE bindRayCast_clear_exceptions #-}
 
--- | Removes all collision exceptions for this ray.
 bindRayCast_clear_exceptions :: MethodBind
 bindRayCast_clear_exceptions
   = unsafePerformIO $
@@ -133,7 +128,6 @@ bindRayCast_clear_exceptions
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Removes all collision exceptions for this ray.
 clear_exceptions :: (RayCast :< cls, Object :< cls) => cls -> IO ()
 clear_exceptions cls
   = withVariantArray []
@@ -148,9 +142,6 @@ instance NodeMethod RayCast "clear_exceptions" '[] (IO ()) where
 
 {-# NOINLINE bindRayCast_force_raycast_update #-}
 
--- | Updates the collision information for the ray.
---   				Use this method to update the collision information immediately instead of waiting for the next @_physics_process@ call, for example if the ray or its parent has changed state.
---   				__Note:__ @enabled@ is not required for this to work.
 bindRayCast_force_raycast_update :: MethodBind
 bindRayCast_force_raycast_update
   = unsafePerformIO $
@@ -160,9 +151,6 @@ bindRayCast_force_raycast_update
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Updates the collision information for the ray.
---   				Use this method to update the collision information immediately instead of waiting for the next @_physics_process@ call, for example if the ray or its parent has changed state.
---   				__Note:__ @enabled@ is not required for this to work.
 force_raycast_update ::
                        (RayCast :< cls, Object :< cls) => cls -> IO ()
 force_raycast_update cls
@@ -180,7 +168,6 @@ instance NodeMethod RayCast "force_raycast_update" '[] (IO ())
 
 {-# NOINLINE bindRayCast_get_cast_to #-}
 
--- | The ray's destination point, relative to the RayCast's @position@.
 bindRayCast_get_cast_to :: MethodBind
 bindRayCast_get_cast_to
   = unsafePerformIO $
@@ -190,7 +177,6 @@ bindRayCast_get_cast_to
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The ray's destination point, relative to the RayCast's @position@.
 get_cast_to :: (RayCast :< cls, Object :< cls) => cls -> IO Vector3
 get_cast_to cls
   = withVariantArray []
@@ -204,7 +190,6 @@ instance NodeMethod RayCast "get_cast_to" '[] (IO Vector3) where
 
 {-# NOINLINE bindRayCast_get_collider #-}
 
--- | Returns the first object that the ray intersects, or @null@ if no object is intersecting the ray (i.e. @method is_colliding@ returns @false@).
 bindRayCast_get_collider :: MethodBind
 bindRayCast_get_collider
   = unsafePerformIO $
@@ -214,7 +199,6 @@ bindRayCast_get_collider
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the first object that the ray intersects, or @null@ if no object is intersecting the ray (i.e. @method is_colliding@ returns @false@).
 get_collider :: (RayCast :< cls, Object :< cls) => cls -> IO Object
 get_collider cls
   = withVariantArray []
@@ -228,7 +212,6 @@ instance NodeMethod RayCast "get_collider" '[] (IO Object) where
 
 {-# NOINLINE bindRayCast_get_collider_shape #-}
 
--- | Returns the shape ID of the first object that the ray intersects, or @0@ if no object is intersecting the ray (i.e. @method is_colliding@ returns @false@).
 bindRayCast_get_collider_shape :: MethodBind
 bindRayCast_get_collider_shape
   = unsafePerformIO $
@@ -238,7 +221,6 @@ bindRayCast_get_collider_shape
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the shape ID of the first object that the ray intersects, or @0@ if no object is intersecting the ray (i.e. @method is_colliding@ returns @false@).
 get_collider_shape ::
                      (RayCast :< cls, Object :< cls) => cls -> IO Int
 get_collider_shape cls
@@ -254,7 +236,6 @@ instance NodeMethod RayCast "get_collider_shape" '[] (IO Int) where
 
 {-# NOINLINE bindRayCast_get_collision_mask #-}
 
--- | The ray's collision mask. Only objects in at least one collision layer enabled in the mask will be detected. See @url=https://docs.godotengine.org/en/latest/tutorials/physics/physics_introduction.html#collision-layers-and-masks@Collision layers and masks@/url@ in the documentation for more information.
 bindRayCast_get_collision_mask :: MethodBind
 bindRayCast_get_collision_mask
   = unsafePerformIO $
@@ -264,7 +245,6 @@ bindRayCast_get_collision_mask
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The ray's collision mask. Only objects in at least one collision layer enabled in the mask will be detected. See @url=https://docs.godotengine.org/en/latest/tutorials/physics/physics_introduction.html#collision-layers-and-masks@Collision layers and masks@/url@ in the documentation for more information.
 get_collision_mask ::
                      (RayCast :< cls, Object :< cls) => cls -> IO Int
 get_collision_mask cls
@@ -280,8 +260,6 @@ instance NodeMethod RayCast "get_collision_mask" '[] (IO Int) where
 
 {-# NOINLINE bindRayCast_get_collision_mask_bit #-}
 
--- | Returns @true@ if the bit index passed is turned on.
---   				__Note:__ Bit indices range from 0-19.
 bindRayCast_get_collision_mask_bit :: MethodBind
 bindRayCast_get_collision_mask_bit
   = unsafePerformIO $
@@ -291,8 +269,6 @@ bindRayCast_get_collision_mask_bit
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns @true@ if the bit index passed is turned on.
---   				__Note:__ Bit indices range from 0-19.
 get_collision_mask_bit ::
                          (RayCast :< cls, Object :< cls) => cls -> Int -> IO Bool
 get_collision_mask_bit cls arg1
@@ -311,7 +287,6 @@ instance NodeMethod RayCast "get_collision_mask_bit" '[Int]
 
 {-# NOINLINE bindRayCast_get_collision_normal #-}
 
--- | Returns the normal of the intersecting object's shape at the collision point.
 bindRayCast_get_collision_normal :: MethodBind
 bindRayCast_get_collision_normal
   = unsafePerformIO $
@@ -321,7 +296,6 @@ bindRayCast_get_collision_normal
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the normal of the intersecting object's shape at the collision point.
 get_collision_normal ::
                        (RayCast :< cls, Object :< cls) => cls -> IO Vector3
 get_collision_normal cls
@@ -339,8 +313,6 @@ instance NodeMethod RayCast "get_collision_normal" '[] (IO Vector3)
 
 {-# NOINLINE bindRayCast_get_collision_point #-}
 
--- | Returns the collision point at which the ray intersects the closest object.
---   				__Note:__ This point is in the __global__ coordinate system.
 bindRayCast_get_collision_point :: MethodBind
 bindRayCast_get_collision_point
   = unsafePerformIO $
@@ -350,8 +322,6 @@ bindRayCast_get_collision_point
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the collision point at which the ray intersects the closest object.
---   				__Note:__ This point is in the __global__ coordinate system.
 get_collision_point ::
                       (RayCast :< cls, Object :< cls) => cls -> IO Vector3
 get_collision_point cls
@@ -368,7 +338,6 @@ instance NodeMethod RayCast "get_collision_point" '[] (IO Vector3)
 
 {-# NOINLINE bindRayCast_get_exclude_parent_body #-}
 
--- | If @true@, collisions will be ignored for this RayCast's immediate parent.
 bindRayCast_get_exclude_parent_body :: MethodBind
 bindRayCast_get_exclude_parent_body
   = unsafePerformIO $
@@ -378,7 +347,6 @@ bindRayCast_get_exclude_parent_body
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, collisions will be ignored for this RayCast's immediate parent.
 get_exclude_parent_body ::
                           (RayCast :< cls, Object :< cls) => cls -> IO Bool
 get_exclude_parent_body cls
@@ -396,7 +364,6 @@ instance NodeMethod RayCast "get_exclude_parent_body" '[] (IO Bool)
 
 {-# NOINLINE bindRayCast_is_collide_with_areas_enabled #-}
 
--- | If @true@, collision with @Area@s will be reported.
 bindRayCast_is_collide_with_areas_enabled :: MethodBind
 bindRayCast_is_collide_with_areas_enabled
   = unsafePerformIO $
@@ -406,7 +373,6 @@ bindRayCast_is_collide_with_areas_enabled
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, collision with @Area@s will be reported.
 is_collide_with_areas_enabled ::
                                 (RayCast :< cls, Object :< cls) => cls -> IO Bool
 is_collide_with_areas_enabled cls
@@ -425,7 +391,6 @@ instance NodeMethod RayCast "is_collide_with_areas_enabled" '[]
 
 {-# NOINLINE bindRayCast_is_collide_with_bodies_enabled #-}
 
--- | If @true@, collision with @PhysicsBody@s will be reported.
 bindRayCast_is_collide_with_bodies_enabled :: MethodBind
 bindRayCast_is_collide_with_bodies_enabled
   = unsafePerformIO $
@@ -435,7 +400,6 @@ bindRayCast_is_collide_with_bodies_enabled
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, collision with @PhysicsBody@s will be reported.
 is_collide_with_bodies_enabled ::
                                  (RayCast :< cls, Object :< cls) => cls -> IO Bool
 is_collide_with_bodies_enabled cls
@@ -454,7 +418,6 @@ instance NodeMethod RayCast "is_collide_with_bodies_enabled" '[]
 
 {-# NOINLINE bindRayCast_is_colliding #-}
 
--- | Returns whether any object is intersecting with the ray's vector (considering the vector length).
 bindRayCast_is_colliding :: MethodBind
 bindRayCast_is_colliding
   = unsafePerformIO $
@@ -464,7 +427,6 @@ bindRayCast_is_colliding
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns whether any object is intersecting with the ray's vector (considering the vector length).
 is_colliding :: (RayCast :< cls, Object :< cls) => cls -> IO Bool
 is_colliding cls
   = withVariantArray []
@@ -478,7 +440,6 @@ instance NodeMethod RayCast "is_colliding" '[] (IO Bool) where
 
 {-# NOINLINE bindRayCast_is_enabled #-}
 
--- | If @true@, collisions will be reported.
 bindRayCast_is_enabled :: MethodBind
 bindRayCast_is_enabled
   = unsafePerformIO $
@@ -488,7 +449,6 @@ bindRayCast_is_enabled
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, collisions will be reported.
 is_enabled :: (RayCast :< cls, Object :< cls) => cls -> IO Bool
 is_enabled cls
   = withVariantArray []
@@ -502,7 +462,6 @@ instance NodeMethod RayCast "is_enabled" '[] (IO Bool) where
 
 {-# NOINLINE bindRayCast_remove_exception #-}
 
--- | Removes a collision exception so the ray does report collisions with the specified node.
 bindRayCast_remove_exception :: MethodBind
 bindRayCast_remove_exception
   = unsafePerformIO $
@@ -512,7 +471,6 @@ bindRayCast_remove_exception
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Removes a collision exception so the ray does report collisions with the specified node.
 remove_exception ::
                    (RayCast :< cls, Object :< cls) => cls -> Object -> IO ()
 remove_exception cls arg1
@@ -529,7 +487,6 @@ instance NodeMethod RayCast "remove_exception" '[Object] (IO ())
 
 {-# NOINLINE bindRayCast_remove_exception_rid #-}
 
--- | Removes a collision exception so the ray does report collisions with the specified @RID@.
 bindRayCast_remove_exception_rid :: MethodBind
 bindRayCast_remove_exception_rid
   = unsafePerformIO $
@@ -539,7 +496,6 @@ bindRayCast_remove_exception_rid
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Removes a collision exception so the ray does report collisions with the specified @RID@.
 remove_exception_rid ::
                        (RayCast :< cls, Object :< cls) => cls -> Rid -> IO ()
 remove_exception_rid cls arg1
@@ -557,7 +513,6 @@ instance NodeMethod RayCast "remove_exception_rid" '[Rid] (IO ())
 
 {-# NOINLINE bindRayCast_set_cast_to #-}
 
--- | The ray's destination point, relative to the RayCast's @position@.
 bindRayCast_set_cast_to :: MethodBind
 bindRayCast_set_cast_to
   = unsafePerformIO $
@@ -567,7 +522,6 @@ bindRayCast_set_cast_to
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The ray's destination point, relative to the RayCast's @position@.
 set_cast_to ::
               (RayCast :< cls, Object :< cls) => cls -> Vector3 -> IO ()
 set_cast_to cls arg1
@@ -582,7 +536,6 @@ instance NodeMethod RayCast "set_cast_to" '[Vector3] (IO ()) where
 
 {-# NOINLINE bindRayCast_set_collide_with_areas #-}
 
--- | If @true@, collision with @Area@s will be reported.
 bindRayCast_set_collide_with_areas :: MethodBind
 bindRayCast_set_collide_with_areas
   = unsafePerformIO $
@@ -592,7 +545,6 @@ bindRayCast_set_collide_with_areas
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, collision with @Area@s will be reported.
 set_collide_with_areas ::
                          (RayCast :< cls, Object :< cls) => cls -> Bool -> IO ()
 set_collide_with_areas cls arg1
@@ -611,7 +563,6 @@ instance NodeMethod RayCast "set_collide_with_areas" '[Bool]
 
 {-# NOINLINE bindRayCast_set_collide_with_bodies #-}
 
--- | If @true@, collision with @PhysicsBody@s will be reported.
 bindRayCast_set_collide_with_bodies :: MethodBind
 bindRayCast_set_collide_with_bodies
   = unsafePerformIO $
@@ -621,7 +572,6 @@ bindRayCast_set_collide_with_bodies
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, collision with @PhysicsBody@s will be reported.
 set_collide_with_bodies ::
                           (RayCast :< cls, Object :< cls) => cls -> Bool -> IO ()
 set_collide_with_bodies cls arg1
@@ -640,7 +590,6 @@ instance NodeMethod RayCast "set_collide_with_bodies" '[Bool]
 
 {-# NOINLINE bindRayCast_set_collision_mask #-}
 
--- | The ray's collision mask. Only objects in at least one collision layer enabled in the mask will be detected. See @url=https://docs.godotengine.org/en/latest/tutorials/physics/physics_introduction.html#collision-layers-and-masks@Collision layers and masks@/url@ in the documentation for more information.
 bindRayCast_set_collision_mask :: MethodBind
 bindRayCast_set_collision_mask
   = unsafePerformIO $
@@ -650,7 +599,6 @@ bindRayCast_set_collision_mask
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The ray's collision mask. Only objects in at least one collision layer enabled in the mask will be detected. See @url=https://docs.godotengine.org/en/latest/tutorials/physics/physics_introduction.html#collision-layers-and-masks@Collision layers and masks@/url@ in the documentation for more information.
 set_collision_mask ::
                      (RayCast :< cls, Object :< cls) => cls -> Int -> IO ()
 set_collision_mask cls arg1
@@ -667,8 +615,6 @@ instance NodeMethod RayCast "set_collision_mask" '[Int] (IO ())
 
 {-# NOINLINE bindRayCast_set_collision_mask_bit #-}
 
--- | Sets the bit index passed to the @value@ passed.
---   				__Note:__ Bit indexes range from 0-19.
 bindRayCast_set_collision_mask_bit :: MethodBind
 bindRayCast_set_collision_mask_bit
   = unsafePerformIO $
@@ -678,8 +624,6 @@ bindRayCast_set_collision_mask_bit
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the bit index passed to the @value@ passed.
---   				__Note:__ Bit indexes range from 0-19.
 set_collision_mask_bit ::
                          (RayCast :< cls, Object :< cls) => cls -> Int -> Bool -> IO ()
 set_collision_mask_bit cls arg1 arg2
@@ -698,7 +642,6 @@ instance NodeMethod RayCast "set_collision_mask_bit" '[Int, Bool]
 
 {-# NOINLINE bindRayCast_set_enabled #-}
 
--- | If @true@, collisions will be reported.
 bindRayCast_set_enabled :: MethodBind
 bindRayCast_set_enabled
   = unsafePerformIO $
@@ -708,7 +651,6 @@ bindRayCast_set_enabled
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, collisions will be reported.
 set_enabled ::
               (RayCast :< cls, Object :< cls) => cls -> Bool -> IO ()
 set_enabled cls arg1
@@ -723,7 +665,6 @@ instance NodeMethod RayCast "set_enabled" '[Bool] (IO ()) where
 
 {-# NOINLINE bindRayCast_set_exclude_parent_body #-}
 
--- | If @true@, collisions will be ignored for this RayCast's immediate parent.
 bindRayCast_set_exclude_parent_body :: MethodBind
 bindRayCast_set_exclude_parent_body
   = unsafePerformIO $
@@ -733,7 +674,6 @@ bindRayCast_set_exclude_parent_body
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, collisions will be ignored for this RayCast's immediate parent.
 set_exclude_parent_body ::
                           (RayCast :< cls, Object :< cls) => cls -> Bool -> IO ()
 set_exclude_parent_body cls arg1

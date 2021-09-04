@@ -40,7 +40,7 @@ instance NodeProperty ParallaxLayer "motion_scale" Vector2 'False
 
 {-# NOINLINE bindParallaxLayer_get_mirroring #-}
 
--- | The ParallaxLayer's @Texture@ mirroring. Useful for creating an infinite scrolling background. If an axis is set to @0@, the @Texture@ will not be mirrored.
+-- | The ParallaxLayer's @Texture2D@ mirroring. Useful for creating an infinite scrolling background. If an axis is set to @0@, the @Texture2D@ will not be mirrored.
 bindParallaxLayer_get_mirroring :: MethodBind
 bindParallaxLayer_get_mirroring
   = unsafePerformIO $
@@ -50,7 +50,7 @@ bindParallaxLayer_get_mirroring
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The ParallaxLayer's @Texture@ mirroring. Useful for creating an infinite scrolling background. If an axis is set to @0@, the @Texture@ will not be mirrored.
+-- | The ParallaxLayer's @Texture2D@ mirroring. Useful for creating an infinite scrolling background. If an axis is set to @0@, the @Texture2D@ will not be mirrored.
 get_mirroring ::
                 (ParallaxLayer :< cls, Object :< cls) => cls -> IO Vector2
 get_mirroring cls
@@ -125,7 +125,7 @@ instance NodeMethod ParallaxLayer "get_motion_scale" '[]
 
 {-# NOINLINE bindParallaxLayer_set_mirroring #-}
 
--- | The ParallaxLayer's @Texture@ mirroring. Useful for creating an infinite scrolling background. If an axis is set to @0@, the @Texture@ will not be mirrored.
+-- | The ParallaxLayer's @Texture2D@ mirroring. Useful for creating an infinite scrolling background. If an axis is set to @0@, the @Texture2D@ will not be mirrored.
 bindParallaxLayer_set_mirroring :: MethodBind
 bindParallaxLayer_set_mirroring
   = unsafePerformIO $
@@ -135,7 +135,7 @@ bindParallaxLayer_set_mirroring
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The ParallaxLayer's @Texture@ mirroring. Useful for creating an infinite scrolling background. If an axis is set to @0@, the @Texture@ will not be mirrored.
+-- | The ParallaxLayer's @Texture2D@ mirroring. Useful for creating an infinite scrolling background. If an axis is set to @0@, the @Texture2D@ will not be mirrored.
 set_mirroring ::
                 (ParallaxLayer :< cls, Object :< cls) => cls -> Vector2 -> IO ()
 set_mirroring cls arg1

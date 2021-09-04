@@ -80,7 +80,6 @@ instance NodeMethod WindowDialog "_gui_input" '[InputEvent] (IO ())
 
 {-# NOINLINE bindWindowDialog_get_close_button #-}
 
--- | Returns the close @TextureButton@.
 bindWindowDialog_get_close_button :: MethodBind
 bindWindowDialog_get_close_button
   = unsafePerformIO $
@@ -90,7 +89,6 @@ bindWindowDialog_get_close_button
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the close @TextureButton@.
 get_close_button ::
                    (WindowDialog :< cls, Object :< cls) => cls -> IO TextureButton
 get_close_button cls
@@ -109,7 +107,6 @@ instance NodeMethod WindowDialog "get_close_button" '[]
 
 {-# NOINLINE bindWindowDialog_get_resizable #-}
 
--- | If @true@, the user can resize the window.
 bindWindowDialog_get_resizable :: MethodBind
 bindWindowDialog_get_resizable
   = unsafePerformIO $
@@ -119,7 +116,6 @@ bindWindowDialog_get_resizable
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, the user can resize the window.
 get_resizable ::
                 (WindowDialog :< cls, Object :< cls) => cls -> IO Bool
 get_resizable cls
@@ -136,7 +132,6 @@ instance NodeMethod WindowDialog "get_resizable" '[] (IO Bool)
 
 {-# NOINLINE bindWindowDialog_get_title #-}
 
--- | The text displayed in the window's title bar.
 bindWindowDialog_get_title :: MethodBind
 bindWindowDialog_get_title
   = unsafePerformIO $
@@ -146,7 +141,6 @@ bindWindowDialog_get_title
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The text displayed in the window's title bar.
 get_title ::
             (WindowDialog :< cls, Object :< cls) => cls -> IO GodotString
 get_title cls
@@ -163,7 +157,6 @@ instance NodeMethod WindowDialog "get_title" '[] (IO GodotString)
 
 {-# NOINLINE bindWindowDialog_set_resizable #-}
 
--- | If @true@, the user can resize the window.
 bindWindowDialog_set_resizable :: MethodBind
 bindWindowDialog_set_resizable
   = unsafePerformIO $
@@ -173,7 +166,6 @@ bindWindowDialog_set_resizable
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, the user can resize the window.
 set_resizable ::
                 (WindowDialog :< cls, Object :< cls) => cls -> Bool -> IO ()
 set_resizable cls arg1
@@ -190,7 +182,6 @@ instance NodeMethod WindowDialog "set_resizable" '[Bool] (IO ())
 
 {-# NOINLINE bindWindowDialog_set_title #-}
 
--- | The text displayed in the window's title bar.
 bindWindowDialog_set_title :: MethodBind
 bindWindowDialog_set_title
   = unsafePerformIO $
@@ -200,7 +191,6 @@ bindWindowDialog_set_title
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The text displayed in the window's title bar.
 set_title ::
             (WindowDialog :< cls, Object :< cls) => cls -> GodotString -> IO ()
 set_title cls arg1

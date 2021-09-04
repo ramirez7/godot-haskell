@@ -22,7 +22,6 @@ import Godot.Gdnative.Internal
 import Godot.Api.Types
 import Godot.Core.Node2D()
 
--- | Emitted when the VisibilityNotifier2D enters the screen.
 sig_screen_entered ::
                    Godot.Internal.Dispatch.Signal VisibilityNotifier2D
 sig_screen_entered
@@ -30,14 +29,12 @@ sig_screen_entered
 
 instance NodeSignal VisibilityNotifier2D "screen_entered" '[]
 
--- | Emitted when the VisibilityNotifier2D exits the screen.
 sig_screen_exited ::
                   Godot.Internal.Dispatch.Signal VisibilityNotifier2D
 sig_screen_exited = Godot.Internal.Dispatch.Signal "screen_exited"
 
 instance NodeSignal VisibilityNotifier2D "screen_exited" '[]
 
--- | Emitted when the VisibilityNotifier2D enters a @Viewport@'s view.
 sig_viewport_entered ::
                      Godot.Internal.Dispatch.Signal VisibilityNotifier2D
 sig_viewport_entered
@@ -46,7 +43,6 @@ sig_viewport_entered
 instance NodeSignal VisibilityNotifier2D "viewport_entered"
            '[Viewport]
 
--- | Emitted when the VisibilityNotifier2D exits a @Viewport@'s view.
 sig_viewport_exited ::
                     Godot.Internal.Dispatch.Signal VisibilityNotifier2D
 sig_viewport_exited
@@ -61,7 +57,6 @@ instance NodeProperty VisibilityNotifier2D "rect" Rect2 'False
 
 {-# NOINLINE bindVisibilityNotifier2D_get_rect #-}
 
--- | The VisibilityNotifier2D's bounding rectangle.
 bindVisibilityNotifier2D_get_rect :: MethodBind
 bindVisibilityNotifier2D_get_rect
   = unsafePerformIO $
@@ -71,7 +66,6 @@ bindVisibilityNotifier2D_get_rect
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The VisibilityNotifier2D's bounding rectangle.
 get_rect ::
            (VisibilityNotifier2D :< cls, Object :< cls) => cls -> IO Rect2
 get_rect cls
@@ -89,8 +83,6 @@ instance NodeMethod VisibilityNotifier2D "get_rect" '[] (IO Rect2)
 
 {-# NOINLINE bindVisibilityNotifier2D_is_on_screen #-}
 
--- | If @true@, the bounding rectangle is on the screen.
---   				__Note:__ It takes one frame for the node's visibility to be assessed once added to the scene tree, so this method will return @false@ right after it is instantiated, even if it will be on screen in the draw pass.
 bindVisibilityNotifier2D_is_on_screen :: MethodBind
 bindVisibilityNotifier2D_is_on_screen
   = unsafePerformIO $
@@ -100,8 +92,6 @@ bindVisibilityNotifier2D_is_on_screen
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, the bounding rectangle is on the screen.
---   				__Note:__ It takes one frame for the node's visibility to be assessed once added to the scene tree, so this method will return @false@ right after it is instantiated, even if it will be on screen in the draw pass.
 is_on_screen ::
                (VisibilityNotifier2D :< cls, Object :< cls) => cls -> IO Bool
 is_on_screen cls
@@ -120,7 +110,6 @@ instance NodeMethod VisibilityNotifier2D "is_on_screen" '[]
 
 {-# NOINLINE bindVisibilityNotifier2D_set_rect #-}
 
--- | The VisibilityNotifier2D's bounding rectangle.
 bindVisibilityNotifier2D_set_rect :: MethodBind
 bindVisibilityNotifier2D_set_rect
   = unsafePerformIO $
@@ -130,7 +119,6 @@ bindVisibilityNotifier2D_set_rect
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The VisibilityNotifier2D's bounding rectangle.
 set_rect ::
            (VisibilityNotifier2D :< cls, Object :< cls) =>
            cls -> Rect2 -> IO ()

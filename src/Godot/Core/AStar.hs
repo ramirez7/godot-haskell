@@ -91,15 +91,18 @@ instance NodeMethod AStar "_estimate_cost" '[Int, Int] (IO Float)
 
 {-# NOINLINE bindAStar_add_point #-}
 
--- | Adds a new point at the given position with the given identifier. The algorithm prefers points with lower @weight_scale@ to form a path. The @id@ must be 0 or larger, and the @weight_scale@ must be 1 or larger.
---   				
---   @
---   
+-- | Adds a new point at the given position with the given identifier. The @id@ must be 0 or larger, and the @weight_scale@ must be 1 or larger.
+--   				The @weight_scale@ is multiplied by the result of @method _compute_cost@ when determining the overall cost of traveling across a segment from a neighboring point to this point. Thus, all else being equal, the algorithm prefers points with lower @weight_scale@s to form a path.
+--   				@codeblocks@
+--   				@gdscript@
 --   				var astar = AStar.new()
 --   				astar.add_point(1, Vector3(1, 0, 0), 4) # Adds the point (1, 0, 0) with weight_scale 4 and id 1
---   				
---   @
---   
+--   				@/gdscript@
+--   				@csharp@
+--   				var astar = new AStar();
+--   				astar.AddPoint(1, new Vector3(1, 0, 0), 4); // Adds the point (1, 0, 0) with weight_scale 4 and id 1
+--   				@/csharp@
+--   				@/codeblocks@
 --   				If there already exists a point for the given @id@, its position and weight scale are updated to the given values.
 bindAStar_add_point :: MethodBind
 bindAStar_add_point
@@ -110,15 +113,18 @@ bindAStar_add_point
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Adds a new point at the given position with the given identifier. The algorithm prefers points with lower @weight_scale@ to form a path. The @id@ must be 0 or larger, and the @weight_scale@ must be 1 or larger.
---   				
---   @
---   
+-- | Adds a new point at the given position with the given identifier. The @id@ must be 0 or larger, and the @weight_scale@ must be 1 or larger.
+--   				The @weight_scale@ is multiplied by the result of @method _compute_cost@ when determining the overall cost of traveling across a segment from a neighboring point to this point. Thus, all else being equal, the algorithm prefers points with lower @weight_scale@s to form a path.
+--   				@codeblocks@
+--   				@gdscript@
 --   				var astar = AStar.new()
 --   				astar.add_point(1, Vector3(1, 0, 0), 4) # Adds the point (1, 0, 0) with weight_scale 4 and id 1
---   				
---   @
---   
+--   				@/gdscript@
+--   				@csharp@
+--   				var astar = new AStar();
+--   				astar.AddPoint(1, new Vector3(1, 0, 0), 4); // Adds the point (1, 0, 0) with weight_scale 4 and id 1
+--   				@/csharp@
+--   				@/codeblocks@
 --   				If there already exists a point for the given @id@, its position and weight scale are updated to the given values.
 add_point ::
             (AStar :< cls, Object :< cls) =>
@@ -194,15 +200,20 @@ instance NodeMethod AStar "clear" '[] (IO ()) where
 {-# NOINLINE bindAStar_connect_points #-}
 
 -- | Creates a segment between the given points. If @bidirectional@ is @false@, only movement from @id@ to @to_id@ is allowed, not the reverse direction.
---   				
---   @
---   
+--   				@codeblocks@
+--   				@gdscript@
 --   				var astar = AStar.new()
 --   				astar.add_point(1, Vector3(1, 1, 0))
 --   				astar.add_point(2, Vector3(0, 5, 0))
 --   				astar.connect_points(1, 2, false)
---   				
---   @
+--   				@/gdscript@
+--   				@csharp@
+--   				var astar = new AStar();
+--   				astar.AddPoint(1, new Vector3(1, 1, 0));
+--   				astar.AddPoint(2, new Vector3(0, 5, 0));
+--   				astar.ConnectPoints(1, 2, false);
+--   				@/csharp@
+--   				@/codeblocks@
 bindAStar_connect_points :: MethodBind
 bindAStar_connect_points
   = unsafePerformIO $
@@ -213,15 +224,20 @@ bindAStar_connect_points
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | Creates a segment between the given points. If @bidirectional@ is @false@, only movement from @id@ to @to_id@ is allowed, not the reverse direction.
---   				
---   @
---   
+--   				@codeblocks@
+--   				@gdscript@
 --   				var astar = AStar.new()
 --   				astar.add_point(1, Vector3(1, 1, 0))
 --   				astar.add_point(2, Vector3(0, 5, 0))
 --   				astar.connect_points(1, 2, false)
---   				
---   @
+--   				@/gdscript@
+--   				@csharp@
+--   				var astar = new AStar();
+--   				astar.AddPoint(1, new Vector3(1, 1, 0));
+--   				astar.AddPoint(2, new Vector3(0, 5, 0));
+--   				astar.ConnectPoints(1, 2, false);
+--   				@/csharp@
+--   				@/codeblocks@
 connect_points ::
                  (AStar :< cls, Object :< cls) =>
                  cls -> Int -> Int -> Maybe Bool -> IO ()
@@ -335,17 +351,22 @@ instance NodeMethod AStar "get_closest_point"
 {-# NOINLINE bindAStar_get_closest_position_in_segment #-}
 
 -- | Returns the closest position to @to_position@ that resides inside a segment between two connected points.
---   				
---   @
---   
+--   				@codeblocks@
+--   				@gdscript@
 --   				var astar = AStar.new()
 --   				astar.add_point(1, Vector3(0, 0, 0))
 --   				astar.add_point(2, Vector3(0, 5, 0))
 --   				astar.connect_points(1, 2)
 --   				var res = astar.get_closest_position_in_segment(Vector3(3, 3, 0)) # Returns (0, 3, 0)
---   				
---   @
---   
+--   				@/gdscript@
+--   				@csharp@
+--   				var astar = new AStar();
+--   				astar.AddPoint(1, new Vector3(0, 0, 0));
+--   				astar.AddPoint(2, new Vector3(0, 5, 0));
+--   				astar.ConnectPoints(1, 2);
+--   				Vector3 res = astar.GetClosestPositionInSegment(new Vector3(3, 3, 0)); // Returns (0, 3, 0)
+--   				@/csharp@
+--   				@/codeblocks@
 --   				The result is in the segment that goes from @y = 0@ to @y = 5@. It's the closest position in the segment to the given point.
 bindAStar_get_closest_position_in_segment :: MethodBind
 bindAStar_get_closest_position_in_segment
@@ -357,17 +378,22 @@ bindAStar_get_closest_position_in_segment
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | Returns the closest position to @to_position@ that resides inside a segment between two connected points.
---   				
---   @
---   
+--   				@codeblocks@
+--   				@gdscript@
 --   				var astar = AStar.new()
 --   				astar.add_point(1, Vector3(0, 0, 0))
 --   				astar.add_point(2, Vector3(0, 5, 0))
 --   				astar.connect_points(1, 2)
 --   				var res = astar.get_closest_position_in_segment(Vector3(3, 3, 0)) # Returns (0, 3, 0)
---   				
---   @
---   
+--   				@/gdscript@
+--   				@csharp@
+--   				var astar = new AStar();
+--   				astar.AddPoint(1, new Vector3(0, 0, 0));
+--   				astar.AddPoint(2, new Vector3(0, 5, 0));
+--   				astar.ConnectPoints(1, 2);
+--   				Vector3 res = astar.GetClosestPositionInSegment(new Vector3(3, 3, 0)); // Returns (0, 3, 0)
+--   				@/csharp@
+--   				@/codeblocks@
 --   				The result is in the segment that goes from @y = 0@ to @y = 5@. It's the closest position in the segment to the given point.
 get_closest_position_in_segment ::
                                   (AStar :< cls, Object :< cls) => cls -> Vector3 -> IO Vector3
@@ -389,9 +415,8 @@ instance NodeMethod AStar "get_closest_position_in_segment"
 {-# NOINLINE bindAStar_get_id_path #-}
 
 -- | Returns an array with the IDs of the points that form the path found by AStar between the given points. The array is ordered from the starting point to the ending point of the path.
---   				
---   @
---   
+--   				@codeblocks@
+--   				@gdscript@
 --   				var astar = AStar.new()
 --   				astar.add_point(1, Vector3(0, 0, 0))
 --   				astar.add_point(2, Vector3(0, 1, 0), 1) # Default weight is 1
@@ -404,9 +429,20 @@ instance NodeMethod AStar "get_closest_position_in_segment"
 --   				astar.connect_points(1, 4, false)
 --   
 --   				var res = astar.get_id_path(1, 3) # Returns @1, 2, 3@
---   				
---   @
---   
+--   				@/gdscript@
+--   				@csharp@
+--   				var astar = new AStar();
+--   				astar.AddPoint(1, new Vector3(0, 0, 0));
+--   				astar.AddPoint(2, new Vector3(0, 1, 0), 1); // Default weight is 1
+--   				astar.AddPoint(3, new Vector3(1, 1, 0));
+--   				astar.AddPoint(4, new Vector3(2, 0, 0));
+--   				astar.ConnectPoints(1, 2, false);
+--   				astar.ConnectPoints(2, 3, false);
+--   				astar.ConnectPoints(4, 3, false);
+--   				astar.ConnectPoints(1, 4, false);
+--   				int@@ res = astar.GetIdPath(1, 3); // Returns @1, 2, 3@
+--   				@/csharp@
+--   				@/codeblocks@
 --   				If you change the 2nd point's weight to 3, then the result will be @@1, 4, 3@@ instead, because now even though the distance is longer, it's "easier" to get through point 4 than through point 2.
 bindAStar_get_id_path :: MethodBind
 bindAStar_get_id_path
@@ -418,9 +454,8 @@ bindAStar_get_id_path
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | Returns an array with the IDs of the points that form the path found by AStar between the given points. The array is ordered from the starting point to the ending point of the path.
---   				
---   @
---   
+--   				@codeblocks@
+--   				@gdscript@
 --   				var astar = AStar.new()
 --   				astar.add_point(1, Vector3(0, 0, 0))
 --   				astar.add_point(2, Vector3(0, 1, 0), 1) # Default weight is 1
@@ -433,9 +468,20 @@ bindAStar_get_id_path
 --   				astar.connect_points(1, 4, false)
 --   
 --   				var res = astar.get_id_path(1, 3) # Returns @1, 2, 3@
---   				
---   @
---   
+--   				@/gdscript@
+--   				@csharp@
+--   				var astar = new AStar();
+--   				astar.AddPoint(1, new Vector3(0, 0, 0));
+--   				astar.AddPoint(2, new Vector3(0, 1, 0), 1); // Default weight is 1
+--   				astar.AddPoint(3, new Vector3(1, 1, 0));
+--   				astar.AddPoint(4, new Vector3(2, 0, 0));
+--   				astar.ConnectPoints(1, 2, false);
+--   				astar.ConnectPoints(2, 3, false);
+--   				astar.ConnectPoints(4, 3, false);
+--   				astar.ConnectPoints(1, 4, false);
+--   				int@@ res = astar.GetIdPath(1, 3); // Returns @1, 2, 3@
+--   				@/csharp@
+--   				@/codeblocks@
 --   				If you change the 2nd point's weight to 3, then the result will be @@1, 4, 3@@ instead, because now even though the distance is longer, it's "easier" to get through point 4 than through point 2.
 get_id_path ::
               (AStar :< cls, Object :< cls) =>
@@ -481,9 +527,8 @@ instance NodeMethod AStar "get_point_capacity" '[] (IO Int) where
 {-# NOINLINE bindAStar_get_point_connections #-}
 
 -- | Returns an array with the IDs of the points that form the connection with the given point.
---   				
---   @
---   
+--   				@codeblocks@
+--   				@gdscript@
 --   				var astar = AStar.new()
 --   				astar.add_point(1, Vector3(0, 0, 0))
 --   				astar.add_point(2, Vector3(0, 1, 0))
@@ -494,8 +539,19 @@ instance NodeMethod AStar "get_point_capacity" '[] (IO Int) where
 --   				astar.connect_points(1, 3, true)
 --   
 --   				var neighbors = astar.get_point_connections(1) # Returns @2, 3@
---   				
---   @
+--   				@/gdscript@
+--   				@csharp@
+--   				var astar = new AStar();
+--   				astar.AddPoint(1, new Vector3(0, 0, 0));
+--   				astar.AddPoint(2, new Vector3(0, 1, 0));
+--   				astar.AddPoint(3, new Vector3(1, 1, 0));
+--   				astar.AddPoint(4, new Vector3(2, 0, 0));
+--   				astar.ConnectPoints(1, 2, true);
+--   				astar.ConnectPoints(1, 3, true);
+--   
+--   				int@@ neighbors = astar.GetPointConnections(1); // Returns @2, 3@
+--   				@/csharp@
+--   				@/codeblocks@
 bindAStar_get_point_connections :: MethodBind
 bindAStar_get_point_connections
   = unsafePerformIO $
@@ -506,9 +562,8 @@ bindAStar_get_point_connections
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | Returns an array with the IDs of the points that form the connection with the given point.
---   				
---   @
---   
+--   				@codeblocks@
+--   				@gdscript@
 --   				var astar = AStar.new()
 --   				astar.add_point(1, Vector3(0, 0, 0))
 --   				astar.add_point(2, Vector3(0, 1, 0))
@@ -519,8 +574,19 @@ bindAStar_get_point_connections
 --   				astar.connect_points(1, 3, true)
 --   
 --   				var neighbors = astar.get_point_connections(1) # Returns @2, 3@
---   				
---   @
+--   				@/gdscript@
+--   				@csharp@
+--   				var astar = new AStar();
+--   				astar.AddPoint(1, new Vector3(0, 0, 0));
+--   				astar.AddPoint(2, new Vector3(0, 1, 0));
+--   				astar.AddPoint(3, new Vector3(1, 1, 0));
+--   				astar.AddPoint(4, new Vector3(2, 0, 0));
+--   				astar.ConnectPoints(1, 2, true);
+--   				astar.ConnectPoints(1, 3, true);
+--   
+--   				int@@ neighbors = astar.GetPointConnections(1); // Returns @2, 3@
+--   				@/csharp@
+--   				@/codeblocks@
 get_point_connections ::
                         (AStar :< cls, Object :< cls) => cls -> Int -> IO PoolIntArray
 get_point_connections cls arg1
@@ -564,6 +630,7 @@ instance NodeMethod AStar "get_point_count" '[] (IO Int) where
 {-# NOINLINE bindAStar_get_point_path #-}
 
 -- | Returns an array with the points that are in the path found by AStar between the given points. The array is ordered from the starting point to the ending point of the path.
+--   				__Note:__ This method is not thread-safe. If called from a @Thread@, it will return an empty @PackedVector3Array@ and will print an error message.
 bindAStar_get_point_path :: MethodBind
 bindAStar_get_point_path
   = unsafePerformIO $
@@ -574,6 +641,7 @@ bindAStar_get_point_path
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | Returns an array with the points that are in the path found by AStar between the given points. The array is ordered from the starting point to the ending point of the path.
+--   				__Note:__ This method is not thread-safe. If called from a @Thread@, it will return an empty @PackedVector3Array@ and will print an error message.
 get_point_path ::
                  (AStar :< cls, Object :< cls) =>
                  cls -> Int -> Int -> IO PoolVector3Array
@@ -827,7 +895,7 @@ instance NodeMethod AStar "set_point_position" '[Int, Vector3]
 
 {-# NOINLINE bindAStar_set_point_weight_scale #-}
 
--- | Sets the @weight_scale@ for the point with the given @id@.
+-- | Sets the @weight_scale@ for the point with the given @id@. The @weight_scale@ is multiplied by the result of @method _compute_cost@ when determining the overall cost of traveling across a segment from a neighboring point to this point.
 bindAStar_set_point_weight_scale :: MethodBind
 bindAStar_set_point_weight_scale
   = unsafePerformIO $
@@ -837,7 +905,7 @@ bindAStar_set_point_weight_scale
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the @weight_scale@ for the point with the given @id@.
+-- | Sets the @weight_scale@ for the point with the given @id@. The @weight_scale@ is multiplied by the result of @method _compute_cost@ when determining the overall cost of traveling across a segment from a neighboring point to this point.
 set_point_weight_scale ::
                          (AStar :< cls, Object :< cls) => cls -> Int -> Float -> IO ()
 set_point_weight_scale cls arg1 arg2

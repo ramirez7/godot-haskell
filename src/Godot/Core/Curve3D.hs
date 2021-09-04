@@ -212,7 +212,7 @@ instance NodeMethod Curve3D "get_baked_length" '[] (IO Float) where
 
 {-# NOINLINE bindCurve3D_get_baked_points #-}
 
--- | Returns the cache of points as a @PoolVector3Array@.
+-- | Returns the cache of points as a @PackedVector3Array@.
 bindCurve3D_get_baked_points :: MethodBind
 bindCurve3D_get_baked_points
   = unsafePerformIO $
@@ -222,7 +222,7 @@ bindCurve3D_get_baked_points
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the cache of points as a @PoolVector3Array@.
+-- | Returns the cache of points as a @PackedVector3Array@.
 get_baked_points ::
                    (Curve3D :< cls, Object :< cls) => cls -> IO PoolVector3Array
 get_baked_points cls
@@ -240,7 +240,7 @@ instance NodeMethod Curve3D "get_baked_points" '[]
 
 {-# NOINLINE bindCurve3D_get_baked_tilts #-}
 
--- | Returns the cache of tilts as a @PoolRealArray@.
+-- | Returns the cache of tilts as a @PackedFloat32Array@.
 bindCurve3D_get_baked_tilts :: MethodBind
 bindCurve3D_get_baked_tilts
   = unsafePerformIO $
@@ -250,7 +250,7 @@ bindCurve3D_get_baked_tilts
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the cache of tilts as a @PoolRealArray@.
+-- | Returns the cache of tilts as a @PackedFloat32Array@.
 get_baked_tilts ::
                   (Curve3D :< cls, Object :< cls) => cls -> IO PoolRealArray
 get_baked_tilts cls
@@ -268,7 +268,7 @@ instance NodeMethod Curve3D "get_baked_tilts" '[]
 
 {-# NOINLINE bindCurve3D_get_baked_up_vectors #-}
 
--- | Returns the cache of up vectors as a @PoolVector3Array@.
+-- | Returns the cache of up vectors as a @PackedVector3Array@.
 --   				If @up_vector_enabled@ is @false@, the cache will be empty.
 bindCurve3D_get_baked_up_vectors :: MethodBind
 bindCurve3D_get_baked_up_vectors
@@ -279,7 +279,7 @@ bindCurve3D_get_baked_up_vectors
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the cache of up vectors as a @PoolVector3Array@.
+-- | Returns the cache of up vectors as a @PackedVector3Array@.
 --   				If @up_vector_enabled@ is @false@, the cache will be empty.
 get_baked_up_vectors ::
                        (Curve3D :< cls, Object :< cls) => cls -> IO PoolVector3Array
@@ -329,7 +329,7 @@ instance NodeMethod Curve3D "get_closest_offset" '[Vector3]
 
 {-# NOINLINE bindCurve3D_get_closest_point #-}
 
--- | Returns the closest point (in curve's local space) to @to_point@.
+-- | Returns the closest baked point (in curve's local space) to @to_point@.
 --   				@to_point@ must be in this curve's local space.
 bindCurve3D_get_closest_point :: MethodBind
 bindCurve3D_get_closest_point
@@ -340,7 +340,7 @@ bindCurve3D_get_closest_point
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the closest point (in curve's local space) to @to_point@.
+-- | Returns the closest baked point (in curve's local space) to @to_point@.
 --   				@to_point@ must be in this curve's local space.
 get_closest_point ::
                     (Curve3D :< cls, Object :< cls) => cls -> Vector3 -> IO Vector3
@@ -384,7 +384,7 @@ instance NodeMethod Curve3D "get_point_count" '[] (IO Int) where
 
 {-# NOINLINE bindCurve3D_get_point_in #-}
 
--- | Returns the position of the control point leading to the vertex @idx@. If the index is out of bounds, the function sends an error to the console, and returns @(0, 0, 0)@.
+-- | Returns the position of the control point leading to the vertex @idx@. The returned position is relative to the vertex @idx@. If the index is out of bounds, the function sends an error to the console, and returns @(0, 0, 0)@.
 bindCurve3D_get_point_in :: MethodBind
 bindCurve3D_get_point_in
   = unsafePerformIO $
@@ -394,7 +394,7 @@ bindCurve3D_get_point_in
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the position of the control point leading to the vertex @idx@. If the index is out of bounds, the function sends an error to the console, and returns @(0, 0, 0)@.
+-- | Returns the position of the control point leading to the vertex @idx@. The returned position is relative to the vertex @idx@. If the index is out of bounds, the function sends an error to the console, and returns @(0, 0, 0)@.
 get_point_in ::
                (Curve3D :< cls, Object :< cls) => cls -> Int -> IO Vector3
 get_point_in cls arg1
@@ -410,7 +410,7 @@ instance NodeMethod Curve3D "get_point_in" '[Int] (IO Vector3)
 
 {-# NOINLINE bindCurve3D_get_point_out #-}
 
--- | Returns the position of the control point leading out of the vertex @idx@. If the index is out of bounds, the function sends an error to the console, and returns @(0, 0, 0)@.
+-- | Returns the position of the control point leading out of the vertex @idx@. The returned position is relative to the vertex @idx@. If the index is out of bounds, the function sends an error to the console, and returns @(0, 0, 0)@.
 bindCurve3D_get_point_out :: MethodBind
 bindCurve3D_get_point_out
   = unsafePerformIO $
@@ -420,7 +420,7 @@ bindCurve3D_get_point_out
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the position of the control point leading out of the vertex @idx@. If the index is out of bounds, the function sends an error to the console, and returns @(0, 0, 0)@.
+-- | Returns the position of the control point leading out of the vertex @idx@. The returned position is relative to the vertex @idx@. If the index is out of bounds, the function sends an error to the console, and returns @(0, 0, 0)@.
 get_point_out ::
                 (Curve3D :< cls, Object :< cls) => cls -> Int -> IO Vector3
 get_point_out cls arg1
@@ -522,7 +522,7 @@ instance NodeMethod Curve3D "interpolate" '[Int, Float]
 
 {-# NOINLINE bindCurve3D_interpolate_baked #-}
 
--- | Returns a point within the curve at position @offset@, where @offset@ is measured as a pixel distance along the curve.
+-- | Returns a point within the curve at position @offset@, where @offset@ is measured as a distance in 3D units along the curve.
 --   				To do that, it finds the two cached points where the @offset@ lies between, then interpolates the values. This interpolation is cubic if @cubic@ is set to @true@, or linear if set to @false@.
 --   				Cubic interpolation tends to follow the curves better, but linear is faster (and often, precise enough).
 bindCurve3D_interpolate_baked :: MethodBind
@@ -534,7 +534,7 @@ bindCurve3D_interpolate_baked
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns a point within the curve at position @offset@, where @offset@ is measured as a pixel distance along the curve.
+-- | Returns a point within the curve at position @offset@, where @offset@ is measured as a distance in 3D units along the curve.
 --   				To do that, it finds the two cached points where the @offset@ lies between, then interpolates the values. This interpolation is cubic if @cubic@ is set to @true@, or linear if set to @false@.
 --   				Cubic interpolation tends to follow the curves better, but linear is faster (and often, precise enough).
 interpolate_baked ::
@@ -619,7 +619,7 @@ instance NodeMethod Curve3D "interpolatef" '[Float] (IO Vector3)
 
 {-# NOINLINE bindCurve3D_is_up_vector_enabled #-}
 
--- | If @true@, the curve will bake up vectors used for orientation. This is used when @PathFollow.rotation_mode@ is set to @PathFollow.ROTATION_ORIENTED@. Changing it forces the cache to be recomputed.
+-- | If @true@, the curve will bake up vectors used for orientation. This is used when @PathFollow3D.rotation_mode@ is set to @PathFollow3D.ROTATION_ORIENTED@. Changing it forces the cache to be recomputed.
 bindCurve3D_is_up_vector_enabled :: MethodBind
 bindCurve3D_is_up_vector_enabled
   = unsafePerformIO $
@@ -629,7 +629,7 @@ bindCurve3D_is_up_vector_enabled
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, the curve will bake up vectors used for orientation. This is used when @PathFollow.rotation_mode@ is set to @PathFollow.ROTATION_ORIENTED@. Changing it forces the cache to be recomputed.
+-- | If @true@, the curve will bake up vectors used for orientation. This is used when @PathFollow3D.rotation_mode@ is set to @PathFollow3D.ROTATION_ORIENTED@. Changing it forces the cache to be recomputed.
 is_up_vector_enabled ::
                        (Curve3D :< cls, Object :< cls) => cls -> IO Bool
 is_up_vector_enabled cls
@@ -699,7 +699,7 @@ instance NodeMethod Curve3D "set_bake_interval" '[Float] (IO ())
 
 {-# NOINLINE bindCurve3D_set_point_in #-}
 
--- | Sets the position of the control point leading to the vertex @idx@. If the index is out of bounds, the function sends an error to the console.
+-- | Sets the position of the control point leading to the vertex @idx@. If the index is out of bounds, the function sends an error to the console. The position is relative to the vertex.
 bindCurve3D_set_point_in :: MethodBind
 bindCurve3D_set_point_in
   = unsafePerformIO $
@@ -709,7 +709,7 @@ bindCurve3D_set_point_in
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the position of the control point leading to the vertex @idx@. If the index is out of bounds, the function sends an error to the console.
+-- | Sets the position of the control point leading to the vertex @idx@. If the index is out of bounds, the function sends an error to the console. The position is relative to the vertex.
 set_point_in ::
                (Curve3D :< cls, Object :< cls) => cls -> Int -> Vector3 -> IO ()
 set_point_in cls arg1 arg2
@@ -725,7 +725,7 @@ instance NodeMethod Curve3D "set_point_in" '[Int, Vector3] (IO ())
 
 {-# NOINLINE bindCurve3D_set_point_out #-}
 
--- | Sets the position of the control point leading out of the vertex @idx@. If the index is out of bounds, the function sends an error to the console.
+-- | Sets the position of the control point leading out of the vertex @idx@. If the index is out of bounds, the function sends an error to the console. The position is relative to the vertex.
 bindCurve3D_set_point_out :: MethodBind
 bindCurve3D_set_point_out
   = unsafePerformIO $
@@ -735,7 +735,7 @@ bindCurve3D_set_point_out
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the position of the control point leading out of the vertex @idx@. If the index is out of bounds, the function sends an error to the console.
+-- | Sets the position of the control point leading out of the vertex @idx@. If the index is out of bounds, the function sends an error to the console. The position is relative to the vertex.
 set_point_out ::
                 (Curve3D :< cls, Object :< cls) => cls -> Int -> Vector3 -> IO ()
 set_point_out cls arg1 arg2
@@ -781,7 +781,7 @@ instance NodeMethod Curve3D "set_point_position" '[Int, Vector3]
 {-# NOINLINE bindCurve3D_set_point_tilt #-}
 
 -- | Sets the tilt angle in radians for the point @idx@. If the index is out of bounds, the function sends an error to the console.
---   				The tilt controls the rotation along the look-at axis an object traveling the path would have. In the case of a curve controlling a @PathFollow@, this tilt is an offset over the natural tilt the @PathFollow@ calculates.
+--   				The tilt controls the rotation along the look-at axis an object traveling the path would have. In the case of a curve controlling a @PathFollow3D@, this tilt is an offset over the natural tilt the @PathFollow3D@ calculates.
 bindCurve3D_set_point_tilt :: MethodBind
 bindCurve3D_set_point_tilt
   = unsafePerformIO $
@@ -792,7 +792,7 @@ bindCurve3D_set_point_tilt
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | Sets the tilt angle in radians for the point @idx@. If the index is out of bounds, the function sends an error to the console.
---   				The tilt controls the rotation along the look-at axis an object traveling the path would have. In the case of a curve controlling a @PathFollow@, this tilt is an offset over the natural tilt the @PathFollow@ calculates.
+--   				The tilt controls the rotation along the look-at axis an object traveling the path would have. In the case of a curve controlling a @PathFollow3D@, this tilt is an offset over the natural tilt the @PathFollow3D@ calculates.
 set_point_tilt ::
                  (Curve3D :< cls, Object :< cls) => cls -> Int -> Float -> IO ()
 set_point_tilt cls arg1 arg2
@@ -809,7 +809,7 @@ instance NodeMethod Curve3D "set_point_tilt" '[Int, Float] (IO ())
 
 {-# NOINLINE bindCurve3D_set_up_vector_enabled #-}
 
--- | If @true@, the curve will bake up vectors used for orientation. This is used when @PathFollow.rotation_mode@ is set to @PathFollow.ROTATION_ORIENTED@. Changing it forces the cache to be recomputed.
+-- | If @true@, the curve will bake up vectors used for orientation. This is used when @PathFollow3D.rotation_mode@ is set to @PathFollow3D.ROTATION_ORIENTED@. Changing it forces the cache to be recomputed.
 bindCurve3D_set_up_vector_enabled :: MethodBind
 bindCurve3D_set_up_vector_enabled
   = unsafePerformIO $
@@ -819,7 +819,7 @@ bindCurve3D_set_up_vector_enabled
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, the curve will bake up vectors used for orientation. This is used when @PathFollow.rotation_mode@ is set to @PathFollow.ROTATION_ORIENTED@. Changing it forces the cache to be recomputed.
+-- | If @true@, the curve will bake up vectors used for orientation. This is used when @PathFollow3D.rotation_mode@ is set to @PathFollow3D.ROTATION_ORIENTED@. Changing it forces the cache to be recomputed.
 set_up_vector_enabled ::
                         (Curve3D :< cls, Object :< cls) => cls -> Bool -> IO ()
 set_up_vector_enabled cls arg1

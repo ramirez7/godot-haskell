@@ -38,7 +38,7 @@ instance NodeProperty AtlasTexture "region" Rect2 'False where
 
 {-# NOINLINE bindAtlasTexture_get_atlas #-}
 
--- | The texture that contains the atlas. Can be any @Texture@ subtype.
+-- | The texture that contains the atlas. Can be any @Texture2D@ subtype.
 bindAtlasTexture_get_atlas :: MethodBind
 bindAtlasTexture_get_atlas
   = unsafePerformIO $
@@ -48,7 +48,7 @@ bindAtlasTexture_get_atlas
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The texture that contains the atlas. Can be any @Texture@ subtype.
+-- | The texture that contains the atlas. Can be any @Texture2D@ subtype.
 get_atlas ::
             (AtlasTexture :< cls, Object :< cls) => cls -> IO Texture
 get_atlas cls
@@ -144,7 +144,7 @@ instance NodeMethod AtlasTexture "has_filter_clip" '[] (IO Bool)
 
 {-# NOINLINE bindAtlasTexture_set_atlas #-}
 
--- | The texture that contains the atlas. Can be any @Texture@ subtype.
+-- | The texture that contains the atlas. Can be any @Texture2D@ subtype.
 bindAtlasTexture_set_atlas :: MethodBind
 bindAtlasTexture_set_atlas
   = unsafePerformIO $
@@ -154,7 +154,7 @@ bindAtlasTexture_set_atlas
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The texture that contains the atlas. Can be any @Texture@ subtype.
+-- | The texture that contains the atlas. Can be any @Texture2D@ subtype.
 set_atlas ::
             (AtlasTexture :< cls, Object :< cls) => cls -> Texture -> IO ()
 set_atlas cls arg1

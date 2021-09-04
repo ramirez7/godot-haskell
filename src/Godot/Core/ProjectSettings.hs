@@ -37,9 +37,8 @@ import Godot.Core.Object()
 --   				- @type@: @int@ (see @enum Variant.Type@)
 --   				- optionally @hint@: @int@ (see @enum PropertyHint@) and @hint_string@: @String@
 --   				__Example:__
---   				
---   @
---   
+--   				@codeblocks@
+--   				@gdscript@
 --   				ProjectSettings.set("category/property_name", 0)
 --   
 --   				var property_info = {
@@ -50,8 +49,21 @@ import Godot.Core.Object()
 --   				}
 --   
 --   				ProjectSettings.add_property_info(property_info)
---   				
---   @
+--   				@/gdscript@
+--   				@csharp@
+--   				ProjectSettings.Singleton.Set("category/property_name", 0);
+--   
+--   				var propertyInfo = new Godot.Collections.Dictionary
+--   				{
+--   				    {"name", "category/propertyName"},
+--   				    {"type", Variant.Type.Int},
+--   				    {"hint", PropertyHint.Enum},
+--   				    {"hint_string", "one,two,three"},
+--   				};
+--   
+--   				ProjectSettings.AddPropertyInfo(propertyInfo);
+--   				@/csharp@
+--   				@/codeblocks@
 bindProjectSettings_add_property_info :: MethodBind
 bindProjectSettings_add_property_info
   = unsafePerformIO $
@@ -66,9 +78,8 @@ bindProjectSettings_add_property_info
 --   				- @type@: @int@ (see @enum Variant.Type@)
 --   				- optionally @hint@: @int@ (see @enum PropertyHint@) and @hint_string@: @String@
 --   				__Example:__
---   				
---   @
---   
+--   				@codeblocks@
+--   				@gdscript@
 --   				ProjectSettings.set("category/property_name", 0)
 --   
 --   				var property_info = {
@@ -79,8 +90,21 @@ bindProjectSettings_add_property_info
 --   				}
 --   
 --   				ProjectSettings.add_property_info(property_info)
---   				
---   @
+--   				@/gdscript@
+--   				@csharp@
+--   				ProjectSettings.Singleton.Set("category/property_name", 0);
+--   
+--   				var propertyInfo = new Godot.Collections.Dictionary
+--   				{
+--   				    {"name", "category/propertyName"},
+--   				    {"type", Variant.Type.Int},
+--   				    {"hint", PropertyHint.Enum},
+--   				    {"hint_string", "one,two,three"},
+--   				};
+--   
+--   				ProjectSettings.AddPropertyInfo(propertyInfo);
+--   				@/csharp@
+--   				@/codeblocks@
 add_property_info ::
                     (ProjectSettings :< cls, Object :< cls) =>
                     cls -> Dictionary -> IO ()
@@ -160,12 +184,14 @@ instance NodeMethod ProjectSettings "get_order" '[GodotString]
 
 -- | Returns the value of a setting.
 --   				__Example:__
---   				
---   @
---   
+--   				@codeblocks@
+--   				@gdscript@
 --   				print(ProjectSettings.get_setting("application/config/name"))
---   				
---   @
+--   				@/gdscript@
+--   				@csharp@
+--   				GD.Print(ProjectSettings.GetSetting("application/config/name"));
+--   				@/csharp@
+--   				@/codeblocks@
 bindProjectSettings_get_setting :: MethodBind
 bindProjectSettings_get_setting
   = unsafePerformIO $
@@ -177,12 +203,14 @@ bindProjectSettings_get_setting
 
 -- | Returns the value of a setting.
 --   				__Example:__
---   				
---   @
---   
+--   				@codeblocks@
+--   				@gdscript@
 --   				print(ProjectSettings.get_setting("application/config/name"))
---   				
---   @
+--   				@/gdscript@
+--   				@csharp@
+--   				GD.Print(ProjectSettings.GetSetting("application/config/name"));
+--   				@/csharp@
+--   				@/codeblocks@
 get_setting ::
               (ProjectSettings :< cls, Object :< cls) =>
               cls -> GodotString -> IO GodotVariant
@@ -201,7 +229,24 @@ instance NodeMethod ProjectSettings "get_setting" '[GodotString]
 
 {-# NOINLINE bindProjectSettings_globalize_path #-}
 
--- | Converts a localized path (@res://@) to a full native OS path.
+-- | Returns the absolute, native OS path corresponding to the localized @path@ (starting with @res://@ or @user://@). The returned path will vary depending on the operating system and user preferences. See @url=https://docs.godotengine.org/en/latest/tutorials/io/data_paths.html@File paths in Godot projects@/url@ to see what those paths convert to. See also @method localize_path@.
+--   				__Note:__ @method globalize_path@ with @res://@ will not work in an exported project. Instead, prepend the executable's base directory to the path when running from an exported project:
+--   				
+--   @
+--   
+--   				var path = ""
+--   				if OS.has_feature("editor"):
+--   				    # Running from an editor binary.
+--   				    # `path` will contain the absolute path to `hello.txt` located in the project root.
+--   				    path = ProjectSettings.globalize_path("res://hello.txt")
+--   				else:
+--   				    # Running from an exported project.
+--   				    # `path` will contain the absolute path to `hello.txt` next to the executable.
+--   				    # This is *not* identical to using `ProjectSettings.globalize_path()` with a `res://` path,
+--   				    # but is close enough in spirit.
+--   				    path = OS.get_executable_path().get_base_dir().plus_file("hello.txt")
+--   				
+--   @
 bindProjectSettings_globalize_path :: MethodBind
 bindProjectSettings_globalize_path
   = unsafePerformIO $
@@ -211,7 +256,24 @@ bindProjectSettings_globalize_path
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Converts a localized path (@res://@) to a full native OS path.
+-- | Returns the absolute, native OS path corresponding to the localized @path@ (starting with @res://@ or @user://@). The returned path will vary depending on the operating system and user preferences. See @url=https://docs.godotengine.org/en/latest/tutorials/io/data_paths.html@File paths in Godot projects@/url@ to see what those paths convert to. See also @method localize_path@.
+--   				__Note:__ @method globalize_path@ with @res://@ will not work in an exported project. Instead, prepend the executable's base directory to the path when running from an exported project:
+--   				
+--   @
+--   
+--   				var path = ""
+--   				if OS.has_feature("editor"):
+--   				    # Running from an editor binary.
+--   				    # `path` will contain the absolute path to `hello.txt` located in the project root.
+--   				    path = ProjectSettings.globalize_path("res://hello.txt")
+--   				else:
+--   				    # Running from an exported project.
+--   				    # `path` will contain the absolute path to `hello.txt` next to the executable.
+--   				    # This is *not* identical to using `ProjectSettings.globalize_path()` with a `res://` path,
+--   				    # but is close enough in spirit.
+--   				    path = OS.get_executable_path().get_base_dir().plus_file("hello.txt")
+--   				
+--   @
 globalize_path ::
                  (ProjectSettings :< cls, Object :< cls) =>
                  cls -> GodotString -> IO GodotString
@@ -262,6 +324,7 @@ instance NodeMethod ProjectSettings "has_setting" '[GodotString]
 
 -- | Loads the contents of the .pck or .zip file specified by @pack@ into the resource filesystem (@res://@). Returns @true@ on success.
 --   				__Note:__ If a file from @pack@ shares the same path as a file already in the resource filesystem, any attempts to load that file will use the file from @pack@ unless @replace_files@ is set to @false@.
+--   				__Note:__ The optional @offset@ parameter can be used to specify the offset in bytes to the start of the resource pack. This is only supported for .pck files.
 bindProjectSettings_load_resource_pack :: MethodBind
 bindProjectSettings_load_resource_pack
   = unsafePerformIO $
@@ -273,6 +336,7 @@ bindProjectSettings_load_resource_pack
 
 -- | Loads the contents of the .pck or .zip file specified by @pack@ into the resource filesystem (@res://@). Returns @true@ on success.
 --   				__Note:__ If a file from @pack@ shares the same path as a file already in the resource filesystem, any attempts to load that file will use the file from @pack@ unless @replace_files@ is set to @false@.
+--   				__Note:__ The optional @offset@ parameter can be used to specify the offset in bytes to the start of the resource pack. This is only supported for .pck files.
 load_resource_pack ::
                      (ProjectSettings :< cls, Object :< cls) =>
                      cls -> GodotString -> Maybe Bool -> IO Bool
@@ -294,7 +358,7 @@ instance NodeMethod ProjectSettings "load_resource_pack"
 
 {-# NOINLINE bindProjectSettings_localize_path #-}
 
--- | Convert a path to a localized path (@res://@ path).
+-- | Returns the localized path (starting with @res://@) corresponding to the absolute, native OS @path@. See also @method globalize_path@.
 bindProjectSettings_localize_path :: MethodBind
 bindProjectSettings_localize_path
   = unsafePerformIO $
@@ -304,7 +368,7 @@ bindProjectSettings_localize_path
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Convert a path to a localized path (@res://@ path).
+-- | Returns the localized path (starting with @res://@) corresponding to the absolute, native OS @path@. See also @method globalize_path@.
 localize_path ::
                 (ProjectSettings :< cls, Object :< cls) =>
                 cls -> GodotString -> IO GodotString
@@ -387,6 +451,7 @@ instance NodeMethod ProjectSettings "property_get_revert"
 {-# NOINLINE bindProjectSettings_save #-}
 
 -- | Saves the configuration to the @project.godot@ file.
+--   				__Note:__ This method is intended to be used by editor plugins, as modified @ProjectSettings@ can't be loaded back in the running app. If you want to change project settings in exported projects, use @method save_custom@ to save @override.cfg@ file.
 bindProjectSettings_save :: MethodBind
 bindProjectSettings_save
   = unsafePerformIO $
@@ -397,6 +462,7 @@ bindProjectSettings_save
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | Saves the configuration to the @project.godot@ file.
+--   				__Note:__ This method is intended to be used by editor plugins, as modified @ProjectSettings@ can't be loaded back in the running app. If you want to change project settings in exported projects, use @method save_custom@ to save @override.cfg@ file.
 save :: (ProjectSettings :< cls, Object :< cls) => cls -> IO Int
 save cls
   = withVariantArray []
@@ -410,7 +476,7 @@ instance NodeMethod ProjectSettings "save" '[] (IO Int) where
 
 {-# NOINLINE bindProjectSettings_save_custom #-}
 
--- | Saves the configuration to a custom file. The file extension must be @.godot@ (to save in text-based @ConfigFile@ format) or @.binary@ (to save in binary format).
+-- | Saves the configuration to a custom file. The file extension must be @.godot@ (to save in text-based @ConfigFile@ format) or @.binary@ (to save in binary format). You can also save @override.cfg@ file, which is also text, but can be used in exported projects unlike other formats.
 bindProjectSettings_save_custom :: MethodBind
 bindProjectSettings_save_custom
   = unsafePerformIO $
@@ -420,7 +486,7 @@ bindProjectSettings_save_custom
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Saves the configuration to a custom file. The file extension must be @.godot@ (to save in text-based @ConfigFile@ format) or @.binary@ (to save in binary format).
+-- | Saves the configuration to a custom file. The file extension must be @.godot@ (to save in text-based @ConfigFile@ format) or @.binary@ (to save in binary format). You can also save @override.cfg@ file, which is also text, but can be used in exported projects unlike other formats.
 save_custom ::
               (ProjectSettings :< cls, Object :< cls) =>
               cls -> GodotString -> IO Int
@@ -501,12 +567,14 @@ instance NodeMethod ProjectSettings "set_order" '[GodotString, Int]
 
 -- | Sets the value of a setting.
 --   				__Example:__
---   				
---   @
---   
+--   				@codeblocks@
+--   				@gdscript@
 --   				ProjectSettings.set_setting("application/config/name", "Example")
---   				
---   @
+--   				@/gdscript@
+--   				@csharp@
+--   				ProjectSettings.SetSetting("application/config/name", "Example");
+--   				@/csharp@
+--   				@/codeblocks@
 bindProjectSettings_set_setting :: MethodBind
 bindProjectSettings_set_setting
   = unsafePerformIO $
@@ -518,12 +586,14 @@ bindProjectSettings_set_setting
 
 -- | Sets the value of a setting.
 --   				__Example:__
---   				
---   @
---   
+--   				@codeblocks@
+--   				@gdscript@
 --   				ProjectSettings.set_setting("application/config/name", "Example")
---   				
---   @
+--   				@/gdscript@
+--   				@csharp@
+--   				ProjectSettings.SetSetting("application/config/name", "Example");
+--   				@/csharp@
+--   				@/codeblocks@
 set_setting ::
               (ProjectSettings :< cls, Object :< cls) =>
               cls -> GodotString -> GodotVariant -> IO ()

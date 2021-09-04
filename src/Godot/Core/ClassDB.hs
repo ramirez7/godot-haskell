@@ -35,7 +35,6 @@ import Godot.Core.Object()
 
 {-# NOINLINE bindClassDB_can_instance #-}
 
--- | Returns @true@ if you can instance objects from the specified @class@, @false@ in other case.
 bindClassDB_can_instance :: MethodBind
 bindClassDB_can_instance
   = unsafePerformIO $
@@ -45,7 +44,6 @@ bindClassDB_can_instance
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns @true@ if you can instance objects from the specified @class@, @false@ in other case.
 can_instance ::
                (ClassDB :< cls, Object :< cls) => cls -> GodotString -> IO Bool
 can_instance cls arg1
@@ -180,6 +178,7 @@ instance NodeMethod ClassDB "class_get_integer_constant_list"
 {-# NOINLINE bindClassDB_class_get_method_list #-}
 
 -- | Returns an array with all the methods of @class@ or its ancestry if @no_inheritance@ is @false@. Every element of the array is a @Dictionary@ with the following keys: @args@, @default_args@, @flags@, @id@, @name@, @return: (class_name, hint, hint_string, name, type, usage)@.
+--   				__Note:@ In exported release builds the debug info is not available, so the returned dictionaries will contain only method names.
 bindClassDB_class_get_method_list :: MethodBind
 bindClassDB_class_get_method_list
   = unsafePerformIO $
@@ -190,6 +189,7 @@ bindClassDB_class_get_method_list
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | Returns an array with all the methods of @class@ or its ancestry if @no_inheritance@ is @false@. Every element of the array is a @Dictionary@ with the following keys: @args@, @default_args@, @flags@, @id@, @name@, @return: (class_name, hint, hint_string, name, type, usage)@.
+--   				__Note:@ In exported release builds the debug info is not available, so the returned dictionaries will contain only method names.
 class_get_method_list ::
                         (ClassDB :< cls, Object :< cls) =>
                         cls -> GodotString -> Maybe Bool -> IO Array
@@ -546,7 +546,6 @@ instance NodeMethod ClassDB "get_parent_class" '[GodotString]
 
 {-# NOINLINE bindClassDB_instance' #-}
 
--- | Creates an instance of @class@.
 bindClassDB_instance' :: MethodBind
 bindClassDB_instance'
   = unsafePerformIO $
@@ -556,7 +555,6 @@ bindClassDB_instance'
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Creates an instance of @class@.
 instance' ::
             (ClassDB :< cls, Object :< cls) =>
             cls -> GodotString -> IO GodotVariant

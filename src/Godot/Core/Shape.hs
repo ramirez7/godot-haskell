@@ -20,7 +20,6 @@ instance NodeProperty Shape "margin" Float 'False where
 
 {-# NOINLINE bindShape_get_margin #-}
 
--- | The collision margin for the shape.
 bindShape_get_margin :: MethodBind
 bindShape_get_margin
   = unsafePerformIO $
@@ -30,7 +29,6 @@ bindShape_get_margin
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The collision margin for the shape.
 get_margin :: (Shape :< cls, Object :< cls) => cls -> IO Float
 get_margin cls
   = withVariantArray []
@@ -43,7 +41,6 @@ instance NodeMethod Shape "get_margin" '[] (IO Float) where
 
 {-# NOINLINE bindShape_set_margin #-}
 
--- | The collision margin for the shape.
 bindShape_set_margin :: MethodBind
 bindShape_set_margin
   = unsafePerformIO $
@@ -53,7 +50,6 @@ bindShape_set_margin
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The collision margin for the shape.
 set_margin ::
              (Shape :< cls, Object :< cls) => cls -> Float -> IO ()
 set_margin cls arg1

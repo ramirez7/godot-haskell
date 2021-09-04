@@ -20,7 +20,9 @@ module Godot.Core.LineEdit
         Godot.Core.LineEdit.cursor_get_blink_speed,
         Godot.Core.LineEdit.cursor_set_blink_enabled,
         Godot.Core.LineEdit.cursor_set_blink_speed,
-        Godot.Core.LineEdit.deselect, Godot.Core.LineEdit.get_align,
+        Godot.Core.LineEdit.delete_char_at_cursor,
+        Godot.Core.LineEdit.delete_text, Godot.Core.LineEdit.deselect,
+        Godot.Core.LineEdit.get_align,
         Godot.Core.LineEdit.get_cursor_position,
         Godot.Core.LineEdit.get_expand_to_text_length,
         Godot.Core.LineEdit.get_max_length, Godot.Core.LineEdit.get_menu,
@@ -34,6 +36,7 @@ module Godot.Core.LineEdit
         Godot.Core.LineEdit.is_editable, Godot.Core.LineEdit.is_secret,
         Godot.Core.LineEdit.is_selecting_enabled,
         Godot.Core.LineEdit.is_shortcut_keys_enabled,
+        Godot.Core.LineEdit.is_virtual_keyboard_enabled,
         Godot.Core.LineEdit.menu_option, Godot.Core.LineEdit.select,
         Godot.Core.LineEdit.select_all, Godot.Core.LineEdit.set_align,
         Godot.Core.LineEdit.set_clear_button_enabled,
@@ -48,7 +51,8 @@ module Godot.Core.LineEdit
         Godot.Core.LineEdit.set_secret_character,
         Godot.Core.LineEdit.set_selecting_enabled,
         Godot.Core.LineEdit.set_shortcut_keys_enabled,
-        Godot.Core.LineEdit.set_text)
+        Godot.Core.LineEdit.set_text,
+        Godot.Core.LineEdit.set_virtual_keyboard_enabled)
        where
 import Data.Coerce
 import Foreign.C
@@ -98,7 +102,7 @@ _ALIGN_LEFT = 0
 _ALIGN_CENTER :: Int
 _ALIGN_CENTER = 1
 
--- | Emitted when trying to append text that would overflow the @max_length@.
+-- | Emitted when appending text that overflows the @max_length@. The appended text is truncated to fit @max_length@, and the part that couldn't fit is passed as the @rejected_substring@ argument.
 sig_text_change_rejected :: Godot.Internal.Dispatch.Signal LineEdit
 sig_text_change_rejected
   = Godot.Internal.Dispatch.Signal "text_change_rejected"
@@ -111,7 +115,6 @@ sig_text_changed = Godot.Internal.Dispatch.Signal "text_changed"
 
 instance NodeSignal LineEdit "text_changed" '[GodotString]
 
--- | Emitted when the user presses @KEY_ENTER@ on the @LineEdit@.
 sig_text_entered :: Godot.Internal.Dispatch.Signal LineEdit
 sig_text_entered = Godot.Internal.Dispatch.Signal "text_entered"
 
@@ -202,6 +205,13 @@ instance NodeProperty LineEdit "shortcut_keys_enabled" Bool 'False
 
 instance NodeProperty LineEdit "text" GodotString 'False where
         nodeProperty = (get_text, wrapDroppingSetter set_text, Nothing)
+
+instance NodeProperty LineEdit "virtual_keyboard_enabled" Bool
+           'False
+         where
+        nodeProperty
+          = (is_virtual_keyboard_enabled,
+             wrapDroppingSetter set_virtual_keyboard_enabled, Nothing)
 
 {-# NOINLINE bindLineEdit__editor_settings_changed #-}
 
@@ -302,7 +312,6 @@ instance NodeMethod LineEdit "_toggle_draw_caret" '[] (IO ()) where
 
 {-# NOINLINE bindLineEdit_append_at_cursor #-}
 
--- | Adds @text@ after the cursor. If the resulting value is longer than @max_length@, nothing happens.
 bindLineEdit_append_at_cursor :: MethodBind
 bindLineEdit_append_at_cursor
   = unsafePerformIO $
@@ -312,7 +321,6 @@ bindLineEdit_append_at_cursor
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Adds @text@ after the cursor. If the resulting value is longer than @max_length@, nothing happens.
 append_at_cursor ::
                    (LineEdit :< cls, Object :< cls) => cls -> GodotString -> IO ()
 append_at_cursor cls arg1
@@ -353,7 +361,6 @@ instance NodeMethod LineEdit "clear" '[] (IO ()) where
 
 {-# NOINLINE bindLineEdit_cursor_get_blink_enabled #-}
 
--- | If @true@, the caret (visual cursor) blinks.
 bindLineEdit_cursor_get_blink_enabled :: MethodBind
 bindLineEdit_cursor_get_blink_enabled
   = unsafePerformIO $
@@ -363,7 +370,6 @@ bindLineEdit_cursor_get_blink_enabled
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, the caret (visual cursor) blinks.
 cursor_get_blink_enabled ::
                            (LineEdit :< cls, Object :< cls) => cls -> IO Bool
 cursor_get_blink_enabled cls
@@ -382,7 +388,6 @@ instance NodeMethod LineEdit "cursor_get_blink_enabled" '[]
 
 {-# NOINLINE bindLineEdit_cursor_get_blink_speed #-}
 
--- | Duration (in seconds) of a caret's blinking cycle.
 bindLineEdit_cursor_get_blink_speed :: MethodBind
 bindLineEdit_cursor_get_blink_speed
   = unsafePerformIO $
@@ -392,7 +397,6 @@ bindLineEdit_cursor_get_blink_speed
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Duration (in seconds) of a caret's blinking cycle.
 cursor_get_blink_speed ::
                          (LineEdit :< cls, Object :< cls) => cls -> IO Float
 cursor_get_blink_speed cls
@@ -411,7 +415,6 @@ instance NodeMethod LineEdit "cursor_get_blink_speed" '[]
 
 {-# NOINLINE bindLineEdit_cursor_set_blink_enabled #-}
 
--- | If @true@, the caret (visual cursor) blinks.
 bindLineEdit_cursor_set_blink_enabled :: MethodBind
 bindLineEdit_cursor_set_blink_enabled
   = unsafePerformIO $
@@ -421,7 +424,6 @@ bindLineEdit_cursor_set_blink_enabled
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, the caret (visual cursor) blinks.
 cursor_set_blink_enabled ::
                            (LineEdit :< cls, Object :< cls) => cls -> Bool -> IO ()
 cursor_set_blink_enabled cls arg1
@@ -440,7 +442,6 @@ instance NodeMethod LineEdit "cursor_set_blink_enabled" '[Bool]
 
 {-# NOINLINE bindLineEdit_cursor_set_blink_speed #-}
 
--- | Duration (in seconds) of a caret's blinking cycle.
 bindLineEdit_cursor_set_blink_speed :: MethodBind
 bindLineEdit_cursor_set_blink_speed
   = unsafePerformIO $
@@ -450,7 +451,6 @@ bindLineEdit_cursor_set_blink_speed
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Duration (in seconds) of a caret's blinking cycle.
 cursor_set_blink_speed ::
                          (LineEdit :< cls, Object :< cls) => cls -> Float -> IO ()
 cursor_set_blink_speed cls arg1
@@ -466,6 +466,58 @@ instance NodeMethod LineEdit "cursor_set_blink_speed" '[Float]
            (IO ())
          where
         nodeMethod = Godot.Core.LineEdit.cursor_set_blink_speed
+
+{-# NOINLINE bindLineEdit_delete_char_at_cursor #-}
+
+bindLineEdit_delete_char_at_cursor :: MethodBind
+bindLineEdit_delete_char_at_cursor
+  = unsafePerformIO $
+      withCString "LineEdit" $
+        \ clsNamePtr ->
+          withCString "delete_char_at_cursor" $
+            \ methodNamePtr ->
+              godot_method_bind_get_method clsNamePtr methodNamePtr
+
+delete_char_at_cursor ::
+                        (LineEdit :< cls, Object :< cls) => cls -> IO ()
+delete_char_at_cursor cls
+  = withVariantArray []
+      (\ (arrPtr, len) ->
+         godot_method_bind_call bindLineEdit_delete_char_at_cursor
+           (upcast cls)
+           arrPtr
+           len
+           >>= \ (err, res) -> throwIfErr err >> fromGodotVariant res)
+
+instance NodeMethod LineEdit "delete_char_at_cursor" '[] (IO ())
+         where
+        nodeMethod = Godot.Core.LineEdit.delete_char_at_cursor
+
+{-# NOINLINE bindLineEdit_delete_text #-}
+
+-- | Deletes a section of the @text@ going from position @from_column@ to @to_column@. Both parameters should be within the text's length.
+bindLineEdit_delete_text :: MethodBind
+bindLineEdit_delete_text
+  = unsafePerformIO $
+      withCString "LineEdit" $
+        \ clsNamePtr ->
+          withCString "delete_text" $
+            \ methodNamePtr ->
+              godot_method_bind_get_method clsNamePtr methodNamePtr
+
+-- | Deletes a section of the @text@ going from position @from_column@ to @to_column@. Both parameters should be within the text's length.
+delete_text ::
+              (LineEdit :< cls, Object :< cls) => cls -> Int -> Int -> IO ()
+delete_text cls arg1 arg2
+  = withVariantArray [toVariant arg1, toVariant arg2]
+      (\ (arrPtr, len) ->
+         godot_method_bind_call bindLineEdit_delete_text (upcast cls) arrPtr
+           len
+           >>= \ (err, res) -> throwIfErr err >> fromGodotVariant res)
+
+instance NodeMethod LineEdit "delete_text" '[Int, Int] (IO ())
+         where
+        nodeMethod = Godot.Core.LineEdit.delete_text
 
 {-# NOINLINE bindLineEdit_deselect #-}
 
@@ -517,7 +569,6 @@ instance NodeMethod LineEdit "get_align" '[] (IO Int) where
 
 {-# NOINLINE bindLineEdit_get_cursor_position #-}
 
--- | The cursor's position inside the @LineEdit@. When set, the text may scroll to accommodate it.
 bindLineEdit_get_cursor_position :: MethodBind
 bindLineEdit_get_cursor_position
   = unsafePerformIO $
@@ -527,7 +578,6 @@ bindLineEdit_get_cursor_position
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The cursor's position inside the @LineEdit@. When set, the text may scroll to accommodate it.
 get_cursor_position ::
                       (LineEdit :< cls, Object :< cls) => cls -> IO Int
 get_cursor_position cls
@@ -545,7 +595,6 @@ instance NodeMethod LineEdit "get_cursor_position" '[] (IO Int)
 
 {-# NOINLINE bindLineEdit_get_expand_to_text_length #-}
 
--- | If @true@, the @LineEdit@ width will increase to stay longer than the @text@. It will __not__ compress if the @text@ is shortened.
 bindLineEdit_get_expand_to_text_length :: MethodBind
 bindLineEdit_get_expand_to_text_length
   = unsafePerformIO $
@@ -555,7 +604,6 @@ bindLineEdit_get_expand_to_text_length
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, the @LineEdit@ width will increase to stay longer than the @text@. It will __not__ compress if the @text@ is shortened.
 get_expand_to_text_length ::
                             (LineEdit :< cls, Object :< cls) => cls -> IO Bool
 get_expand_to_text_length cls
@@ -575,6 +623,28 @@ instance NodeMethod LineEdit "get_expand_to_text_length" '[]
 {-# NOINLINE bindLineEdit_get_max_length #-}
 
 -- | Maximum amount of characters that can be entered inside the @LineEdit@. If @0@, there is no limit.
+--   			When a limit is defined, characters that would exceed @max_length@ are truncated. This happens both for existing @text@ contents when setting the max length, or for new text inserted in the @LineEdit@, including pasting. If any input text is truncated, the @signal text_change_rejected@ signal is emitted with the truncated substring as parameter.
+--   			__Example:__
+--   			@codeblocks@
+--   			@gdscript@
+--   			text = "Hello world"
+--   			max_length = 5
+--   			# `text` becomes "Hello".
+--   			max_length = 10
+--   			text += " goodbye"
+--   			# `text` becomes "Hello good".
+--   			# `text_change_rejected` is emitted with "bye" as parameter.
+--   			@/gdscript@
+--   			@csharp@
+--   			Text = "Hello world";
+--   			MaxLength = 5;
+--   			// `Text` becomes "Hello".
+--   			MaxLength = 10;
+--   			Text += " goodbye";
+--   			// `Text` becomes "Hello good".
+--   			// `text_change_rejected` is emitted with "bye" as parameter.
+--   			@/csharp@
+--   			@/codeblocks@
 bindLineEdit_get_max_length :: MethodBind
 bindLineEdit_get_max_length
   = unsafePerformIO $
@@ -585,6 +655,28 @@ bindLineEdit_get_max_length
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | Maximum amount of characters that can be entered inside the @LineEdit@. If @0@, there is no limit.
+--   			When a limit is defined, characters that would exceed @max_length@ are truncated. This happens both for existing @text@ contents when setting the max length, or for new text inserted in the @LineEdit@, including pasting. If any input text is truncated, the @signal text_change_rejected@ signal is emitted with the truncated substring as parameter.
+--   			__Example:__
+--   			@codeblocks@
+--   			@gdscript@
+--   			text = "Hello world"
+--   			max_length = 5
+--   			# `text` becomes "Hello".
+--   			max_length = 10
+--   			text += " goodbye"
+--   			# `text` becomes "Hello good".
+--   			# `text_change_rejected` is emitted with "bye" as parameter.
+--   			@/gdscript@
+--   			@csharp@
+--   			Text = "Hello world";
+--   			MaxLength = 5;
+--   			// `Text` becomes "Hello".
+--   			MaxLength = 10;
+--   			Text += " goodbye";
+--   			// `Text` becomes "Hello good".
+--   			// `text_change_rejected` is emitted with "bye" as parameter.
+--   			@/csharp@
+--   			@/codeblocks@
 get_max_length :: (LineEdit :< cls, Object :< cls) => cls -> IO Int
 get_max_length cls
   = withVariantArray []
@@ -922,6 +1014,35 @@ instance NodeMethod LineEdit "is_shortcut_keys_enabled" '[]
          where
         nodeMethod = Godot.Core.LineEdit.is_shortcut_keys_enabled
 
+{-# NOINLINE bindLineEdit_is_virtual_keyboard_enabled #-}
+
+-- | If @true@, the native virtual keyboard is shown when focused on platforms that support it.
+bindLineEdit_is_virtual_keyboard_enabled :: MethodBind
+bindLineEdit_is_virtual_keyboard_enabled
+  = unsafePerformIO $
+      withCString "LineEdit" $
+        \ clsNamePtr ->
+          withCString "is_virtual_keyboard_enabled" $
+            \ methodNamePtr ->
+              godot_method_bind_get_method clsNamePtr methodNamePtr
+
+-- | If @true@, the native virtual keyboard is shown when focused on platforms that support it.
+is_virtual_keyboard_enabled ::
+                              (LineEdit :< cls, Object :< cls) => cls -> IO Bool
+is_virtual_keyboard_enabled cls
+  = withVariantArray []
+      (\ (arrPtr, len) ->
+         godot_method_bind_call bindLineEdit_is_virtual_keyboard_enabled
+           (upcast cls)
+           arrPtr
+           len
+           >>= \ (err, res) -> throwIfErr err >> fromGodotVariant res)
+
+instance NodeMethod LineEdit "is_virtual_keyboard_enabled" '[]
+           (IO Bool)
+         where
+        nodeMethod = Godot.Core.LineEdit.is_virtual_keyboard_enabled
+
 {-# NOINLINE bindLineEdit_menu_option #-}
 
 -- | Executes a given action as defined in the @enum MenuItems@ enum.
@@ -950,15 +1071,20 @@ instance NodeMethod LineEdit "menu_option" '[Int] (IO ()) where
 {-# NOINLINE bindLineEdit_select #-}
 
 -- | Selects characters inside @LineEdit@ between @from@ and @to@. By default, @from@ is at the beginning and @to@ at the end.
---   				
---   @
---   
+--   				@codeblocks@
+--   				@gdscript@
 --   				text = "Welcome"
 --   				select() # Will select "Welcome".
 --   				select(4) # Will select "ome".
 --   				select(2, 5) # Will select "lco".
---   				
---   @
+--   				@/gdscript@
+--   				@csharp@
+--   				Text = "Welcome";
+--   				Select(); // Will select "Welcome".
+--   				Select(4); // Will select "ome".
+--   				Select(2, 5); // Will select "lco".
+--   				@/csharp@
+--   				@/codeblocks@
 bindLineEdit_select :: MethodBind
 bindLineEdit_select
   = unsafePerformIO $
@@ -969,15 +1095,20 @@ bindLineEdit_select
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | Selects characters inside @LineEdit@ between @from@ and @to@. By default, @from@ is at the beginning and @to@ at the end.
---   				
---   @
---   
+--   				@codeblocks@
+--   				@gdscript@
 --   				text = "Welcome"
 --   				select() # Will select "Welcome".
 --   				select(4) # Will select "ome".
 --   				select(2, 5) # Will select "lco".
---   				
---   @
+--   				@/gdscript@
+--   				@csharp@
+--   				Text = "Welcome";
+--   				Select(); // Will select "Welcome".
+--   				Select(4); // Will select "ome".
+--   				Select(2, 5); // Will select "lco".
+--   				@/csharp@
+--   				@/codeblocks@
 select ::
          (LineEdit :< cls, Object :< cls) =>
          cls -> Maybe Int -> Maybe Int -> IO ()
@@ -1103,7 +1234,6 @@ instance NodeMethod LineEdit "set_context_menu_enabled" '[Bool]
 
 {-# NOINLINE bindLineEdit_set_cursor_position #-}
 
--- | The cursor's position inside the @LineEdit@. When set, the text may scroll to accommodate it.
 bindLineEdit_set_cursor_position :: MethodBind
 bindLineEdit_set_cursor_position
   = unsafePerformIO $
@@ -1113,7 +1243,6 @@ bindLineEdit_set_cursor_position
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The cursor's position inside the @LineEdit@. When set, the text may scroll to accommodate it.
 set_cursor_position ::
                       (LineEdit :< cls, Object :< cls) => cls -> Int -> IO ()
 set_cursor_position cls arg1
@@ -1157,7 +1286,6 @@ instance NodeMethod LineEdit "set_editable" '[Bool] (IO ()) where
 
 {-# NOINLINE bindLineEdit_set_expand_to_text_length #-}
 
--- | If @true@, the @LineEdit@ width will increase to stay longer than the @text@. It will __not__ compress if the @text@ is shortened.
 bindLineEdit_set_expand_to_text_length :: MethodBind
 bindLineEdit_set_expand_to_text_length
   = unsafePerformIO $
@@ -1167,7 +1295,6 @@ bindLineEdit_set_expand_to_text_length
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, the @LineEdit@ width will increase to stay longer than the @text@. It will __not__ compress if the @text@ is shortened.
 set_expand_to_text_length ::
                             (LineEdit :< cls, Object :< cls) => cls -> Bool -> IO ()
 set_expand_to_text_length cls arg1
@@ -1187,6 +1314,28 @@ instance NodeMethod LineEdit "set_expand_to_text_length" '[Bool]
 {-# NOINLINE bindLineEdit_set_max_length #-}
 
 -- | Maximum amount of characters that can be entered inside the @LineEdit@. If @0@, there is no limit.
+--   			When a limit is defined, characters that would exceed @max_length@ are truncated. This happens both for existing @text@ contents when setting the max length, or for new text inserted in the @LineEdit@, including pasting. If any input text is truncated, the @signal text_change_rejected@ signal is emitted with the truncated substring as parameter.
+--   			__Example:__
+--   			@codeblocks@
+--   			@gdscript@
+--   			text = "Hello world"
+--   			max_length = 5
+--   			# `text` becomes "Hello".
+--   			max_length = 10
+--   			text += " goodbye"
+--   			# `text` becomes "Hello good".
+--   			# `text_change_rejected` is emitted with "bye" as parameter.
+--   			@/gdscript@
+--   			@csharp@
+--   			Text = "Hello world";
+--   			MaxLength = 5;
+--   			// `Text` becomes "Hello".
+--   			MaxLength = 10;
+--   			Text += " goodbye";
+--   			// `Text` becomes "Hello good".
+--   			// `text_change_rejected` is emitted with "bye" as parameter.
+--   			@/csharp@
+--   			@/codeblocks@
 bindLineEdit_set_max_length :: MethodBind
 bindLineEdit_set_max_length
   = unsafePerformIO $
@@ -1197,6 +1346,28 @@ bindLineEdit_set_max_length
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | Maximum amount of characters that can be entered inside the @LineEdit@. If @0@, there is no limit.
+--   			When a limit is defined, characters that would exceed @max_length@ are truncated. This happens both for existing @text@ contents when setting the max length, or for new text inserted in the @LineEdit@, including pasting. If any input text is truncated, the @signal text_change_rejected@ signal is emitted with the truncated substring as parameter.
+--   			__Example:__
+--   			@codeblocks@
+--   			@gdscript@
+--   			text = "Hello world"
+--   			max_length = 5
+--   			# `text` becomes "Hello".
+--   			max_length = 10
+--   			text += " goodbye"
+--   			# `text` becomes "Hello good".
+--   			# `text_change_rejected` is emitted with "bye" as parameter.
+--   			@/gdscript@
+--   			@csharp@
+--   			Text = "Hello world";
+--   			MaxLength = 5;
+--   			// `Text` becomes "Hello".
+--   			MaxLength = 10;
+--   			Text += " goodbye";
+--   			// `Text` becomes "Hello good".
+--   			// `text_change_rejected` is emitted with "bye" as parameter.
+--   			@/csharp@
+--   			@/codeblocks@
 set_max_length ::
                  (LineEdit :< cls, Object :< cls) => cls -> Int -> IO ()
 set_max_length cls arg1
@@ -1433,3 +1604,32 @@ set_text cls arg1
 instance NodeMethod LineEdit "set_text" '[GodotString] (IO ())
          where
         nodeMethod = Godot.Core.LineEdit.set_text
+
+{-# NOINLINE bindLineEdit_set_virtual_keyboard_enabled #-}
+
+-- | If @true@, the native virtual keyboard is shown when focused on platforms that support it.
+bindLineEdit_set_virtual_keyboard_enabled :: MethodBind
+bindLineEdit_set_virtual_keyboard_enabled
+  = unsafePerformIO $
+      withCString "LineEdit" $
+        \ clsNamePtr ->
+          withCString "set_virtual_keyboard_enabled" $
+            \ methodNamePtr ->
+              godot_method_bind_get_method clsNamePtr methodNamePtr
+
+-- | If @true@, the native virtual keyboard is shown when focused on platforms that support it.
+set_virtual_keyboard_enabled ::
+                               (LineEdit :< cls, Object :< cls) => cls -> Bool -> IO ()
+set_virtual_keyboard_enabled cls arg1
+  = withVariantArray [toVariant arg1]
+      (\ (arrPtr, len) ->
+         godot_method_bind_call bindLineEdit_set_virtual_keyboard_enabled
+           (upcast cls)
+           arrPtr
+           len
+           >>= \ (err, res) -> throwIfErr err >> fromGodotVariant res)
+
+instance NodeMethod LineEdit "set_virtual_keyboard_enabled" '[Bool]
+           (IO ())
+         where
+        nodeMethod = Godot.Core.LineEdit.set_virtual_keyboard_enabled

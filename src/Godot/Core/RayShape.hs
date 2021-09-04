@@ -29,7 +29,6 @@ instance NodeProperty RayShape "slips_on_slope" Bool 'False where
 
 {-# NOINLINE bindRayShape_get_length #-}
 
--- | The ray's length.
 bindRayShape_get_length :: MethodBind
 bindRayShape_get_length
   = unsafePerformIO $
@@ -39,7 +38,6 @@ bindRayShape_get_length
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The ray's length.
 get_length :: (RayShape :< cls, Object :< cls) => cls -> IO Float
 get_length cls
   = withVariantArray []
@@ -53,7 +51,6 @@ instance NodeMethod RayShape "get_length" '[] (IO Float) where
 
 {-# NOINLINE bindRayShape_get_slips_on_slope #-}
 
--- | If @true@, allow the shape to return the correct normal.
 bindRayShape_get_slips_on_slope :: MethodBind
 bindRayShape_get_slips_on_slope
   = unsafePerformIO $
@@ -63,7 +60,6 @@ bindRayShape_get_slips_on_slope
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, allow the shape to return the correct normal.
 get_slips_on_slope ::
                      (RayShape :< cls, Object :< cls) => cls -> IO Bool
 get_slips_on_slope cls
@@ -80,7 +76,6 @@ instance NodeMethod RayShape "get_slips_on_slope" '[] (IO Bool)
 
 {-# NOINLINE bindRayShape_set_length #-}
 
--- | The ray's length.
 bindRayShape_set_length :: MethodBind
 bindRayShape_set_length
   = unsafePerformIO $
@@ -90,7 +85,6 @@ bindRayShape_set_length
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The ray's length.
 set_length ::
              (RayShape :< cls, Object :< cls) => cls -> Float -> IO ()
 set_length cls arg1
@@ -105,7 +99,6 @@ instance NodeMethod RayShape "set_length" '[Float] (IO ()) where
 
 {-# NOINLINE bindRayShape_set_slips_on_slope #-}
 
--- | If @true@, allow the shape to return the correct normal.
 bindRayShape_set_slips_on_slope :: MethodBind
 bindRayShape_set_slips_on_slope
   = unsafePerformIO $
@@ -115,7 +108,6 @@ bindRayShape_set_slips_on_slope
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, allow the shape to return the correct normal.
 set_slips_on_slope ::
                      (RayShape :< cls, Object :< cls) => cls -> Bool -> IO ()
 set_slips_on_slope cls arg1

@@ -4,10 +4,10 @@
 module Godot.Core.Shader
        (Godot.Core.Shader._MODE_CANVAS_ITEM,
         Godot.Core.Shader._MODE_PARTICLES, Godot.Core.Shader._MODE_SPATIAL,
-        Godot.Core.Shader.get_code,
+        Godot.Core.Shader.get_code, Godot.Core.Shader.get_custom_defines,
         Godot.Core.Shader.get_default_texture_param,
         Godot.Core.Shader.get_mode, Godot.Core.Shader.has_param,
-        Godot.Core.Shader.set_code,
+        Godot.Core.Shader.set_code, Godot.Core.Shader.set_custom_defines,
         Godot.Core.Shader.set_default_texture_param)
        where
 import Data.Coerce
@@ -34,6 +34,12 @@ _MODE_SPATIAL = 0
 instance NodeProperty Shader "code" GodotString 'False where
         nodeProperty = (get_code, wrapDroppingSetter set_code, Nothing)
 
+instance NodeProperty Shader "custom_defines" GodotString 'False
+         where
+        nodeProperty
+          = (get_custom_defines, wrapDroppingSetter set_custom_defines,
+             Nothing)
+
 {-# NOINLINE bindShader_get_code #-}
 
 -- | Returns the shader's code as the user has written it, not the full generated code used internally.
@@ -56,6 +62,32 @@ get_code cls
 
 instance NodeMethod Shader "get_code" '[] (IO GodotString) where
         nodeMethod = Godot.Core.Shader.get_code
+
+{-# NOINLINE bindShader_get_custom_defines #-}
+
+bindShader_get_custom_defines :: MethodBind
+bindShader_get_custom_defines
+  = unsafePerformIO $
+      withCString "Shader" $
+        \ clsNamePtr ->
+          withCString "get_custom_defines" $
+            \ methodNamePtr ->
+              godot_method_bind_get_method clsNamePtr methodNamePtr
+
+get_custom_defines ::
+                     (Shader :< cls, Object :< cls) => cls -> IO GodotString
+get_custom_defines cls
+  = withVariantArray []
+      (\ (arrPtr, len) ->
+         godot_method_bind_call bindShader_get_custom_defines (upcast cls)
+           arrPtr
+           len
+           >>= \ (err, res) -> throwIfErr err >> fromGodotVariant res)
+
+instance NodeMethod Shader "get_custom_defines" '[]
+           (IO GodotString)
+         where
+        nodeMethod = Godot.Core.Shader.get_custom_defines
 
 {-# NOINLINE bindShader_get_default_texture_param #-}
 
@@ -162,6 +194,32 @@ set_code cls arg1
 
 instance NodeMethod Shader "set_code" '[GodotString] (IO ()) where
         nodeMethod = Godot.Core.Shader.set_code
+
+{-# NOINLINE bindShader_set_custom_defines #-}
+
+bindShader_set_custom_defines :: MethodBind
+bindShader_set_custom_defines
+  = unsafePerformIO $
+      withCString "Shader" $
+        \ clsNamePtr ->
+          withCString "set_custom_defines" $
+            \ methodNamePtr ->
+              godot_method_bind_get_method clsNamePtr methodNamePtr
+
+set_custom_defines ::
+                     (Shader :< cls, Object :< cls) => cls -> GodotString -> IO ()
+set_custom_defines cls arg1
+  = withVariantArray [toVariant arg1]
+      (\ (arrPtr, len) ->
+         godot_method_bind_call bindShader_set_custom_defines (upcast cls)
+           arrPtr
+           len
+           >>= \ (err, res) -> throwIfErr err >> fromGodotVariant res)
+
+instance NodeMethod Shader "set_custom_defines" '[GodotString]
+           (IO ())
+         where
+        nodeMethod = Godot.Core.Shader.set_custom_defines
 
 {-# NOINLINE bindShader_set_default_texture_param #-}
 

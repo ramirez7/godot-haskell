@@ -27,7 +27,6 @@ instance NodeProperty CylinderShape "radius" Float 'False where
 
 {-# NOINLINE bindCylinderShape_get_height #-}
 
--- | The cylinder's height.
 bindCylinderShape_get_height :: MethodBind
 bindCylinderShape_get_height
   = unsafePerformIO $
@@ -37,7 +36,6 @@ bindCylinderShape_get_height
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The cylinder's height.
 get_height ::
              (CylinderShape :< cls, Object :< cls) => cls -> IO Float
 get_height cls
@@ -53,7 +51,6 @@ instance NodeMethod CylinderShape "get_height" '[] (IO Float) where
 
 {-# NOINLINE bindCylinderShape_get_radius #-}
 
--- | The cylinder's radius.
 bindCylinderShape_get_radius :: MethodBind
 bindCylinderShape_get_radius
   = unsafePerformIO $
@@ -63,7 +60,6 @@ bindCylinderShape_get_radius
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The cylinder's radius.
 get_radius ::
              (CylinderShape :< cls, Object :< cls) => cls -> IO Float
 get_radius cls
@@ -79,7 +75,6 @@ instance NodeMethod CylinderShape "get_radius" '[] (IO Float) where
 
 {-# NOINLINE bindCylinderShape_set_height #-}
 
--- | The cylinder's height.
 bindCylinderShape_set_height :: MethodBind
 bindCylinderShape_set_height
   = unsafePerformIO $
@@ -89,7 +84,6 @@ bindCylinderShape_set_height
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The cylinder's height.
 set_height ::
              (CylinderShape :< cls, Object :< cls) => cls -> Float -> IO ()
 set_height cls arg1
@@ -106,7 +100,6 @@ instance NodeMethod CylinderShape "set_height" '[Float] (IO ())
 
 {-# NOINLINE bindCylinderShape_set_radius #-}
 
--- | The cylinder's radius.
 bindCylinderShape_set_radius :: MethodBind
 bindCylinderShape_set_radius
   = unsafePerformIO $
@@ -116,7 +109,6 @@ bindCylinderShape_set_radius
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The cylinder's radius.
 set_radius ::
              (CylinderShape :< cls, Object :< cls) => cls -> Float -> IO ()
 set_radius cls arg1

@@ -51,7 +51,6 @@ instance NodeProperty TextureLayered "flags" Int 'False where
 
 {-# NOINLINE bindTextureLayered__get_data #-}
 
--- | Returns a dictionary with all the data used by this texture.
 bindTextureLayered__get_data :: MethodBind
 bindTextureLayered__get_data
   = unsafePerformIO $
@@ -61,7 +60,6 @@ bindTextureLayered__get_data
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns a dictionary with all the data used by this texture.
 _get_data ::
             (TextureLayered :< cls, Object :< cls) => cls -> IO Dictionary
 _get_data cls
@@ -78,7 +76,6 @@ instance NodeMethod TextureLayered "_get_data" '[] (IO Dictionary)
 
 {-# NOINLINE bindTextureLayered__set_data #-}
 
--- | Returns a dictionary with all the data used by this texture.
 bindTextureLayered__set_data :: MethodBind
 bindTextureLayered__set_data
   = unsafePerformIO $
@@ -88,7 +85,6 @@ bindTextureLayered__set_data
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns a dictionary with all the data used by this texture.
 _set_data ::
             (TextureLayered :< cls, Object :< cls) =>
             cls -> Dictionary -> IO ()
@@ -107,7 +103,6 @@ instance NodeMethod TextureLayered "_set_data" '[Dictionary]
 
 {-# NOINLINE bindTextureLayered_create #-}
 
--- | Creates the @Texture3D@ or @TextureArray@ with specified @width@, @height@, and @depth@. See @enum Image.Format@ for @format@ options. See @enum Flags@ enumerator for @flags@ options.
 bindTextureLayered_create :: MethodBind
 bindTextureLayered_create
   = unsafePerformIO $
@@ -117,7 +112,6 @@ bindTextureLayered_create
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Creates the @Texture3D@ or @TextureArray@ with specified @width@, @height@, and @depth@. See @enum Image.Format@ for @format@ options. See @enum Flags@ enumerator for @flags@ options.
 create ::
          (TextureLayered :< cls, Object :< cls) =>
          cls -> Int -> Int -> Int -> Int -> Maybe Int -> IO ()
@@ -139,7 +133,6 @@ instance NodeMethod TextureLayered "create"
 
 {-# NOINLINE bindTextureLayered_get_depth #-}
 
--- | Returns the depth of the texture. Depth is the 3rd dimension (typically Z-axis).
 bindTextureLayered_get_depth :: MethodBind
 bindTextureLayered_get_depth
   = unsafePerformIO $
@@ -149,7 +142,6 @@ bindTextureLayered_get_depth
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the depth of the texture. Depth is the 3rd dimension (typically Z-axis).
 get_depth ::
             (TextureLayered :< cls, Object :< cls) => cls -> IO Int
 get_depth cls
@@ -165,7 +157,6 @@ instance NodeMethod TextureLayered "get_depth" '[] (IO Int) where
 
 {-# NOINLINE bindTextureLayered_get_flags #-}
 
--- | Specifies which @enum Flags@ apply to this texture.
 bindTextureLayered_get_flags :: MethodBind
 bindTextureLayered_get_flags
   = unsafePerformIO $
@@ -175,7 +166,6 @@ bindTextureLayered_get_flags
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Specifies which @enum Flags@ apply to this texture.
 get_flags ::
             (TextureLayered :< cls, Object :< cls) => cls -> IO Int
 get_flags cls
@@ -298,7 +288,6 @@ instance NodeMethod TextureLayered "get_width" '[] (IO Int) where
 
 {-# NOINLINE bindTextureLayered_set_data_partial #-}
 
--- | Partially sets the data for a specified @layer@ by overwriting using the data of the specified @image@. @x_offset@ and @y_offset@ determine where the @Image@ is "stamped" over the texture. The @image@ must fit within the texture.
 bindTextureLayered_set_data_partial :: MethodBind
 bindTextureLayered_set_data_partial
   = unsafePerformIO $
@@ -308,7 +297,6 @@ bindTextureLayered_set_data_partial
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Partially sets the data for a specified @layer@ by overwriting using the data of the specified @image@. @x_offset@ and @y_offset@ determine where the @Image@ is "stamped" over the texture. The @image@ must fit within the texture.
 set_data_partial ::
                    (TextureLayered :< cls, Object :< cls) =>
                    cls -> Image -> Int -> Int -> Int -> Maybe Int -> IO ()
@@ -331,7 +319,6 @@ instance NodeMethod TextureLayered "set_data_partial"
 
 {-# NOINLINE bindTextureLayered_set_flags #-}
 
--- | Specifies which @enum Flags@ apply to this texture.
 bindTextureLayered_set_flags :: MethodBind
 bindTextureLayered_set_flags
   = unsafePerformIO $
@@ -341,7 +328,6 @@ bindTextureLayered_set_flags
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Specifies which @enum Flags@ apply to this texture.
 set_flags ::
             (TextureLayered :< cls, Object :< cls) => cls -> Int -> IO ()
 set_flags cls arg1
@@ -357,7 +343,6 @@ instance NodeMethod TextureLayered "set_flags" '[Int] (IO ()) where
 
 {-# NOINLINE bindTextureLayered_set_layer_data #-}
 
--- | Sets the data for the specified layer. Data takes the form of a 2-dimensional @Image@ resource.
 bindTextureLayered_set_layer_data :: MethodBind
 bindTextureLayered_set_layer_data
   = unsafePerformIO $
@@ -367,7 +352,6 @@ bindTextureLayered_set_layer_data
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the data for the specified layer. Data takes the form of a 2-dimensional @Image@ resource.
 set_layer_data ::
                  (TextureLayered :< cls, Object :< cls) =>
                  cls -> Image -> Int -> IO ()

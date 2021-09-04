@@ -17,7 +17,6 @@ import Godot.Core.AcceptDialog()
 
 {-# NOINLINE bindConfirmationDialog_get_cancel #-}
 
--- | Returns the cancel button.
 bindConfirmationDialog_get_cancel :: MethodBind
 bindConfirmationDialog_get_cancel
   = unsafePerformIO $
@@ -27,7 +26,6 @@ bindConfirmationDialog_get_cancel
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the cancel button.
 get_cancel ::
              (ConfirmationDialog :< cls, Object :< cls) => cls -> IO Button
 get_cancel cls

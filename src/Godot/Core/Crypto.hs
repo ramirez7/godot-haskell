@@ -20,7 +20,7 @@ import Godot.Core.Reference()
 
 {-# NOINLINE bindCrypto_generate_random_bytes #-}
 
--- | Generates a @PoolByteArray@ of cryptographically secure random bytes with given @size@.
+-- | Generates a @PackedByteArray@ of cryptographically secure random bytes with given @size@.
 bindCrypto_generate_random_bytes :: MethodBind
 bindCrypto_generate_random_bytes
   = unsafePerformIO $
@@ -30,7 +30,7 @@ bindCrypto_generate_random_bytes
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Generates a @PoolByteArray@ of cryptographically secure random bytes with given @size@.
+-- | Generates a @PackedByteArray@ of cryptographically secure random bytes with given @size@.
 generate_random_bytes ::
                         (Crypto :< cls, Object :< cls) => cls -> Int -> IO PoolByteArray
 generate_random_bytes cls arg1
@@ -77,16 +77,22 @@ instance NodeMethod Crypto "generate_rsa" '[Int] (IO CryptoKey)
 
 -- | Generates a self-signed @X509Certificate@ from the given @CryptoKey@ and @issuer_name@. The certificate validity will be defined by @not_before@ and @not_after@ (first valid date and last valid date). The @issuer_name@ must contain at least "CN=" (common name, i.e. the domain name), "O=" (organization, i.e. your company name), "C=" (country, i.e. 2 lettered ISO-3166 code of the country the organization is based in).
 --   				A small example to generate an RSA key and a X509 self-signed certificate.
---   				
---   @
---   
+--   				@codeblocks@
+--   				@gdscript@
 --   				var crypto = Crypto.new()
 --   				# Generate 4096 bits RSA key.
 --   				var key = crypto.generate_rsa(4096)
 --   				# Generate self-signed certificate using the given key.
 --   				var cert = crypto.generate_self_signed_certificate(key, "CN=example.com,O=A Game Company,C=IT")
---   				
---   @
+--   				@/gdscript@
+--   				@csharp@
+--   				var crypto = new Crypto();
+--   				// Generate 4096 bits RSA key.
+--   				CryptoKey key = crypto.GenerateRsa(4096);
+--   				// Generate self-signed certificate using the given key.
+--   				X509Certificate cert = crypto.GenerateSelfSignedCertificate(key, "CN=mydomain.com,O=My Game Company,C=IT");
+--   				@/csharp@
+--   				@/codeblocks@
 bindCrypto_generate_self_signed_certificate :: MethodBind
 bindCrypto_generate_self_signed_certificate
   = unsafePerformIO $
@@ -98,16 +104,22 @@ bindCrypto_generate_self_signed_certificate
 
 -- | Generates a self-signed @X509Certificate@ from the given @CryptoKey@ and @issuer_name@. The certificate validity will be defined by @not_before@ and @not_after@ (first valid date and last valid date). The @issuer_name@ must contain at least "CN=" (common name, i.e. the domain name), "O=" (organization, i.e. your company name), "C=" (country, i.e. 2 lettered ISO-3166 code of the country the organization is based in).
 --   				A small example to generate an RSA key and a X509 self-signed certificate.
---   				
---   @
---   
+--   				@codeblocks@
+--   				@gdscript@
 --   				var crypto = Crypto.new()
 --   				# Generate 4096 bits RSA key.
 --   				var key = crypto.generate_rsa(4096)
 --   				# Generate self-signed certificate using the given key.
 --   				var cert = crypto.generate_self_signed_certificate(key, "CN=example.com,O=A Game Company,C=IT")
---   				
---   @
+--   				@/gdscript@
+--   				@csharp@
+--   				var crypto = new Crypto();
+--   				// Generate 4096 bits RSA key.
+--   				CryptoKey key = crypto.GenerateRsa(4096);
+--   				// Generate self-signed certificate using the given key.
+--   				X509Certificate cert = crypto.GenerateSelfSignedCertificate(key, "CN=mydomain.com,O=My Game Company,C=IT");
+--   				@/csharp@
+--   				@/codeblocks@
 generate_self_signed_certificate ::
                                    (Crypto :< cls, Object :< cls) =>
                                    cls ->

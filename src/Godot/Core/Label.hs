@@ -150,7 +150,9 @@ instance NodeMethod Label "get_line_count" '[] (IO Int) where
 
 {-# NOINLINE bindLabel_get_line_height #-}
 
--- | Returns the font size in pixels.
+-- | Returns the height of the line @line@.
+--   				If @line@ is set to @-1@, returns the biggest line height.
+--   				If there're no lines returns font size in pixels.
 bindLabel_get_line_height :: MethodBind
 bindLabel_get_line_height
   = unsafePerformIO $
@@ -160,7 +162,9 @@ bindLabel_get_line_height
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the font size in pixels.
+-- | Returns the height of the line @line@.
+--   				If @line@ is set to @-1@, returns the biggest line height.
+--   				If there're no lines returns font size in pixels.
 get_line_height :: (Label :< cls, Object :< cls) => cls -> IO Int
 get_line_height cls
   = withVariantArray []
@@ -384,7 +388,6 @@ instance NodeMethod Label "get_visible_line_count" '[] (IO Int)
 
 {-# NOINLINE bindLabel_has_autowrap #-}
 
--- | If @true@, wraps the text inside the node's bounding rectangle. If you resize the node, it will change its height automatically to show all the text.
 bindLabel_has_autowrap :: MethodBind
 bindLabel_has_autowrap
   = unsafePerformIO $
@@ -394,7 +397,6 @@ bindLabel_has_autowrap
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, wraps the text inside the node's bounding rectangle. If you resize the node, it will change its height automatically to show all the text.
 has_autowrap :: (Label :< cls, Object :< cls) => cls -> IO Bool
 has_autowrap cls
   = withVariantArray []
@@ -408,7 +410,7 @@ instance NodeMethod Label "has_autowrap" '[] (IO Bool) where
 
 {-# NOINLINE bindLabel_is_clipping_text #-}
 
--- | If @true@, the Label only shows the text that fits inside its bounding rectangle. It also lets you scale the node down freely.
+-- | If @true@, the Label only shows the text that fits inside its bounding rectangle and will clip text horizontally.
 bindLabel_is_clipping_text :: MethodBind
 bindLabel_is_clipping_text
   = unsafePerformIO $
@@ -418,7 +420,7 @@ bindLabel_is_clipping_text
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, the Label only shows the text that fits inside its bounding rectangle. It also lets you scale the node down freely.
+-- | If @true@, the Label only shows the text that fits inside its bounding rectangle and will clip text horizontally.
 is_clipping_text :: (Label :< cls, Object :< cls) => cls -> IO Bool
 is_clipping_text cls
   = withVariantArray []
@@ -480,7 +482,6 @@ instance NodeMethod Label "set_align" '[Int] (IO ()) where
 
 {-# NOINLINE bindLabel_set_autowrap #-}
 
--- | If @true@, wraps the text inside the node's bounding rectangle. If you resize the node, it will change its height automatically to show all the text.
 bindLabel_set_autowrap :: MethodBind
 bindLabel_set_autowrap
   = unsafePerformIO $
@@ -490,7 +491,6 @@ bindLabel_set_autowrap
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, wraps the text inside the node's bounding rectangle. If you resize the node, it will change its height automatically to show all the text.
 set_autowrap ::
                (Label :< cls, Object :< cls) => cls -> Bool -> IO ()
 set_autowrap cls arg1
@@ -505,7 +505,7 @@ instance NodeMethod Label "set_autowrap" '[Bool] (IO ()) where
 
 {-# NOINLINE bindLabel_set_clip_text #-}
 
--- | If @true@, the Label only shows the text that fits inside its bounding rectangle. It also lets you scale the node down freely.
+-- | If @true@, the Label only shows the text that fits inside its bounding rectangle and will clip text horizontally.
 bindLabel_set_clip_text :: MethodBind
 bindLabel_set_clip_text
   = unsafePerformIO $
@@ -515,7 +515,7 @@ bindLabel_set_clip_text
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, the Label only shows the text that fits inside its bounding rectangle. It also lets you scale the node down freely.
+-- | If @true@, the Label only shows the text that fits inside its bounding rectangle and will clip text horizontally.
 set_clip_text ::
                 (Label :< cls, Object :< cls) => cls -> Bool -> IO ()
 set_clip_text cls arg1

@@ -255,7 +255,6 @@ instance NodeMethod Node2D "get_global_rotation" '[] (IO Float)
 
 {-# NOINLINE bindNode2D_get_global_rotation_degrees #-}
 
--- | Global rotation in degrees.
 bindNode2D_get_global_rotation_degrees :: MethodBind
 bindNode2D_get_global_rotation_degrees
   = unsafePerformIO $
@@ -265,7 +264,6 @@ bindNode2D_get_global_rotation_degrees
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Global rotation in degrees.
 get_global_rotation_degrees ::
                               (Node2D :< cls, Object :< cls) => cls -> IO Float
 get_global_rotation_degrees cls
@@ -389,7 +387,6 @@ instance NodeMethod Node2D "get_rotation" '[] (IO Float) where
 
 {-# NOINLINE bindNode2D_get_rotation_degrees #-}
 
--- | Rotation in degrees, relative to the node's parent.
 bindNode2D_get_rotation_degrees :: MethodBind
 bindNode2D_get_rotation_degrees
   = unsafePerformIO $
@@ -399,7 +396,6 @@ bindNode2D_get_rotation_degrees
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Rotation in degrees, relative to the node's parent.
 get_rotation_degrees ::
                        (Node2D :< cls, Object :< cls) => cls -> IO Float
 get_rotation_degrees cls
@@ -439,7 +435,7 @@ instance NodeMethod Node2D "get_scale" '[] (IO Vector2) where
 
 {-# NOINLINE bindNode2D_get_z_index #-}
 
--- | Z index. Controls the order in which the nodes render. A node with a higher Z index will display in front of others.
+-- | Z index. Controls the order in which the nodes render. A node with a higher Z index will display in front of others. Must be between @RenderingServer.CANVAS_ITEM_Z_MIN@ and @RenderingServer.CANVAS_ITEM_Z_MAX@ (inclusive).
 bindNode2D_get_z_index :: MethodBind
 bindNode2D_get_z_index
   = unsafePerformIO $
@@ -449,7 +445,7 @@ bindNode2D_get_z_index
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Z index. Controls the order in which the nodes render. A node with a higher Z index will display in front of others.
+-- | Z index. Controls the order in which the nodes render. A node with a higher Z index will display in front of others. Must be between @RenderingServer.CANVAS_ITEM_Z_MIN@ and @RenderingServer.CANVAS_ITEM_Z_MAX@ (inclusive).
 get_z_index :: (Node2D :< cls, Object :< cls) => cls -> IO Int
 get_z_index cls
   = withVariantArray []
@@ -673,7 +669,6 @@ instance NodeMethod Node2D "set_global_rotation" '[Float] (IO ())
 
 {-# NOINLINE bindNode2D_set_global_rotation_degrees #-}
 
--- | Global rotation in degrees.
 bindNode2D_set_global_rotation_degrees :: MethodBind
 bindNode2D_set_global_rotation_degrees
   = unsafePerformIO $
@@ -683,7 +678,6 @@ bindNode2D_set_global_rotation_degrees
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Global rotation in degrees.
 set_global_rotation_degrees ::
                               (Node2D :< cls, Object :< cls) => cls -> Float -> IO ()
 set_global_rotation_degrees cls arg1
@@ -807,7 +801,6 @@ instance NodeMethod Node2D "set_rotation" '[Float] (IO ()) where
 
 {-# NOINLINE bindNode2D_set_rotation_degrees #-}
 
--- | Rotation in degrees, relative to the node's parent.
 bindNode2D_set_rotation_degrees :: MethodBind
 bindNode2D_set_rotation_degrees
   = unsafePerformIO $
@@ -817,7 +810,6 @@ bindNode2D_set_rotation_degrees
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Rotation in degrees, relative to the node's parent.
 set_rotation_degrees ::
                        (Node2D :< cls, Object :< cls) => cls -> Float -> IO ()
 set_rotation_degrees cls arg1
@@ -911,7 +903,7 @@ instance NodeMethod Node2D "set_z_as_relative" '[Bool] (IO ())
 
 {-# NOINLINE bindNode2D_set_z_index #-}
 
--- | Z index. Controls the order in which the nodes render. A node with a higher Z index will display in front of others.
+-- | Z index. Controls the order in which the nodes render. A node with a higher Z index will display in front of others. Must be between @RenderingServer.CANVAS_ITEM_Z_MIN@ and @RenderingServer.CANVAS_ITEM_Z_MAX@ (inclusive).
 bindNode2D_set_z_index :: MethodBind
 bindNode2D_set_z_index
   = unsafePerformIO $
@@ -921,7 +913,7 @@ bindNode2D_set_z_index
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Z index. Controls the order in which the nodes render. A node with a higher Z index will display in front of others.
+-- | Z index. Controls the order in which the nodes render. A node with a higher Z index will display in front of others. Must be between @RenderingServer.CANVAS_ITEM_Z_MIN@ and @RenderingServer.CANVAS_ITEM_Z_MAX@ (inclusive).
 set_z_index ::
               (Node2D :< cls, Object :< cls) => cls -> Int -> IO ()
 set_z_index cls arg1

@@ -647,7 +647,6 @@ instance NodeMethod AudioServer "get_device_list" '[] (IO Array)
 
 {-# NOINLINE bindAudioServer_get_global_rate_scale #-}
 
--- | Scales the rate at which audio is played (i.e. setting it to @0.5@ will make the audio be played twice as fast).
 bindAudioServer_get_global_rate_scale :: MethodBind
 bindAudioServer_get_global_rate_scale
   = unsafePerformIO $
@@ -657,7 +656,6 @@ bindAudioServer_get_global_rate_scale
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Scales the rate at which audio is played (i.e. setting it to @0.5@ will make the audio be played twice as fast).
 get_global_rate_scale ::
                         (AudioServer :< cls, Object :< cls) => cls -> IO Float
 get_global_rate_scale cls
@@ -1319,7 +1317,6 @@ instance NodeMethod AudioServer "set_device" '[GodotString] (IO ())
 
 {-# NOINLINE bindAudioServer_set_global_rate_scale #-}
 
--- | Scales the rate at which audio is played (i.e. setting it to @0.5@ will make the audio be played twice as fast).
 bindAudioServer_set_global_rate_scale :: MethodBind
 bindAudioServer_set_global_rate_scale
   = unsafePerformIO $
@@ -1329,7 +1326,6 @@ bindAudioServer_set_global_rate_scale
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Scales the rate at which audio is played (i.e. setting it to @0.5@ will make the audio be played twice as fast).
 set_global_rate_scale ::
                         (AudioServer :< cls, Object :< cls) => cls -> Float -> IO ()
 set_global_rate_scale cls arg1

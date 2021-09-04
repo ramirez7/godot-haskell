@@ -155,7 +155,6 @@ instance NodeProperty AnimationTreePlayer "playback_process_mode"
 
 {-# NOINLINE bindAnimationTreePlayer_add_node #-}
 
--- | Adds a @type@ node to the graph with name @id@.
 bindAnimationTreePlayer_add_node :: MethodBind
 bindAnimationTreePlayer_add_node
   = unsafePerformIO $
@@ -165,7 +164,6 @@ bindAnimationTreePlayer_add_node
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Adds a @type@ node to the graph with name @id@.
 add_node ::
            (AnimationTreePlayer :< cls, Object :< cls) =>
            cls -> Int -> GodotString -> IO ()
@@ -186,7 +184,6 @@ instance NodeMethod AnimationTreePlayer "add_node"
 
 {-# NOINLINE bindAnimationTreePlayer_advance #-}
 
--- | Shifts position in the animation timeline. @delta@ is the time in seconds to shift. Events between the current frame and @delta@ are handled.
 bindAnimationTreePlayer_advance :: MethodBind
 bindAnimationTreePlayer_advance
   = unsafePerformIO $
@@ -196,7 +193,6 @@ bindAnimationTreePlayer_advance
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Shifts position in the animation timeline. @delta@ is the time in seconds to shift. Events between the current frame and @delta@ are handled.
 advance ::
           (AnimationTreePlayer :< cls, Object :< cls) =>
           cls -> Float -> IO ()
@@ -215,7 +211,6 @@ instance NodeMethod AnimationTreePlayer "advance" '[Float] (IO ())
 {-# NOINLINE bindAnimationTreePlayer_animation_node_get_animation
              #-}
 
--- | Returns the @AnimationPlayer@'s @Animation@ bound to the @AnimationTreePlayer@'s animation node with name @id@.
 bindAnimationTreePlayer_animation_node_get_animation :: MethodBind
 bindAnimationTreePlayer_animation_node_get_animation
   = unsafePerformIO $
@@ -225,7 +220,6 @@ bindAnimationTreePlayer_animation_node_get_animation
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the @AnimationPlayer@'s @Animation@ bound to the @AnimationTreePlayer@'s animation node with name @id@.
 animation_node_get_animation ::
                                (AnimationTreePlayer :< cls, Object :< cls) =>
                                cls -> GodotString -> IO Animation
@@ -250,7 +244,6 @@ instance NodeMethod AnimationTreePlayer
 {-# NOINLINE bindAnimationTreePlayer_animation_node_get_master_animation
              #-}
 
--- | Returns the name of the @master_player@'s @Animation@ bound to this animation node.
 bindAnimationTreePlayer_animation_node_get_master_animation ::
                                                             MethodBind
 bindAnimationTreePlayer_animation_node_get_master_animation
@@ -261,7 +254,6 @@ bindAnimationTreePlayer_animation_node_get_master_animation
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the name of the @master_player@'s @Animation@ bound to this animation node.
 animation_node_get_master_animation ::
                                       (AnimationTreePlayer :< cls, Object :< cls) =>
                                       cls -> GodotString -> IO GodotString
@@ -286,7 +278,6 @@ instance NodeMethod AnimationTreePlayer
 {-# NOINLINE bindAnimationTreePlayer_animation_node_get_position
              #-}
 
--- | Returns the absolute playback timestamp of the animation node with name @id@.
 bindAnimationTreePlayer_animation_node_get_position :: MethodBind
 bindAnimationTreePlayer_animation_node_get_position
   = unsafePerformIO $
@@ -296,7 +287,6 @@ bindAnimationTreePlayer_animation_node_get_position
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the absolute playback timestamp of the animation node with name @id@.
 animation_node_get_position ::
                               (AnimationTreePlayer :< cls, Object :< cls) =>
                               cls -> GodotString -> IO Float
@@ -321,7 +311,6 @@ instance NodeMethod AnimationTreePlayer
 {-# NOINLINE bindAnimationTreePlayer_animation_node_set_animation
              #-}
 
--- | Binds a new @Animation@ from the @master_player@ to the @AnimationTreePlayer@'s animation node with name @id@.
 bindAnimationTreePlayer_animation_node_set_animation :: MethodBind
 bindAnimationTreePlayer_animation_node_set_animation
   = unsafePerformIO $
@@ -331,7 +320,6 @@ bindAnimationTreePlayer_animation_node_set_animation
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Binds a new @Animation@ from the @master_player@ to the @AnimationTreePlayer@'s animation node with name @id@.
 animation_node_set_animation ::
                                (AnimationTreePlayer :< cls, Object :< cls) =>
                                cls -> GodotString -> Animation -> IO ()
@@ -356,7 +344,6 @@ instance NodeMethod AnimationTreePlayer
 {-# NOINLINE bindAnimationTreePlayer_animation_node_set_filter_path
              #-}
 
--- | If @enable@ is @true@, the animation node with ID @id@ turns off the track modifying the property at @path@. The modified node's children continue to animate.
 bindAnimationTreePlayer_animation_node_set_filter_path ::
                                                        MethodBind
 bindAnimationTreePlayer_animation_node_set_filter_path
@@ -367,7 +354,6 @@ bindAnimationTreePlayer_animation_node_set_filter_path
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @enable@ is @true@, the animation node with ID @id@ turns off the track modifying the property at @path@. The modified node's children continue to animate.
 animation_node_set_filter_path ::
                                  (AnimationTreePlayer :< cls, Object :< cls) =>
                                  cls -> GodotString -> NodePath -> Bool -> IO ()
@@ -392,7 +378,6 @@ instance NodeMethod AnimationTreePlayer
 {-# NOINLINE bindAnimationTreePlayer_animation_node_set_master_animation
              #-}
 
--- | Binds the @Animation@ named @source@ from @master_player@ to the animation node @id@. Recalculates caches.
 bindAnimationTreePlayer_animation_node_set_master_animation ::
                                                             MethodBind
 bindAnimationTreePlayer_animation_node_set_master_animation
@@ -403,7 +388,6 @@ bindAnimationTreePlayer_animation_node_set_master_animation
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Binds the @Animation@ named @source@ from @master_player@ to the animation node @id@. Recalculates caches.
 animation_node_set_master_animation ::
                                       (AnimationTreePlayer :< cls, Object :< cls) =>
                                       cls -> GodotString -> GodotString -> IO ()
@@ -427,7 +411,6 @@ instance NodeMethod AnimationTreePlayer
 
 {-# NOINLINE bindAnimationTreePlayer_are_nodes_connected #-}
 
--- | Returns whether node @id@ and @dst_id@ are connected at the specified slot.
 bindAnimationTreePlayer_are_nodes_connected :: MethodBind
 bindAnimationTreePlayer_are_nodes_connected
   = unsafePerformIO $
@@ -437,7 +420,6 @@ bindAnimationTreePlayer_are_nodes_connected
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns whether node @id@ and @dst_id@ are connected at the specified slot.
 are_nodes_connected ::
                       (AnimationTreePlayer :< cls, Object :< cls) =>
                       cls -> GodotString -> GodotString -> Int -> IO Bool
@@ -458,7 +440,6 @@ instance NodeMethod AnimationTreePlayer "are_nodes_connected"
 
 {-# NOINLINE bindAnimationTreePlayer_blend2_node_get_amount #-}
 
--- | Returns the blend amount of a Blend2 node given its name.
 bindAnimationTreePlayer_blend2_node_get_amount :: MethodBind
 bindAnimationTreePlayer_blend2_node_get_amount
   = unsafePerformIO $
@@ -468,7 +449,6 @@ bindAnimationTreePlayer_blend2_node_get_amount
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the blend amount of a Blend2 node given its name.
 blend2_node_get_amount ::
                          (AnimationTreePlayer :< cls, Object :< cls) =>
                          cls -> GodotString -> IO Float
@@ -490,9 +470,6 @@ instance NodeMethod AnimationTreePlayer "blend2_node_get_amount"
 
 {-# NOINLINE bindAnimationTreePlayer_blend2_node_set_amount #-}
 
--- | Sets the blend amount of a Blend2 node given its name and value.
---   				A Blend2 node blends two animations (A and B) with the amount between 0 and 1.
---   				At 0, output is input A. Towards 1, the influence of A gets lessened, the influence of B gets raised. At 1, output is input B.
 bindAnimationTreePlayer_blend2_node_set_amount :: MethodBind
 bindAnimationTreePlayer_blend2_node_set_amount
   = unsafePerformIO $
@@ -502,9 +479,6 @@ bindAnimationTreePlayer_blend2_node_set_amount
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the blend amount of a Blend2 node given its name and value.
---   				A Blend2 node blends two animations (A and B) with the amount between 0 and 1.
---   				At 0, output is input A. Towards 1, the influence of A gets lessened, the influence of B gets raised. At 1, output is input B.
 blend2_node_set_amount ::
                          (AnimationTreePlayer :< cls, Object :< cls) =>
                          cls -> GodotString -> Float -> IO ()
@@ -527,7 +501,6 @@ instance NodeMethod AnimationTreePlayer "blend2_node_set_amount"
 {-# NOINLINE bindAnimationTreePlayer_blend2_node_set_filter_path
              #-}
 
--- | If @enable@ is @true@, the Blend2 node with name @id@ turns off the track modifying the property at @path@. The modified node's children continue to animate.
 bindAnimationTreePlayer_blend2_node_set_filter_path :: MethodBind
 bindAnimationTreePlayer_blend2_node_set_filter_path
   = unsafePerformIO $
@@ -537,7 +510,6 @@ bindAnimationTreePlayer_blend2_node_set_filter_path
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @enable@ is @true@, the Blend2 node with name @id@ turns off the track modifying the property at @path@. The modified node's children continue to animate.
 blend2_node_set_filter_path ::
                               (AnimationTreePlayer :< cls, Object :< cls) =>
                               cls -> GodotString -> NodePath -> Bool -> IO ()
@@ -561,7 +533,6 @@ instance NodeMethod AnimationTreePlayer
 
 {-# NOINLINE bindAnimationTreePlayer_blend3_node_get_amount #-}
 
--- | Returns the blend amount of a Blend3 node given its name.
 bindAnimationTreePlayer_blend3_node_get_amount :: MethodBind
 bindAnimationTreePlayer_blend3_node_get_amount
   = unsafePerformIO $
@@ -571,7 +542,6 @@ bindAnimationTreePlayer_blend3_node_get_amount
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the blend amount of a Blend3 node given its name.
 blend3_node_get_amount ::
                          (AnimationTreePlayer :< cls, Object :< cls) =>
                          cls -> GodotString -> IO Float
@@ -593,9 +563,6 @@ instance NodeMethod AnimationTreePlayer "blend3_node_get_amount"
 
 {-# NOINLINE bindAnimationTreePlayer_blend3_node_set_amount #-}
 
--- | Sets the blend amount of a Blend3 node given its name and value.
---   				A Blend3 Node blends three animations (A, B-, B+) with the amount between -1 and 1.
---   				At -1, output is input B-. From -1 to 0, the influence of B- gets lessened, the influence of A gets raised and the influence of B+ is 0. At 0, output is input A. From 0 to 1, the influence of A gets lessened, the influence of B+ gets raised and the influence of B+ is 0. At 1, output is input B+.
 bindAnimationTreePlayer_blend3_node_set_amount :: MethodBind
 bindAnimationTreePlayer_blend3_node_set_amount
   = unsafePerformIO $
@@ -605,9 +572,6 @@ bindAnimationTreePlayer_blend3_node_set_amount
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the blend amount of a Blend3 node given its name and value.
---   				A Blend3 Node blends three animations (A, B-, B+) with the amount between -1 and 1.
---   				At -1, output is input B-. From -1 to 0, the influence of B- gets lessened, the influence of A gets raised and the influence of B+ is 0. At 0, output is input A. From 0 to 1, the influence of A gets lessened, the influence of B+ gets raised and the influence of B+ is 0. At 1, output is input B+.
 blend3_node_set_amount ::
                          (AnimationTreePlayer :< cls, Object :< cls) =>
                          cls -> GodotString -> Float -> IO ()
@@ -629,7 +593,6 @@ instance NodeMethod AnimationTreePlayer "blend3_node_set_amount"
 
 {-# NOINLINE bindAnimationTreePlayer_blend4_node_get_amount #-}
 
--- | Returns the blend amount of a Blend4 node given its name.
 bindAnimationTreePlayer_blend4_node_get_amount :: MethodBind
 bindAnimationTreePlayer_blend4_node_get_amount
   = unsafePerformIO $
@@ -639,7 +602,6 @@ bindAnimationTreePlayer_blend4_node_get_amount
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the blend amount of a Blend4 node given its name.
 blend4_node_get_amount ::
                          (AnimationTreePlayer :< cls, Object :< cls) =>
                          cls -> GodotString -> IO Vector2
@@ -661,9 +623,6 @@ instance NodeMethod AnimationTreePlayer "blend4_node_get_amount"
 
 {-# NOINLINE bindAnimationTreePlayer_blend4_node_set_amount #-}
 
--- | Sets the blend amount of a Blend4 node given its name and value.
---   				A Blend4 Node blends two pairs of animations.
---   				The two pairs are blended like Blend2 and then added together.
 bindAnimationTreePlayer_blend4_node_set_amount :: MethodBind
 bindAnimationTreePlayer_blend4_node_set_amount
   = unsafePerformIO $
@@ -673,9 +632,6 @@ bindAnimationTreePlayer_blend4_node_set_amount
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the blend amount of a Blend4 node given its name and value.
---   				A Blend4 Node blends two pairs of animations.
---   				The two pairs are blended like Blend2 and then added together.
 blend4_node_set_amount ::
                          (AnimationTreePlayer :< cls, Object :< cls) =>
                          cls -> GodotString -> Vector2 -> IO ()
@@ -697,7 +653,6 @@ instance NodeMethod AnimationTreePlayer "blend4_node_set_amount"
 
 {-# NOINLINE bindAnimationTreePlayer_connect_nodes #-}
 
--- | Connects node @id@ to @dst_id@ at the specified input slot.
 bindAnimationTreePlayer_connect_nodes :: MethodBind
 bindAnimationTreePlayer_connect_nodes
   = unsafePerformIO $
@@ -707,7 +662,6 @@ bindAnimationTreePlayer_connect_nodes
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Connects node @id@ to @dst_id@ at the specified input slot.
 connect_nodes ::
                 (AnimationTreePlayer :< cls, Object :< cls) =>
                 cls -> GodotString -> GodotString -> Int -> IO Int
@@ -728,7 +682,6 @@ instance NodeMethod AnimationTreePlayer "connect_nodes"
 
 {-# NOINLINE bindAnimationTreePlayer_disconnect_nodes #-}
 
--- | Disconnects nodes connected to @id@ at the specified input slot.
 bindAnimationTreePlayer_disconnect_nodes :: MethodBind
 bindAnimationTreePlayer_disconnect_nodes
   = unsafePerformIO $
@@ -738,7 +691,6 @@ bindAnimationTreePlayer_disconnect_nodes
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Disconnects nodes connected to @id@ at the specified input slot.
 disconnect_nodes ::
                    (AnimationTreePlayer :< cls, Object :< cls) =>
                    cls -> GodotString -> Int -> IO ()
@@ -759,7 +711,6 @@ instance NodeMethod AnimationTreePlayer "disconnect_nodes"
 
 {-# NOINLINE bindAnimationTreePlayer_get_animation_process_mode #-}
 
--- | The thread in which to update animations.
 bindAnimationTreePlayer_get_animation_process_mode :: MethodBind
 bindAnimationTreePlayer_get_animation_process_mode
   = unsafePerformIO $
@@ -769,7 +720,6 @@ bindAnimationTreePlayer_get_animation_process_mode
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The thread in which to update animations.
 get_animation_process_mode ::
                              (AnimationTreePlayer :< cls, Object :< cls) => cls -> IO Int
 get_animation_process_mode cls
@@ -792,8 +742,6 @@ instance NodeMethod AnimationTreePlayer
 
 {-# NOINLINE bindAnimationTreePlayer_get_base_path #-}
 
--- | The node from which to relatively access other nodes.
---   			It accesses the bones, so it should point to the same node the @AnimationPlayer@ would point its Root Node at.
 bindAnimationTreePlayer_get_base_path :: MethodBind
 bindAnimationTreePlayer_get_base_path
   = unsafePerformIO $
@@ -803,8 +751,6 @@ bindAnimationTreePlayer_get_base_path
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The node from which to relatively access other nodes.
---   			It accesses the bones, so it should point to the same node the @AnimationPlayer@ would point its Root Node at.
 get_base_path ::
                 (AnimationTreePlayer :< cls, Object :< cls) => cls -> IO NodePath
 get_base_path cls
@@ -823,8 +769,6 @@ instance NodeMethod AnimationTreePlayer "get_base_path" '[]
 
 {-# NOINLINE bindAnimationTreePlayer_get_master_player #-}
 
--- | The path to the @AnimationPlayer@ from which this @AnimationTreePlayer@ binds animations to animation nodes.
---   			Once set, @Animation@ nodes can be added to the @AnimationTreePlayer@.
 bindAnimationTreePlayer_get_master_player :: MethodBind
 bindAnimationTreePlayer_get_master_player
   = unsafePerformIO $
@@ -834,8 +778,6 @@ bindAnimationTreePlayer_get_master_player
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The path to the @AnimationPlayer@ from which this @AnimationTreePlayer@ binds animations to animation nodes.
---   			Once set, @Animation@ nodes can be added to the @AnimationTreePlayer@.
 get_master_player ::
                     (AnimationTreePlayer :< cls, Object :< cls) => cls -> IO NodePath
 get_master_player cls
@@ -854,7 +796,6 @@ instance NodeMethod AnimationTreePlayer "get_master_player" '[]
 
 {-# NOINLINE bindAnimationTreePlayer_get_node_list #-}
 
--- | Returns a @PoolStringArray@ containing the name of all nodes.
 bindAnimationTreePlayer_get_node_list :: MethodBind
 bindAnimationTreePlayer_get_node_list
   = unsafePerformIO $
@@ -864,7 +805,6 @@ bindAnimationTreePlayer_get_node_list
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns a @PoolStringArray@ containing the name of all nodes.
 get_node_list ::
                 (AnimationTreePlayer :< cls, Object :< cls) =>
                 cls -> IO PoolStringArray
@@ -884,7 +824,6 @@ instance NodeMethod AnimationTreePlayer "get_node_list" '[]
 
 {-# NOINLINE bindAnimationTreePlayer_is_active #-}
 
--- | If @true@, the @AnimationTreePlayer@ is able to play animations.
 bindAnimationTreePlayer_is_active :: MethodBind
 bindAnimationTreePlayer_is_active
   = unsafePerformIO $
@@ -894,7 +833,6 @@ bindAnimationTreePlayer_is_active
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, the @AnimationTreePlayer@ is able to play animations.
 is_active ::
             (AnimationTreePlayer :< cls, Object :< cls) => cls -> IO Bool
 is_active cls
@@ -912,7 +850,6 @@ instance NodeMethod AnimationTreePlayer "is_active" '[] (IO Bool)
 
 {-# NOINLINE bindAnimationTreePlayer_mix_node_get_amount #-}
 
--- | Returns the mix amount of a Mix node given its name.
 bindAnimationTreePlayer_mix_node_get_amount :: MethodBind
 bindAnimationTreePlayer_mix_node_get_amount
   = unsafePerformIO $
@@ -922,7 +859,6 @@ bindAnimationTreePlayer_mix_node_get_amount
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the mix amount of a Mix node given its name.
 mix_node_get_amount ::
                       (AnimationTreePlayer :< cls, Object :< cls) =>
                       cls -> GodotString -> IO Float
@@ -943,8 +879,6 @@ instance NodeMethod AnimationTreePlayer "mix_node_get_amount"
 
 {-# NOINLINE bindAnimationTreePlayer_mix_node_set_amount #-}
 
--- | Sets the mix amount of a Mix node given its name and value.
---   				A Mix node adds input b to input a by the amount given by ratio.
 bindAnimationTreePlayer_mix_node_set_amount :: MethodBind
 bindAnimationTreePlayer_mix_node_set_amount
   = unsafePerformIO $
@@ -954,8 +888,6 @@ bindAnimationTreePlayer_mix_node_set_amount
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the mix amount of a Mix node given its name and value.
---   				A Mix node adds input b to input a by the amount given by ratio.
 mix_node_set_amount ::
                       (AnimationTreePlayer :< cls, Object :< cls) =>
                       cls -> GodotString -> Float -> IO ()
@@ -976,7 +908,6 @@ instance NodeMethod AnimationTreePlayer "mix_node_set_amount"
 
 {-# NOINLINE bindAnimationTreePlayer_node_exists #-}
 
--- | Check if a node exists (by name).
 bindAnimationTreePlayer_node_exists :: MethodBind
 bindAnimationTreePlayer_node_exists
   = unsafePerformIO $
@@ -986,7 +917,6 @@ bindAnimationTreePlayer_node_exists
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Check if a node exists (by name).
 node_exists ::
               (AnimationTreePlayer :< cls, Object :< cls) =>
               cls -> GodotString -> IO Bool
@@ -1007,7 +937,6 @@ instance NodeMethod AnimationTreePlayer "node_exists"
 
 {-# NOINLINE bindAnimationTreePlayer_node_get_input_count #-}
 
--- | Returns the input count for a given node. Different types of nodes have different amount of inputs.
 bindAnimationTreePlayer_node_get_input_count :: MethodBind
 bindAnimationTreePlayer_node_get_input_count
   = unsafePerformIO $
@@ -1017,7 +946,6 @@ bindAnimationTreePlayer_node_get_input_count
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the input count for a given node. Different types of nodes have different amount of inputs.
 node_get_input_count ::
                        (AnimationTreePlayer :< cls, Object :< cls) =>
                        cls -> GodotString -> IO Int
@@ -1038,7 +966,6 @@ instance NodeMethod AnimationTreePlayer "node_get_input_count"
 
 {-# NOINLINE bindAnimationTreePlayer_node_get_input_source #-}
 
--- | Returns the input source for a given node input.
 bindAnimationTreePlayer_node_get_input_source :: MethodBind
 bindAnimationTreePlayer_node_get_input_source
   = unsafePerformIO $
@@ -1048,7 +975,6 @@ bindAnimationTreePlayer_node_get_input_source
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the input source for a given node input.
 node_get_input_source ::
                         (AnimationTreePlayer :< cls, Object :< cls) =>
                         cls -> GodotString -> Int -> IO GodotString
@@ -1070,7 +996,6 @@ instance NodeMethod AnimationTreePlayer "node_get_input_source"
 
 {-# NOINLINE bindAnimationTreePlayer_node_get_position #-}
 
--- | Returns position of a node in the graph given its name.
 bindAnimationTreePlayer_node_get_position :: MethodBind
 bindAnimationTreePlayer_node_get_position
   = unsafePerformIO $
@@ -1080,7 +1005,6 @@ bindAnimationTreePlayer_node_get_position
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns position of a node in the graph given its name.
 node_get_position ::
                     (AnimationTreePlayer :< cls, Object :< cls) =>
                     cls -> GodotString -> IO Vector2
@@ -1101,7 +1025,6 @@ instance NodeMethod AnimationTreePlayer "node_get_position"
 
 {-# NOINLINE bindAnimationTreePlayer_node_get_type #-}
 
--- | Gets the node type, will return from @enum NodeType@ enum.
 bindAnimationTreePlayer_node_get_type :: MethodBind
 bindAnimationTreePlayer_node_get_type
   = unsafePerformIO $
@@ -1111,7 +1034,6 @@ bindAnimationTreePlayer_node_get_type
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Gets the node type, will return from @enum NodeType@ enum.
 node_get_type ::
                 (AnimationTreePlayer :< cls, Object :< cls) =>
                 cls -> GodotString -> IO Int
@@ -1132,7 +1054,6 @@ instance NodeMethod AnimationTreePlayer "node_get_type"
 
 {-# NOINLINE bindAnimationTreePlayer_node_rename #-}
 
--- | Renames a node in the graph.
 bindAnimationTreePlayer_node_rename :: MethodBind
 bindAnimationTreePlayer_node_rename
   = unsafePerformIO $
@@ -1142,7 +1063,6 @@ bindAnimationTreePlayer_node_rename
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Renames a node in the graph.
 node_rename ::
               (AnimationTreePlayer :< cls, Object :< cls) =>
               cls -> GodotString -> GodotString -> IO Int
@@ -1163,7 +1083,6 @@ instance NodeMethod AnimationTreePlayer "node_rename"
 
 {-# NOINLINE bindAnimationTreePlayer_node_set_position #-}
 
--- | Sets the position of a node in the graph given its name and position.
 bindAnimationTreePlayer_node_set_position :: MethodBind
 bindAnimationTreePlayer_node_set_position
   = unsafePerformIO $
@@ -1173,7 +1092,6 @@ bindAnimationTreePlayer_node_set_position
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the position of a node in the graph given its name and position.
 node_set_position ::
                     (AnimationTreePlayer :< cls, Object :< cls) =>
                     cls -> GodotString -> Vector2 -> IO ()
@@ -1195,7 +1113,6 @@ instance NodeMethod AnimationTreePlayer "node_set_position"
 {-# NOINLINE bindAnimationTreePlayer_oneshot_node_get_autorestart_delay
              #-}
 
--- | Returns the autostart delay of a OneShot node given its name.
 bindAnimationTreePlayer_oneshot_node_get_autorestart_delay ::
                                                            MethodBind
 bindAnimationTreePlayer_oneshot_node_get_autorestart_delay
@@ -1206,7 +1123,6 @@ bindAnimationTreePlayer_oneshot_node_get_autorestart_delay
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the autostart delay of a OneShot node given its name.
 oneshot_node_get_autorestart_delay ::
                                      (AnimationTreePlayer :< cls, Object :< cls) =>
                                      cls -> GodotString -> IO Float
@@ -1231,7 +1147,6 @@ instance NodeMethod AnimationTreePlayer
 {-# NOINLINE bindAnimationTreePlayer_oneshot_node_get_autorestart_random_delay
              #-}
 
--- | Returns the autostart random delay of a OneShot node given its name.
 bindAnimationTreePlayer_oneshot_node_get_autorestart_random_delay ::
                                                                   MethodBind
 bindAnimationTreePlayer_oneshot_node_get_autorestart_random_delay
@@ -1242,7 +1157,6 @@ bindAnimationTreePlayer_oneshot_node_get_autorestart_random_delay
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the autostart random delay of a OneShot node given its name.
 oneshot_node_get_autorestart_random_delay ::
                                             (AnimationTreePlayer :< cls, Object :< cls) =>
                                             cls -> GodotString -> IO Float
@@ -1267,7 +1181,6 @@ instance NodeMethod AnimationTreePlayer
 {-# NOINLINE bindAnimationTreePlayer_oneshot_node_get_fadein_time
              #-}
 
--- | Returns the fade in time of a OneShot node given its name.
 bindAnimationTreePlayer_oneshot_node_get_fadein_time :: MethodBind
 bindAnimationTreePlayer_oneshot_node_get_fadein_time
   = unsafePerformIO $
@@ -1277,7 +1190,6 @@ bindAnimationTreePlayer_oneshot_node_get_fadein_time
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the fade in time of a OneShot node given its name.
 oneshot_node_get_fadein_time ::
                                (AnimationTreePlayer :< cls, Object :< cls) =>
                                cls -> GodotString -> IO Float
@@ -1302,7 +1214,6 @@ instance NodeMethod AnimationTreePlayer
 {-# NOINLINE bindAnimationTreePlayer_oneshot_node_get_fadeout_time
              #-}
 
--- | Returns the fade out time of a OneShot node given its name.
 bindAnimationTreePlayer_oneshot_node_get_fadeout_time :: MethodBind
 bindAnimationTreePlayer_oneshot_node_get_fadeout_time
   = unsafePerformIO $
@@ -1312,7 +1223,6 @@ bindAnimationTreePlayer_oneshot_node_get_fadeout_time
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the fade out time of a OneShot node given its name.
 oneshot_node_get_fadeout_time ::
                                 (AnimationTreePlayer :< cls, Object :< cls) =>
                                 cls -> GodotString -> IO Float
@@ -1337,7 +1247,6 @@ instance NodeMethod AnimationTreePlayer
 {-# NOINLINE bindAnimationTreePlayer_oneshot_node_has_autorestart
              #-}
 
--- | Returns whether a OneShot node will auto restart given its name.
 bindAnimationTreePlayer_oneshot_node_has_autorestart :: MethodBind
 bindAnimationTreePlayer_oneshot_node_has_autorestart
   = unsafePerformIO $
@@ -1347,7 +1256,6 @@ bindAnimationTreePlayer_oneshot_node_has_autorestart
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns whether a OneShot node will auto restart given its name.
 oneshot_node_has_autorestart ::
                                (AnimationTreePlayer :< cls, Object :< cls) =>
                                cls -> GodotString -> IO Bool
@@ -1371,7 +1279,6 @@ instance NodeMethod AnimationTreePlayer
 
 {-# NOINLINE bindAnimationTreePlayer_oneshot_node_is_active #-}
 
--- | Returns whether a OneShot node is active given its name.
 bindAnimationTreePlayer_oneshot_node_is_active :: MethodBind
 bindAnimationTreePlayer_oneshot_node_is_active
   = unsafePerformIO $
@@ -1381,7 +1288,6 @@ bindAnimationTreePlayer_oneshot_node_is_active
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns whether a OneShot node is active given its name.
 oneshot_node_is_active ::
                          (AnimationTreePlayer :< cls, Object :< cls) =>
                          cls -> GodotString -> IO Bool
@@ -1404,7 +1310,6 @@ instance NodeMethod AnimationTreePlayer "oneshot_node_is_active"
 {-# NOINLINE bindAnimationTreePlayer_oneshot_node_set_autorestart
              #-}
 
--- | Sets the autorestart property of a OneShot node given its name and value.
 bindAnimationTreePlayer_oneshot_node_set_autorestart :: MethodBind
 bindAnimationTreePlayer_oneshot_node_set_autorestart
   = unsafePerformIO $
@@ -1414,7 +1319,6 @@ bindAnimationTreePlayer_oneshot_node_set_autorestart
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the autorestart property of a OneShot node given its name and value.
 oneshot_node_set_autorestart ::
                                (AnimationTreePlayer :< cls, Object :< cls) =>
                                cls -> GodotString -> Bool -> IO ()
@@ -1439,7 +1343,6 @@ instance NodeMethod AnimationTreePlayer
 {-# NOINLINE bindAnimationTreePlayer_oneshot_node_set_autorestart_delay
              #-}
 
--- | Sets the autorestart delay of a OneShot node given its name and value in seconds.
 bindAnimationTreePlayer_oneshot_node_set_autorestart_delay ::
                                                            MethodBind
 bindAnimationTreePlayer_oneshot_node_set_autorestart_delay
@@ -1450,7 +1353,6 @@ bindAnimationTreePlayer_oneshot_node_set_autorestart_delay
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the autorestart delay of a OneShot node given its name and value in seconds.
 oneshot_node_set_autorestart_delay ::
                                      (AnimationTreePlayer :< cls, Object :< cls) =>
                                      cls -> GodotString -> Float -> IO ()
@@ -1475,7 +1377,6 @@ instance NodeMethod AnimationTreePlayer
 {-# NOINLINE bindAnimationTreePlayer_oneshot_node_set_autorestart_random_delay
              #-}
 
--- | Sets the autorestart random delay of a OneShot node given its name and value in seconds.
 bindAnimationTreePlayer_oneshot_node_set_autorestart_random_delay ::
                                                                   MethodBind
 bindAnimationTreePlayer_oneshot_node_set_autorestart_random_delay
@@ -1486,7 +1387,6 @@ bindAnimationTreePlayer_oneshot_node_set_autorestart_random_delay
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the autorestart random delay of a OneShot node given its name and value in seconds.
 oneshot_node_set_autorestart_random_delay ::
                                             (AnimationTreePlayer :< cls, Object :< cls) =>
                                             cls -> GodotString -> Float -> IO ()
@@ -1511,7 +1411,6 @@ instance NodeMethod AnimationTreePlayer
 {-# NOINLINE bindAnimationTreePlayer_oneshot_node_set_fadein_time
              #-}
 
--- | Sets the fade in time of a OneShot node given its name and value in seconds.
 bindAnimationTreePlayer_oneshot_node_set_fadein_time :: MethodBind
 bindAnimationTreePlayer_oneshot_node_set_fadein_time
   = unsafePerformIO $
@@ -1521,7 +1420,6 @@ bindAnimationTreePlayer_oneshot_node_set_fadein_time
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the fade in time of a OneShot node given its name and value in seconds.
 oneshot_node_set_fadein_time ::
                                (AnimationTreePlayer :< cls, Object :< cls) =>
                                cls -> GodotString -> Float -> IO ()
@@ -1546,7 +1444,6 @@ instance NodeMethod AnimationTreePlayer
 {-# NOINLINE bindAnimationTreePlayer_oneshot_node_set_fadeout_time
              #-}
 
--- | Sets the fade out time of a OneShot node given its name and value in seconds.
 bindAnimationTreePlayer_oneshot_node_set_fadeout_time :: MethodBind
 bindAnimationTreePlayer_oneshot_node_set_fadeout_time
   = unsafePerformIO $
@@ -1556,7 +1453,6 @@ bindAnimationTreePlayer_oneshot_node_set_fadeout_time
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the fade out time of a OneShot node given its name and value in seconds.
 oneshot_node_set_fadeout_time ::
                                 (AnimationTreePlayer :< cls, Object :< cls) =>
                                 cls -> GodotString -> Float -> IO ()
@@ -1581,7 +1477,6 @@ instance NodeMethod AnimationTreePlayer
 {-# NOINLINE bindAnimationTreePlayer_oneshot_node_set_filter_path
              #-}
 
--- | If @enable@ is @true@, the OneShot node with ID @id@ turns off the track modifying the property at @path@. The modified node's children continue to animate.
 bindAnimationTreePlayer_oneshot_node_set_filter_path :: MethodBind
 bindAnimationTreePlayer_oneshot_node_set_filter_path
   = unsafePerformIO $
@@ -1591,7 +1486,6 @@ bindAnimationTreePlayer_oneshot_node_set_filter_path
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @enable@ is @true@, the OneShot node with ID @id@ turns off the track modifying the property at @path@. The modified node's children continue to animate.
 oneshot_node_set_filter_path ::
                                (AnimationTreePlayer :< cls, Object :< cls) =>
                                cls -> GodotString -> NodePath -> Bool -> IO ()
@@ -1615,7 +1509,6 @@ instance NodeMethod AnimationTreePlayer
 
 {-# NOINLINE bindAnimationTreePlayer_oneshot_node_start #-}
 
--- | Starts a OneShot node given its name.
 bindAnimationTreePlayer_oneshot_node_start :: MethodBind
 bindAnimationTreePlayer_oneshot_node_start
   = unsafePerformIO $
@@ -1625,7 +1518,6 @@ bindAnimationTreePlayer_oneshot_node_start
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Starts a OneShot node given its name.
 oneshot_node_start ::
                      (AnimationTreePlayer :< cls, Object :< cls) =>
                      cls -> GodotString -> IO ()
@@ -1646,7 +1538,6 @@ instance NodeMethod AnimationTreePlayer "oneshot_node_start"
 
 {-# NOINLINE bindAnimationTreePlayer_oneshot_node_stop #-}
 
--- | Stops the OneShot node with name @id@.
 bindAnimationTreePlayer_oneshot_node_stop :: MethodBind
 bindAnimationTreePlayer_oneshot_node_stop
   = unsafePerformIO $
@@ -1656,7 +1547,6 @@ bindAnimationTreePlayer_oneshot_node_stop
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Stops the OneShot node with name @id@.
 oneshot_node_stop ::
                     (AnimationTreePlayer :< cls, Object :< cls) =>
                     cls -> GodotString -> IO ()
@@ -1677,7 +1567,6 @@ instance NodeMethod AnimationTreePlayer "oneshot_node_stop"
 
 {-# NOINLINE bindAnimationTreePlayer_recompute_caches #-}
 
--- | Manually recalculates the cache of track information generated from animation nodes. Needed when external sources modify the animation nodes' state.
 bindAnimationTreePlayer_recompute_caches :: MethodBind
 bindAnimationTreePlayer_recompute_caches
   = unsafePerformIO $
@@ -1687,7 +1576,6 @@ bindAnimationTreePlayer_recompute_caches
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Manually recalculates the cache of track information generated from animation nodes. Needed when external sources modify the animation nodes' state.
 recompute_caches ::
                    (AnimationTreePlayer :< cls, Object :< cls) => cls -> IO ()
 recompute_caches cls
@@ -1706,7 +1594,6 @@ instance NodeMethod AnimationTreePlayer "recompute_caches" '[]
 
 {-# NOINLINE bindAnimationTreePlayer_remove_node #-}
 
--- | Removes the animation node with name @id@.
 bindAnimationTreePlayer_remove_node :: MethodBind
 bindAnimationTreePlayer_remove_node
   = unsafePerformIO $
@@ -1716,7 +1603,6 @@ bindAnimationTreePlayer_remove_node
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Removes the animation node with name @id@.
 remove_node ::
               (AnimationTreePlayer :< cls, Object :< cls) =>
               cls -> GodotString -> IO ()
@@ -1737,7 +1623,6 @@ instance NodeMethod AnimationTreePlayer "remove_node"
 
 {-# NOINLINE bindAnimationTreePlayer_reset #-}
 
--- | Resets this @AnimationTreePlayer@.
 bindAnimationTreePlayer_reset :: MethodBind
 bindAnimationTreePlayer_reset
   = unsafePerformIO $
@@ -1747,7 +1632,6 @@ bindAnimationTreePlayer_reset
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Resets this @AnimationTreePlayer@.
 reset ::
         (AnimationTreePlayer :< cls, Object :< cls) => cls -> IO ()
 reset cls
@@ -1763,7 +1647,6 @@ instance NodeMethod AnimationTreePlayer "reset" '[] (IO ()) where
 
 {-# NOINLINE bindAnimationTreePlayer_set_active #-}
 
--- | If @true@, the @AnimationTreePlayer@ is able to play animations.
 bindAnimationTreePlayer_set_active :: MethodBind
 bindAnimationTreePlayer_set_active
   = unsafePerformIO $
@@ -1773,7 +1656,6 @@ bindAnimationTreePlayer_set_active
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, the @AnimationTreePlayer@ is able to play animations.
 set_active ::
              (AnimationTreePlayer :< cls, Object :< cls) => cls -> Bool -> IO ()
 set_active cls arg1
@@ -1792,7 +1674,6 @@ instance NodeMethod AnimationTreePlayer "set_active" '[Bool]
 
 {-# NOINLINE bindAnimationTreePlayer_set_animation_process_mode #-}
 
--- | The thread in which to update animations.
 bindAnimationTreePlayer_set_animation_process_mode :: MethodBind
 bindAnimationTreePlayer_set_animation_process_mode
   = unsafePerformIO $
@@ -1802,7 +1683,6 @@ bindAnimationTreePlayer_set_animation_process_mode
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The thread in which to update animations.
 set_animation_process_mode ::
                              (AnimationTreePlayer :< cls, Object :< cls) => cls -> Int -> IO ()
 set_animation_process_mode cls arg1
@@ -1825,8 +1705,6 @@ instance NodeMethod AnimationTreePlayer
 
 {-# NOINLINE bindAnimationTreePlayer_set_base_path #-}
 
--- | The node from which to relatively access other nodes.
---   			It accesses the bones, so it should point to the same node the @AnimationPlayer@ would point its Root Node at.
 bindAnimationTreePlayer_set_base_path :: MethodBind
 bindAnimationTreePlayer_set_base_path
   = unsafePerformIO $
@@ -1836,8 +1714,6 @@ bindAnimationTreePlayer_set_base_path
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The node from which to relatively access other nodes.
---   			It accesses the bones, so it should point to the same node the @AnimationPlayer@ would point its Root Node at.
 set_base_path ::
                 (AnimationTreePlayer :< cls, Object :< cls) =>
                 cls -> NodePath -> IO ()
@@ -1857,8 +1733,6 @@ instance NodeMethod AnimationTreePlayer "set_base_path" '[NodePath]
 
 {-# NOINLINE bindAnimationTreePlayer_set_master_player #-}
 
--- | The path to the @AnimationPlayer@ from which this @AnimationTreePlayer@ binds animations to animation nodes.
---   			Once set, @Animation@ nodes can be added to the @AnimationTreePlayer@.
 bindAnimationTreePlayer_set_master_player :: MethodBind
 bindAnimationTreePlayer_set_master_player
   = unsafePerformIO $
@@ -1868,8 +1742,6 @@ bindAnimationTreePlayer_set_master_player
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The path to the @AnimationPlayer@ from which this @AnimationTreePlayer@ binds animations to animation nodes.
---   			Once set, @Animation@ nodes can be added to the @AnimationTreePlayer@.
 set_master_player ::
                     (AnimationTreePlayer :< cls, Object :< cls) =>
                     cls -> NodePath -> IO ()
@@ -1890,7 +1762,6 @@ instance NodeMethod AnimationTreePlayer "set_master_player"
 
 {-# NOINLINE bindAnimationTreePlayer_timescale_node_get_scale #-}
 
--- | Returns the time scale value of the TimeScale node with name @id@.
 bindAnimationTreePlayer_timescale_node_get_scale :: MethodBind
 bindAnimationTreePlayer_timescale_node_get_scale
   = unsafePerformIO $
@@ -1900,7 +1771,6 @@ bindAnimationTreePlayer_timescale_node_get_scale
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the time scale value of the TimeScale node with name @id@.
 timescale_node_get_scale ::
                            (AnimationTreePlayer :< cls, Object :< cls) =>
                            cls -> GodotString -> IO Float
@@ -1923,9 +1793,6 @@ instance NodeMethod AnimationTreePlayer "timescale_node_get_scale"
 
 {-# NOINLINE bindAnimationTreePlayer_timescale_node_set_scale #-}
 
--- | Sets the time scale of the TimeScale node with name @id@ to @scale@.
---   				The TimeScale node is used to speed @Animation@s up if the scale is above 1 or slow them down if it is below 1.
---   				If applied after a blend or mix, affects all input animations to that blend or mix.
 bindAnimationTreePlayer_timescale_node_set_scale :: MethodBind
 bindAnimationTreePlayer_timescale_node_set_scale
   = unsafePerformIO $
@@ -1935,9 +1802,6 @@ bindAnimationTreePlayer_timescale_node_set_scale
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the time scale of the TimeScale node with name @id@ to @scale@.
---   				The TimeScale node is used to speed @Animation@s up if the scale is above 1 or slow them down if it is below 1.
---   				If applied after a blend or mix, affects all input animations to that blend or mix.
 timescale_node_set_scale ::
                            (AnimationTreePlayer :< cls, Object :< cls) =>
                            cls -> GodotString -> Float -> IO ()
@@ -1960,8 +1824,6 @@ instance NodeMethod AnimationTreePlayer "timescale_node_set_scale"
 
 {-# NOINLINE bindAnimationTreePlayer_timeseek_node_seek #-}
 
--- | Sets the time seek value of the TimeSeek node with name @id@ to @seconds@.
---   				This functions as a seek in the @Animation@ or the blend or mix of @Animation@s input in it.
 bindAnimationTreePlayer_timeseek_node_seek :: MethodBind
 bindAnimationTreePlayer_timeseek_node_seek
   = unsafePerformIO $
@@ -1971,8 +1833,6 @@ bindAnimationTreePlayer_timeseek_node_seek
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the time seek value of the TimeSeek node with name @id@ to @seconds@.
---   				This functions as a seek in the @Animation@ or the blend or mix of @Animation@s input in it.
 timeseek_node_seek ::
                      (AnimationTreePlayer :< cls, Object :< cls) =>
                      cls -> GodotString -> Float -> IO ()
@@ -1994,7 +1854,6 @@ instance NodeMethod AnimationTreePlayer "timeseek_node_seek"
 {-# NOINLINE bindAnimationTreePlayer_transition_node_delete_input
              #-}
 
--- | Deletes the input at @input_idx@ for the transition node with name @id@.
 bindAnimationTreePlayer_transition_node_delete_input :: MethodBind
 bindAnimationTreePlayer_transition_node_delete_input
   = unsafePerformIO $
@@ -2004,7 +1863,6 @@ bindAnimationTreePlayer_transition_node_delete_input
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Deletes the input at @input_idx@ for the transition node with name @id@.
 transition_node_delete_input ::
                                (AnimationTreePlayer :< cls, Object :< cls) =>
                                cls -> GodotString -> Int -> IO ()
@@ -2029,7 +1887,6 @@ instance NodeMethod AnimationTreePlayer
 {-# NOINLINE bindAnimationTreePlayer_transition_node_get_current
              #-}
 
--- | Returns the index of the currently evaluated input for the transition node with name @id@.
 bindAnimationTreePlayer_transition_node_get_current :: MethodBind
 bindAnimationTreePlayer_transition_node_get_current
   = unsafePerformIO $
@@ -2039,7 +1896,6 @@ bindAnimationTreePlayer_transition_node_get_current
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the index of the currently evaluated input for the transition node with name @id@.
 transition_node_get_current ::
                               (AnimationTreePlayer :< cls, Object :< cls) =>
                               cls -> GodotString -> IO Int
@@ -2064,7 +1920,6 @@ instance NodeMethod AnimationTreePlayer
 {-# NOINLINE bindAnimationTreePlayer_transition_node_get_input_count
              #-}
 
--- | Returns the number of inputs for the transition node with name @id@. You can add inputs by right-clicking on the transition node.
 bindAnimationTreePlayer_transition_node_get_input_count ::
                                                         MethodBind
 bindAnimationTreePlayer_transition_node_get_input_count
@@ -2075,7 +1930,6 @@ bindAnimationTreePlayer_transition_node_get_input_count
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the number of inputs for the transition node with name @id@. You can add inputs by right-clicking on the transition node.
 transition_node_get_input_count ::
                                   (AnimationTreePlayer :< cls, Object :< cls) =>
                                   cls -> GodotString -> IO Int
@@ -2100,7 +1954,6 @@ instance NodeMethod AnimationTreePlayer
 {-# NOINLINE bindAnimationTreePlayer_transition_node_get_xfade_time
              #-}
 
--- | Returns the cross fade time for the transition node with name @id@.
 bindAnimationTreePlayer_transition_node_get_xfade_time ::
                                                        MethodBind
 bindAnimationTreePlayer_transition_node_get_xfade_time
@@ -2111,7 +1964,6 @@ bindAnimationTreePlayer_transition_node_get_xfade_time
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the cross fade time for the transition node with name @id@.
 transition_node_get_xfade_time ::
                                  (AnimationTreePlayer :< cls, Object :< cls) =>
                                  cls -> GodotString -> IO Float
@@ -2136,7 +1988,6 @@ instance NodeMethod AnimationTreePlayer
 {-# NOINLINE bindAnimationTreePlayer_transition_node_has_input_auto_advance
              #-}
 
--- | Returns @true@ if the input at @input_idx@ on the transition node with name @id@ is set to automatically advance to the next input upon completion.
 bindAnimationTreePlayer_transition_node_has_input_auto_advance ::
                                                                MethodBind
 bindAnimationTreePlayer_transition_node_has_input_auto_advance
@@ -2147,7 +1998,6 @@ bindAnimationTreePlayer_transition_node_has_input_auto_advance
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns @true@ if the input at @input_idx@ on the transition node with name @id@ is set to automatically advance to the next input upon completion.
 transition_node_has_input_auto_advance ::
                                          (AnimationTreePlayer :< cls, Object :< cls) =>
                                          cls -> GodotString -> Int -> IO Bool
@@ -2172,7 +2022,6 @@ instance NodeMethod AnimationTreePlayer
 {-# NOINLINE bindAnimationTreePlayer_transition_node_set_current
              #-}
 
--- | The transition node with name @id@ sets its current input at @input_idx@.
 bindAnimationTreePlayer_transition_node_set_current :: MethodBind
 bindAnimationTreePlayer_transition_node_set_current
   = unsafePerformIO $
@@ -2182,7 +2031,6 @@ bindAnimationTreePlayer_transition_node_set_current
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The transition node with name @id@ sets its current input at @input_idx@.
 transition_node_set_current ::
                               (AnimationTreePlayer :< cls, Object :< cls) =>
                               cls -> GodotString -> Int -> IO ()
@@ -2207,7 +2055,6 @@ instance NodeMethod AnimationTreePlayer
 {-# NOINLINE bindAnimationTreePlayer_transition_node_set_input_auto_advance
              #-}
 
--- | The transition node with name @id@ advances to its next input automatically when the input at @input_idx@ completes.
 bindAnimationTreePlayer_transition_node_set_input_auto_advance ::
                                                                MethodBind
 bindAnimationTreePlayer_transition_node_set_input_auto_advance
@@ -2218,7 +2065,6 @@ bindAnimationTreePlayer_transition_node_set_input_auto_advance
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The transition node with name @id@ advances to its next input automatically when the input at @input_idx@ completes.
 transition_node_set_input_auto_advance ::
                                          (AnimationTreePlayer :< cls, Object :< cls) =>
                                          cls -> GodotString -> Int -> Bool -> IO ()
@@ -2243,7 +2089,6 @@ instance NodeMethod AnimationTreePlayer
 {-# NOINLINE bindAnimationTreePlayer_transition_node_set_input_count
              #-}
 
--- | Resizes the number of inputs available for the transition node with name @id@.
 bindAnimationTreePlayer_transition_node_set_input_count ::
                                                         MethodBind
 bindAnimationTreePlayer_transition_node_set_input_count
@@ -2254,7 +2099,6 @@ bindAnimationTreePlayer_transition_node_set_input_count
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Resizes the number of inputs available for the transition node with name @id@.
 transition_node_set_input_count ::
                                   (AnimationTreePlayer :< cls, Object :< cls) =>
                                   cls -> GodotString -> Int -> IO ()
@@ -2279,7 +2123,6 @@ instance NodeMethod AnimationTreePlayer
 {-# NOINLINE bindAnimationTreePlayer_transition_node_set_xfade_time
              #-}
 
--- | The transition node with name @id@ sets its cross fade time to @time_sec@.
 bindAnimationTreePlayer_transition_node_set_xfade_time ::
                                                        MethodBind
 bindAnimationTreePlayer_transition_node_set_xfade_time
@@ -2290,7 +2133,6 @@ bindAnimationTreePlayer_transition_node_set_xfade_time
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The transition node with name @id@ sets its cross fade time to @time_sec@.
 transition_node_set_xfade_time ::
                                  (AnimationTreePlayer :< cls, Object :< cls) =>
                                  cls -> GodotString -> Float -> IO ()

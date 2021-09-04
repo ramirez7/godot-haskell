@@ -109,7 +109,7 @@ instance NodeMethod MultiMeshInstance2D "get_normal_map" '[]
 
 {-# NOINLINE bindMultiMeshInstance2D_get_texture #-}
 
--- | The @Texture@ that will be used if using the default @CanvasItemMaterial@. Can be accessed as @TEXTURE@ in CanvasItem shader.
+-- | The @Texture2D@ that will be used if using the default @CanvasItemMaterial@. Can be accessed as @TEXTURE@ in CanvasItem shader.
 bindMultiMeshInstance2D_get_texture :: MethodBind
 bindMultiMeshInstance2D_get_texture
   = unsafePerformIO $
@@ -119,7 +119,7 @@ bindMultiMeshInstance2D_get_texture
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The @Texture@ that will be used if using the default @CanvasItemMaterial@. Can be accessed as @TEXTURE@ in CanvasItem shader.
+-- | The @Texture2D@ that will be used if using the default @CanvasItemMaterial@. Can be accessed as @TEXTURE@ in CanvasItem shader.
 get_texture ::
               (MultiMeshInstance2D :< cls, Object :< cls) => cls -> IO Texture
 get_texture cls
@@ -201,7 +201,7 @@ instance NodeMethod MultiMeshInstance2D "set_normal_map" '[Texture]
 
 {-# NOINLINE bindMultiMeshInstance2D_set_texture #-}
 
--- | The @Texture@ that will be used if using the default @CanvasItemMaterial@. Can be accessed as @TEXTURE@ in CanvasItem shader.
+-- | The @Texture2D@ that will be used if using the default @CanvasItemMaterial@. Can be accessed as @TEXTURE@ in CanvasItem shader.
 bindMultiMeshInstance2D_set_texture :: MethodBind
 bindMultiMeshInstance2D_set_texture
   = unsafePerformIO $
@@ -211,7 +211,7 @@ bindMultiMeshInstance2D_set_texture
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The @Texture@ that will be used if using the default @CanvasItemMaterial@. Can be accessed as @TEXTURE@ in CanvasItem shader.
+-- | The @Texture2D@ that will be used if using the default @CanvasItemMaterial@. Can be accessed as @TEXTURE@ in CanvasItem shader.
 set_texture ::
               (MultiMeshInstance2D :< cls, Object :< cls) =>
               cls -> Texture -> IO ()

@@ -92,7 +92,6 @@ instance NodeProperty Physics2DShapeQueryParameters "transform"
 {-# NOINLINE bindPhysics2DShapeQueryParameters_get_collision_layer
              #-}
 
--- | The physics layer(s) the query will take into account (as a bitmask). See @url=https://docs.godotengine.org/en/latest/tutorials/physics/physics_introduction.html#collision-layers-and-masks@Collision layers and masks@/url@ in the documentation for more information.
 bindPhysics2DShapeQueryParameters_get_collision_layer :: MethodBind
 bindPhysics2DShapeQueryParameters_get_collision_layer
   = unsafePerformIO $
@@ -102,7 +101,6 @@ bindPhysics2DShapeQueryParameters_get_collision_layer
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The physics layer(s) the query will take into account (as a bitmask). See @url=https://docs.godotengine.org/en/latest/tutorials/physics/physics_introduction.html#collision-layers-and-masks@Collision layers and masks@/url@ in the documentation for more information.
 get_collision_layer ::
                       (Physics2DShapeQueryParameters :< cls, Object :< cls) =>
                       cls -> IO Int
@@ -126,7 +124,6 @@ instance NodeMethod Physics2DShapeQueryParameters
 
 {-# NOINLINE bindPhysics2DShapeQueryParameters_get_exclude #-}
 
--- | The list of objects or object @RID@s that will be excluded from collisions.
 bindPhysics2DShapeQueryParameters_get_exclude :: MethodBind
 bindPhysics2DShapeQueryParameters_get_exclude
   = unsafePerformIO $
@@ -136,7 +133,6 @@ bindPhysics2DShapeQueryParameters_get_exclude
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The list of objects or object @RID@s that will be excluded from collisions.
 get_exclude ::
               (Physics2DShapeQueryParameters :< cls, Object :< cls) =>
               cls -> IO Array
@@ -157,7 +153,6 @@ instance NodeMethod Physics2DShapeQueryParameters "get_exclude" '[]
 
 {-# NOINLINE bindPhysics2DShapeQueryParameters_get_margin #-}
 
--- | The collision margin for the shape.
 bindPhysics2DShapeQueryParameters_get_margin :: MethodBind
 bindPhysics2DShapeQueryParameters_get_margin
   = unsafePerformIO $
@@ -167,7 +162,6 @@ bindPhysics2DShapeQueryParameters_get_margin
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The collision margin for the shape.
 get_margin ::
              (Physics2DShapeQueryParameters :< cls, Object :< cls) =>
              cls -> IO Float
@@ -187,7 +181,6 @@ instance NodeMethod Physics2DShapeQueryParameters "get_margin" '[]
 
 {-# NOINLINE bindPhysics2DShapeQueryParameters_get_motion #-}
 
--- | The motion of the shape being queried for.
 bindPhysics2DShapeQueryParameters_get_motion :: MethodBind
 bindPhysics2DShapeQueryParameters_get_motion
   = unsafePerformIO $
@@ -197,7 +190,6 @@ bindPhysics2DShapeQueryParameters_get_motion
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The motion of the shape being queried for.
 get_motion ::
              (Physics2DShapeQueryParameters :< cls, Object :< cls) =>
              cls -> IO Vector2
@@ -217,7 +209,6 @@ instance NodeMethod Physics2DShapeQueryParameters "get_motion" '[]
 
 {-# NOINLINE bindPhysics2DShapeQueryParameters_get_shape_rid #-}
 
--- | The queried shape's @RID@. See also @method set_shape@.
 bindPhysics2DShapeQueryParameters_get_shape_rid :: MethodBind
 bindPhysics2DShapeQueryParameters_get_shape_rid
   = unsafePerformIO $
@@ -227,7 +218,6 @@ bindPhysics2DShapeQueryParameters_get_shape_rid
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The queried shape's @RID@. See also @method set_shape@.
 get_shape_rid ::
                 (Physics2DShapeQueryParameters :< cls, Object :< cls) =>
                 cls -> IO Rid
@@ -249,7 +239,6 @@ instance NodeMethod Physics2DShapeQueryParameters "get_shape_rid"
 
 {-# NOINLINE bindPhysics2DShapeQueryParameters_get_transform #-}
 
--- | The queried shape's transform matrix.
 bindPhysics2DShapeQueryParameters_get_transform :: MethodBind
 bindPhysics2DShapeQueryParameters_get_transform
   = unsafePerformIO $
@@ -259,7 +248,6 @@ bindPhysics2DShapeQueryParameters_get_transform
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The queried shape's transform matrix.
 get_transform ::
                 (Physics2DShapeQueryParameters :< cls, Object :< cls) =>
                 cls -> IO Transform2d
@@ -282,7 +270,6 @@ instance NodeMethod Physics2DShapeQueryParameters "get_transform"
 {-# NOINLINE bindPhysics2DShapeQueryParameters_is_collide_with_areas_enabled
              #-}
 
--- | If @true@, the query will take @Area2D@s into account.
 bindPhysics2DShapeQueryParameters_is_collide_with_areas_enabled ::
                                                                 MethodBind
 bindPhysics2DShapeQueryParameters_is_collide_with_areas_enabled
@@ -293,7 +280,6 @@ bindPhysics2DShapeQueryParameters_is_collide_with_areas_enabled
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, the query will take @Area2D@s into account.
 is_collide_with_areas_enabled ::
                                 (Physics2DShapeQueryParameters :< cls, Object :< cls) =>
                                 cls -> IO Bool
@@ -318,7 +304,6 @@ instance NodeMethod Physics2DShapeQueryParameters
 {-# NOINLINE bindPhysics2DShapeQueryParameters_is_collide_with_bodies_enabled
              #-}
 
--- | If @true@, the query will take @PhysicsBody2D@s into account.
 bindPhysics2DShapeQueryParameters_is_collide_with_bodies_enabled ::
                                                                  MethodBind
 bindPhysics2DShapeQueryParameters_is_collide_with_bodies_enabled
@@ -329,7 +314,6 @@ bindPhysics2DShapeQueryParameters_is_collide_with_bodies_enabled
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, the query will take @PhysicsBody2D@s into account.
 is_collide_with_bodies_enabled ::
                                  (Physics2DShapeQueryParameters :< cls, Object :< cls) =>
                                  cls -> IO Bool
@@ -354,7 +338,6 @@ instance NodeMethod Physics2DShapeQueryParameters
 {-# NOINLINE bindPhysics2DShapeQueryParameters_set_collide_with_areas
              #-}
 
--- | If @true@, the query will take @Area2D@s into account.
 bindPhysics2DShapeQueryParameters_set_collide_with_areas ::
                                                          MethodBind
 bindPhysics2DShapeQueryParameters_set_collide_with_areas
@@ -365,7 +348,6 @@ bindPhysics2DShapeQueryParameters_set_collide_with_areas
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, the query will take @Area2D@s into account.
 set_collide_with_areas ::
                          (Physics2DShapeQueryParameters :< cls, Object :< cls) =>
                          cls -> Bool -> IO ()
@@ -390,7 +372,6 @@ instance NodeMethod Physics2DShapeQueryParameters
 {-# NOINLINE bindPhysics2DShapeQueryParameters_set_collide_with_bodies
              #-}
 
--- | If @true@, the query will take @PhysicsBody2D@s into account.
 bindPhysics2DShapeQueryParameters_set_collide_with_bodies ::
                                                           MethodBind
 bindPhysics2DShapeQueryParameters_set_collide_with_bodies
@@ -401,7 +382,6 @@ bindPhysics2DShapeQueryParameters_set_collide_with_bodies
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, the query will take @PhysicsBody2D@s into account.
 set_collide_with_bodies ::
                           (Physics2DShapeQueryParameters :< cls, Object :< cls) =>
                           cls -> Bool -> IO ()
@@ -426,7 +406,6 @@ instance NodeMethod Physics2DShapeQueryParameters
 {-# NOINLINE bindPhysics2DShapeQueryParameters_set_collision_layer
              #-}
 
--- | The physics layer(s) the query will take into account (as a bitmask). See @url=https://docs.godotengine.org/en/latest/tutorials/physics/physics_introduction.html#collision-layers-and-masks@Collision layers and masks@/url@ in the documentation for more information.
 bindPhysics2DShapeQueryParameters_set_collision_layer :: MethodBind
 bindPhysics2DShapeQueryParameters_set_collision_layer
   = unsafePerformIO $
@@ -436,7 +415,6 @@ bindPhysics2DShapeQueryParameters_set_collision_layer
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The physics layer(s) the query will take into account (as a bitmask). See @url=https://docs.godotengine.org/en/latest/tutorials/physics/physics_introduction.html#collision-layers-and-masks@Collision layers and masks@/url@ in the documentation for more information.
 set_collision_layer ::
                       (Physics2DShapeQueryParameters :< cls, Object :< cls) =>
                       cls -> Int -> IO ()
@@ -460,7 +438,6 @@ instance NodeMethod Physics2DShapeQueryParameters
 
 {-# NOINLINE bindPhysics2DShapeQueryParameters_set_exclude #-}
 
--- | The list of objects or object @RID@s that will be excluded from collisions.
 bindPhysics2DShapeQueryParameters_set_exclude :: MethodBind
 bindPhysics2DShapeQueryParameters_set_exclude
   = unsafePerformIO $
@@ -470,7 +447,6 @@ bindPhysics2DShapeQueryParameters_set_exclude
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The list of objects or object @RID@s that will be excluded from collisions.
 set_exclude ::
               (Physics2DShapeQueryParameters :< cls, Object :< cls) =>
               cls -> Array -> IO ()
@@ -492,7 +468,6 @@ instance NodeMethod Physics2DShapeQueryParameters "set_exclude"
 
 {-# NOINLINE bindPhysics2DShapeQueryParameters_set_margin #-}
 
--- | The collision margin for the shape.
 bindPhysics2DShapeQueryParameters_set_margin :: MethodBind
 bindPhysics2DShapeQueryParameters_set_margin
   = unsafePerformIO $
@@ -502,7 +477,6 @@ bindPhysics2DShapeQueryParameters_set_margin
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The collision margin for the shape.
 set_margin ::
              (Physics2DShapeQueryParameters :< cls, Object :< cls) =>
              cls -> Float -> IO ()
@@ -523,7 +497,6 @@ instance NodeMethod Physics2DShapeQueryParameters "set_margin"
 
 {-# NOINLINE bindPhysics2DShapeQueryParameters_set_motion #-}
 
--- | The motion of the shape being queried for.
 bindPhysics2DShapeQueryParameters_set_motion :: MethodBind
 bindPhysics2DShapeQueryParameters_set_motion
   = unsafePerformIO $
@@ -533,7 +506,6 @@ bindPhysics2DShapeQueryParameters_set_motion
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The motion of the shape being queried for.
 set_motion ::
              (Physics2DShapeQueryParameters :< cls, Object :< cls) =>
              cls -> Vector2 -> IO ()
@@ -554,7 +526,6 @@ instance NodeMethod Physics2DShapeQueryParameters "set_motion"
 
 {-# NOINLINE bindPhysics2DShapeQueryParameters_set_shape #-}
 
--- | Sets the @Shape2D@ that will be used for collision/intersection queries.
 bindPhysics2DShapeQueryParameters_set_shape :: MethodBind
 bindPhysics2DShapeQueryParameters_set_shape
   = unsafePerformIO $
@@ -564,7 +535,6 @@ bindPhysics2DShapeQueryParameters_set_shape
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Sets the @Shape2D@ that will be used for collision/intersection queries.
 set_shape ::
             (Physics2DShapeQueryParameters :< cls, Object :< cls) =>
             cls -> Resource -> IO ()
@@ -585,7 +555,6 @@ instance NodeMethod Physics2DShapeQueryParameters "set_shape"
 
 {-# NOINLINE bindPhysics2DShapeQueryParameters_set_shape_rid #-}
 
--- | The queried shape's @RID@. See also @method set_shape@.
 bindPhysics2DShapeQueryParameters_set_shape_rid :: MethodBind
 bindPhysics2DShapeQueryParameters_set_shape_rid
   = unsafePerformIO $
@@ -595,7 +564,6 @@ bindPhysics2DShapeQueryParameters_set_shape_rid
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The queried shape's @RID@. See also @method set_shape@.
 set_shape_rid ::
                 (Physics2DShapeQueryParameters :< cls, Object :< cls) =>
                 cls -> Rid -> IO ()
@@ -617,7 +585,6 @@ instance NodeMethod Physics2DShapeQueryParameters "set_shape_rid"
 
 {-# NOINLINE bindPhysics2DShapeQueryParameters_set_transform #-}
 
--- | The queried shape's transform matrix.
 bindPhysics2DShapeQueryParameters_set_transform :: MethodBind
 bindPhysics2DShapeQueryParameters_set_transform
   = unsafePerformIO $
@@ -627,7 +594,6 @@ bindPhysics2DShapeQueryParameters_set_transform
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | The queried shape's transform matrix.
 set_transform ::
                 (Physics2DShapeQueryParameters :< cls, Object :< cls) =>
                 cls -> Transform2d -> IO ()

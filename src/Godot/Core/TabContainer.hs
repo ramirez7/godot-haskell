@@ -518,7 +518,7 @@ instance NodeMethod TabContainer "get_tab_disabled" '[Int]
 
 {-# NOINLINE bindTabContainer_get_tab_icon #-}
 
--- | Returns the @Texture@ for the tab at index @tab_idx@ or @null@ if the tab has no @Texture@.
+-- | Returns the @Texture2D@ for the tab at index @tab_idx@ or @null@ if the tab has no @Texture2D@.
 bindTabContainer_get_tab_icon :: MethodBind
 bindTabContainer_get_tab_icon
   = unsafePerformIO $
@@ -528,7 +528,7 @@ bindTabContainer_get_tab_icon
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the @Texture@ for the tab at index @tab_idx@ or @null@ if the tab has no @Texture@.
+-- | Returns the @Texture2D@ for the tab at index @tab_idx@ or @null@ if the tab has no @Texture2D@.
 get_tab_icon ::
                (TabContainer :< cls, Object :< cls) => cls -> Int -> IO Texture
 get_tab_icon cls arg1

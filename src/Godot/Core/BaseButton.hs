@@ -271,7 +271,7 @@ instance NodeMethod BaseButton "get_action_mode" '[] (IO Int) where
 
 {-# NOINLINE bindBaseButton_get_button_group #-}
 
--- | @ButtonGroup@ associated to the button.
+-- | The @ButtonGroup@ associated with the button. Not to be confused with node groups.
 bindBaseButton_get_button_group :: MethodBind
 bindBaseButton_get_button_group
   = unsafePerformIO $
@@ -281,7 +281,7 @@ bindBaseButton_get_button_group
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | @ButtonGroup@ associated to the button.
+-- | The @ButtonGroup@ associated with the button. Not to be confused with node groups.
 get_button_group ::
                    (BaseButton :< cls, Object :< cls) => cls -> IO ButtonGroup
 get_button_group cls
@@ -300,7 +300,7 @@ instance NodeMethod BaseButton "get_button_group" '[]
 {-# NOINLINE bindBaseButton_get_button_mask #-}
 
 -- | Binary mask to choose which mouse buttons this button will respond to.
---   			To allow both left-click and right-click, use @BUTTON_MASK_LEFT | BUTTON_MASK_RIGHT@.
+--   			To allow both left-click and right-click, use @MOUSE_BUTTON_MASK_LEFT | MOUSE_BUTTON_MASK_RIGHT@.
 bindBaseButton_get_button_mask :: MethodBind
 bindBaseButton_get_button_mask
   = unsafePerformIO $
@@ -311,7 +311,7 @@ bindBaseButton_get_button_mask
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | Binary mask to choose which mouse buttons this button will respond to.
---   			To allow both left-click and right-click, use @BUTTON_MASK_LEFT | BUTTON_MASK_RIGHT@.
+--   			To allow both left-click and right-click, use @MOUSE_BUTTON_MASK_LEFT | MOUSE_BUTTON_MASK_RIGHT@.
 get_button_mask ::
                   (BaseButton :< cls, Object :< cls) => cls -> IO Int
 get_button_mask cls
@@ -353,7 +353,6 @@ instance NodeMethod BaseButton "get_draw_mode" '[] (IO Int) where
 
 {-# NOINLINE bindBaseButton_get_enabled_focus_mode #-}
 
--- | Focus access mode to use when switching between enabled/disabled (see @Control.focus_mode@ and @disabled@).
 bindBaseButton_get_enabled_focus_mode :: MethodBind
 bindBaseButton_get_enabled_focus_mode
   = unsafePerformIO $
@@ -363,7 +362,6 @@ bindBaseButton_get_enabled_focus_mode
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Focus access mode to use when switching between enabled/disabled (see @Control.focus_mode@ and @disabled@).
 get_enabled_focus_mode ::
                          (BaseButton :< cls, Object :< cls) => cls -> IO Int
 get_enabled_focus_mode cls
@@ -382,7 +380,7 @@ instance NodeMethod BaseButton "get_enabled_focus_mode" '[]
 
 {-# NOINLINE bindBaseButton_get_shortcut #-}
 
--- | @ShortCut@ associated to the button.
+-- | @Shortcut@ associated to the button.
 bindBaseButton_get_shortcut :: MethodBind
 bindBaseButton_get_shortcut
   = unsafePerformIO $
@@ -392,7 +390,7 @@ bindBaseButton_get_shortcut
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | @ShortCut@ associated to the button.
+-- | @Shortcut@ associated to the button.
 get_shortcut ::
                (BaseButton :< cls, Object :< cls) => cls -> IO ShortCut
 get_shortcut cls
@@ -490,7 +488,8 @@ instance NodeMethod BaseButton "is_keep_pressed_outside" '[]
 
 {-# NOINLINE bindBaseButton_is_pressed #-}
 
--- | If @true@, the button's state is pressed. Means the button is pressed down or toggled (if @toggle_mode@ is active).
+-- | If @true@, the button's state is pressed. Means the button is pressed down or toggled (if @toggle_mode@ is active). Only works if @toggle_mode@ is @true@.
+--   			__Note:__ Setting @pressed@ will result in @signal toggled@ to be emitted. If you want to change the pressed state without emitting that signal, use @method set_pressed_no_signal@.
 bindBaseButton_is_pressed :: MethodBind
 bindBaseButton_is_pressed
   = unsafePerformIO $
@@ -500,7 +499,8 @@ bindBaseButton_is_pressed
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, the button's state is pressed. Means the button is pressed down or toggled (if @toggle_mode@ is active).
+-- | If @true@, the button's state is pressed. Means the button is pressed down or toggled (if @toggle_mode@ is active). Only works if @toggle_mode@ is @true@.
+--   			__Note:__ Setting @pressed@ will result in @signal toggled@ to be emitted. If you want to change the pressed state without emitting that signal, use @method set_pressed_no_signal@.
 is_pressed :: (BaseButton :< cls, Object :< cls) => cls -> IO Bool
 is_pressed cls
   = withVariantArray []
@@ -598,7 +598,7 @@ instance NodeMethod BaseButton "set_action_mode" '[Int] (IO ())
 
 {-# NOINLINE bindBaseButton_set_button_group #-}
 
--- | @ButtonGroup@ associated to the button.
+-- | The @ButtonGroup@ associated with the button. Not to be confused with node groups.
 bindBaseButton_set_button_group :: MethodBind
 bindBaseButton_set_button_group
   = unsafePerformIO $
@@ -608,7 +608,7 @@ bindBaseButton_set_button_group
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | @ButtonGroup@ associated to the button.
+-- | The @ButtonGroup@ associated with the button. Not to be confused with node groups.
 set_button_group ::
                    (BaseButton :< cls, Object :< cls) => cls -> ButtonGroup -> IO ()
 set_button_group cls arg1
@@ -627,7 +627,7 @@ instance NodeMethod BaseButton "set_button_group" '[ButtonGroup]
 {-# NOINLINE bindBaseButton_set_button_mask #-}
 
 -- | Binary mask to choose which mouse buttons this button will respond to.
---   			To allow both left-click and right-click, use @BUTTON_MASK_LEFT | BUTTON_MASK_RIGHT@.
+--   			To allow both left-click and right-click, use @MOUSE_BUTTON_MASK_LEFT | MOUSE_BUTTON_MASK_RIGHT@.
 bindBaseButton_set_button_mask :: MethodBind
 bindBaseButton_set_button_mask
   = unsafePerformIO $
@@ -638,7 +638,7 @@ bindBaseButton_set_button_mask
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | Binary mask to choose which mouse buttons this button will respond to.
---   			To allow both left-click and right-click, use @BUTTON_MASK_LEFT | BUTTON_MASK_RIGHT@.
+--   			To allow both left-click and right-click, use @MOUSE_BUTTON_MASK_LEFT | MOUSE_BUTTON_MASK_RIGHT@.
 set_button_mask ::
                   (BaseButton :< cls, Object :< cls) => cls -> Int -> IO ()
 set_button_mask cls arg1
@@ -681,7 +681,6 @@ instance NodeMethod BaseButton "set_disabled" '[Bool] (IO ()) where
 
 {-# NOINLINE bindBaseButton_set_enabled_focus_mode #-}
 
--- | Focus access mode to use when switching between enabled/disabled (see @Control.focus_mode@ and @disabled@).
 bindBaseButton_set_enabled_focus_mode :: MethodBind
 bindBaseButton_set_enabled_focus_mode
   = unsafePerformIO $
@@ -691,7 +690,6 @@ bindBaseButton_set_enabled_focus_mode
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Focus access mode to use when switching between enabled/disabled (see @Control.focus_mode@ and @disabled@).
 set_enabled_focus_mode ::
                          (BaseButton :< cls, Object :< cls) => cls -> Int -> IO ()
 set_enabled_focus_mode cls arg1
@@ -741,7 +739,8 @@ instance NodeMethod BaseButton "set_keep_pressed_outside" '[Bool]
 
 {-# NOINLINE bindBaseButton_set_pressed #-}
 
--- | If @true@, the button's state is pressed. Means the button is pressed down or toggled (if @toggle_mode@ is active).
+-- | If @true@, the button's state is pressed. Means the button is pressed down or toggled (if @toggle_mode@ is active). Only works if @toggle_mode@ is @true@.
+--   			__Note:__ Setting @pressed@ will result in @signal toggled@ to be emitted. If you want to change the pressed state without emitting that signal, use @method set_pressed_no_signal@.
 bindBaseButton_set_pressed :: MethodBind
 bindBaseButton_set_pressed
   = unsafePerformIO $
@@ -751,7 +750,8 @@ bindBaseButton_set_pressed
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, the button's state is pressed. Means the button is pressed down or toggled (if @toggle_mode@ is active).
+-- | If @true@, the button's state is pressed. Means the button is pressed down or toggled (if @toggle_mode@ is active). Only works if @toggle_mode@ is @true@.
+--   			__Note:__ Setting @pressed@ will result in @signal toggled@ to be emitted. If you want to change the pressed state without emitting that signal, use @method set_pressed_no_signal@.
 set_pressed ::
               (BaseButton :< cls, Object :< cls) => cls -> Bool -> IO ()
 set_pressed cls arg1
@@ -767,7 +767,7 @@ instance NodeMethod BaseButton "set_pressed" '[Bool] (IO ()) where
 
 {-# NOINLINE bindBaseButton_set_shortcut #-}
 
--- | @ShortCut@ associated to the button.
+-- | @Shortcut@ associated to the button.
 bindBaseButton_set_shortcut :: MethodBind
 bindBaseButton_set_shortcut
   = unsafePerformIO $
@@ -777,7 +777,7 @@ bindBaseButton_set_shortcut
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | @ShortCut@ associated to the button.
+-- | @Shortcut@ associated to the button.
 set_shortcut ::
                (BaseButton :< cls, Object :< cls) => cls -> ShortCut -> IO ()
 set_shortcut cls arg1

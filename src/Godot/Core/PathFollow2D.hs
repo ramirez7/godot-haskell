@@ -257,7 +257,7 @@ instance NodeMethod PathFollow2D "has_loop" '[] (IO Bool) where
 
 {-# NOINLINE bindPathFollow2D_is_rotating #-}
 
--- | If @true@, this node rotates to follow the path, making its descendants rotate.
+-- | If @true@, this node rotates to follow the path, with the +X direction facing forward on the path.
 bindPathFollow2D_is_rotating :: MethodBind
 bindPathFollow2D_is_rotating
   = unsafePerformIO $
@@ -267,7 +267,7 @@ bindPathFollow2D_is_rotating
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, this node rotates to follow the path, making its descendants rotate.
+-- | If @true@, this node rotates to follow the path, with the +X direction facing forward on the path.
 is_rotating ::
               (PathFollow2D :< cls, Object :< cls) => cls -> IO Bool
 is_rotating cls
@@ -423,7 +423,6 @@ instance NodeMethod PathFollow2D "set_offset" '[Float] (IO ())
 
 {-# NOINLINE bindPathFollow2D_set_rotate #-}
 
--- | If @true@, this node rotates to follow the path, making its descendants rotate.
 bindPathFollow2D_set_rotate :: MethodBind
 bindPathFollow2D_set_rotate
   = unsafePerformIO $
@@ -433,7 +432,6 @@ bindPathFollow2D_set_rotate
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | If @true@, this node rotates to follow the path, making its descendants rotate.
 set_rotate ::
              (PathFollow2D :< cls, Object :< cls) => cls -> Bool -> IO ()
 set_rotate cls arg1

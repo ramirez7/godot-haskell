@@ -229,7 +229,7 @@ instance NodeMethod Input "add_joy_mapping"
 
 {-# NOINLINE bindInput_get_accelerometer #-}
 
--- | Returns the acceleration of the device's accelerometer, if the device has one. Otherwise, the method returns @Vector3.ZERO@.
+-- | Returns the acceleration in m/s² of the device's accelerometer sensor, if the device has one. Otherwise, the method returns @Vector3.ZERO@.
 --   				Note this method returns an empty @Vector3@ when running from the editor even when your device has an accelerometer. You must export your project to a supported device to read values from the accelerometer.
 --   				__Note:__ This method only works on iOS, Android, and UWP. On other platforms, it always returns @Vector3.ZERO@.
 bindInput_get_accelerometer :: MethodBind
@@ -241,7 +241,7 @@ bindInput_get_accelerometer
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the acceleration of the device's accelerometer, if the device has one. Otherwise, the method returns @Vector3.ZERO@.
+-- | Returns the acceleration in m/s² of the device's accelerometer sensor, if the device has one. Otherwise, the method returns @Vector3.ZERO@.
 --   				Note this method returns an empty @Vector3@ when running from the editor even when your device has an accelerometer. You must export your project to a supported device to read values from the accelerometer.
 --   				__Note:__ This method only works on iOS, Android, and UWP. On other platforms, it always returns @Vector3.ZERO@.
 get_accelerometer ::
@@ -261,6 +261,7 @@ instance NodeMethod Input "get_accelerometer" '[] (IO Vector3)
 {-# NOINLINE bindInput_get_action_strength #-}
 
 -- | Returns a value between 0 and 1 representing the intensity of the given action. In a joypad, for example, the further away the axis (analog sticks or L2, R2 triggers) is from the dead zone, the closer the value will be to 1. If the action is mapped to a control that has no axis as the keyboard, the value returned will be 0 or 1.
+--   				If @exact_match@ is @false@, it ignores the input modifiers for @InputEventKey@ and @InputEventMouseButton@ events, and the direction for @InputEventJoypadMotion@ events.
 bindInput_get_action_strength :: MethodBind
 bindInput_get_action_strength
   = unsafePerformIO $
@@ -271,6 +272,7 @@ bindInput_get_action_strength
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | Returns a value between 0 and 1 representing the intensity of the given action. In a joypad, for example, the further away the axis (analog sticks or L2, R2 triggers) is from the dead zone, the closer the value will be to 1. If the action is mapped to a control that has no axis as the keyboard, the value returned will be 0 or 1.
+--   				If @exact_match@ is @false@, it ignores the input modifiers for @InputEventKey@ and @InputEventMouseButton@ events, and the direction for @InputEventJoypadMotion@ events.
 get_action_strength ::
                       (Input :< cls, Object :< cls) => cls -> GodotString -> IO Float
 get_action_strength cls arg1
@@ -343,7 +345,7 @@ instance NodeMethod Input "get_current_cursor_shape" '[] (IO Int)
 
 {-# NOINLINE bindInput_get_gravity #-}
 
--- | Returns the gravity of the device's accelerometer, if the device has one. Otherwise, the method returns @Vector3.ZERO@.
+-- | Returns the gravity in m/s² of the device's accelerometer sensor, if the device has one. Otherwise, the method returns @Vector3.ZERO@.
 --   				__Note:__ This method only works on Android and iOS. On other platforms, it always returns @Vector3.ZERO@.
 bindInput_get_gravity :: MethodBind
 bindInput_get_gravity
@@ -354,7 +356,7 @@ bindInput_get_gravity
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the gravity of the device's accelerometer, if the device has one. Otherwise, the method returns @Vector3.ZERO@.
+-- | Returns the gravity in m/s² of the device's accelerometer sensor, if the device has one. Otherwise, the method returns @Vector3.ZERO@.
 --   				__Note:__ This method only works on Android and iOS. On other platforms, it always returns @Vector3.ZERO@.
 get_gravity :: (Input :< cls, Object :< cls) => cls -> IO Vector3
 get_gravity cls
@@ -369,8 +371,8 @@ instance NodeMethod Input "get_gravity" '[] (IO Vector3) where
 
 {-# NOINLINE bindInput_get_gyroscope #-}
 
--- | Returns the rotation rate in rad/s around a device's X, Y, and Z axes of the gyroscope, if the device has one. Otherwise, the method returns @Vector3.ZERO@.
---   				__Note:__ This method only works on Android. On other platforms, it always returns @Vector3.ZERO@.
+-- | Returns the rotation rate in rad/s around a device's X, Y, and Z axes of the gyroscope sensor, if the device has one. Otherwise, the method returns @Vector3.ZERO@.
+--   				__Note:__ This method only works on Android and iOS. On other platforms, it always returns @Vector3.ZERO@.
 bindInput_get_gyroscope :: MethodBind
 bindInput_get_gyroscope
   = unsafePerformIO $
@@ -380,8 +382,8 @@ bindInput_get_gyroscope
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the rotation rate in rad/s around a device's X, Y, and Z axes of the gyroscope, if the device has one. Otherwise, the method returns @Vector3.ZERO@.
---   				__Note:__ This method only works on Android. On other platforms, it always returns @Vector3.ZERO@.
+-- | Returns the rotation rate in rad/s around a device's X, Y, and Z axes of the gyroscope sensor, if the device has one. Otherwise, the method returns @Vector3.ZERO@.
+--   				__Note:__ This method only works on Android and iOS. On other platforms, it always returns @Vector3.ZERO@.
 get_gyroscope :: (Input :< cls, Object :< cls) => cls -> IO Vector3
 get_gyroscope cls
   = withVariantArray []
@@ -395,7 +397,7 @@ instance NodeMethod Input "get_gyroscope" '[] (IO Vector3) where
 
 {-# NOINLINE bindInput_get_joy_axis #-}
 
--- | Returns the current value of the joypad axis at given index (see @enum JoystickList@).
+-- | Returns the current value of the joypad axis at given index (see @enum JoyAxis@).
 bindInput_get_joy_axis :: MethodBind
 bindInput_get_joy_axis
   = unsafePerformIO $
@@ -405,7 +407,7 @@ bindInput_get_joy_axis
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the current value of the joypad axis at given index (see @enum JoystickList@).
+-- | Returns the current value of the joypad axis at given index (see @enum JoyAxis@).
 get_joy_axis ::
                (Input :< cls, Object :< cls) => cls -> Int -> Int -> IO Float
 get_joy_axis cls arg1 arg2
@@ -421,7 +423,6 @@ instance NodeMethod Input "get_joy_axis" '[Int, Int] (IO Float)
 
 {-# NOINLINE bindInput_get_joy_axis_index_from_string #-}
 
--- | Returns the index of the provided axis name.
 bindInput_get_joy_axis_index_from_string :: MethodBind
 bindInput_get_joy_axis_index_from_string
   = unsafePerformIO $
@@ -431,7 +432,6 @@ bindInput_get_joy_axis_index_from_string
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the index of the provided axis name.
 get_joy_axis_index_from_string ::
                                  (Input :< cls, Object :< cls) => cls -> GodotString -> IO Int
 get_joy_axis_index_from_string cls arg1
@@ -451,7 +451,6 @@ instance NodeMethod Input "get_joy_axis_index_from_string"
 
 {-# NOINLINE bindInput_get_joy_axis_string #-}
 
--- | Receives a @enum JoystickList@ axis and returns its equivalent name as a string.
 bindInput_get_joy_axis_string :: MethodBind
 bindInput_get_joy_axis_string
   = unsafePerformIO $
@@ -461,7 +460,6 @@ bindInput_get_joy_axis_string
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Receives a @enum JoystickList@ axis and returns its equivalent name as a string.
 get_joy_axis_string ::
                       (Input :< cls, Object :< cls) => cls -> Int -> IO GodotString
 get_joy_axis_string cls arg1
@@ -479,7 +477,6 @@ instance NodeMethod Input "get_joy_axis_string" '[Int]
 
 {-# NOINLINE bindInput_get_joy_button_index_from_string #-}
 
--- | Returns the index of the provided button name.
 bindInput_get_joy_button_index_from_string :: MethodBind
 bindInput_get_joy_button_index_from_string
   = unsafePerformIO $
@@ -489,7 +486,6 @@ bindInput_get_joy_button_index_from_string
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the index of the provided button name.
 get_joy_button_index_from_string ::
                                    (Input :< cls, Object :< cls) => cls -> GodotString -> IO Int
 get_joy_button_index_from_string cls arg1
@@ -509,7 +505,6 @@ instance NodeMethod Input "get_joy_button_index_from_string"
 
 {-# NOINLINE bindInput_get_joy_button_string #-}
 
--- | Receives a gamepad button from @enum JoystickList@ and returns its equivalent name as a string.
 bindInput_get_joy_button_string :: MethodBind
 bindInput_get_joy_button_string
   = unsafePerformIO $
@@ -519,7 +514,6 @@ bindInput_get_joy_button_string
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Receives a gamepad button from @enum JoystickList@ and returns its equivalent name as a string.
 get_joy_button_string ::
                         (Input :< cls, Object :< cls) => cls -> Int -> IO GodotString
 get_joy_button_string cls arg1
@@ -674,8 +668,8 @@ instance NodeMethod Input "get_last_mouse_speed" '[] (IO Vector2)
 
 {-# NOINLINE bindInput_get_magnetometer #-}
 
--- | Returns the the magnetic field strength in micro-Tesla for all axes of the device's magnetometer, if the device has one. Otherwise, the method returns @Vector3.ZERO@.
---   				__Note:__ This method only works on Android and UWP. On other platforms, it always returns @Vector3.ZERO@.
+-- | Returns the magnetic field strength in micro-Tesla for all axes of the device's magnetometer sensor, if the device has one. Otherwise, the method returns @Vector3.ZERO@.
+--   				__Note:__ This method only works on Android, iOS and UWP. On other platforms, it always returns @Vector3.ZERO@.
 bindInput_get_magnetometer :: MethodBind
 bindInput_get_magnetometer
   = unsafePerformIO $
@@ -685,8 +679,8 @@ bindInput_get_magnetometer
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns the the magnetic field strength in micro-Tesla for all axes of the device's magnetometer, if the device has one. Otherwise, the method returns @Vector3.ZERO@.
---   				__Note:__ This method only works on Android and UWP. On other platforms, it always returns @Vector3.ZERO@.
+-- | Returns the magnetic field strength in micro-Tesla for all axes of the device's magnetometer sensor, if the device has one. Otherwise, the method returns @Vector3.ZERO@.
+--   				__Note:__ This method only works on Android, iOS and UWP. On other platforms, it always returns @Vector3.ZERO@.
 get_magnetometer ::
                    (Input :< cls, Object :< cls) => cls -> IO Vector3
 get_magnetometer cls
@@ -755,6 +749,7 @@ instance NodeMethod Input "get_mouse_mode" '[] (IO Int) where
 
 -- | Returns @true@ when the user starts pressing the action event, meaning it's @true@ only on the frame that the user pressed down the button.
 --   				This is useful for code that needs to run only once when an action is pressed, instead of every frame while it's pressed.
+--   				If @exact_match@ is @false@, it ignores the input modifiers for @InputEventKey@ and @InputEventMouseButton@ events, and the direction for @InputEventJoypadMotion@ events.
 bindInput_is_action_just_pressed :: MethodBind
 bindInput_is_action_just_pressed
   = unsafePerformIO $
@@ -766,6 +761,7 @@ bindInput_is_action_just_pressed
 
 -- | Returns @true@ when the user starts pressing the action event, meaning it's @true@ only on the frame that the user pressed down the button.
 --   				This is useful for code that needs to run only once when an action is pressed, instead of every frame while it's pressed.
+--   				If @exact_match@ is @false@, it ignores the input modifiers for @InputEventKey@ and @InputEventMouseButton@ events, and the direction for @InputEventJoypadMotion@ events.
 is_action_just_pressed ::
                          (Input :< cls, Object :< cls) => cls -> GodotString -> IO Bool
 is_action_just_pressed cls arg1
@@ -785,6 +781,7 @@ instance NodeMethod Input "is_action_just_pressed" '[GodotString]
 {-# NOINLINE bindInput_is_action_just_released #-}
 
 -- | Returns @true@ when the user stops pressing the action event, meaning it's @true@ only on the frame that the user released the button.
+--   				If @exact_match@ is @false@, it ignores the input modifiers for @InputEventKey@ and @InputEventMouseButton@ events, and the direction for @InputEventJoypadMotion@ events.
 bindInput_is_action_just_released :: MethodBind
 bindInput_is_action_just_released
   = unsafePerformIO $
@@ -795,6 +792,7 @@ bindInput_is_action_just_released
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | Returns @true@ when the user stops pressing the action event, meaning it's @true@ only on the frame that the user released the button.
+--   				If @exact_match@ is @false@, it ignores the input modifiers for @InputEventKey@ and @InputEventMouseButton@ events, and the direction for @InputEventJoypadMotion@ events.
 is_action_just_released ::
                           (Input :< cls, Object :< cls) => cls -> GodotString -> IO Bool
 is_action_just_released cls arg1
@@ -814,6 +812,7 @@ instance NodeMethod Input "is_action_just_released" '[GodotString]
 {-# NOINLINE bindInput_is_action_pressed #-}
 
 -- | Returns @true@ if you are pressing the action event. Note that if an action has multiple buttons assigned and more than one of them is pressed, releasing one button will release the action, even if some other button assigned to this action is still pressed.
+--   				If @exact_match@ is @false@, it ignores the input modifiers for @InputEventKey@ and @InputEventMouseButton@ events, and the direction for @InputEventJoypadMotion@ events.
 bindInput_is_action_pressed :: MethodBind
 bindInput_is_action_pressed
   = unsafePerformIO $
@@ -824,6 +823,7 @@ bindInput_is_action_pressed
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | Returns @true@ if you are pressing the action event. Note that if an action has multiple buttons assigned and more than one of them is pressed, releasing one button will release the action, even if some other button assigned to this action is still pressed.
+--   				If @exact_match@ is @false@, it ignores the input modifiers for @InputEventKey@ and @InputEventMouseButton@ events, and the direction for @InputEventJoypadMotion@ events.
 is_action_pressed ::
                     (Input :< cls, Object :< cls) => cls -> GodotString -> IO Bool
 is_action_pressed cls arg1
@@ -841,7 +841,7 @@ instance NodeMethod Input "is_action_pressed" '[GodotString]
 
 {-# NOINLINE bindInput_is_joy_button_pressed #-}
 
--- | Returns @true@ if you are pressing the joypad button (see @enum JoystickList@).
+-- | Returns @true@ if you are pressing the joypad button (see @enum JoyButton@).
 bindInput_is_joy_button_pressed :: MethodBind
 bindInput_is_joy_button_pressed
   = unsafePerformIO $
@@ -851,7 +851,7 @@ bindInput_is_joy_button_pressed
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns @true@ if you are pressing the joypad button (see @enum JoystickList@).
+-- | Returns @true@ if you are pressing the joypad button (see @enum JoyButton@).
 is_joy_button_pressed ::
                         (Input :< cls, Object :< cls) => cls -> Int -> Int -> IO Bool
 is_joy_button_pressed cls arg1 arg2
@@ -869,7 +869,7 @@ instance NodeMethod Input "is_joy_button_pressed" '[Int, Int]
 
 {-# NOINLINE bindInput_is_joy_known #-}
 
--- | Returns @true@ if the system knows the specified device. This means that it sets all button and axis indices exactly as defined in @enum JoystickList@. Unknown joypads are not expected to match these constants, but you can still retrieve events from them.
+-- | Returns @true@ if the system knows the specified device. This means that it sets all button and axis indices. Unknown joypads are not expected to match these constants, but you can still retrieve events from them.
 bindInput_is_joy_known :: MethodBind
 bindInput_is_joy_known
   = unsafePerformIO $
@@ -879,7 +879,7 @@ bindInput_is_joy_known
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns @true@ if the system knows the specified device. This means that it sets all button and axis indices exactly as defined in @enum JoystickList@. Unknown joypads are not expected to match these constants, but you can still retrieve events from them.
+-- | Returns @true@ if the system knows the specified device. This means that it sets all button and axis indices. Unknown joypads are not expected to match these constants, but you can still retrieve events from them.
 is_joy_known ::
                (Input :< cls, Object :< cls) => cls -> Int -> IO Bool
 is_joy_known cls arg1
@@ -894,7 +894,7 @@ instance NodeMethod Input "is_joy_known" '[Int] (IO Bool) where
 
 {-# NOINLINE bindInput_is_key_pressed #-}
 
--- | Returns @true@ if you are pressing the key. You can pass a @enum KeyList@ constant.
+-- | Returns @true@ if you are pressing the key in the current keyboard layout. You can pass a @enum Key@ constant.
 bindInput_is_key_pressed :: MethodBind
 bindInput_is_key_pressed
   = unsafePerformIO $
@@ -904,7 +904,7 @@ bindInput_is_key_pressed
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns @true@ if you are pressing the key. You can pass a @enum KeyList@ constant.
+-- | Returns @true@ if you are pressing the key in the current keyboard layout. You can pass a @enum Key@ constant.
 is_key_pressed ::
                  (Input :< cls, Object :< cls) => cls -> Int -> IO Bool
 is_key_pressed cls arg1
@@ -919,7 +919,7 @@ instance NodeMethod Input "is_key_pressed" '[Int] (IO Bool) where
 
 {-# NOINLINE bindInput_is_mouse_button_pressed #-}
 
--- | Returns @true@ if you are pressing the mouse button specified with @enum ButtonList@.
+-- | Returns @true@ if you are pressing the mouse button specified with @enum MouseButton@.
 bindInput_is_mouse_button_pressed :: MethodBind
 bindInput_is_mouse_button_pressed
   = unsafePerformIO $
@@ -929,7 +929,7 @@ bindInput_is_mouse_button_pressed
             \ methodNamePtr ->
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
--- | Returns @true@ if you are pressing the mouse button specified with @enum ButtonList@.
+-- | Returns @true@ if you are pressing the mouse button specified with @enum MouseButton@.
 is_mouse_button_pressed ::
                           (Input :< cls, Object :< cls) => cls -> Int -> IO Bool
 is_mouse_button_pressed cls arg1
@@ -984,15 +984,20 @@ instance NodeMethod Input "joy_connection_changed"
 
 -- | Feeds an @InputEvent@ to the game. Can be used to artificially trigger input events from code. Also generates @method Node._input@ calls.
 --   				Example:
---   				
---   @
---   
---   				var a = InputEventAction.new()
---   				a.action = "ui_cancel"
---   				a.pressed = true
---   				Input.parse_input_event(a)
---   				
---   @
+--   				@codeblocks@
+--   				@gdscript@
+--   				var cancel_event = InputEventAction.new()
+--   				cancel_event.action = "ui_cancel"
+--   				cancel_event.pressed = true
+--   				Input.parse_input_event(cancel_event)
+--   				@/gdscript@
+--   				@csharp@
+--   				var cancelEvent = new InputEventAction();
+--   				cancelEvent.Action = "ui_cancel";
+--   				cancelEvent.Pressed = true;
+--   				Input.ParseInputEvent(cancelEvent);
+--   				@/csharp@
+--   				@/codeblocks@
 bindInput_parse_input_event :: MethodBind
 bindInput_parse_input_event
   = unsafePerformIO $
@@ -1004,15 +1009,20 @@ bindInput_parse_input_event
 
 -- | Feeds an @InputEvent@ to the game. Can be used to artificially trigger input events from code. Also generates @method Node._input@ calls.
 --   				Example:
---   				
---   @
---   
---   				var a = InputEventAction.new()
---   				a.action = "ui_cancel"
---   				a.pressed = true
---   				Input.parse_input_event(a)
---   				
---   @
+--   				@codeblocks@
+--   				@gdscript@
+--   				var cancel_event = InputEventAction.new()
+--   				cancel_event.action = "ui_cancel"
+--   				cancel_event.pressed = true
+--   				Input.parse_input_event(cancel_event)
+--   				@/gdscript@
+--   				@csharp@
+--   				var cancelEvent = new InputEventAction();
+--   				cancelEvent.Action = "ui_cancel";
+--   				cancelEvent.Pressed = true;
+--   				Input.ParseInputEvent(cancelEvent);
+--   				@/csharp@
+--   				@/codeblocks@
 parse_input_event ::
                     (Input :< cls, Object :< cls) => cls -> InputEvent -> IO ()
 parse_input_event cls arg1
@@ -1248,7 +1258,7 @@ instance NodeMethod Input "stop_joy_vibration" '[Int] (IO ()) where
 {-# NOINLINE bindInput_vibrate_handheld #-}
 
 -- | Vibrate Android and iOS devices.
---   				__Note:__ It needs VIBRATE permission for Android at export settings. iOS does not support duration.
+--   				__Note:__ It needs @VIBRATE@ permission for Android at export settings. iOS does not support duration.
 bindInput_vibrate_handheld :: MethodBind
 bindInput_vibrate_handheld
   = unsafePerformIO $
@@ -1259,7 +1269,7 @@ bindInput_vibrate_handheld
               godot_method_bind_get_method clsNamePtr methodNamePtr
 
 -- | Vibrate Android and iOS devices.
---   				__Note:__ It needs VIBRATE permission for Android at export settings. iOS does not support duration.
+--   				__Note:__ It needs @VIBRATE@ permission for Android at export settings. iOS does not support duration.
 vibrate_handheld ::
                    (Input :< cls, Object :< cls) => cls -> Maybe Int -> IO ()
 vibrate_handheld cls arg1
