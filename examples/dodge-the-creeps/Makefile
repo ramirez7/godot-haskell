@@ -10,7 +10,7 @@ stack:
 	stack build --fast --force-dirty
 	cp $(STACKLIBFILE) $(GODOTPROJECT)/lib
 stack-nix:
-	stack --nix clean $(NAME)
+#	stack --nix clean $(NAME)
 	stack --nix build
 	cp $(shell stack --nix path --local-install-root)/lib/lib$(NAME).so $(GODOTPROJECT)/lib
 stack-run:

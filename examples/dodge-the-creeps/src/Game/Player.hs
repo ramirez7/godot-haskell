@@ -47,6 +47,7 @@ player_ready :: Player -> IO ()
 player_ready self = do
   screenRect <- get_viewport_rect self >>= fromLowLevel
   void $ swapMVar (_pScreenSize self) (screenRect ^. _y)
+  -- NOTE: Comment this `hide` out to allow standalone F6 debugging of the Player scene in Godot
   hide self
 
 player_start :: Player -> Vector2 -> IO ()
@@ -57,7 +58,7 @@ player_start self pos = do
 
 player_process :: Player -> Float -> IO ()
 player_process self delta = do
-  animSprite              <- getNode' @"AnimatedSprite" self 
+  animSprite              <- getNode' @"AnimatedSprite" self
   screenSize              <- get_viewport_rect self >>= fromLowLevel <&> (^. _y)
   [left, right, up, down] <- do
     Just inp <- getSingleton @Input
